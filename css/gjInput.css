@@ -1,0 +1,89 @@
+body
+{
+background-color:white;
+margin:0 3em 0 2em;
+}
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey
+{
+  font-weight:600;
+  font-size:16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  background-color: ghostwhite;
+}
+
+textarea.buttonNgrey:hover, select.buttonNgrey:hover, input.buttonNgrey:hover
+{
+  font-weight:600;
+  font-size:16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  background-color: azure;
+}
+table
+{
+    border-collapse: collapse; /* 'cellspacing' equivalent */
+}
+table td, table th
+{
+    padding: 2px; /* 'cellpadding' equivalent */
+    border:none;
+}
+td p, th p, label
+{
+  margin:0 1px 1px 1px;
+  font-size:18px;
+  font-weight:500;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+H3
+{
+  font-size:24px;
+  color: blue;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+H2
+{
+  font-size:24px;
+  color: teal;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+.gjslim
+{
+width:1em;
+}
+.gjNote
+{
+  background: #F0FFF0;
+  float:right;
+}
+.gjRight
+{
+  text-align:right;
+}
+.gjRound
+{
+-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+}
+.gjWarn
+{
+  font-weight: bold;
+  color: red;
+}
+
+a:link, a:visited
+{
+  color: blue;
+  text-decoration: underline;
+}
+
+a:hover
+{
+  background-color:silver;
+}

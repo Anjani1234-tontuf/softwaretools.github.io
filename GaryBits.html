@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<!--
+-->
+<head>
+<style type="text/css">
+
+.mppad
+{
+  margin: 2em;
+}
+
+.aliceblue
+{
+background-color:aliceblue;
+}
+
+
+.lightgray
+{
+background-color:lightgrey;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+<title>Gary Bit wise cheat sheet</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+<!--
+
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/gj53runOptions.min.js"></script>
+
+-->
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript">
+
+//these functions do not work with form input, have to convert to a number type first
+
+// intToHex converts 0-255 into hex
+
+function intToHex(n)
+{
+  var result = n.toString(16);
+  if (result.length==1)
+  {
+    result = "0"+result;
+  }
+return result;
+}
+
+function intToBinary(n)
+{
+  var result = n.toString(2);
+  if (result.length==1)
+  {
+    result = "0"+result;
+  }
+return result;
+}
+
+
+// hexToInt converts hex to integer. hex 15 = 21 decimal
+function hexToInt(hexin)
+{
+  return parseInt(hexin, 16);
+}
+
+
+function ShowBits()
+{
+
+var fifteen = 15;
+var nine    = 9
+var result;
+
+var str1 ='15 & 9 Evaluates to 9 (1111 & 1001 = 1001)';  //both have to be on
+
+var str2 ='15 | 9 Evaluates to 15 (1111 | 1001 = 1111)'; //either on
+
+var str3 ='15 ^ 9 Evaluates to 6 (1111 ^ 1001 = 0110)'; //if both toogle
+
+
+changeInnerHTML("theop", returnInnerHTML("theop") + "<br>15 converted to Hex is " + intToHex(fifteen));
+changeInnerHTML("theop", returnInnerHTML("theop") + "<br>15 converted to Binary is " + intToBinary(fifteen));
+
+
+changeInnerHTML("theop", returnInnerHTML("theop") + "<br> 9 converted to Hex is " + intToHex(nine));
+changeInnerHTML("theop", returnInnerHTML("theop") + "<br> 9 converted to Binary is " + intToBinary(nine));
+
+//changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + thetest);
+}
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+
+//changeInnerHTML("theop", returnInnerHTML("theop") + "<br>hexToint 15   " + hexToInt(fifteen));
+
+
+
+
+</script>
+
+</head>
+
+<body>
+
+
+
+
+
+<br>
+<input type="button" value="ShowBits" onClick="ShowBits();" >
+
+
+<br>
+
+
+<input type="button" id="ib5" title="" class="buttonNgrey" value="Clear"
+onClick="clearOP();">
+
+
+
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

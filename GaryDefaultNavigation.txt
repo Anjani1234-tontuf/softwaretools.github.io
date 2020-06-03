@@ -1,0 +1,52 @@
+
+<!--
+
+Content Notes
+Select New Tabs Opened from Links
+
+
+Multiple keys may be separated by spaces or commas. Keys will map to other keys on platforms that do not have them.
+
+    * shift: The Shift key.
+    * alt: The Alt key. On the Macintosh, this is the Option key.
+    * meta: The Meta key. On the Macintosh, this is the Command key.
+    * control: The Control key.
+    * accel: The key used for keyboard shortcuts on the user's platform. Usually, this would be the value you would use.
+    * access: The access key for activating menus and other elements. On Windows, this is the Alt key, used in conjuction with an element's accesskey.
+    * any: Indicates that all modifiers preceding it are optional.
+
+
+Command == Windows key on windows keyboards
+
+-->
+
+<!--
+
+Technical Notes
+
+
+FireFox Shortcuts see my menu not working
+file:///C:/CookBook/XXSoftwareTools/shortcuts.xhtml
+  XXSoftwareTools\mouse_shortcuts.xhtml
+  XXSoftwareTools\shortcuts.xhtml
+
+
+
+-->
+
+
+<!--
+
+Changelog
+
+-->
+<!--
+<h3><span class="HCL"><span class="HCLT">Links to our other Navigation and Accessibility Documents</span></span></h3>
+<ul>
+
+<li><p class="exp"><span class="bpl"><a class="AOne" title="accessibility features of this site" href="Accessibility_Statement.html" accesskey="0">Accessibility statement</a></span></p></li>
+<li><p class="exp"><span class="bpl"><a class="AOne" title="Copyright" href="CopyRight.html" accesskey="8">Terms of use</a></span></p></li>
+
+<li><p class="exp"><span class="bpl"><a class="AOne" title="FireFox Short Cut Keys" href="shortcuts.xhtml" accesskey="k"><em style='font-weight: bold;'>FireFox</em> Short Cut keys</a></span></p></li>
+</ul>
+-->

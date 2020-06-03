@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SetCookie</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript">
+function createCookie(name,value,days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+  } else {
+	var expires = "";
+  }
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+//createCookie('ga_exclude',1,365*2);
+createCookie('gmgj_done',1,1);
+
+function getCookie(name) {
+  try  {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+
+    if (begin == -1) {
+      begin = dc.indexOf(prefix);
+      if (begin !== 0)
+      return null;
+    } else {
+	    begin += 2;
+	}
+    var end = document.cookie.indexOf(";", begin);
+    if (end == -1) {
+		end = dc.length;
+	}
+  } catch (error) {
+    console( "error getCookie ");
+    return 0;
+  }
+
+  return unescape(dc.substring(begin + prefix.length, end));
+}
+
+
+</script>
+</head>
+<body id='testbod'>
+<p id='op'>&nbsp;</p>
+<p>Create Cookie<br>
+Look in web developer cookies
+ </p>
+
+<script type="text/javascript">
+var gmgj_tst = getCookie('gmgj_done') ;
+document.getElementById("op").innerHTML=gmgj_tst; 
+</script>
+
+</body>
+
+</html>

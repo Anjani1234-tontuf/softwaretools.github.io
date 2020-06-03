@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Test Preferences</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h1>Preferences Test</h1>
+<p>Run me and select remember. Exit Firefox, run me again, It should remember me, but it does not.<br>
+
+<script type="text/javascript">
+function testUP()
+{
+  try
+  {
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalPreferencesRead");
+    var thecg = navigator.preference("capability.principal.codebase.p0.granted");
+    var theid = navigator.preference("capability.principal.codebase.p0.id");
+    var thesn = navigator.preference("capability.principal.codebase.p0.subjectName");
+
+    var thebd = navigator.preference("browser.download.lastDir");
+    if(!thecg)
+    {
+      alert("Permission to read preferences is granted. Ok - can't get capability strings " + " The browser.directory.lastdir is " + thebd);
+    }
+    else
+    {
+      alert("Permission to read preferences is granted. capability.principal.codebase.p0 .. "+thecg + " " + theid + " " + thesn + " browser directory" + thebd);
+    }
+  }
+  catch(err)
+  {
+    alert("Permission to read preferences was denied.");
+  }
+
+  return fp;
+}
+
+testUP();
+</script>
+
+</body>
+<!--
+Bugzilla search on subjectName
+https://bugzilla.mozilla.org/show_bug.cgi?id=381313
+
+Version  3.5
+Platform Win XP, Ubuntu Linux JJ, Mac
+
+-->
+</html>

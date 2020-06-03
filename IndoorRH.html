@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+
+http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=KMACAMBR4
+
+KMACAMBR4  Central square cambridge
+
+
+-->
+<head>
+<style type="text/css">
+.mppad
+{
+  margin: 2em;
+}
+.aliceblue
+{
+background-color:aliceblue;
+}
+.lightgray
+{
+background-color:lightgray;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+<title>Indoor Relative Humidity</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+
+
+</head>
+
+<body onload=doIt()>
+
+
+<TABLE WIDTH="40%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+  <FORM NAME ="indoorhumidity">
+
+    <TR>
+      <TD>Enter Current Outdoor Temperature:</TD>
+      <TD><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="T">&nbsp;&deg;F</TD>
+    </TR>
+
+    <TR>
+      <TD>Enter Current Outdoor Humidity:</TD>
+      <TD><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="RHo">&nbsp;%</TD>
+    </TR>
+
+    <TR>
+      <TD> Enter Your Thermostat Setting:</TD>
+      <TD ><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="Th">&nbsp;&deg;F</TD>
+    </TR>
+
+    <TR>
+      <TD>Are you operating your air conditioner?</TD>
+      <TD><INPUT TYPE="RADIO" VALUE="T" NAME="ac">Yes <INPUT TYPE="RADIO" VALUE="F" NAME="ac" CHECKED>No</TD>
+    </tr>
+    <tr>
+      <td><INPUT TYPE="button" NAME="calculate" VALUE="Go" onClick="calculateHumidity()">
+&nbsp;Indoor Humidity Result:&nbsp;<INPUT TYPE="TEXT" SIZE="25" NAME="results" READONLY>
+     </TD>
+    </TR>
+
+</table>
+
+<pre>
+/.../Cookbook/XXSoftwareTools/ getCambridgeWeather
+E:\ma\Personal\XXSoftwareTools\getCambridgeWeather.bat
+ for the latest results
+</pre>
+<div id="testplace" style="height:40em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<pre id='theop'> </pre>
+</div>
+
+
+</body>
+<script language="JavaScript">
+
+function calculateHumidityTable()
+{
+
+  //below 50% and 60%RH its a good idea to run the humidifier
+
+
+  var myhead = "Outdoor";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "Temp                                                   Outdoor Humidity";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "          0    5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80   85   90   95  100";
+//  myhead = "          0   10   20   30   40   50   60   70   80   90  100";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "                                                     Indoor Humidity at 68&deg;";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+
+  for (var x = 0; x < 80; x+=5)  //temp
+  {
+    var myop="";
+    if (x == 70) x = 68;
+
+
+    for (var y = 0; y < 105; y+=5)  //rh
+    {
+      var rho = y; //45
+
+      var thc = 5/9*(68 - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+      var tc = 5/9*(x - 32);  //outdoor temp 5/9*(35-32)  1.67
+
+      var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+      var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+      var esi = 6.11*num;  //6.11*3.8 = 23
+
+      power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+      num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+      var eso = 6.11*num; //6.11*1.127 = 6.89
+      var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+      myop = myop + padit(ihumidity);
+    }
+
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + padx(x) + "&deg;" + myop);
+    if((x == 50) || (x == 30))
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" );
+    if(x == 68) break;
+  }
+}
+
+function padx(x)
+{
+  var mytempop;
+  if(x == 0)
+  mytempop = "    " + x;
+  else if(x < 10)
+  mytempop = "    " + x;
+  else if (x < 100)
+  mytempop = "   " + x;
+  else if (x == 100)
+  mytempop = "  " + x;
+  else if (x > 100)
+  mytempop = "     ";
+
+  return mytempop;
+}
+
+function padit(y)
+{
+  var mytempop; var x;
+  x = y;
+  if(x == 0)
+  mytempop = "    " + x;
+  else if(x < 10)
+  mytempop = "    " + x;
+  else if (x < 100)
+  mytempop = "   " + x;
+  else if (x == 100)
+  mytempop = "  " + x;
+  else if (x > 100)
+  mytempop = "     ";
+
+  if(y < 30)
+  return "<FONT color='red'>" + mytempop + "</FONT>";
+  else return mytempop;
+}
+
+function doIt()
+{
+doit2();
+calculateHumidityTable();
+
+}
+
+function doit2()
+{
+
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else
+  {
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" +"no programming for you");
+    return;
+  }
+
+  var now = new Date();
+
+  var swyr = now.getFullYear();
+  var swmonth = now.getMonth() + 1;
+  if (swmonth <= 9)
+  {
+    swmonth = "0" + swmonth;
+   }
+  var swday= now.getDate();
+
+  if (swday <= 9)
+   {
+    swday = "0" + swday;
+  }
+
+  //var fn = swyr+swmonth+swday+"KMACAMBR4.xml";
+  var fn = "KMACAMBR4.xml";
+
+
+xhttp.open("GET",fn,false);
+xhttp.send();
+xmlDoc=xhttp.responseXML;
+
+if (window.DOMParser)
+  {
+  parser=new DOMParser();
+
+  }
+
+else // Internet Explorer
+  {
+  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+
+  xmlDoc.async="false";
+  xmlDoc.loadXML("temp_f");
+  }
+
+var ctf = xmlDoc.getElementsByTagName("temp_f")[0].childNodes[0].nodeValue;
+var cws = xmlDoc.getElementsByTagName("wind_string")[0].childNodes[0].nodeValue;
+var crh = xmlDoc.getElementsByTagName("relative_humidity")[0].childNodes[0].nodeValue;
+var asof = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
+
+
+calculatemyHumidity(ctf -0,cws,crh- 0, asof);
+
+
+
+//document.write(temp_f + " XML string is loaded into an XML DOM Object");
+
+//txt=xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue
+
+
+}
+
+
+function calculatemyHumidity(itf, iws, irh, when )
+{
+
+    var rho = irh;
+
+    var thc = 5/9*(68 - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+    var tc = 5/9*(itf - 32);
+
+    var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+    var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+    var esi = 6.11*num;  //6.11*3.8 = 23
+
+    power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+    num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+    var eso = 6.11*num; //6.11*1.127 = 6.89
+    var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+    var shumidity = "";
+
+    if (ihumidity > 100)
+    {
+      ihumidity = 100;
+    }
+    if (ihumidity < 0)
+    {
+      ihumidity = 0;
+    }
+    if ((ihumidity >= 0) && (ihumidity <= 30))
+    {
+      shumidity ="% DRY";
+    }
+    else if ((ihumidity >= 31) && (ihumidity <= 51))
+    {
+      shumidity ="% COMFORTABLE";
+    }
+    else
+    {
+      shumidity ="% WET";
+    }
+
+     myop = when + " Outdoor Temp " + itf +  "&deg; "  + " Outdoor humidity " + irh + " Indoor Temp 68 " + " Indoor Humity " + ihumidity.toString() + shumidity;
+
+ changeInnerHTML("theop", returnInnerHTML("theop") + "<br>");
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myop);
+ changeInnerHTML("theop", returnInnerHTML("theop") + "<br>");
+
+    document.indoorhumidity.RHo.value = irh;
+    document.indoorhumidity.Th.value =68;
+    document.indoorhumidity.T.value=itf;
+
+
+}
+
+function calculateHumidity()
+{
+
+// outdoor temp 35 out door rh 45  thermostat 68
+/*
+
+Relative Humidity(%) Knowing Tdf and Tf= 	RH = (((6.11*10^(7.5*((Tdf-32)/1.8)/(237.7+((Tdf-32)/1.8))))/((6.11*10^(7.5*((Tf-32)/1.8)/
+(237.7+((Tf-32)/1.8)))))*100))
+
+http://www.aprweather.com/pages/calc.htm
+*/
+    var rho = document.indoorhumidity.RHo.value; //45
+
+
+    var thc = 5/9*(document.indoorhumidity.Th.value - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+    var tc = 5/9*(document.indoorhumidity.T.value - 32);  //outdoor temp 5/9*(35-32)  1.67
+
+    var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+    var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+    var esi = 6.11*num;  //6.11*3.8 = 23
+
+    power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+    num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+    var eso = 6.11*num; //6.11*1.127 = 6.89
+    var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+    var shumidity = "";
+    var acuse = document.indoorhumidity.ac[0].checked;
+
+    if (ihumidity > 100)
+    {
+      ihumidity = 100;
+    }
+    if (ihumidity < 0)
+    {
+      ihumidity = 0;
+    }
+    if ((ihumidity >= 0) && (ihumidity <= 30))
+    {
+      shumidity ="% DRY";
+    }
+    else if ((ihumidity >= 31) && (ihumidity <= 51))
+    {
+      shumidity ="% COMFORTABLE";
+    }
+    else
+    {
+      shumidity ="% WET";
+    }
+    document.indoorhumidity.results.value = ihumidity.toString() + shumidity;
+
+    if (acuse == true)
+    {
+      document.indoorhumidity.results.value = "30% - 50% COMFORTABLE";
+    }
+}
+
+
+
+
+</script>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="Description" content="test countdown">
+<script src="./js/jquery-1.8.3.min.js"></script>
+<script src="./jq/jquery.countdown.min.js"></script>
+
+<style>
+#getting-started ,#getting-startedl{
+font-family:  "Courier New",Courier,monospace;
+font-size:24px;
+font-weight:bold;
+white-space:nowrap;}
+#getting-startedl{
+font-size:12px;}
+</style>
+</head>
+<div style="text-align:center;" id="getting-started"></div>
+<div style="text-align:center;" id="getting-startedl"></div>
+<script type="text/javascript">
+  $("#getting-started")
+  .countdown("2017/10/25", function(event) {
+    $(this).text(
+      event.strftime('68th Annual Workshops & Scientific Program in %D  days %H:%M:%S')
+    );
+
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>RunIt</title>
+
+
+<script type="text/javascript">
+
+var iNumberofCookiesRead=0;
+
+function document.getElementById(id)
+{
+
+  try
+  {
+    if(document.all)
+    {
+      return document.all[id];
+    }
+    else
+    {
+      return document.getElementById(id);
+    }
+  }
+  catch (error)
+  {
+    alert( " getElement error");
+  }
+}
+
+function currentTime()
+{
+
+  CheckForExternalAlarmAndSet();
+
+  setTimeout("currentTime()", 1000);
+}
+
+function CheckForExternalAlarmAndSet( )
+{
+
+/*
+
+*/
+  var sExternalAlarm;
+
+  sExternalAlarm = getCookie("AGJCookie");
+
+  if(sExternalAlarm == undefined || sExternalAlarm == "" )
+  {
+
+  }
+  else
+  {
+    myRe=/&/g;
+    myArray = sExternalAlarm.split(/&/)
+
+    for(i=0; i < myArray.length; i++)
+    {
+      try
+      {
+        newstr = myArray[i];
+        eval(newstr);
+      }
+      catch(err)
+      {
+        alert(err);
+      }
+    }
+
+        ++iNumberofCookiesRead;
+
+    document.getElementById('myTime1').firstChild.nodeValue = m_cdHours;
+    document.getElementById('myTime2').firstChild.nodeValue = iNumberofCookiesRead;
+    deleteCookie("AGJCookie");
+  }
+}
+
+function deleteCookie(name, path, domain)
+{
+  try
+  {
+      if (getCookie(name))
+      {
+        document.cookie = name + "=" +
+          ((path) ? "; path=" + path : "") +
+          ((domain) ? "; domain=" + domain : "") +
+          "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+      }
+      else
+      {
+        doMessage('Error in deleteCookie trying to delete non existent cookie ' + name);
+      }
+  }
+  catch (error)
+  {
+    gjonerror( error, "deleteCookie");
+   }
+}
+
+function getCookie(name)
+{
+
+    try
+    {
+        var dc = document.cookie;
+        var prefix = name + "=";
+        var begin = dc.indexOf("; " + prefix);
+
+        if (begin == -1)
+        {
+            begin = dc.indexOf(prefix);
+            if (begin != 0)
+            return null;
+        }
+    else
+        begin += 2;
+
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1)
+        end = dc.length;
+    }
+    catch (error)
+    {
+        gjonerror( error, " getCookie ");
+        return 0;
+    }
+
+return unescape(dc.substring(begin + prefix.length, end));
+}
+window.onload = currentTime;
+
+
+
+</script>
+</head>
+<BODY>
+
+
+<div id='TimeDiv' style="position:relative">
+<p><span id='myTime1'>:</span></p>
+<p><span id='myTime2'>:</span></p>
+</div>
+
+
+<div id="CountDownTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+
+</body>
+</html>
+

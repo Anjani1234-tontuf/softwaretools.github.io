@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+
+
+-->
+<!--
+Changelog
+
+-->
+<head>
+<style type="text/css">
+.fancy2
+{
+  border-top: solid 1px rgb(100,100,100);
+  border-bottom: solid 1px rgb(100,100,100);
+  padding: 8px;
+  background-color: #F5FBF5;
+}
+
+</style>
+    <title>Shopping List </title>
+    <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+    <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+    <meta name="author" content="Gary Johnson">
+    <meta name="description" content="CookBook">
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmsg.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjqt.min.js"></script>
+<!--
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gj53runSearchHTML.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+<script type="text/javascript" src="chrome://browser/content/utilityOverlay.min.js"></script>
+-->
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body>
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+
+
+<pre WIDTH=90EM;>
+
+a listener for a custom event
+function myListener(e)
+{
+  alert("data:" + e.target.getAttribute("application") + "/" + e.target.getAttribute("host"));
+}
+document.addEventListener("MyExtensionEvent", myListener, false, true);
+
+
+added an optional fourth parameter indicating whether your chrome code wants to
+accept untrusted events (= synthesized by web content), see above.
+Details in Bug 289940. Thanks to asqueella for notifying me.
+
+
+Code:
+if ("createEvent" in document)
+{
+  var element = document.createElement("MyExtensionDataElement");
+  element.setAttribute("application", "fubar");
+  element.setAttribute("host", "localhost:80");
+  document.documentElement.appendChild(element);
+
+  var ev = document.createEvent("Events");
+  ev.initEvent("MyExtensionEvent", true, false);
+  element.dispatchEvent(ev);
+}
+
+===================
+
+MyFirefoxExtension.openNotepad();
+
+... which could call openNotepad() in my firefox extension (which uses
+nsIProcess to call notepad).
+
+
+You can define in your page a regular javascript class (or function) like
+this for example:
+var SomeClass =
+{
+   Func : function()
+   {
+        alert('hello from web page');
+   }
+
+}
+
+then you can define this same class hierarchy in your extension javascript
+code. like this:
+var SomeClass =
+{
+   Func : function()
+   {
+        alert('hello from Extension');
+   }
+
+}
+
+when you recognize this web page from your extension you can set the class
+from the web page to reference the class from the extension - like this:
+getBrowser().contentWindow.wrappedJSObject.SomeClass = SomeClass;
+This line of code means get the class "SomeClass" that defines in my web
+page and set it to the class "SomeClass" the defines in my extension.
+now when you'll try to call the function SomeClass.Func(); from your web
+page you will get 'hello from Extension' alert message.
+without doing so of course you would get the 'hello from web page' alert
+message from your web page.
+
+On 5/21/06, Gavin Sharp <gavin.sh...@gmail.com> wrote:
+
+
+
+
+
+</pre>
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+
+</body>
+</html>
+
+
+

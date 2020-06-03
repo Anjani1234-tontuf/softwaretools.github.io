@@ -1,0 +1,133 @@
+<html>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<head>
+<title>DumpCookies.html</title>
+
+<script type="text/javascript">
+
+
+function dumpCookies()
+{
+  var msg2a = '';
+
+  var ctemp=  unescape(document.cookie);
+
+  var mySplitResult1 = ctemp.split(";");
+
+  for(i = 0; i < mySplitResult1.length; i++)
+  {
+    var mySplitResult2 = mySplitResult1[i].split("&");
+      for(j = 0; j < mySplitResult2.length; j++)
+      {
+        msg2a+= mySplitResult2[j] + "<br>";
+      }
+  }
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg2a);
+}
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+function setCookieTest(form)
+{
+  var ckName = form.theName.value;
+  var ckValue = escape(form.theValue.value);
+  var expdate = new Date();
+  expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>expdate" + expdate);
+
+//always set the expires, the expires code below is bogus
+//function setCookie(name, value, expires, path, domain, secure)
+
+  setCookie(ckName, ckValue, expdate, "/", null, false);
+}
+
+
+function getCookieTest(form)
+{
+  var ckName = form.theName.value;
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + getCookie(ckName));
+}
+
+
+</script>
+</head>
+<body>
+
+<pre>
+
+by Setting the path correctly I believe I can know read cookies from anywhere
+There are three HTML versions of this
+
+DumpCookiesCB in the main directory
+DumpCookiesRecipes in the Recipes folder
+DumpCookiesXX in the XXSoftwareTools folder
+
+The Chrome version is
+DumpCookiesXUL
+
+My work in progress is
+
+SendtoNeworExistingWindow.html
+
+  for kicking of a timer from a recipe
+
+Using Cookies from Chrome and from file:///
+moves
+cookie               value
+gj53runOptions DebugHTML
+
+<input type="button" id="SCDT"  class="buttonNgrey" value="DumpCookies" onClick="dumpCookies();">
+
+<input type="button" id="ib1" title="" class="buttonNgrey" value="Clear" onClick="clearOP();">
+
+<form name ="CookieTestF" id="CookieTestF">
+  <table>
+    <tbody>
+      <tr>
+
+        <td class="a" style=' vertical-align:bottom'>
+          <p class="td1p">Name<br>
+            <input name="theName" type="text" class="text" value="Htmlname1" SIZE="30" >
+          </p>
+        </td>
+        <td class="a" style=' vertical-align:bottom'>
+          <p class="td1p">Value<br>
+            <input name="theValue" type="text" class="text" value="Htmlvalue1" SIZE="100" >
+          </p>
+        </td>
+        <td class="a" style=' vertical-align:bottom'>
+          <input type="button" id="SCDT2" class="buttonNgrey" value="Set Cookie"
+          onClick="setCookieTest(this.form);">
+        <td class="a" style=' vertical-align:bottom'>
+          <input type="button" id="SCDT3" class="buttonNgrey" value="Get Cookie"
+          onClick="getCookieTest(this.form);">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</pre>
+<br>
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+<br>
+</body>
+</html>
+
+
+

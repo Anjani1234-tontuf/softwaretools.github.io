@@ -1,0 +1,1201 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="styleSheet" href="css/GaryDefaultApp.css" type="text/css">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="Unit Conversion Calculator">
+  <meta name="keywords" content="Time Length Weight ">
+  <link rel="icon" href="GraphicWidgets/k-fig.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <meta http-equiv="Cache-control" content="private">
+<!--
+# gjManifestVersion Nov 26 2015 version "1.00.28"
+-->
+<title>Conversion Calculators</title>
+<!--
+button highlight colors need adjusting
+-->
+<style type="text/css">
+
+body{width:100%}
+
+p.buttonNh2{
+font-weight:bold;
+font-size:16.0px;
+font-family:Verdana,Arial,Helvetica,sans-serif;
+background:teal;
+text-align:left;
+padding:4px 7px 4px 2px;
+border-top:2px solid #ffffd7;
+line-height:2em;}
+
+p.buttonNh2:hover{
+cursor:pointer;
+background-color:#b0c4de;}
+
+input[type="text"] {
+width:3em;}
+
+input[type="text"]:hover,
+input[type="button"]:hover {
+outline: 1px solid white;}
+
+input.result{width:6em;}
+
+.key { width:3em;}
+
+.fifty {
+opacity: 0.5;
+filter: alpha(opacity=50); /* IE8 and lower */
+zoom: 1;} /* set "zoom", "width" or "height" to trigger "hasLayout" in IE 7 and lower */
+
+.onehundred {
+opacity: 1.0;
+filter: alpha(opacity=100);
+zoom: 1;}
+
+
+.myhover {
+font-weight: normal;
+font-size: 16px;
+color: white;
+text-decoration: none;
+outline:1px solid white;
+line-height:2em;
+padding: 0 4px;
+overflow: auto;}
+
+.myhover:hover {font-weight: bold;}
+
+.a{
+background-color:cornflowerblue;
+padding:2px 2px 2px 2px}
+
+
+
+
+</style>
+</head>
+
+<body onload="Startup();">
+<div class="myborder" style="max-width:100%;"> <!-- main width setting div -->
+
+<p id='howto' class="note">Enter a number using the keypad or select an entry from the drop down list.  If you have any trouble, see the help for more information
+<br>
+</p>
+<p class="buttonNh2" onclick='toggleDisplayKeypad("LConvCalulatorDiv","number1");'><span class="FL">C</span>ooking Measurements</p>
+
+<div id='LConvCalulatorDiv' style='display:none;'>
+<form name ="LConvCalulator" id="LConvCalulator">
+<table>
+<tr>
+
+<td class="a">
+<p>From</p>
+</td>
+
+<td class="a">
+<p>
+<input name="number1" id="number1" type="text" class="text" value="" pattern="\d+" SIZE="3" onChange="liquidmeasureCalc(this.form)">
+    <select class="buttonNgrey" name="select1" id="select1" onchange="liquidmeasureCalc(this.form);">
+    <option value=" " selected>teaspoon</option>
+    <option value=" ">Tblespn</option>
+    <option value=" ">ounce</option>
+    <option value=" ">&frac14; cup</option>
+    <option value=" ">&frac12; cup</option>
+    <option value=" ">&frac34; cup</option>
+    <option value=" ">cup</option>
+    <option value=" ">pint</option>
+    <option value=" ">quart</option>
+    <option value=" ">gallon</option>
+    <option value=" ">brit cup</option>
+    <option value=" ">brit pint</option>
+    <option value=" ">brit gallon</option>
+    <option value=" ">liter</option>
+    <option value=" ">milli</option>
+    </select>
+</p>
+</td>
+</tr>
+
+<tr>
+
+<td class="b">
+<p>To</p>
+</td>
+
+<td class="b">
+<p>
+<select class="buttonNgrey" name="select2" id="select2" onchange="liquidmeasureCalc(this.form);">
+    <option value=" " selected>teaspoon</option>
+    <option value=" ">Tblespn</option>
+    <option value=" ">ounce</option>
+    <option value=" ">&frac14; cup</option>
+    <option value=" ">&frac12; cup</option>
+    <option value=" ">&frac34; cup</option>
+    <option value=" ">cup</option>
+    <option value=" ">pint</option>
+    <option value=" ">quart</option>
+    <option value=" ">gallon</option>
+    <option value=" ">brit cup</option>
+    <option value=" ">brit pint</option>
+    <option value=" ">brit gallon</option>
+    <option value=" ">liter</option>
+    <option value=" ">milli</option>
+    </select>
+Result
+    <input name="number2" type="text" class="result" SIZE="6" disabled value="" onChange="liquidmeasureCalc(this.form)"></p>
+</td>
+</tr>
+</table>
+
+</form>
+</div>
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("WConvCalulatorDiv","number3");'><span class="FL">W</span>eights</p>
+
+<div id='WConvCalulatorDiv' style='display:none;'>
+
+<form name ="WConvCalulator" id="WConvCalulator">
+
+<table>
+
+<tr>
+
+<td class="a">
+<p>From</p>
+</td>
+
+<td class="a">
+<input name="number3" id="number3" type="text" class="text" value="" pattern="\d+" SIZE="3" onChange="weightCalc(this.form)">
+      <select class="buttonNgrey" name="select3" id="select3" onchange="weightCalc(this.form);">
+      <option VALUE=" " SELECTED>gram</option>
+      <option VALUE=" ">ounce</option>
+      <option VALUE=" ">pound</option>
+      <option VALUE=" ">kilo</option>
+      </select>
+</td>
+</tr>
+
+<tr>
+
+<td class="b">
+<p>To</p>
+</td>
+
+<td class="b">
+<p>
+      <select class="buttonNgrey" name="select4" id="select4" onchange="weightCalc(this.form);">
+      <option VALUE=" " SELECTED>gram</option>
+      <option VALUE=" ">ounce</option>
+      <option VALUE=" ">pound</option>
+      <option VALUE=" ">kilo</option>
+      </select>
+Result
+      <input name="number4" type="text" class="result"  SIZE="10" onChange="weightCalc(this.form)">
+      </p>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("TemperatureDiv","celsius");'><span class="FL">T</span>emperature</p>
+
+<div id='TemperatureDiv' style='display:none;'>
+
+<form name="Temperature" id="Temperature">
+
+<table>
+
+<tr class="HCCT">
+  <td colspan="6">Enter either and hit Calculate.
+</td>
+</tr>
+
+<tr>
+
+<td class="a">
+<p class="scenter">Celsius</p>
+<input type="text" class="text" name="celsius" id="celsius" size="5" pattern="-+]?[0-9]*[.,]?[0-9]+" onchange="setWhichCalcStateValue('doCelsius');">
+</td>
+
+<td style='vertical-align:bottom'>
+<input type="button" id="CT"  class="buttonNgrey" value="Calculate" onClick="CalculateTemp('myCalculateTempClicked');">
+</td>
+
+<td style='vertical-align:bottom'>
+<input type="reset" id="CTR"  class="buttonNgrey" value="Reset" onClick="WhichCalcState.value=''">
+</td>
+
+<td class="b">
+<p class="scenter">Fahrenheit</p>
+<input type="text" class="text" name="fahrenheit" id="fahrenheit" size="5" pattern="-+]?[0-9]*[.,]?[0-9]+" onchange="setWhichCalcStateValue('doFahrenheit');">
+</td>
+
+<td>
+<input type="text" class="no" name="WhichCalcState" value="">
+</td>
+</tr>
+</table>
+</form>
+
+<div class='myhover' style='width:10em; margin:0 auto;' >
+<div id='gright' class='fifty' style='float:right;width:50%;' onclick='toggleInputF("gright", "gleft","fahrenheit","celsius");'>
+Fahrenheit
+</div>
+
+<div id='gleft' class='onehundred' style='float:left;width:50%' onclick='toggleInputF("gleft", "gright","celsius","fahrenheit");'>
+Celsius
+</div>
+</div>
+
+</div>
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("metrictoenglishDiv","number5");'><span class="FL">L</span>engths: Metric &amp; English</p>
+
+<div id='metrictoenglishDiv' style='display:none;'>
+
+<form name="metrictoenglish" id="metrictoenglish" >
+
+<table class="table320">
+<tr>
+
+<td class="a">
+<p>From</p>
+</td>
+
+<td class="a">
+<p>
+<input name="number5" id="number5" type="text" class="text" value="" SIZE="3" pattern="\d+" onChange="lengthmeasureCalc(this.form)">
+</p>
+</td>
+
+<td class="a">
+<p>
+<select class="buttonNgrey" name="selectlen1" id="selectlen1" onchange="lengthmeasureCalc(this.form);">
+    <option value=" " selected>Meter</option>
+    <option value=" ">Centimeter</option>
+    <option value=" ">Millimeter</option>
+    <option value=" ">Kilometer</option>
+    <option value=" ">Inch(es)</option>
+    <option value=" ">Feet</option>
+    <option value=" ">Yards</option>
+    </select>
+</p>
+</td>
+</tr>
+</table>
+
+<table class="table320">
+<tr>
+<td class="b">
+<p>To</p>
+</td>
+
+<td class="b">
+<p>
+    <select class="buttonNgrey" name="selectlen2" id="selectlen2" onchange="lengthmeasureCalc(this.form);">
+    <option value=" " selected>Meter</option>
+    <option value=" ">Centimeter</option>
+    <option value=" ">Millimeter</option>
+    <option value=" ">Kilometer</option>
+    <option value=" ">Inch(es)</option>
+    <option value=" ">Feet</option>
+    <option value=" ">Yards</option>
+    </select>
+</p>
+</td>
+<td class="b">
+<p>
+<input name="number6" type="text" class="result" SIZE="6" onChange="lengthmeasureCalc(this.form)">
+</p>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("feetinchesDiv","feet");'><span class="FL">F</span>eet &amp; Inches To Metric &amp; English</p>
+
+<div id='feetinchesDiv' style='display:none;'>
+
+<form name="feetinches" id="feetinches">
+
+<table class="table320">
+<tr>
+
+<td class="a">
+<p>Feet<br>
+<input name="feet" id="feet" type="text" class="text" value="" SIZE="3" pattern="\d+" onChange="inchesfeetCalc(this.form)">
+</p>
+</td>
+
+<td class="a">
+<p>Inches<br>
+    <select class="buttonNgrey" name="selectinch" id="selectinch" onchange="inchesfeetCalc(this.form);">
+        <option value="0" selected="selected">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        </select>
+</p>
+</td>
+
+<td class="a">
+<p>Fraction<br>
+        <select id="fraction1" name="fraction1" size="1" onchange="inchesfeetCalc(this.form);">
+        <option value="0" selected="selected">even</option>
+        <option value=".0625">1/16</option>
+        <option value=".125">1/8</option>
+        <option value=".1875">3/16</option>
+        <option value=".25">1/4</option>
+        <option value=".3125">5/16</option>
+        <option value=".375">3/8</option>
+        <option value=".4375">7/16</option>
+        <option value=".5">1/2</option>
+        <option value=".5625">9/16</option>
+        <option value=".625">5/8</option>
+        <option value=".6875">11/16</option>
+        <option value=".75">3/4</option>
+        <option value=".8125">13/16</option>
+        <option value=".875">7/8</option>
+        <option value=".9375">15/16</option>
+        </select>
+</p>
+</td>
+</tr>
+
+</table>
+<table class="table320">
+
+<tr>
+<td class="b">
+<p>To
+   <select class="buttonNgrey" name="selectlen3" id="selectlen3" onchange="inchesfeetCalc(this.form);">
+    <option value=" " selected>Meter</option>
+    <option value=" ">Centi</option>
+    <option value=" ">Milli</option>
+    <option value=" ">Kilo</option>
+    <option value=" ">Inch</option>
+    <option value=" ">Feet</option>
+    <option value=" ">Yards</option>
+    <option value=" ">Miles</option>
+    <option value=" ">Naut miles</option>
+    </select>
+</p>
+</td>
+
+<td class="b">
+<input name="number8" type="text" class="result" SIZE="6" onChange="inchesfeetCalc(this.form)">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("ouncetenthsDiv","");'><span class="FL">M</span>icrowave Ounces to Tenths</p>
+
+<div id='ouncetenthsDiv' style='display:none;'>
+
+<form name="ouncetenths" id="ouncetenths">
+
+<table>
+
+<tr>
+
+<td class="a">
+<p>Ounces
+    <select class="buttonNgrey" name="selectOunces" id="selectOunces" onchange="ouncesToTenths(this.form);">
+        <option value="0" selected="selected">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        </select>
+</p>
+</td>
+
+<td class="b">
+<p>Result
+<input name="number10" type="text" class="result" SIZE="6">
+</p>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("microwavewattageDiv","MfromWatt");'><span class="FL">M</span>icrowave Cooking Times</p>
+
+<div id='microwavewattageDiv' style='display:none;'>
+
+
+<form name="microwavewattage" id="microwavewattage">
+
+<!--   Convert Microwave Times for different Wattages -->
+
+<a name="microwavewattageA"></a>
+<table>
+<tr>
+
+<td class="a">
+<p>From Wattage</p>
+</td>
+
+<td class="a">
+<p>
+<input name="MfromWatt" id="MfromWatt" type="text" class="text" value="" pattern="\d+" SIZE="4">
+</p>
+</td>
+
+<td class="a">
+</td>
+</tr>
+
+<tr>
+<td class="b">
+<p>To Wattage</p>
+</td>
+
+<td class="b">
+<p>
+<input name="MtoWatt" id="MtoWatt" type="text" class="text" value="" pattern="\d+" SIZE="4">
+</p>
+</td>
+
+<td class="b">
+</td>
+</tr>
+
+<tr>
+<td class="c" style='vertical-align:bottom'>
+<p class="td1p">Mins
+  <select class="buttonNgrey" name="MMinutes" id="MMinutes" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+</p>
+</td>
+
+<td class="c" style=' vertical-align:bottom'>
+<p class="td1p">Secs
+  <select class="buttonNgrey" name="MSeconds" id="MSeconds" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+</p>
+</td>
+
+<td class="c" style='vertical-align:bottom'>
+<p>
+<input type="button" id="parse2button" title="go" class="buttonNgrey" value="Go" onClick="microwaveWattConversion(this.form );">
+</p>
+</td>
+</tr>
+
+<tr>
+<td colspan="6" class="e" style='vertical-align:bottom'>
+<p id=mcFactorID class="td1px"></p>
+</td>
+</tr>
+
+<tr>
+<td>
+<p>
+<input name="mnewTime" type="text" class="result" SIZE="8" style='display:none'>
+</p>
+</td>
+</tr>
+</table>
+</form>
+
+<div class='myhover' style='width:10em; margin:0 auto;' >
+<div id='gright2' class='onehundred' style='float:right;width:50%' onclick='toggleInput("gright2", "gleft2","MfromWatt","MtoWatt");'>
+From
+</div>
+
+<div id='gleft2' class='fifty' style='float:left;width:50%' onclick='toggleInput("gleft2", "gright2","MtoWatt","MfromWatt");'>
+To
+</div>
+</div>
+
+
+
+</div>
+
+
+<p class="buttonNh2" onclick='toggleDisplayKeypad("chelpDiv","");'><span class="FL">H</span>elp</p>
+
+<div id='chelpDiv' style='display:none;margin:2px 5px;'>
+<div id='chelpDiv2'>
+</div>
+
+<hr>
+<p class="note">When you see a box like this:<br></p>
+
+<div class='myhover' style='width:10em; margin:0 auto;' >
+<div id='grightH' class='onehundred' style='float:right;width:50%' onclick='toggleInput("grightH", "gleftH","dummy1","dummy2");'>
+From
+</div>
+
+<div id='gleftH' class='fifty' style='float:left;width:50%' onclick='toggleInput("gleftH", "grightH","dummy2","dummy1");'>
+To
+</div>
+
+</div>
+
+<p class="note"><br>Where one entry is bold and the others are
+opague, the input goes to the selected item, which is bold.  To switch where the input goes, select the opaque entry, it turns to bold, and becomes where the input goes</p>
+
+<p class="note"><br>When you change any value in any of the converters except for Temperature and Microwave Cooking Times, the corresponding result is changed.  I will get around to adding onchange to these converters as soon as someone asks</p>
+
+
+<input name="dummy1" id="dummy1" type="text" value="" style='display:none'>
+<input name="dummy2" id="dummy2" type="text" value="" style='display:none'>
+
+
+</div>
+
+</div>  <!-- main div -->
+
+<form name="keypad" id="keypad">
+<p>&nbsp;</p>
+<table style='max-width: 260px; min-width:201px;margin: 0 auto;'>
+
+<tr>
+<td>
+<input name="btnseven" type="button" class="buttonNgrey key" value="7" onclick="numpressed(7)">
+</td>
+<td>
+<input name="btneight" type="button" class="buttonNgrey key" value="8" onclick="numpressed(8)">
+</td>
+<td>
+<input name="btnnine" type="button" class="buttonNgrey key" value="9" onclick="numpressed(9)">
+</td>
+</tr>
+
+<tr>
+<td>
+<input name="btnfour" type="button" class="buttonNgrey key" value="4" onclick="numpressed(4)">
+</td>
+<td>
+<input name="btnfive" type="button" class="buttonNgrey key" value="5" onclick="numpressed(5)">
+</td>
+<td>
+<input name="btnsix" type="button" class="buttonNgrey key" value="6" onclick="numpressed(6)">
+</td>
+</tr>
+
+<tr id='scrollto'>
+<td>
+<input name="btnone" type="button" class="buttonNgrey key" value="1" onclick="numpressed(1)">
+</td>
+<td>
+<input name="btntwo" type="button" class="buttonNgrey key" value="2" onclick="numpressed(2)">
+</td>
+<td>
+<input name="btnthree" type="button" class="buttonNgrey key" value="3" onclick="numpressed(3)">
+</td>
+</tr>
+
+<tr>
+<td>
+<input name="btnzero" type="button" class="buttonNgrey key" value="0" onclick="numpressed(0)">
+</td>
+<td>
+<input name="btndecimal" type="button" class="buttonNgrey key" value="." onclick="numpressed('.')">
+</td>
+<td>
+<input name="btnclr" type="button" class="buttonNgrey key" value="CE" onclick="clearEntry()">
+</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+</form>
+
+
+<p>
+<small>
+<a class="ATwo" href="Copyright.html" target=_top>Copyright &copy;2000-20015 Gary Johnson</a>
+<a class="ATwo" href="http://www.iconarchive.com/show/tulliana-2-icons-by-umut-pulat.html"arget=_top>Icon(s) by Umut Pulat</a></small></p>
+</div> <!-- main width setting div -->
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+
+<script type="text/javascript">
+
+
+var FKeyPad;
+var lastActive='';
+
+function toggleDisplayKeypad(idin,inputid){
+  try {
+    var aDiv = document.getElementById(idin);
+    if(inputid !== "") {
+      highlightI(inputid);
+    }
+    //var FKeyPad2= aDiv.inputid;
+    // rewrite to use nodes for portability, see gjform.js
+
+    if(inputid =='number1') {
+      FKeyPad = document.LConvCalulator.number1;
+    } else if (inputid =='number3') {
+      FKeyPad = document.WConvCalulator.number3;
+    } else if (inputid =='celsius') {
+      FKeyPad = document.Temperature.celsius;
+    } else if (inputid =='number5') {
+      FKeyPad = document.metrictoenglish.number5;
+    } else if (inputid =='feet') {
+      FKeyPad = document.feetinches.feet;
+    } else if (inputid =='MfromWatt') {
+      FKeyPad = document.microwavewattage.MfromWatt;
+    }
+
+    //ouncetenthsDiv no
+    if(inputid !='') {
+      document.getElementById(idin).appendChild(document.getElementById('keypad'));
+    }
+
+    if(lastActive == '') {
+      lastActive = aDiv;
+      document.getElementById('chelpDiv2').appendChild(document.getElementById('howto'));
+    } else {
+      lastActive.style.display = 'none';
+      lastActive = aDiv;
+    }
+
+    if(aDiv.style.display == 'none') {
+      aDiv.style.display = 'block';
+    } else {
+      aDiv.style.display = 'none';
+    }
+  } catch (error) {
+    gjonerror( error, "toggleDisplayButton");
+  }
+
+}
+
+/*
+if( clicked is 'PrefixFieldName'
+  FKeyPad = document.LConvCalulator.number1;
+*/
+
+
+function toggleInput(clickedD, inactiveD, clickedI,inactiveI ) {
+  document.getElementById(clickedD).className = "onehundred";
+  document.getElementById(inactiveD).className = "fifty";
+  if (clickedI =='MfromWatt') {
+      FKeyPad = document.microwavewattage.MfromWatt;
+   } else {
+      FKeyPad = document.microwavewattage.MtoWatt;
+  }
+
+  highlightI(clickedI); //turn on the active one
+  unhighlightI(inactiveI); //turn off the inactive one
+}
+
+
+
+function toggleInputF(clickedD, inactiveD, clickedI,inactiveI ) {
+  document.getElementById(clickedD).className = "onehundred";
+  document.getElementById(inactiveD).className = "fifty";
+  if (clickedI =='celsius') {
+      FKeyPad = document.Temperature.celsius;
+      setWhichCalcStateValue('doCelsius');
+   } else {
+      FKeyPad = document.Temperature.fahrenheit;
+      setWhichCalcStateValue('doFahrenheit');
+  }
+
+  highlightI(clickedI); //need to turn off the inactive one
+  unhighlightI(inactiveI); //need to trun off the inactive one
+}
+
+function highlightI (inputID) {
+  FKeyPadStyle= document.getElementById(inputID);
+  document.getElementById(inputID).className = "iHigh";
+}
+
+
+function unhighlightI (inputID) {
+  FKeyPadStyle= document.getElementById(inputID);
+  document.getElementById(inputID).className = "iNot";
+}
+
+
+function numpressed (Num) {
+
+
+/*
+var focused = document.activeElement;
+if (!focused || focused == document.body)
+    focused = null;
+else if (document.querySelector)
+    focused = document.querySelector(":focus");
+*/
+
+  try
+  {
+    FKeyPad.value  += Num;
+
+    if(FKeyPad.onchange) { FKeyPad.onchange();}
+  }
+  catch (e)
+  {
+    alert( e );
+  }
+}
+
+function selpressed() {
+  if(document.keypad.Mop.selectedIndex == 0) {
+    return;
+  }
+  FKeyPad.value += document.keypad.Mop.options[document.keypad.Mop.selectedIndex].value;
+}
+
+function clearEntry() {
+  try
+  {
+    FKeyPad.value = "";
+  }
+  catch (error)
+  {
+    gjonerror( error, "Conversion Calculator - clearEntry Error ");
+  }
+}
+
+function showId(id, width, height)
+{
+  toggleDivVisibility(id, width, height);
+
+  if(isVisible(id))
+  {
+    document.getElementById("sSS").value="Hide Help";
+    document.location='#myPname';
+  }
+  else
+  {
+    document.getElementById("sSS").value="Display Help";
+    window.scrollTo(0, 0); return false;
+    //document.location='#myfirst';
+  }
+return true;
+}
+
+var teaspoonsEquiv = new Array(1,3,6,12,24,36,48,96,192,768,57.6456,115.2912,922.3296,202.88413621,.202884136);
+//teaspoon, tablespoon , fluid ounce, 1/4 cup, 1/2 cup, 3/4 cup, cup, liquid pint, liquid quart, gallon,
+//British cup, British pint, British gallon, liter, milliliter
+
+var gramEquiv = new Array(1, 28.3495, 453.59237, 1000);
+
+// weight gram, ounce, pound, kilo
+
+function liquidmeasureCalc(form)
+{
+  var fromNumber = Trim(form.number1.value);
+  var result = fromNumber;
+
+  if (form.select1.options[form.select1.selectedIndex].value !== "" && checkPosNumber(fromNumber))
+  {
+    result = result  * teaspoonsEquiv[form.select1.selectedIndex];
+    result = result / teaspoonsEquiv[form.select2.selectedIndex];
+    form.number2.value = result.toFixed(3);
+  }
+}
+
+function weightCalc(form)
+{
+  var fromNumber = Trim(form.number3.value);
+  var result = fromNumber;
+
+  if (form.select3.options[form.select3.selectedIndex].value != "" && checkPosNumber(fromNumber))
+  {
+    result = result  * gramEquiv[form.select3.selectedIndex];
+    result = result / gramEquiv[form.select4.selectedIndex];
+    form.number4.value = Roundit(result,4);
+  }
+}
+
+function CalculateTemp(doWhat)
+{
+
+  if(doWhat=="myCalculateTempClicked")
+  {
+    if(document.Temperature.WhichCalcState.value=="doCelsius")
+    {
+      if(checkAllNumber(document.Temperature.celsius.value))
+      {
+        CtoF(document.Temperature.celsius.value);
+        return true;
+      }
+      else return false;
+    }
+    else if(document.Temperature.WhichCalcState.value=="doFahrenheit")
+    {
+      if(checkAllNumber(document.Temperature.fahrenheit.value))
+      {
+        FtoC(document.Temperature.fahrenheit.value);
+        return true;
+      }
+      else
+      {
+        doMessage("Enter Either Value and Hit Calculate");
+        return false;
+      }
+    }
+  }
+
+  doMessage("Enter Either Value and Hit Calculate");
+return true;
+}
+
+/*
+
+when you hit the enter key in the input field, you trigger an onchange (and onsubmit)
+this checks for the correct value, but the checkAllNumber is redundant with the above
+when I figure out the correct way to trap return, I can fix this
+
+*/
+
+function setWhichCalcStateValue(fld)
+{
+  document.Temperature.WhichCalcState.value=fld;
+    if(document.Temperature.WhichCalcState.value=="doCelsius")
+    {
+      if(checkAllNumber(document.Temperature.celsius.value))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    else if(document.Temperature.WhichCalcState.value=="doFahrenheit")
+    {
+      if(checkAllNumber(document.Temperature.fahrenheit.value))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+return false;
+}
+
+
+
+function CtoF(tmp)
+{
+  var intTemp=tmp;
+  intTemp=(intTemp  * 9);
+  intTemp=(intTemp / 5);
+  intTemp=(intTemp + 32);
+  document.Temperature.fahrenheit.value=frmtNumber(intTemp,1);
+}
+
+function FtoC(tmp)
+{
+  var intTemp=tmp;
+  intTemp=(intTemp - 32);
+  intTemp=(intTemp / 9);
+  intTemp=(intTemp * 5);
+  document.Temperature.celsius.value=frmtNumber(intTemp,1);
+}
+
+
+//<!-- convert to meters then convert meters to target -->
+var lenEquiv = new Array(1 ,.01, .001 ,1000 ,.0254 ,.3048, .9144, 1609.344, 1852);
+
+function lengthmeasureCalc(form)
+{
+
+  var fromNumber = Trim(form.number5.value);
+  var result = fromNumber;
+
+  if (form.selectlen1.options[form.selectlen1.selectedIndex].value != "" && checkPosNumber(fromNumber))
+  {
+    result = result  * lenEquiv[form.selectlen1.selectedIndex];
+    result = result / lenEquiv[form.selectlen2.selectedIndex];
+    form.number6.value = result.toFixed(3);
+  }
+
+}
+
+
+function inchesfeetCalc(form)
+{
+
+var feet = Trim(form.feet.value);
+var inches = form.selectinch.options[form.selectinch.selectedIndex].value;
+var decimal1 = form.fraction1.options[form.fraction1.selectedIndex].value;
+var factor2 = lenEquiv[form.selectlen3.selectedIndex];
+
+  if (form.feet.value != "" && checkPosNumber(feet))
+  {
+    var meters = (feet*.3048) + (inches*.0254) + (decimal1*.0254);
+    var result = meters / factor2;
+    form.number8.value = result.toFixed(5);
+  }
+}
+
+
+function ouncesToTenths(form)
+{
+
+  var ozs = form.selectOunces.options[form.selectOunces.selectedIndex].value;
+  var result = ozs / parseInt(16);
+  form.number10.value = result.toFixed(5);
+
+}
+
+
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+  changeInnerHTML("parsemsg1", "");
+}
+
+
+// The Conversion facter is the From wattage / the To wattage - (Math.round (( From / TO) * 10) / 10 )
+// First convert time to seconds, multiply by the conversion factor and then convert back to minutes and seconds
+
+//checkPosNumber in gjcalc1  DisplayNotNumber is in gjmsg.js
+//changeInnerHTML is in gjcore
+function microwaveWattConversion(form)
+{
+
+  var mFrom = Trim(form.MfromWatt.value);
+  var mTo   = Trim(form.MtoWatt.value);
+
+  // check for appropriate values
+  if( checkPosNumber(mFrom) && checkPosNumber(mTo) && mFrom != 0 && mTo !=0)
+  {
+    // force conversion to an internal number
+    var mMin = form.MMinutes.options[form.MMinutes.selectedIndex].value - 0;
+    var mSec = form.MSeconds.options[form.MSeconds.selectedIndex].value - 0;
+
+    var mcFactor = (Math.round (( mFrom / mTo) * 100) / 100 );
+
+    var M30SEC  = (  30 * mcFactor);
+    var M60SEC  = (  60 * mcFactor);
+    var M120SEC = ( 120 * mcFactor);
+    var M180SEC = ( 180 * mcFactor);
+    var M240SEC = ( 240 * mcFactor);
+    var M300SEC = ( 300 * mcFactor);
+    var mcFactorStr  = 'The Multiplier is ' + mcFactor  + ' (From / To) ' + '<br><br>';
+        mcFactorStr += '30 sec: ' + secondsToTime(M30SEC)  + '<br>';
+        mcFactorStr += '1  min: ' + secondsToTime(M60SEC)  + '<br>';
+        mcFactorStr += '2  min: ' + secondsToTime(M120SEC) + '<br>';
+        mcFactorStr += '3  min: ' + secondsToTime(M180SEC) + '<br>';
+        mcFactorStr += '4  min: ' + secondsToTime(M240SEC) + '<br>';
+        mcFactorStr += '5  min: ' + secondsToTime(M300SEC) + '<br>';
+
+    // Convert input time to seconds and convert to the target wattage
+    var MTOTSEC = (((mMin * 60) + mSec) * mcFactor);
+
+    // Convert seconds to minutes and seconds
+    //var mOptmp= MTOTSEC  / 60;
+
+    //var mOPMin= parseInt(mOptmp);
+    //var mOPSec= Math.round(MTOTSEC % 60);
+    //display the results
+    //var mcOPSTR = "From Wattage " + mFrom + " for " + formatMinSec(mMin, mSec) + " = " + formatMinSec(mOPMin, mOPSec) + " at " + mTo + "<br>" + mcFactorStr;
+    var mcOPTim = secondsToTime(MTOTSEC);
+    var mcOPSTR = "From Wattage " + mFrom + " for " + formatMinSec(mMin, mSec) + "<br> = " + mcOPTim + " at " + mTo + "<br><br>" + mcFactorStr + "<br>";
+    changeInnerHTML('mcFactorID',mcOPSTR);
+    form.mnewTime.value = mcOPTim;
+  }
+  else
+  {
+     changeInnerHTML('mcFactorID','The From and To values must be positive numbers');
+  }
+}
+
+function secondsToTime(inSecs)
+{
+    // Convert seconds to minutes and seconds
+    var mOptmp= inSecs  / 60;
+
+    var mOPMin= parseInt(mOptmp);
+    var mOPSec= Math.round(inSecs % 60);
+    // return the string;
+    return formatMinSec(mOPMin, mOPSec);
+}
+
+
+function formatMinSec( mmin, msec)
+{
+  //alert( " " + mmin + " " + msec);
+
+  if (mmin <= 9)
+  {
+    mmin = "0" + mmin;
+  }
+
+  if (msec <= 9)
+  {
+    msec = "0" + msec;
+  }
+
+
+  var msg1 = mmin + ':' + msec;
+  return msg1;
+}
+
+function Startup()
+{
+
+}
+
+</script>
+</body>
+</html>
+

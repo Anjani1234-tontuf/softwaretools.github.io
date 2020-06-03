@@ -1,0 +1,23 @@
+{
+  "version": "1.00.16",
+  "name": "Date Unit Converter And Evaluator",
+  "description": "Calculator, Expression Evaluator, Date Calculator, Conversion Calculator",
+  "launch_path": "/XXSoftwareTools/MCalcMenuApp.html",
+  "icons": {
+    "16": "/XXSoftwareTools/images/formula16x16.png",
+    "48": "/XXSoftwareTools/images/formula48x48.png",
+    "128": "/XXSoftwareTools/images/formula128x128.png"
+  },
+  "widget": {
+    "path": "/XXSoftwareTools/MCalcMenuApp.html",
+    "width": 320,
+    "height": 356
+  },
+  "developer": {
+    "name": "Gary Johnson",
+    "url": "http://garyjohnsoninfo.info/"
+  },
+  "installs_allowed_from": [
+    "https://apps-preview.mozilla.org"
+  ]
+}

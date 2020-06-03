@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+
+-->
+<head>
+<style type="text/css">
+.fancy2
+{
+  border-top: solid 1px rgb(100,100,100);
+  border-bottom: solid 1px rgb(100,100,100);
+  padding: 8px;
+  background-color: #F5FBF5;
+}
+
+</style>
+    <title>Pop Def</title>
+    <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+    <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+    <meta name="author" content="Gary Johnson">
+    <meta name="description" content="CookBook">
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+
+<script type="text/javascript">
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+var gj53run = Components.classes["@garyjohnson.org/gj53run;1"].createInstance();
+gj53run = gj53run.QueryInterface(Components.interfaces.nsIGj53run);
+
+  hideStatus();
+
+function RunSqlite(findit)
+{
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+
+
+    try
+    {
+//this needs to be case insensitive
+        gj53run.poke5(getCBdir());
+        gj53run.poke2("3" + findit);
+
+        var cols = gj53run.numCols();
+        var rows = gj53run.numRows();
+//        alert('Number of columns ' + cols + ' Number of rows ' + rows);
+
+        if (rows == 1)
+            DisplayIT();
+        else
+        if((cols == 0)  || (rows ==0))
+        {
+            makeError(0, "No Results", 'color: blue') ;
+        }
+        else
+        if(rows > 200)
+        {
+            makeError(0,"Too Many Results, try again",'color:blue');
+        }
+        else
+        {
+            gj53run.fetchRow( rowDataCnt,rowData);
+
+            if(rowDataCnt.value == 0)
+                 makeError(0, "fetchRow", 'color: blue') ;
+
+            while (rowDataCnt.value != 0)
+            {
+                makerow(rowDataCnt.value, rowData.value, '');
+                gj53run.fetchRow( rowDataCnt, rowData);
+            }
+        }
+    }
+    catch (err)
+    {
+            makeError(err, "setUP", 'color: red') ;
+    }
+
+
+    gj53run.downDB();
+
+}
+
+function makeError(err, where, style)
+{
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+
+var errno = new Object();
+var message=' ';
+var errString = {value : []};
+
+    if(err)
+    {
+        message += 'System Error:' + err;
+    }
+    else
+    {
+        gj53run.lastErrorNo(errno);
+        // errno is in the message else it is 0
+
+         message += 'CookBook Database Error at location ' + where;
+//            gj53run.showError(errString)
+            message += 'Error: ' + errString.value;
+          alert(message);
+
+    }
+
+//        c4 = document.createTextNode(message);
+//        c3.setAttribute("style","font-size: 13px; font-family: verdana,arial,sans-serif;border:0 none; padding:1pt;"+style);
+
+return;
+}
+
+function DisplayIT()
+{
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+
+    if(gj53run.value2 != 'null')
+    {
+ //       alert(gj53run.value2);
+//        changeInnerHTML('ht2',gj53run.value2)
+      displayDivMessage("PopDef", gj53run.value2);
+
+    }
+    else
+    {
+        alert('Error no definition');
+//        changeInnerHTML('ht2',gj53run.value2)
+      displayDivMessage("PopDef", "No Defintion");
+
+    }
+
+
+//    popCSGSDiv('event','ht2',this.id,'Error no definition');
+
+}
+
+
+function testIt()
+{
+  displayDivMessage("Title", "Msg");
+}
+
+</script>
+</head>
+<body>
+<div id='theheader' class="myheader" style="position:relative;">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+
+
+<br>
+
+<input type="button" id="cSS31" title="" class="buttonNgold" value="RunSqlLite POPDEF"
+onmouseover="toggleHighLight('m', this.id); "
+onClick="RunSqlite('abalone');"
+onmouseout="toggleHighLight('o', this.id); ">
+<br>
+<br>
+
+<form name ="SimpleSearch" id="SimpleSearch">
+<FIELDSET class="b">
+<LEGEND class="a"><strong>Please enter your search term:</strong></LEGEND>
+<br>
+<input  type="text" size =30 tabindex="1" id="query_text" value="">
+<input  type="button" id="CCpd" title="Search" class="buttonNgrey"
+    value="Search"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="RunSqlite(query_text.value);"
+    onmouseout="toggleHighLight('o', this.id);">
+</FIELDSET>
+</form>
+
+
+
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+
+<!--
+<div id="ht2" class='dynDom' style='position:absolute;top:0px;left:10px;width:298px;height:298px;visibility:hidden;clip:rect(0 300 300 0);z-index:100;'>
+-->
+<div id="ht2" class='dynDom' style='position:absolute;top:0px;left:10px; min-height:100px;max-height:300px; width:296px;visibility:hidden;clip:rect(0 320 320 0);z-index:100;'>
+<p class="dynDomText">Keep your thoughts positive because your thoughts become your words.</p>
+<p class="dynDomText">Keep your words positive because your words become your behaviors.</p>
+<p class="dynDomText">Keep your behaviors positive because your behaviors become your habits.</p>
+<p class="dynDomText">Keep your habits positive because </p>
+<p class="dynDomText">Keep your values positive because your values become your destiny.</p>
+</div>
+
+<div id="ht3" class='dynDom' style='border:none;position:absolute;top:0px;left:10px;height:auto; width:auto;visibility:hidden;'>
+<p class="dynDomText">Keep your thoughts positive because your thoughts become your words.</p>
+<p class="dynDomText">Keep your words positive because your words become your behaviors.</p>
+<p class="dynDomText">Keep your behaviors positive because your behaviors become your habits.</p>
+<p class="dynDomText">Keep your habits positive because your habits become your values.</p>
+<p class="dynDomText">Keep your values positive because your values become your destiny.</p>
+</div>
+
+<div id="ht4" class='dynDom' style='border:none;position:absolute;top:0px;left:10px;height:auto; width:auto;visibility:hidden;'>
+
+<blockquote class='fancy smallboldspaced' style='margin:3px;'>
+
+  Repeat of the above with different spacing...
+  <br>
+  Since you have to scroll down to get to this button,this tests how myPopup display on pages longer than one screen.
+  <br>
+  Test Scroll Height/Page  calculations
+
+</blockquote>
+</div>
+
+
+
+
+<h1 id ='newheader' style='position:absolute; visibility:hidden; top:325px; left:700; height:186px;width:102px;font-size:smaller; text-align:left'><span class="HC">FastTrack</span><span class="HC">Contents</span></h1>
+
+
+</body>
+</html>
+
+
+

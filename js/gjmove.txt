@@ -1,0 +1,273 @@
+DEC 2012
+
+Changelog
+tabs to spaces
+Lint check missing semicolon
+see changes to getWidht and getHeight
+
+  if(mygetTop(idin) ==-1) alert("mygetTop");
+  if(mygetLeft(idin) == -1) alert("mygetLeft");
+  if(mygetWidth(idin) == -1) alert("mygetWidth");
+  if(mygetHeight(idin) ==-1) alert("mygetHeight");
+
+
+might not need the effects flags
+up to 2147483647
+
+var milliToStopAt;
+
+'javascript.options.strict' to 'true' i
+
+
+
+
+and similar to movehorizontal
+changed clip code (0 0 0 0) to use new format of (2px, 2px, 2px 2px) style
+
+
+
+Warning: Error in parsing value for 'left'.  Declaration dropped.
+Source File: file:///C:/ma/Personal/XXSoftwareTools/Moves.html
+Line: 0
+
+
+/*
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright © 2000-2012 by Gary Johnson
+
+
+COPYRIGHT
+
+The information contained on this site is protected by Canadian, United States of America and international copyright laws.
+
+All website materials, including, without limitation, design, text, graphics, photos, files, the Fast Track! logo, and
+the selection and arrangement thereof are © 2000-2009 Gary Johnson ALL RIGHTS RESERVED.
+
+Permission is granted to electronically copy and print to hard copy portions of this website for the sole purpose of
+using materials it contains for informational and non-commercial personal use only.
+
+Any other use of materials in this website, including any commercial use, reproduction for purposes other than those noted above,
+modification, distribution or republication, without the prior written consent of Gary Johnson is strictly prohibited.
+
+
+The Full Copyright statement is
+
+http://garyjohnsoninfo.info/XXSoftwareTools/Copyright.html
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+
+//might not need the effects flags
+// up to 2147483647
+
+//var milliToStopAt;
+/*
+Changelog
+
+*/
+
+
+//Assocaitive  arrays used to make it easier for me to use mnemonics instead of numbers and to make defining options more compact
+//object.property is the same as object["property"].
+//sort() and join()  and other functions are not useful on these kinds of arrays
+
+
+//call in this order
+//
+//if addMove is not just before doit, the MI is not set correctly
+//
+//addElement('theheader');
+//addEffect('theheader','myWipe')
+//setIntervalSpeed('theheader', 60);
+//addMove('theheader', 0,0, 0,400);
+//addElement('newheader');
+//addMove('newheader', 'll','ll', 0, 0);
+//doIt();
+//don't call this from 'internal API'
+
+// this is the easeist way to avoid conflicts
+// use the number instead of the id, and let it clean itself up instead of calling delete
+// call the global one see hideIt and showIt
+//    var popItUp = GCSGS();
+
+//    var myNum = popItUp.addElement(idin);
+//    popItUp.setIntervalSpeed(60);
+//    popItUp.setMI(myNum, 25);
+//    popItUp.addMove(myNum, 'tl','tl', leftVal, topVal);
+
+  //still getting NAN for height
+  //  if(!this.objASGS[newObjNum][objSGS.theIdOrigHeight])
+  //  {
+  //    this.objASGS[newObjNum][objSGS.theIdOrigHeight] = getCompStyle(idin, 'height');
+  //    alert( 'no height ' + this.objASGS[newObjNum][objSGS.theIdOrigHeight] );
+  //
+  //  }
+
+CSGS.prototype.toggleEffect = function(objNum)
+{
+  //this is dead
+  /*
+  switch ( this.objASGS[objNum][objSGS.nextFunc])
+  {
+  case myself.mySWipe:
+  this.objASGS[objNum][objSGS.moveType] |= F.myWipeBottom;
+  break;
+  case myself.myClip:
+  this.objASGS[objNum][objSGS.moveType] |= F.myClip;
+  break;
+  default :
+  break;
+  }
+  */
+};
+
+/*
+
+This has to be called last, just before doit to get the right MI set
+
+have to figure out which direction we are going in so that you can set MI correctly (*-1 if going down)
+you might have different MI for x and Y, but I doubt it
+
+if its hidden, I want it to appear from somewhere and end up somewhere
+fromx, fromy can be numbers (no quotes) or 'll', 'lr', 'tr', 'tl' 'cl'
+example ll lower left cl current location
+
+diag over rides default assingment of HV or VH
+
+*/
+
+  //  http://www.permadi.com/tutorial/jsFunc/
+  //  http://w3future.com/html/stories/callbacks.xml
+  //  http://www.zonageek.com/articulos/web/javascript_for_geeks_part_iii/index.php
+
+/*
+need to update the references to the obj at the end
+
+setClip(id, t,r,b,l)
+
+on clip full size to small
+vary T from 0 to height
+on clip not visiible to full size
+vary T from height to 0
+
+style.clip = "rect(0,width,height,0)";  is full size
+style.clip = "rect(height,width,height,0)"; is fully clipped
+
+1 is to fast
+setTimeout(function() { myself.myClip()},20);
+
+MIE used to be 2
+
+*/
+
+/*
+
+create function object
+
+function CSGSNext()
+{
+}
+
+CSGSNext.prototype.doIt = function()
+{
+...
+}
+
+...
+do the following in code to define the
+var headerChg = new CSGS();
+var testit = new CSGSNext;
+
+headerChg.synchFunc(testit,'doIt');
+..
+
+need to make sure this gets deleted as well
+hand code a unload when using this or add it to GCSGS and only call CSGS from a GCSGS
+
+*/
+
+/*
+
+
+function fade()
+{
+// insert fader color into message
+// texts should be defined in user script, e.g.: var texts = new Array("<font color='{COLOR}' sized='+3' face='Arial'>howdy</font>");
+
+var text_out = texts[text].replace("{COLOR}", colors[color]);
+
+// actually write message to document
+switch(g_fBrowser)
+{
+case 1:  document.layers.fader.document.layers.Content.document.write(text_out); document.layers.fader.document.layers.Content.document.close();
+break;
+
+case 2:
+case 3:  document.all.faderContent.innerHTML = text_out;
+break;
+}
+
+// select next fader color
+color += step;
+
+// completely faded in?
+if (color >= colors.length-1)
+{
+step = -1; // traverse colors array backward to fade out
+// stop at last message if loop=false
+if (!loop && text >= texts.length-1) return; // loop should be defined in user script, e.g.: var loop=true;
+}
+
+// completely faded out?
+if (color == 0)
+{
+step = 1; // traverse colors array forward to fade in again
+// select next message
+text += 1;
+if (text == texts.length) text = 0; // loop back to first message
+}
+
+// subtle timing logic...
+setTimeout("fade()", (color == colors.length-2 && step == -1) ? show : ((color == 1 && step == 1) ? sleep : 50)); // sleep and show should be defined in user script, e.g.: var sleep=30; var show=500;
+}
+
+// getFadeColors: fills Colors (predefined Array)
+// with color hex strings fading from ColorA to ColorB
+// note: Colors.length equals the number of steps to fade
+function getFadeColors(ColorA, ColorB, Colors)
+{
+len = Colors.length;
+
+// strip '#' signs if present
+if (ColorA.charAt(0)=='#') ColorA = ColorA.substring(1);
+if (ColorB.charAt(0)=='#') ColorB = ColorB.substring(1);
+
+// substract rgb compents from hex string
+var r = hexToInt(ColorA.substring(0,2));
+var g = hexToInt(ColorA.substring(2,4));
+var b = hexToInt(ColorA.substring(4,6));
+var r2 = hexToInt(ColorB.substring(0,2));
+var g2 = hexToInt(ColorB.substring(2,4));
+var b2 = hexToInt(ColorB.substring(4,6));
+
+// calculate size of step for each color component
+var rStep = Math.round((r2 - r) / len);
+var gStep = Math.round((g2 - g) / len);
+var bStep = Math.round((b2 - b) / len);
+
+// fill Colors array with fader colors
+for (var i = 0; i < len-1; i++)
+{
+Colors[i] = "#" + intToHex(r) + intToHex(g) + intToHex(b);
+r += rStep;
+g += gStep;
+b += bStep;
+}
+Colors[len-1] = ColorB; // make sure we finish exactly at ColorB
+}
+
+rgb(245,245,245)
+
+
+*/

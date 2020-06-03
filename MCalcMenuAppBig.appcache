@@ -1,0 +1,34 @@
+CACHE MANIFEST
+# the above line is required
+# this is a comment and blank lines are allowed
+# gjManifestVersion Feb 25 2016 version "1.00.32"
+CACHE:
+MCalcMenuApp.html
+MCalcMenuAppBig.html
+TheCalculator.html
+DateCalculator.html
+ConversionCalculator.html
+GaryJohnsonDisclaimer.html
+js/gjAppcore.min.js
+js/gjutil1.min.js
+js/gjcalc1.min.js
+js/gjAppmsg.min.js
+js/hexdump.min.js
+js/gjtrack.js
+js/gjmove.min.js
+js/gjmsg.min.js
+js/CCallWrapper.min.js
+css/GaryDefault.css
+css/GaryDefaultApp.css
+css/musings.css
+css/Printit.css
+GraphicWidgets/formula16x16.ico
+GraphicWidgets/k-fig.ico
+GraphicWidgets/calendar16x16.ico
+images/formula16x16.png
+images/formula128x128.png
+images/formula48x48.png
+# FALLBACK:
+# / /offline.html
+#NETWORK:
+# .htacess

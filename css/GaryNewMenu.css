@@ -1,0 +1,139 @@
+/* background-color:  site background */
+
+/* overide postion if you have too */
+
+/*  font-family: "Open Sans",Tahoma,Verdana, sans-serif;  AFour */
+
+h3{
+font-family: "Open Sans",Tahoma,Verdana, sans-serif;}
+
+#sitenav {
+display:block;
+position:absolute;
+left:2px;
+top:2px; /* border top and bottom */
+padding:0;
+margin:0;
+background-color:transparent;
+height:48px;
+width:82px;}
+
+#sitenav a.slider {
+width:82px;
+height:48px;}
+
+#sitenav a.slider:hover{
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+#sitenav.gjshader {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;
+background-color:lightgrey;}
+
+#menu-main {
+position: absolute;
+z-index:2;
+left:2px;
+top:66px; /* border top and bottom */
+width: 318px;
+display: none;
+box-shadow: 5px 5px 5px #888888;
+background-color:white;}
+
+/* #000 is menu bars */
+
+.hamburgermenu {
+position:absolute;
+left:2px;
+top:2px; /* border top and bottom */
+margin:0 8px;
+height:48px;
+width:64px;
+background:linear-gradient(to bottom,
+ transparent 0%, transparent 20%,
+ #000 20%, #000 32%,
+ transparent 32%, transparent 44%,
+ #000 44%, #000 56%,
+ transparent 56%, transparent 68%,
+ #000 68%, #000 80%,
+ transparent 80%, transparent 100%);}
+
+.gjoutline {
+outline:1px dotted black;}
+
+.gjborder {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+.gjshader {
+background-color:lightgrey;}
+
+.gjvisible { display:block}
+
+/* -- the main responsive queries  -- */
+
+/* small devices like iPhone 3 4 5 */
+
+@media only screen and (max-width:320px) {
+.container {width:100%;padding:0 0}
+.noMobile {display:none;}
+
+body {
+width:100%;
+margin:1px auto;}
+
+pre {white-space:normal}
+
+p.pos_fixed {position:relative;}
+
+input {
+font-size:16px;
+line-height:2.0;}
+
+#sitenav a.slider:focus {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+
+} /* end */
+
+
+/* Bigger Phones, Small Tablets, laptops and other screens */
+
+@media only screen and (orientation:portrait) ,
+only screen and (orientation:landscape) and (max-width:999px) {
+body {
+width:98%;
+margin:0 auto;}
+
+/* hover not good for mobile, add focus */
+a:focus {background-color:silver;}
+
+a.AFour:focus {
+font-weight:bold;
+color:#f05b35;
+text-decoration:none;}
+
+/* AFour line-height change from 24px to 2.0 */
+a.AFour:link {
+font-size:16px;
+line-height:2.0;}
+
+.pbaimg {
+width:96%;
+height:auto;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-bottom:20px}
+
+.rtest {color:FireBrick;}
+.res {display:block}
+img {max-width:96%;height:auto;}
+
+#sitenav a.slider:focus {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+
+} /* end */

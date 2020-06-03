@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Date Unit Converter And Evaluator",
+  "version": "1.0.33",
+  "description": "Calculator, Expression Evaluator, Date Calculator, Conversion Calculator",
+  "launch_path": "/XXSoftwareTools/MCalcMenuAppBig.html",
+  "icons": [
+	{
+		"src": "/XXSoftwareTools/images/formula16x16.png",
+		"sizes": "16x16",
+		"type": "image/png"
+	},
+	{
+		"src": "/XXSoftwareTools/images/formula48x48.png",
+		"sizes": "48x49",
+		"type": "image/png"
+	},
+	{
+		"src": "/XXSoftwareTools/images/formula128x128.png",
+		"sizes": "128x128",
+		"type": "image/png"
+	}
+  ],
+  "start_url": "/XXSoftwareTools/MCalcMenuAppBig.html",
+  "display":"standalone",
+  "orientation":"potrait"
+}

@@ -1,0 +1,1627 @@
+/*
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright © 2000-2012 by Gary Johnson
+
+
+COPYRIGHT
+
+The information contained on this site is protected by Canadian, United States of America and international copyright laws.
+
+All website materials, including, without limitation, design, text, graphics, photos, files, the Fast Track! logo, and
+the selection and arrangment thereof are © 2000-2009 Gary Johnson ALL RIGHTS RESERVED.
+
+Permission is granted to electronically copy and print to hard copy portions of this website for the sole purpose of
+using materials it contains for informational and non-commercial personal use only.
+
+Any other use of materials in this website, including any commercial use, reproduction for purposes other than those noted above,
+modification, distribution or republication, without the prior written consent of Gary Johnson is strictly prohibited.
+
+
+The Full Copyright stat ent is
+
+http://garyjohnsoninfo.info/XXSoftwareTools/Copyright.html
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+/* WHITE
+=============================================================================
+use color for presentation of different graphic effects, not fonts
+
+Th  es
+
+Header and Footer
+Hyperlink Style
+
+Button style
+Bullet Style
+
+Heading, and Sub Heading Styles
+Banners, Logos, Dividers
+
+Font Styles
+
+
+Colors
+see hr(s), Links, body, ,acronym,FL, DropCap, pullquote
+
+H2, HC(s), Caption, Table, italicblue, GreyPatterns
+
+
+New Th  e
+
+Change backgorund-color, (? color)
+
+.a
+.b
+.HC
+
+
+=============================================================================
+Changelog
+
+
+added GarySpecial for the menu
+added SHCm SHFm HCLm mirror (off SHC SHF HCL ) classes for menu
+
+1) The CSS layout model depends on there being a well-defined initial containing block (the viewport).
+This is needed for things like fixed and absolute positioning.
+It's not clear how one could provide this with an iframe that's sizing "intrinsically".
+
+2) The CSS layout model depends on there being a well-defined width for block layout.
+If one is assumed, the blocks will happily lay out to that width by default.
+So with CSS, meaningful intrinsic sizing horizontally is hard.
+=============================================================================
+*/
+
+/* Start Header
+
+hrr     header ruler right
+hrc      header ruler center
+hrl      header ruler left
+
+hshl     header sub heading left
+hshlbt   header sub heading Left Big Text
+hshc     header sub heading center
+hshr     header sub heading right
+*/
+
+.hrr
+{
+  background-color:blue;
+  border-top: thick inset blue;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 6.0pt;
+  margin-right: 50%;
+}
+
+.hrc
+{
+  background-color:blue;
+  border-top: thick groove blue;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 6.0pt;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+.hrl
+{
+  background-color:blue;
+  border-top: thick outset blue;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 6.0pt;
+  margin-left: 50%;
+}
+
+.hshl
+{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right:0;
+  margin-left:0;
+  padding-left: 7.5pt;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12.0pt;
+  font-weight: bold;
+  text-align:left;
+  background-color: #ccccff;
+  line-height: 1.2;
+}
+
+.hshlbt
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20.0pt;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.hshc
+{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right:0;
+  margin-left:0;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12.0pt;
+  font-weight: bold;
+  text-align:center;
+  background-color: #ddddee;
+}
+
+.hshr
+{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right:0;
+  margin-left:0;
+  padding-top: 1pt;
+  padding-bottom: 1pt;
+  padding-right: 7.5pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10.0pt;
+  font-weight: bold;
+  text-align:right;
+  background-color: #eeeeff;
+}
+
+.HeaderSpacer
+{
+  font-size: 1  ;
+}
+
+.myheader
+{
+  width:100%;
+}
+
+/* End Header */
+
+/* Start Footer */
+
+.myfooter
+{
+  border-style : none;
+  width:100%;
+  margin:0;
+}
+
+/* End Footer */
+
+body
+{
+  background-color: white;
+  color: black;
+  margin: 2 ;
+}
+
+.skiplink
+{
+  display:none;
+}
+
+/* Start Links */
+
+/* ATwo ALevelTwo */
+
+a.ATwo:link
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #3366cc;
+  text-decoration: none
+}
+a.ATwo:visited
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #3366cc;
+  text-decoration: none
+}
+a.ATwo:hover
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #f05b35;
+  text-decoration: none
+}
+
+/*
+a:link, a:visited
+{
+color: blue;
+text-decoration: underline;
+}
+
+a:hover
+{
+background-color:#6F98A9;
+}
+
+a.focus
+{
+color: #333333;
+}
+
+*/
+
+a.AOne:link, a.AOne:visited
+{
+  color: blue;
+  text-decoration: underline;
+}
+
+a.AOne:hover
+{
+  color: #f05b35;
+}
+
+a.AOne:focus
+{
+  color: #333333;
+}
+
+
+a.AThree:link, aAThree:visited
+{
+  color: blue;
+  text-decoration: underline;
+}
+
+a.AThree:hover
+{
+  background-color:#6F98A9;
+}
+
+a.AThree:focus
+{
+  color: #333333;
+}
+
+
+.DividerDot
+{
+  font-weight: bold;
+  font-size: 10pt;
+  color: #3366cc;
+  font-family: verdana
+}
+
+/* End Links */
+
+/* Start Lists, Directories */
+
+ol.lalpha
+{
+  list-style-type: lower-alpha;
+}
+
+ol.ualpha
+{
+  list-style-type: upper-alpha;
+}
+
+
+ul
+{
+  list-style: square;
+}
+
+ul.square
+{
+  list-style: square;
+}
+
+ul.disc
+{
+  list-style-type: disc;
+}
+
+ul.circle
+{
+  list-style-type: circle;
+}
+
+ul.none
+{
+  list-style-type: none;
+}
+
+ul.inside
+{
+  background-color: #ffffd7;
+  color: black;
+  list-style-position: inside;
+  list-style-image: url("../GraphicWidgets/sdi-yl.gif");
+}
+
+ul.gbull
+{
+  color: black;
+  list-style-image: url("../GraphicWidgets/sdi-lb.gif");
+}
+
+ul li p, ol li p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  line-height: 12pt;
+}
+
+
+/*  font-size:13px; */
+
+ul li p.ex, ol li p.ex
+{
+  margin-top:5px;
+  margin-bottom:5px;
+  font-size: 13px;
+  line-height: 20px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.exp
+{
+  font-size: 10pt;
+  line-height: 14pt;
+  margin-top:7pt;
+  margin-bottom:7pt;
+  text-align:left;
+  display:block;
+}
+
+.mydt
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bolder;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.mydd
+{
+  text-indent:.3in;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 8px !important;
+  margin-bottom: 8px  !important;
+}
+
+
+.mydtspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.myddspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.mydt2
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  /*  font-weight: bolder; */
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.mydd2
+{
+  /*  text-indent:.3in; */
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 4px !important;
+  margin-bottom: 4px  !important;
+  padding-right:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  margin-left:1 ;
+  display: list-it  ;
+  list-style-type:none;
+}
+
+
+/* End Lists */
+
+
+/* Start HTML STD Text Tags */
+
+
+{
+  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+strong
+{
+  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%;
+  font-variant: normal;
+  padding-right: .5 ;
+  padding-left: .5  ;
+}
+
+acronym, span.acronym
+{
+  cursor: help;
+  border: 1px dashed #000;
+  padding-right: .5 ;
+  padding-left: .5  ;
+  font-variant: small-caps;
+  background-color:#F5F5F5;
+}
+
+h1
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+h2
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  background-color: #CCCCFF;
+  text-align:left;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:2px solid #336699;
+}
+
+h3
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:left;
+}
+
+h4
+{
+  font-weight: bold
+}
+
+h5
+{
+  font-weight: bold
+}
+
+/* Mozilla caption is off so use tcaption on a TD spanning until fixed */
+
+.clearall
+{
+  clear:both;
+}
+
+/*
+the following lets me do this
+<td class="c"><p>Table row color c</p></td>
+instead of this
+<td class="c"><p class="td1p">Table row color c</p></td>
+
+I should think about changeing this
+td p, th p
+to
+td p, th p, td a
+
+*/
+
+td p, th p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+/*
+suffix N - normal , F -focus (darker than H), H - highlight (darker then N) (onmouseover)
+
+does not like the gold button but buttongold okay
+
+input, textarea and select have thier own style selectors
+checkbox and radio get overriden with an important
+for the rest, I can just use input.buttonNGrey stuff
+
+select.buttonNgrey, input.buttonNgrey
+
+see forms.css
+
+input[type="hidden"],
+input[type="image"],
+input[type="file"],
+input[type="radio"],
+input[type="checkbox"],
+input[type="radio"],
+
+input[type="checkbox"]
+{
+-moz-box-sizing: border-box;
+background-color: -moz-Field ! important;
+
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+-moz-appearance: button;
+
+
+IE checkbox and radio inherit without override
+
+*/
+
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+}
+
+textarea.buttonFgrey, select.buttonFgrey, input.buttonFgrey
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #778899;
+}
+
+textarea.buttonHgrey, select.buttonHgrey, input.buttonHgrey
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #B0C4DE;
+}
+
+textarea.buttonNgold, select.buttonNgold, input.buttonNgold
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #F4A460;
+}
+
+textarea.buttonFgold, select.buttonFgold, input.buttonFgold
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #8B4513;
+}
+
+textarea.buttonHgold, select.buttonHgold, input.buttonHgold
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #CD853F;
+}
+
+input.text
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  padding:3px;
+}
+
+input.number
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  padding:3px;
+}
+
+input.result
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+  padding:3px;
+}
+
+.myresult
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+  display:block;
+  background-color:white;
+  text-align:right;
+  padding:3px;
+}
+
+
+input.bold
+{
+  font-weight:bold;
+  font-size:14.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #008080;
+  background: #D5D5D4;
+}
+
+input.hidden
+{
+  font-size: 2pt;
+  visibility:hidden;
+}
+
+/* smaller versions of the above
+
+input.buttonHgrey
+changed to
+input.buttonHgrsb
+
+*/
+
+textarea.buttonNgrsb, select.buttonNgrsb, input.buttonNgrsb
+{
+  font-weight:bold;
+  font-size:11px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+  cursor: auto;
+}
+
+textarea.buttonFgrsb, select.buttonFgrsb, input.buttonFgrsb
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:11px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #778899;
+}
+
+textarea.buttonHgrsb, select.buttonHgrsb, input.buttonHgrsb
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:11px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #B0C4DE;
+}
+
+input.texts
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+}
+
+input.numbers
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+}
+
+input.results
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+}
+
+input.bolds
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #008080;
+  background: #D5D5D4;
+}
+
+/* End HTML STD Text Tags */
+
+/* Start Plain Paragraph Styles */
+
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+p
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+p.smaller
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.heading
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+  margin-bottom: 1  ;
+}
+
+.center
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenter
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenterpx
+{
+  font-weight:bold;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.smallcaps
+{
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.indent
+{
+  text-indent:.5in;
+}
+
+/* End Plain Paragraph Styles */
+
+
+/*
+Start Section Heading Helper Styles
+See GaryDefaultCSS.html for how to code the various headings
+
+HC      - Heading Color background-color and padding
+SHC     - Sub Heading Color background-color and padding
+HCCT    - Heading Color background-color Centered Text
+HCL     - Heading Color background-color Left
+HCLT    - Heading Color background-color Left Text
+HCRT    - Heading Color background-color Right Text
+SHCL    - Sub Heading Color background-color Left
+
+*/
+
+
+.HC
+{
+  background-color: #CCCCFF;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:3px solid #336699;
+}
+
+.SHC
+{
+  background-color: #dedede;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:1px solid #336699;
+}
+
+.SHF
+{
+  background-color: #efefef;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border:1px solid #336699;
+}
+
+.HCCT
+{
+  font-weight: bold;
+  background-color:#CCCCFF;
+  border-top:1px solid #336699;
+  text-align:center;
+}
+
+.HCL
+{
+  background-color:#CCCCFF;
+  border-top:1px solid #336699;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.HCLT
+{
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.SHCL
+{
+  border-top:1px solid #336699;
+  padding-top:1.0pt;
+  padding-bottom:1.0pt;
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.HCRT
+{
+  font-weight:bold;
+  text-align:right;
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+}
+
+/* End Section Heading Helper Styles */
+
+/*
+Start Font and Paragraph Style Modifiers
+
+TH       Table Heading (Font and Color ) Table Caption - Use HC
+TRC      Table Row background-color Color - for regular text,   bedded in a table
+R1       Row odd
+R2       Row Even
+a        Row Alternate
+b        Row Alternate
+td1p     Table Column (td) paragraph style indented for easy reading
+LT       Large Text
+*/
+
+
+.TRC
+{
+  background-color: #FFFFFF;
+}
+
+.R1
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.R2
+{
+  background-color:#dedede;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.a
+{
+  background-color:#ddddee;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.anp
+{
+  background-color:#ddddee;
+}
+
+.apl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+  background-color:#ddddee;
+}
+
+.b
+{
+  background-color:#eeeeff;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.bnp
+{
+  background-color:#eeeeff;
+}
+
+.bpl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+  background-color:#eeeeff;
+}
+
+
+
+/* td 1 for p an  bedded p in td in table margins on right and left */
+.td1p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.td2p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:"Courier New",Courier,monospace;
+  font-weight: bolder;
+}
+
+.td1px
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+
+.italicblue
+{
+  font-style: italic;
+  color: blue;
+}
+
+.CBerror
+{
+  color: red;
+}
+
+.CBwarn
+{
+  color: blue;
+}
+.LT
+{
+  font-size: 16.0pt;
+  font-family: "Times New Roman", Garamond,serif;
+  font-weight: bold;
+  margin-top:3pt;
+  margin-bottom:3pt;
+}
+
+/* GreyPattern is my mn onic for another color background-color */
+
+.GreyPattern
+{
+  border:none;
+  background-color:#dedede;
+}
+
+.DGreyPattern
+{
+  border:none;
+  background-color:#CCCCCC;
+}
+
+.LGreyPattern
+{
+  border:none;
+  background-color:#efefef;
+}
+
+/* End Font Styles */
+
+
+/*
+Start Fancy Paragraphs
+FL            First Letter
+background-color:#ffffd7; showas cream with blue background-color
+#ddddee is not easy to see
+light blue even less easy to see
+#efefef shows up as white
+
+DropCap       Text That spans multiple lines
+pullquote     A way of specifying a descriptor for severla line of text
+*/
+
+span.FL
+{
+  text-shadow: 0px 1px 1px #FAF0E6;
+  background-color:#ffffff;
+  margin:0;
+  padding-right:1.5px;
+  padding-left:1px;
+}
+
+span.DropCap
+{
+  float: left;
+  font-size: 1.7  ;
+  padding: 0 0.15 ;
+  margin: 0 0.15   0 0;
+  color: #CC0066;
+  border: 1px solid blue;
+}
+
+.pullquote
+{
+  width: 8  ;
+  padding: .25  ;
+  font-size: smaller;
+  font-weight: bold;
+  font-family:verdana, sans-serif;
+  float:left;
+  color:#cc3333;
+  background-color:#f0f0f0;
+  text-align:left;
+  margin-right:1  ;
+}
+
+.smallmargins
+{
+  margin-left: 3  ;
+  margin-right: 3 ;
+}
+
+.note
+{
+  padding: 1  ;
+  font-size: smaller;
+  font-weight: bold;
+  font-family:verdana, sans-serif;
+  color:#cc3333;
+  background-color:#f0f0f0;
+  text-align:left;
+}
+
+.fancy
+{
+  margin-top: 0px;
+  border-top: solid 1px rgb(100,100,100);
+  border-bottom: solid 1px rgb(100,100,100);
+  padding: 8px;
+  background-color: #ffffd7;
+}
+
+.smallboldspaced
+{
+  font-size: 9pt;
+  font-weight:bold;
+  line-height: 13pt
+}
+
+.Announce
+{
+  background-color:#191970;
+  color: #F5F5F5;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding: 2  ;
+}
+
+hr.announce
+{
+  background-color:yellow;
+  border-top: thick groove yellow;
+  margin-top: 6.0pt;
+  margin-bottom: 6.0pt;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 6.0pt;
+}
+
+
+
+/* End Fancy Paragraphs */
+
+
+
+/*
+Start Table Styles
+
+Use the following
+
+border=0 cellspacing=2 cellpadding=2 class="CTB" RTB or LTB
+
+class on the TD so that it extends to the margins
+class td1p the p for the font
+<td class="HC"><p class="td1p">Generic Tomato Varieties</p></td>
+
+
+If having probl s with CSS
+use align attribute in the <table> tag,
+
+The easiest way to center a table with style sheets is to put the table in a division and use the
+text-align property to center (text-align: center;) the contents of the division.
+To mimick moving the table to the left or right, you want to use the float property on the table itself.
+For instance, to float it to the right, you could do the following.
+
+
+Center Float does not work very well.
+
+*/
+
+.CTB
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* no margin on float */
+.RTB
+{
+  float: right;
+}
+
+.LTB
+{
+  float: left;
+}
+
+/* End Table Styles */
+
+/* Start CSS Graphics */
+
+.borderdraw
+{
+  border-style: solid;
+  width: 0px;
+  height: 0px;
+  line-height: 0px;
+}
+
+.bluedown
+{
+  border-width: 100px 50px 0px;
+  border-color: blue white white;
+}
+
+hr.alt
+{
+  color:blue;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+/*
+need to try this with something other than a dev
+It might make more sense to try a mouseover thing on a button
+*/
+
+div.MyButton
+{
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right:0;
+  margin-left:0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11.0pt;
+  font-weight: bold;
+  text-align:center;
+  text-decoration: none;
+  width:8 ;
+}
+
+div.MyButton a
+{
+  display: block;
+}
+
+div.MyButton a:link,
+div.MyButton a:visited,
+div.MyButton a:focus
+{
+  background-color: cornflowerblue;
+  color: lightcyan;
+  text-decoration: none;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  padding-right: 3pt;
+  padding-left: 3pt;
+  border: 2px inset black;
+}
+
+div.MyButton a:hover
+{
+  background-color: #003399;
+  color: white;
+  text-decoration: none;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  padding-right: 3pt;
+  padding-left: 3pt;
+  border: 2px inset slategrey;
+}
+
+
+/* End CSS Graphics */
+
+
+/* Spacers */
+
+.mythinsp mythinspFL
+{
+  font-size: 2pt;
+}
+
+/* Dynamic El ents */
+
+.dynDom
+{
+  border: 2px solid #000000;
+  padding: 5px;
+  background-color:#F5F5F5;
+}
+
+.dynDomText
+{
+  color: #000000;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+ul.mynav
+{
+  padding: 0 1px 1px 0;
+  margin-left: 0;
+  font-size:8.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+}
+
+ul.mynav li
+{
+  list-style: none;
+  margin: 0;
+  border-top: 1px solid gray;
+  text-align: left;
+}
+
+ul.mynav li > a
+{
+  display: block;
+  padding: 0.25  0.5   0.25  0.25 ;
+  border-left: 1   solid lightblue;
+  text-decoration: none;
+  background: ivory;
+}
+
+ul.mynav li > a:link
+{
+}
+
+ul.mynav li > a:visited
+{
+  color: slateblue;
+}
+
+ul.mynav li > a:hover
+{
+  border-color: yellow;
+  color: white;
+  background-color: slategray;
+}
+
+h2.mymenu
+{
+  font-weight:bold;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-size: 13px;
+  white-space:nowrap;
+  text-align:left;
+  padding-top:2.5px;
+  padding-right:0;
+  padding-bottom:2.5px;
+  padding-left:7.5px;
+  border-top:2px solid #336699;
+  margin-top:8px;
+  margin-bottom:8px;
+  /*  width:300px; */
+  cursor:pointer;
+}
+
+h3.mymenu
+{
+  font-weight:bold;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-size:13px;
+  text-align:left;
+  white-space:nowrap;
+  margin-top:4px;
+  margin-left:7px;
+  margin-bottom:4px;
+  border-top:2px solid #336699;
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:1px;
+  padding-right:0;
+  width:276px;
+  cursor:pointer;
+}
+
+h4.mymenu
+{
+  font-weight: bold
+}
+
+h5.mymenu
+{
+  font-weight: bold
+}
+
+/*
+I need much more contrast with the background with these
+*/
+
+.SHCm
+{
+  background-color: #efefef;
+}
+
+.SHFm
+{
+  background-color: #dedede;
+}
+
+.HCLm
+{
+  background-color:#CCCCFF;
+}
+
+
+.dynDomm
+{
+  border: 2px solid #000000;
+  padding-top:2.5px;
+  padding-right:0;
+  padding-bottom:2.5px;
+  padding-left:7.5px;
+  background-color:#CCCCCC;
+  /*  width:300px; */
+  height:auto;
+}
+
+.dynDomTextm
+{
+  color: #000000;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-size:13px;
+  font-weight: normal;
+}
+
+/*  300 - border 2px x 2
+padding left 7.5 dynDomm
+padding left 1
+margin left 7
+dynDomma boder 1px x 2
+need to see it 2px
+
+*/
+
+.dynDomma
+{
+  border: 1px solid #000000;
+  margin-left:7px;
+  padding-top:1px;
+  padding-right:0;
+  padding-bottom:1px;
+  padding-left:1px;
+  background-color:#DCDCDC;
+  width:276px;
+  height:auto;
+}
+
+.mb
+{
+  color:navy;
+  font-weight: bold;
+}
+
+.close
+{
+  margin: 0;
+  padding: 0;
+  word-spacing: 0.33  ;
+}
+
+.tracking
+{
+  letter-spacing: -0.1  ;
+}
+
+#myleft
+{
+  float:left;
+  width:400px;
+  margin-right:10px;
+  padding-bottom:10px;
+  padding-right:10px;
+}
+
+#myright
+{
+  width:58%;
+}
+
+
+.SHO
+{
+  font-weight:normal;
+  background:#ffffd7;
+}
+
+.STO
+{
+  font-weight:normal;
+  background:#F5F5F5;
+}
+
+.PRE
+{
+  font-weight:normal;
+  background:#FAF0E6;
+}
+
+.YIE
+{
+  font-weight:normal;
+  background:#F8F8FF;
+}
+
+.SUB
+{
+  font-weight:normal;
+  background:#F0FFFF;
+}
+
+.SEE
+{
+  font-weight:normal;
+  background:#CCCCFF;
+}
+
+.HTM
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#FAF0E6;
+}
+
+.PIC
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#F8F8FF;
+}
+
+.VID
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#FFFFF0;
+}
+
+
+.PRO
+{
+  visibility:hidden;
+}
+
+
+.LOO
+{
+  visibility:hidden;
+  font-weight:normal;
+}
+
+.closeit
+{
+  vertical-align: top;
+  float:right;
+  font-size:6pt;
+}
+
+.myReq
+{
+  border-left: 1   solid lightblue;
+}
+
+.myOpt
+{
+  border-left: 1   solid #ccc;
+}

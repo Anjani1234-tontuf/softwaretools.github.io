@@ -1,0 +1,213 @@
+a.AFour:link
+{
+  font-weight: bold;
+  color: black;
+  text-decoration: none
+}
+a.AFour:visited
+{
+  font-weight: bold;
+  color: lightslategrey;
+  text-decoration: none
+}
+a.AFour:hover
+{
+  font-weight: bold;
+  color: #f05b35;
+  text-decoration: none
+}
+
+/*
+:active { outline: thick solid red }
+td[valign=top].hover  { outline: thick solid blue !important} //no hover on td
+td[valign=top]  { outline: thick solid blue !important} //yes
+*/
+a[class="AFour"].active{ outline: thick solid #f05b35 }
+
+a.Anone:link
+{
+  text-decoration: none
+}
+a.Anone:visited
+{
+  text-decoration: none
+}
+a.Anone:hover
+{
+  border-bottom: 3px solid navy;
+  text-decoration: none
+}
+
+ul li p.ex, ol li p.ex
+{
+  margin-top:10px;
+  margin-bottom:10px;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+/* http://www.workwithcolor.com/hsl-color-schemer-01.htm its hls on chart*/
+
+#mygradient, mygradient
+{
+/*
+For WebKit (Safari, Google Chrome etc)
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(207, 207, 207, 0.398438)), to(#999));
+background: -webkit-gradient(linear, left top, left bottom, from(rgba(207, 207, 207, 0.398438)), to(rgba(207, 207, 207, 1)));
+background: -webkit-gradient(linear, left top, left bottom, from(hsla(60, 100%, 88%,0.05)), to(hsla(60, 100%, 100%,1)));
+
+*/
+
+background:-webkit-gradient(linear,left top,left bottom,from(rgb(187, 187, 187)),to(rgb(207, 207, 207)));
+/* For Mozilla/Gecko (Firefox etc) */
+background: -moz-linear-gradient(top, hsl(60, 90%, 70%), hsl(70, 100%, 100%));
+
+
+/* Internet Explorer 8 was a real pain, only worked if given a height
+filter: progid: DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr='#FF6600', EndColorStr='#ff6789')
+*/
+
+min-width: 20em;
+height:100%;
+max-width: 40em;
+margin: auto;
+}
+
+.graygradient
+{
+
+/* background:-webkit-linear-gradient(top, white, black); */
+/* background:-webkit-radial-gradient(white, black); */
+background:-webkit-radial-gradient( hsl(0, 0%, 100%) , hsl(0,0%,50%));  /*  10 pecent more grey here */
+
+/* For Mozilla/Gecko (Firefox etc) */
+/* background: -moz-linear-gradient(top, hsl(0, 0%, 81%),hsl(100,100%,100%), hsl(0, 0%, 60%)); */
+background: -moz-radial-gradient(center , circle , hsl(0, 0%, 100%) , hsl(0,0%,60%));
+}
+
+.rounded-corners
+{
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+-khtml-border-radius: 20px;
+border-radius: 20px;
+}
+
+textarea.buttonNgold, select.buttonNgold, input.buttonNgold
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #F4A460;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+}
+
+textarea.buttonFgold, select.buttonFgold, input.buttonFgold
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #8B4513;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+}
+
+textarea.buttonHgold, select.buttonHgold, input.buttonHgold
+{
+  cursor: pointer;
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #CD853F;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+}
+
+p
+{
+  margin-top:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.cssanim
+{
+text-shadow: 0.2em 0.5em 0.1em #600,-0.3em 0.1em 0.1em #060,0.4em -0.3em 0.1em #006;
+-moz-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+-webkit-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+position: relative;
+}
+
+.cssanim:hover
+{
+text-shadow: none;
+}
+
+.tooltip
+{
+cursor: help; text-decoration: none;
+position: relative;
+}
+/*
+The first line of code adds a dotted line under the link to provide a visual clue to the visitor that the text contains a tooltip.
+
+The second line of code makes a small question mark appear next to the cursor, which provides another visual clue to the visitor that the text contains a tooltip.
+
+The third line of code helps with positioning.
+
+The following code will hide the tooltip elements until the are needed by placing them off the page.
+*/
+
+.tooltip span
+{
+margin-left: -999em;
+position: absolute;
+}
+/*
+At this point, your tooltip will not work. You need to add in a hover element that triggers the tooltip to appear:
+*/
+.tooltip:hover span
+{
+border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+font-family: Arial, sans-serif;
+position: absolute; left: 1em; top: 2em; z-index: 99;
+margin-left: 0; width: 350px;
+}
+tooltipbackground
+{
+padding: 0.8em 1em; background: #000; border: 1px solid #999;
+}
+
+.expstickybar
+{
+position:fixed;
+color: black;
+padding: 5px;
+right:0; /*horizontally center bar in window*/
+left:0; /*horizontally center bar in window*/
+visibility:hidden;
+z-index: 10000;
+width:auto; /*set width of bar to width of entire window*/
+font-weight:bold;
+}
+
+

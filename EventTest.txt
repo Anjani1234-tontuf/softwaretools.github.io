@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Event Listener </title>
+<script type = "text/javascript">
+function killReturn(evt)
+{
+  var target = evt.target || evt.srcElement, keyCode = evt.keyCode || evt.which;
+  var targtype = target.type;
+
+  if ((keyCode != 13) && (keyCode != 8))
+  {
+    alert("in killReturn keycode  " + evt.which);
+    return true;
+  }
+
+  switch (targtype)
+  {
+    case 'textarea':
+    return true;
+    case 'text':
+    if (keyCode == 13)
+    {
+      window.status = 'Please do not use the return key, click on a button instead';
+      if (evt.preventDefault)
+      {
+        evt.preventDefault();
+        evt.stopPropagation();
+      }
+      return false;
+    }
+    return true;
+    default:
+    window.status = 'Back  space and return buttons have been disabled to stop navigation away from this page';
+    if (evt.preventDefault)
+    {
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
+    return false;
+  }
+}
+
+</script>
+</head>
+<body>
+<pre>
+
+Another Event Listener Test
+
+</pre>
+
+<form>
+<table>
+  <tbody>
+    <tr>
+      <td>Checkbox
+      </td>
+      <td>
+        <input type="checkbox"
+        class="buttonNgrey" name="checkbox1" id="checkbox1">
+
+      </td>
+    </tr>
+    <tr>
+      <td>Browse File
+      </td>
+      <td>
+        <input type="file" name="file" size="15"
+        class="buttonNgrey" name="fileupload1" id="fileupload1" >
+      </td>
+    </tr>
+    <tr>
+      <td>Hidden
+      </td>
+      <td><input value="hidden value" type="hidden">
+      </td>
+    </tr>
+    <tr>
+      <td>Password
+      </td>
+      <td>
+        <input value="" type="password" class="buttonNgrey" name="password1" id="password1" >
+      </td>
+    </tr>
+    <tr>
+      <td>Radio
+      </td>
+      <td>
+        <input type="radio" class="buttonNgrey" name="radio1" id="radio1" >
+      </td>
+      </tr>
+    <tr>
+      <td>Reset object
+      </td>
+      <td>
+        <input type="reset" class="buttonNgrey" name="reset1" id="reset1" >
+      </td>
+      </tr>
+    <tr>
+      <td>Submit object
+      </td>
+      <td>
+        <input type="submit" class="buttonNgrey" name="submit1" id="submit1"></td>
+    </tr>
+    <tr>
+      <td>Text
+      </td>
+      <td>
+        <input type="text" class="buttonNgrey" name="text1" id="text1" >
+      </td>
+    </tr>
+    <tr>
+      <td>Textarea
+      </td>
+      <td>
+        <textarea class="buttonNgrey" name="textarea1" id="textarea1" >
+        </textarea>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</form>
+<script type = "text/javascript">
+    function addEvent(obj, evType, fn, useCapture)
+    {
+    // General function for adding an event listener
+
+    if (obj.addEventListener)
+    {
+        obj.addEventListener(evType, fn, useCapture);
+        return true;
+    }
+    else if (obj.attachEvent)
+    {
+        var r = obj.attachEvent("on" + evType, fn);
+        return r;
+    }
+    else
+    {
+        alert("handler could not be attached");
+    }
+    }
+
+    function addKeyEvent()
+    {
+    // Specific function for this situation
+        var ev = (document.addEventListener) ? 'keypress' : 'keydown';
+        addEvent(document, ev, killReturn, false);
+    }
+
+    addKeyEvent();
+</script>
+</body>
+</html>

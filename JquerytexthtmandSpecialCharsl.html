@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo UTF-8 and Jquery and font-size</title>
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+
+<style>
+#open {
+margin:2em;
+font-size: 20px;
+line-height:30px;
+color:green;
+font-weight:900;
+}
+
+#open:hover {
+background-color:WhiteSmoke;
+text-shadow: none;
+}
+
+.state1 {
+color: green;
+}
+.state2 {
+color:red !important;
+}
+.gjHidden {
+display:none;
+text-align:center;
+margin:0;
+}
+
+</style>
+</head>
+<body>
+
+
+<table id="open" class="state1" style='margin:auto'>
+<tr id='head'><td colspan='2'>Click to Toggle Me</td></tr>
+<tr id='plus'><td>
+&#X2795;
+&uArr;
+&#X27F0;
+&uarr;
+&#x297E;
+&#x21A2;
+&#x21BA;
+&#x1F607;
+&#x27F0;
+&#x25B2;
+&#x25B4;
+&#x25C9;
+&#x271B;
+&#x274C;
+</td></tr>
+<tr id='minus'><td>
+&#X2796;
+&dArr;
+&#X27F1;
+&darr;
+&#x297F;
+&#x21A3;
+&#x21BB;
+&#x1F608;
+&#x27f1;
+&#x25BC;
+&#x25B5;
+&#x25CE;
+&#x273A;
+&#x273A;
+</td></tr>
+</table>
+
+
+
+<table class="state1" style='margin:auto'>
+<tr><td>
+<button id='b1' style='text-align:center;display:block;margin:auto'>Click if you hate jQuery</button>
+<p class='gjHidden one'> &#9484;&#8745;&#9488;(-_-)&#9484;&#8745;&#9488;
+</p>
+</td></tr>
+<tr><td>
+&#x2B06;
+&#x2595;
+&#x1F6A5;
+&#x2A33;
+SMASH PRODUCT
+&#x1F6B9;
+&#x1F6A7;
+&#x1F6Bd;
+&#x1F6A8;
+&#x2121;
+&#x2120;
+</td></tr>
+</table>
+<pre style="text-align:center; font-size:100%;">
+⇓⟱↓⥿↣ ( ͡° ͜ʖ ͡°) ←⥿↓⟱⇓
+┌∩┐ t-Rump ┌∩┐
+Alt 1 - 9
+☺☻♥♦♣♠•◘○
+</pre>
+
+<table style='margin:auto'>
+<tr><td>
+&#X2795;
+&uArr;
+&#X27F0;
+&uarr;
+&#x297E;
+&#x21A2;
+&#x21BA;
+&#x1F607;
+&#x27F0;
+&#x25B2;
+&#x25B4;
+&#x25C9;
+&#x271B;
+&#x274C;
+</td></tr>
+<tr><td>
+&#X2796;
+&dArr;
+&#X27F1;
+&darr;
+&#x297F;
+&#x21A3;
+&#x21BB;
+&#x1F608;
+&#x27f1;
+&#x25BC;
+&#x25B5;
+&#x25CE;
+&#x273A;
+&#x273A;
+</td></tr>
+</table>
+<pre style="text-align:center; font-size:400%;">
+(\ /)
+(O.o)
+(> <)</pre>
+<div id="snowman" style="text-align:center; font-size:1000%;">
+&#9731;
+</div>
+<script>
+
+var bone=true;
+
+$(document).ready(function() {
+$('#plus').show('slow');
+
+$('#open').click( function() {
+  $('#open').toggleClass('state2');
+    $('#head').css({'color'  : 'blue',
+                    'border' : '1px solid black',
+                    'background-color':'lightgrey'});
+
+    $('#minus').toggle(bone);
+    $('#plus').toggle(!bone);
+    bone=!bone;
+   }); // end click
+
+
+$('#b1').click( function() {
+  $('.one').show('slow');
+  }); // end click
+
+}); // end ready
+</script>
+
+</body>
+</html>

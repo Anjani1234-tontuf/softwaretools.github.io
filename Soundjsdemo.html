@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>test</title>
+<style type="text/css">
+/*
+  This media query is for most responsive / smartphones and small tablets
+  if portrait == all smarphones and tablets
+  * can add if pixel ratio  gt 1.3 == newer smartphones and tablets in landscape
+  it should exclude normal  full size and hig density screens with this != max-width:999px
+*/
+
+@media only screen and (orientation:portrait) ,
+only screen and (orientation:landscape) and (max-width:999px) {
+
+body {
+width:100%;
+margin:8px 8px 8px 8px;
+font-size:32px;
+line-height:1.5;}
+
+.td1p{
+font-size:32px;
+font-weight:bold;
+}
+
+
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey {
+font-weight:bold;
+font-size:32px;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+line-height:1.5;
+color: #000;
+border: 2px solid #000;
+background-color: #D5D5D4;}
+
+textarea.buttonNgrey:hover, select.buttonNgrey:hover, input.buttonNgrey:hover {
+background-color: #B0C4DE;}
+
+
+
+} /* */
+</style>
+
+<script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
+<script>
+
+loadSound("Sounds/Attention.wav","did");
+
+function loadSound(wavin,soundID) {
+  createjs.Sound.registerSound(wavin, soundID);
+}
+
+function playSound(soundID) {
+  createjs.Sound.play(soundID);
+}
+
+function splayFileApp() {
+  var theelem = document.getElementById('ringCDAlarm1');
+  var soundID = "d" + theelem.selectedIndex + "id";
+  loadSound(theelem.value,soundID);
+  playSound(soundID);
+}
+
+function test() {
+  var soundID = "did";
+  playSound(soundID);
+}
+
+
+</script>
+</head>
+<body>
+
+
+  <p class="td1p">Play a Sound file<br>
+  <select class="buttonNgrey" name="ringCDAlarm1" id="ringCDAlarm1" size="1" onchange="splayFileApp();">
+  <option value="Sounds/Stop.wav" selected>Stop</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White</option>
+  </select></p>
+
+<button class="td1p" onclick='test();'>You must click here before the test will work</button>
+<button class="td1p" onclick='splayFileApp();'>test2</button>
+
+
+  </body>
+</html>

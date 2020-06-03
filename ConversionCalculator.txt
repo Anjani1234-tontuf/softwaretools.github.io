@@ -1,0 +1,197 @@
+chg Apr 30 2010 feet and inches to calc,  no onchange on fraction
+
+<p class="scenter">Fraction<br>
+        <select id="fraction1" name="fraction1" size="1" onchange="inchesfeetCalc(this.form);">
+
+
+<!--
+Content Notes
+Weight
+# To convert Ounces to Grams, multiply by 28.35
+# To convert Grams to Ounces, multiply by 0.035
+Enter value (Grams or Ounces) to convert :
+
+# Pounds to kilograms, multiply by 0.45
+# Kilograms to Pounds, multiply by 2.21
+Enter value (kilograms or pounds) to convert :
+
+Imperial - 1 stone = 14lb
+
+# ounces to tenths  Number of ounces / 16
+# convert tenths a pound  to  ounces
+
+1 dash    6 drops
+24 drops  1/4 tsp
+
+
+<form target="_blank" action="http://www.google.com/search">
+              <input type="text" size=18 maxlength=255 value="teaspoons in tablespoons" name="q">
+              <input type="submit" name="sa" value="Convert">
+            </form>
+Examples:
+1/2 cup in milliliters
+3 cups in liters
+350 F in C (this will translate Fahrenheit to Celsius)
+10 inches in cm
+1 teaspoon in ml
+1 pound in kg
+1 ounce in grams
+
+The Measurement Converter will alas, not convert baking measurements such as teaspoons of baking powder into grams.
+For such measurements, follow these conversions:
+
+Baking powder :
+1 tablespoon ~= 1 packet/envelope = 11 g
+
+Butter :
+1 stick ~ = 1/2 C = 112 g
+100 g ~= 1 stick minus a tablespoon
+
+Flour :
+1/4 C ~= 30 g
+100 g ~= 3/4 C plus one rounded tablespoon
+1 C ~= 120 g
+
+Sugar :
+100 g ~= 1/3 C + 1 tablespoon
+1 C ~= 240 g
+-->
+<!--
+Technical Notes
+This whacks CSGS
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+I could use an event listener to capture the x and y position
+for onclick events
+
+
+need different class than scenter
+
+  Nice to have
+    convert to a fraction ( use frmtNumber )
+    reset all button
+
+  Need to check some of the conversions.  tablespoons to weight type things
+  Need compact versions for the sidebar
+
+
+  1) strip headings
+  2) scenter to smaller
+  3) input styles to smaller
+  4) less padding
+  5) rows between  full screen
+
+  I may need to create alternate styles like tds (td) for td small
+
+http://www.contractor-books.com/CI/KitchenCalc_Pro.htm?source=google
+http://www.convert-me.com/en/
+
+dash      Dashes
+pinch       Pinches
+
+add options
+
+1) degrees prescsion radio button 1,2,3,4
+2) show nearest 1/8 -(especially good for metric to english
+3) turn off fractions
+
+o not bother to change unitl you figure out enter - return key 13
+on submit, on change
+
+addEventListener stuff
+
+-->
+<!--
+Changelog
+
+liguid to liquid
+
+remove
+<script type="text/javascript" src="js/gj53runSearchHTML.min.js"></script>
+for netscape
+
+ Jul 11 2009
+Added google style converter using the IN operator
+removed simple calculator
+-->
+
+/*
+
+Need to see fix this when I get key events figured out
+
+function netscapeKeyPress(ev)
+{
+    if (ev.which == 13)
+    {
+        alert('enter does nothing here');
+    }
+}
+
+function microsoftKeyPress()
+{
+    if (window.event.keyCode == 13)
+    {
+        alert('enter does nothing here');
+    }
+}
+
+//capture events is deprecated - does not appear to worl
+if (isGecko())
+{
+    window.captureEvents(Event.KEYPRESS);
+    window.onKeyPress = netscapeKeyPress;
+}
+//need mickey stuff
+
+*/
+
+  // More free form version
+  // Count total tokens, Test 1 could check for the presense of an IN and seperate tokens to the left and right
+  // Test2,   if over 4 start at left 0, 1 .. combining tokens and test until its NAN,
+  // then count remaing,  at most then I should have the combined quantity, 2 for From unit, the In, and 2 for the To Unit
+  // if either unit has 2 tokens do a search in the special 2 token list and then equivalence to conversion factors in the
+  // one token list, then proceed
+
+  // 4 token version, break out the tokens
+  // get the qty and both make sure its a either a number or a fraction  2, .2, 3/4 etc
+  // might as well convert the fractions
+
+  //1 cups  to deciliter    [0]   if ..[1] ==  ....[2]
+  //2 deciliters to cups    [4]   if ..[1]     ....[2]
+
+/*
+
+  google does not do ambigous ones like
+
+  2 c in ml
+  2 c in m  no
+  2 c in f  Y
+
+  is C cups or Centigrade
+
+  no dozen   tell them what they can use
+
+  gm = gram
+  mg = milligram
+  sq = square
+  min = minute (60 seconds)
+  hr = hour (60 minutes)
+
+  lb - pound
+  # - pound
+
+  pk. - peck
+  bu. - bushel
+  ga g  g is sometimes used for gallons, not grams
+*/
+
+  /*
+  3 arrays matched by position
+  abbreviation
+  normal
+  plural
+
+  keep in synch, you have to add same place in all arrays at same time
+  preferably at the end
+
+  */

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+hr.colored
+{
+  color:blue;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+</style>
+<title>Test and Display Java Environment</title>
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="CookBook">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjonline.min.js"></script>
+<script type="text/javascript">
+
+function DisplayInfo()
+{
+var expdate = new Date();
+var visit;
+
+  BrowserDetect.init();
+
+  var message0="<br>";
+  var message1=BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS + "<br>";
+  var message2;
+  if (document.referrer.length == 0)
+      message2 ="I do not believe I can tell where you came from<br>";
+    else
+      message2 ="I believe you came from " + document.referrer + "<br>";
+
+    message2 +="Host :" +  top.location.host + "<br>"
+
+  var message3="";
+
+    if(BrowserDetect.browser == "Opera")
+    {
+      message3="Sorry, I have not done any testing with Opera<br>";
+    }
+
+  var message5=navigator.userAgent + "<br>";
+
+  expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+
+  if(!(visit = getCookie("visit2")))
+  {
+    visit = 0;
+  }
+
+  var message4 = "You have been here   " + visit + " times before<br>";
+
+  appendInnerHTML("myOP",message0 + message1 + message2 + message3 + message4 + message5);
+  //alert(message0 + message1 + message2 + message3 + message4 + message5);
+
+  visit++;
+  setCookie("visit2", visit, expdate, "/", null, false);
+
+// <APPLET CODE=DisplayJavaEnv.class WIDTH=420 HEIGHT=300>
+
+}
+
+
+function runit()
+{
+  DisplayInfo();
+}
+
+</script>
+</head>
+<body onload="runit()">
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+
+
+<APPLET CODE="DisplayJavaEnv.class"  WIDTH=420 HEIGHT=300>
+</APPLET>
+<hr>
+<p id="myOP"> </p>
+</BODY>
+</HTML>

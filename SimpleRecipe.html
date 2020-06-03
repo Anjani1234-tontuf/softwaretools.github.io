@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>Simple Recipe</title>
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <meta name="author" content="Gary Johnson">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="icon" href="XXSoftwareTools/GraphicWidgets/files.ico" type="image/x-icon">
+  <meta name="description" content="CookBook Reference">
+  <meta name="keywords" content="">
+<!--
+Cannot use visibility hidden with this meta
+  <meta http-equiv="Content-Style-Type" content="text/html" charset=ISO-8859-1">
+
+-->
+<script type="text/javascript" src="js/gjrecipe.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/gj53runSearchXUL.min.js"></script>
+<script type="application/x-javascript" src="chrome://browser/content/utilityOverlay.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjcore.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjutil1.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjevent.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjrecipe.min.js"></script>
+
+<script>
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+var gj53run = Components.classes["@garyjohnson.org/gj53run;1"].createInstance();
+gj53run = gj53run.QueryInterface(Components.interfaces.nsIGj53run);
+
+function RunSqlite()
+{
+  netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+  setUPRecipeList('place');
+}
+
+</script>
+</head>
+<body>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+
+<!--
+footer is not showing up|
+
+RecipeName varchar(20) NOT NULL,
+Phase     text,
+POrder      text,
+UOrder          text,
+Qty             text,
+QtyUnits        text NULL,
+Required        text NULL,
+IName           text NULL,
+FG              text NULL,
+Subs            text NULL,
+Prep            text NULL,
+Notes           text NULL,
+TV              text NULL
+);
+
+SELECT Qty, QtyUnits, Required, IName, Subs, Prep FROM IngredientsTable WHERE RecipeName = 'Gingered Chicken Noodles' ORDER BY Phase, POrder, UOrder
+
+RecipeName           varchar(20) NOT NULL PRIMARY KEY,
+AtAGlance            text NULL,
+Preptime             text NULL,
+CookTime             text NULL,
+ClockTime            text NULL,
+NumberofServings     text NULL,
+NutritionAnalysis    text NULL,
+Equipment            text NULL,
+Picture              varchar(20) NULL,
+CookingTips          text NULL,
+Suggestions          text NULL
+
+-->
+
+<form name="SimpleSearch">
+<FIELDSET class="b" style='width:25%'>
+<LEGEND class="a">Please Hit Submit for a List of Recipes:</LEGEND>
+<input type="text" size = 50 tabindex="0" id="query_text" value="">
+<input type="button" id="EnterTerm" name="Submit" tabindex="1" value="Submit" onclick="RunSqlite();">
+</FIELDSET>
+</form>
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+</body>
+</html>
+
+

@@ -1,0 +1,1262 @@
+/* PrintitRecipe.css
+
+does it want the media print at the end
+
+Highly suggested print seetings
+=============================================
+100 percent
+Potrait
+margins 0
+blank in all the header and footer fields
+=============================================
+*/
+
+body
+{
+  /* test settings */
+  /* border: 1px solid green; */
+  /* regular setings */
+  background-color: white;
+  color: black;
+  margin:0 !important;
+  width:47em;
+}
+
+/* over ride for some backgrounds on spans not being suppressed when selecting no print backgrounds */
+
+*
+{
+  background-color: white !important;
+  background-image: none !important;
+  overflow: visible !important;
+  position:static;
+}
+
+img
+{
+  display:none;
+}
+
+#myheader, #thedish1
+{
+  display:none !important;
+}
+
+.closeit
+{
+  display:none;
+}
+
+
+/* pulled from shrimp and garlic */
+
+.myStep
+{
+  border-left: 2px solid black !important;
+}
+
+.sortable
+{
+}
+
+.pullquote5
+{
+  width: 8em;
+  padding: 8px;
+  font-family:verdana, sans-serif;
+  font-size:10pt;
+  float:left;
+  color:black;
+  background-color:white;
+  text-align:left;
+  margin-right:1em;
+}
+
+span.gty
+{
+  display: -moz-inline-box;
+  display: inline-block;
+  width: 3em !important;
+  margin-left:2em !important;
+  margin-right:.5em !important;
+  /*  border:        1px solid blue; */
+}
+
+span.unit
+{
+  display: -moz-inline-box;
+  display: inline-block;
+  width: 8em !important;
+  margin-right:.5em !important;
+  /*  border:        1px solid blue; */
+}
+
+span.desc
+{
+  display: -moz-inline-box;
+  display: inline-block;
+  width:30em !important;
+  /*  border:        1px solid blue; */
+}
+
+span.stepdesc
+{
+  display: -moz-inline-box;
+  display: inline-block;
+  /* display:block; */
+}
+
+p
+{
+  display: block;  /* new */
+  margin:0;  /* does not seem to affect the spacing */
+  padding:0;
+  border-collapse:collapse;
+  /*  margin-left:0in;
+  margin-right:0in;
+  padding-bottom:.25em;
+  padding-top:.25em; */
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.myOpt2
+{
+  background-color: white;
+}
+
+
+.closeit
+{
+  display:none;
+}
+
+/* pUP popUpMarker */
+.pUP
+{
+  border-right: 0 none;
+
+}
+
+
+/* ***************************** */
+
+
+
+/* End Header */
+
+
+.skiplink
+{
+  display:none;
+}
+
+
+/* Start Lists, Directories */
+
+ol.lalpha
+{
+  list-style-type: lower-alpha;
+}
+
+ol.ualpha
+{
+  list-style-type: upper-alpha;
+}
+
+ul
+{
+  list-style: square;
+}
+
+ul.square
+{
+  list-style: square;
+}
+
+ul.disc
+{
+  list-style-type: disc;
+}
+
+ul.circle
+{
+  list-style-type: circle;
+}
+
+ul.none
+{
+  list-style-type: none;
+}
+
+ul.inside
+{
+  background-color: #ffffd7;
+  color: black;
+  list-style-position: inside;
+  list-style-image: url("../GraphicWidgets/sdi-yl.gif");
+}
+
+ul.gbull
+{
+  color: black;
+  list-style-image: url("../GraphicWidgets/sdi-lb.gif");
+}
+
+/* changed to 12pt */
+ul li p, ol li p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  line-height: 12pt;
+}
+
+
+/*  font-size:13px; */
+
+ul li p.ex, ol li p.ex
+{
+  margin-top:5px;
+  margin-bottom:5px;
+  font-size: 13px;
+  line-height: 20px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.exp
+{
+  font-size: 10pt;
+  line-height: 14pt;
+  margin-top:7pt;
+  margin-bottom:7pt;
+  text-align:left;
+  display:block;
+}
+
+.mydt
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bolder;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.mydd
+{
+  text-indent:.3in;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 8px !important;
+  margin-bottom: 8px  !important;
+}
+
+
+.mydtspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.myddspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.mydt2
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  /*  font-weight: bolder; */
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.mydd2
+{
+  /*  text-indent:.3in; */
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 4px !important;
+  margin-bottom: 4px  !important;
+  padding-right:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  margin-left:1em;
+  display: list-item;
+  list-style-type:none;
+}
+
+
+/* End Lists */
+
+
+/* Start HTML STD Text Tags */
+
+em
+{
+  /*  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%;*/
+  font-style: italic;
+  color: blue;
+
+}
+
+strong
+{
+  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%;
+  font-variant: normal;
+  padding-right: .5em;
+  padding-left: .5em;
+}
+
+acronym, span.acronym
+{
+
+  border: 1px dashed #000;
+  padding-right: .5em;
+  padding-left: .5em;
+  font-variant: small-caps;
+  background-color:#F5F5F5;
+}
+
+h1
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+h2
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  background-color: #CCCCFF;
+  text-align:left;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:2px solid #336699;
+}
+
+h3
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:left;
+}
+
+h4
+{
+  font-weight: bold
+}
+
+h5
+{
+  font-weight: bold
+}
+
+/* Mozilla caption is off so use tcaption on a TD spanning until fixed */
+
+.clearall
+{
+  clear:both;
+}
+
+/*
+the following lets me do this
+<td class="c"><p>Table row color c</p></td>
+instead of this
+<td class="c"><p class="td1p">Table row color c</p></td>
+
+I should think about changeing this
+td p, th p
+to
+td p, th p, td a
+
+
+
+*/
+
+td p, th p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+
+textarea, select, input
+{
+  display:none;
+}
+
+#LastModified
+{
+  display:none;
+}
+
+
+/* End HTML STD Text Tags */
+
+/* Start Plain Paragraph Styles */
+
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+p
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+p.smaller
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+/* override */
+.heading
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  /* text-align:center; */
+  text-align:left;
+  margin-bottom: 1em;
+}
+
+.center
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenter
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenterpx
+{
+  font-weight:bold;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.smallcaps
+{
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.indent
+{
+  text-indent:.5in;
+}
+
+/* End Plain Paragraph Styles */
+
+
+/*
+Start Section Heading Helper Styles
+See GaryDefaultCSS.html for how to code the various headings
+
+HC      - Heading Color background-color and padding
+SHC     - Sub Heading Color background-color and padding
+HCCT    - Heading Color background-color Centered Text
+HCL     - Heading Color background-color Left
+HCLT    - Heading Color background-color Left Text
+HCRT    - Heading Color background-color Right Text
+SHCL    - Sub Heading Color background-color Left
+
+*/
+
+
+.HC
+{
+  background-color: white;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:3px solid #336699;
+}
+
+.SHC
+{
+  background-color: white;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:1px solid #336699;
+}
+
+.SHF
+{
+  background-color: white;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border:1px solid #336699;
+}
+
+.HCCT
+{
+  font-weight: bold;
+  background-color:white;
+  border-top:1px solid #336699;
+  text-align:center;
+}
+
+.HCL
+{
+  background-color:white;
+  border-top:1px solid #336699;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.HCLT
+{
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.SHCL
+{
+  border-top:1px solid #336699;
+  padding-top:1.0pt;
+  padding-bottom:1.0pt;
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.HCRT
+{
+  font-weight:bold;
+  text-align:right;
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+}
+
+/* End Section Heading Helper Styles */
+
+/*
+Start Font and Paragraph Style Modifiers
+
+TH       Table Heading (Font and Color ) Table Caption - Use HC
+TRC      Table Row background-color Color  - for regular text, embedded in a table
+R1       Row odd
+R2       Row Even
+a        Row Alternate
+b        Row Alternate
+td1p     Table Column (td) paragraph style indented for easy reading
+LT       Large Text
+*/
+
+
+.TRC
+{
+  background-color: #FFFFFF;
+}
+
+.R1
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.R2
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.a
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.anp
+{
+}
+
+.apl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+}
+
+.b
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.bnp
+{
+}
+
+.bpl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+}
+
+
+
+/* td 1 for p an embedded p in td in table margins on right and left */
+.td1p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.td2p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:"Courier New",Courier,monospace;
+  font-weight: bolder;
+}
+
+.td1px
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+/* made em this use that instead  */
+.italicblue
+{
+  font-style: italic;
+  color: blue;
+}
+
+.CBerror
+{
+  color: red;
+}
+
+.CBwarn
+{
+  color: blue;
+}
+/* not good */
+.LT
+{
+  font-size: 16.0pt;
+  font-family: "Times New Roman", Garamond,serif;
+  font-weight: bold;
+  margin-top:3pt;
+  margin-bottom:3pt;
+}
+
+/* GreyPattern is my mnemonic for another color background-color */
+
+.GreyPattern
+{
+  border:none;
+  background-color:#dedede;
+}
+
+.DGreyPattern
+{
+  border:none;
+  background-color:#CCCCCC;
+}
+
+.LGreyPattern
+{
+  border:none;
+  background-color:#efefef;
+}
+
+/* End Font Styles */
+
+
+/*
+Start Fancy Paragraphs
+FL            First Letter
+background-color:#ffffd7; show as cream with blue background-color
+#ddddee is not easy to see
+light blue even less easy to see
+#efefef shows up as white
+
+DropCap       Text That spans multiple lines
+pullquote     A way of specifying a descriptor for severll line of text
+*/
+
+/* prints ugly so just make it bold  */
+span.FL
+{
+
+  font-weight: bold;
+
+}
+
+span.DropCap
+{
+  float: left;
+  font-size: 1.7em;
+  padding: 0 0.15em;
+  margin: 0 0.15em 0 0;
+  color: #CC0066;
+  border: 1px solid blue;
+}
+
+.pullquote
+{
+  width: 8em;
+  padding: .25em;
+  font-size: 10pt;
+  font-weight: bold;
+  font-family:verdana, sans-serif;
+  float:left;
+  color:#cc3333;
+  background-color:#f0f0f0;
+  text-align:left;
+  margin-right:1em;
+}
+
+/* background-color same as b
+default font color*/
+.pullquote2
+{
+  width: 8em;
+  padding: .25em;
+  font-size: 10pt;
+  font-weight: bold;
+  font-family:verdana, sans-serif;
+  float:left;
+  background-color:#eeeeff;
+  text-align:left;
+  margin-right:1em;
+}
+
+.pullquote3
+{
+  width: 10em;
+  padding: 8px;
+  font-family:verdana, sans-serif;
+  float:left;
+  color:black;
+  background-color:#f0f0f0;
+  text-align:left;
+  margin-right:1em;
+}
+
+.pullquote4
+{
+  width: 10em;
+  padding: 8px;
+  font-family:verdana, sans-serif;
+  float:left;
+  text-align:left;
+  margin-right:1em;
+}
+.smallmargins
+{
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.note
+{
+  padding: 1em;
+  font-size: 10pt;
+  font-weight: bold;
+  font-family:verdana, sans-serif;
+  color:#cc3333;
+  background-color:#f0f0f0;
+  text-align:left;
+}
+
+.fancy
+{
+  margin-top: 0px;
+  border-top: solid 1px rgb(100,100,100);
+  border-bottom: solid 1px rgb(100,100,100);
+  padding: 8px;
+  background-color: #ffffd7;
+}
+
+.smallboldspaced
+{
+  font-size: 9pt;
+  font-weight:bold;
+  line-height: 13pt
+}
+
+.Announce
+{
+  background-color:#191970;
+  color: #F5F5F5;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding: 2em;
+}
+
+hr.announce
+{
+  background-color:yellow;
+  border-top: thick solid yellow;
+  margin-top: 6.0pt;
+  margin-bottom: 6.0pt;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 6.0pt;
+}
+
+/* End Fancy Paragraphs */
+
+
+
+/*
+Start Table Styles
+
+Use the following
+
+border=0 cellspacing=2 cellpadding=2 class="CTB" RTB or LTB
+
+class on the TD so that it extends to the margins
+class td1p the p for the font
+<td class="HC"><p class="td1p">Generic Tomato Varieties</p></td>
+
+
+If having problems with CSS
+use align attribute in the <table> tag,
+
+The easiest way to center a table with style sheets is to put the table in a division and use the
+text-align property to center (text-align: center;) the contents of the division.
+To mimick moving the table to the left or right, you want to use the float property on the table itself.
+For instance, to float it to the right, you could do the following.
+
+
+Center Float does not work very well.
+
+*/
+
+/* over ride */
+.CTB
+{
+  /* margin-left: auto;
+  margin-right: auto; */
+
+}
+
+/* no margin on float */
+.RTB
+{
+  float: right;
+}
+
+.LTB
+{
+  float: left;
+}
+
+/* End Table Styles */
+
+/* Start CSS Graphics */
+
+.borderdraw
+{
+  border-style: solid;
+  width: 0px;
+  height: 0px;
+  line-height: 0px;
+}
+
+.bluedown
+{
+  border-width: 100px 50px 0px;
+  border-color: blue white white;
+}
+
+hr.alt
+{
+  color:blue;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+/*
+need to try this with something other than a div
+Nope - It might make more sense to try a mouseover thing on a button, you lose open in a tab when you do that
+*/
+
+div.MyButton
+{
+  display:none;
+}
+
+/* End CSS Graphics */
+
+
+/* Spacers */
+
+/* I created a special spacer for FL so that it does not interfere with other uses of mythingsp */
+
+.mythinspFL
+{
+  display:none;
+}
+
+
+.mythinsp
+{
+  font-size: 2pt;
+}
+
+
+
+ul.mynav
+{
+  padding: 0 1px 1px 0;
+  margin-left: 0;
+  font-size:8.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+}
+
+ul.mynav li
+{
+  list-style: none;
+  margin: 0;
+  border-top: 1px solid gray;
+  text-align: left;
+}
+
+ul.mynav li > a
+{
+  display: block;
+  padding: 0.25em 0.5em 0.25em 0.25em;
+  border-left: 1em solid lightblue;
+  text-decoration: none;
+  background: ivory;
+}
+
+ul.mynav li > a:link
+{
+}
+
+ul.mynav li > a:visited
+{
+  color: slateblue;
+}
+
+ul.mynav li > a:hover
+{
+  border-color: yellow;
+  color: white;
+  background-color: slategray;
+}
+
+
+
+/*
+I need much more contrast with the background with these
+*/
+
+.SHCm
+{
+  background-color: #efefef;
+}
+
+.SHFm
+{
+  background-color: #dedede;
+}
+
+.HCLm
+{
+  background-color:#CCCCFF;
+}
+
+
+.dynDomm
+{
+  border: 2px solid #000000;
+  padding-top:2.5px;
+  padding-right:0;
+  padding-bottom:2.5px;
+  padding-left:7.5px;
+  background-color:#CCCCCC;
+  /*  width:300px; */
+  height:auto;
+}
+
+.dynDomTextm
+{
+  color: #000000;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-size:13px;
+  font-weight: normal;
+}
+
+/*  300 - border 2px x 2
+padding left 7.5 dynDomm
+padding left 1
+margin left 7
+dynDomma boder 1px x 2
+need to see it 2px
+
+*/
+
+.dynDomma
+{
+  border: 1px solid #000000;
+  margin-left:7px;
+  padding-top:1px;
+  padding-right:0;
+  padding-bottom:1px;
+  padding-left:1px;
+  background-color:#DCDCDC;
+  width:276px;
+  height:auto;
+}
+
+.mb
+{
+  color:navy;
+  font-weight: bold;
+}
+
+.close
+{
+  margin: 0;
+  padding: 0;
+  word-spacing: 0.33em;
+}
+
+.tracking
+{
+  letter-spacing: -0.1em;
+}
+
+#myleft
+{
+  float:left;
+  width:400px;
+  margin-right:10px;
+  padding-bottom:10px;
+  padding-right:10px;
+}
+
+#myright
+{
+  width:58%;
+}
+
+
+.DEF
+{
+  font-weight:normal;
+}
+
+/* Fancy */
+
+.SHO
+{
+  font-weight:normal;
+  background:#ffffd7;
+}
+
+/* acronym */
+.STO
+{
+  font-weight:normal;
+  background:#F5F5F5;
+}
+
+/* unigue */
+.PRE
+{
+  font-weight:normal;
+  background:#FAF0E6;
+}
+
+/* unigue */
+.YIE
+{
+  font-weight:normal;
+  background:#F8F8FF;
+}
+
+.SUB
+{
+  font-weight:normal;
+  background:#F0FFFF;
+}
+
+/* hcl */
+.SEE
+{
+  font-weight:normal;
+  background:#CCCCFF;
+}
+
+.HTM
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#FAF0E6;
+}
+
+.PIC
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#F8F8FF;
+}
+
+.VID
+{
+  visibility:hidden;
+  font-weight:normal;
+  background:#FFFFF0;
+}
+
+
+.PRO
+{
+  visibility:hidden;
+}
+
+
+.LOO
+{
+  visibility:hidden;
+  font-weight:normal;
+}
+
+.abbc
+{
+  background-color: #ffff80;
+  color: black;
+  border: 5px black solid;
+  padding: 10px;
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+ul.cb
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+ul.cb li
+{
+  text-align: left;
+  margin:2pt;
+}
+
+ul.cb li p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  display: block;
+  padding: 0.25em;
+}
+
+TABLE.COLborderNoRowborder
+{
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+.cbcl1
+{
+  border: 3px solid red;
+}
+.cbcl2
+{
+  border: 3px solid blue;
+}
+.cbcl3
+{
+  border: 3px solid green;
+}
+/* link buttons for a line of buttons  */
+.buttondiv, .buttondiv ul, .buttondiv ul li, ul.buttonlist li, ul.tabs li.tabselected
+{
+  display:none;
+}
+
+
+
+/* does it want it here
+
+this example will put all tables on a right-hand side landscape page (named "rotated"):
+
+@page rotated {size: landscape}
+TABLE {page: rotated; page-break-before: right}
+
+css print rules
+
+removed  h2 page-break-before
+h1            { page-break-before: always; }
+@media print
+{
+h1, h2, h3, h4, h5, h6    { page-break-after: avoid; }
+ul, ol, dl    { page-break-before: avoid; }
+}
+*/

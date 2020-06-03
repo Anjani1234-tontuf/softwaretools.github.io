@@ -1,0 +1,921 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Evaluator - Calculator</TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="author" content="Gary GMGJ Johnson">
+  <meta name="description" content="Math expression evaluation for Large Screens">
+  <meta name="keywords" content="GMGJ, Calculator, Math, Expression, History">
+  <link rel="icon" href="GraphicWidgets/formula16x16.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="StyleSheet" href="css/musings.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <meta http-equiv="Cache-control" content="private">
+  <meta http-equiv="content-language" content="en-US">
+<!--
+Warning: Use of getAttributeNodeNS() is deprecated. Use getAttributeNS() instead.
+Source File: file:///C:/ma/Personal/XXSoftwareTools/TheCalculator.html
+
+When called on an HTML element in an HTML document, getElementsByTagName lowercases its argument before proceeding. This is undesirable when trying to match camelCase SVG elements in a subtree in an HTML document. element.getElementsByTagNameNS works in that case. See also bug 499656 .
+
+
+element.getElementsByTagName
+element.getElementsByClassName  ...
+Note: While the W3C specification says elements is a NodeList, this method returns a HTMLCollection both in Gecko and Internet Explorer. Opera returns a NodeList, but with a namedItem method implemented, which makes it similar to a HTMLCollection. As of January 2012, only in WebKit browsers the returned value is a pure NodeList. See bug 14869 for details.
+
+getElementsByTagName
+createTextNode
+setAttribute
+createElement
+replaceChild
+appendChild
+
+https://developer.mozilla.org/en/DOM/Attr
+
+-->
+<style type="text/css">
+
+body, p{
+    font-size:16px;
+}
+
+body {
+margin:2em;
+width:980px;
+max-width:980px;
+margin: 0 auto;
+}
+
+td p, th p
+{
+  margin-top:0in;
+  margin-right:2px;
+  margin-left:2px;
+  margin-bottom:.0001px;
+  font-size:16px;
+  font-family: "Courier New", Courier,monospace;
+  padding:1px;
+}
+
+.bh1
+{
+  background-color: #eeeeff;
+  color: black;
+  padding:1pt 1pt 1pt 1px;
+  width:65%;
+}
+
+.bh2
+{
+  background-color: #eeeeff;
+  color: black;
+  padding:1px 1px 1px 1px;
+  width:35%;
+}
+
+.ph2
+{
+  font-weight:bold;
+  font-size:16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background: #CCCCFF;
+  text-align:left;
+  padding-right:5px;
+  padding-left:5px;
+  padding-top:2px;
+  padding-bottom:2px;
+  border-top:2px solid #336699;
+}
+
+.spanpbuttonNgrey
+{
+  font-weight:bold;
+  font-size:16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+}
+
+input { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+select { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+table
+{
+    border-collapse: collapse; /* 'cellspacing' equivalent */
+}
+
+table td, table th
+{
+    padding: 2px; /* 'cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+
+
+.myresult
+{
+  height:1em;
+}
+
+.scenter{
+font-weight:bold;
+font-size:16px;
+font-family:Verdana,Arial,Helvetica,sans-serif;
+text-align:center}
+</style>
+</HEAD>
+<BODY onload="Startup();">
+
+<div id="pft" style='float:right;padding:0 15% 0 0'>
+<INPUT type="button" id="CBPRINT" title="" class="buttonNgold" value="Printer friendly tape"
+onClick="printTape();">
+</div>
+<div>
+<div id="one">
+
+<h1 class="heading" id="thename"><span class="HC">Calculator</span></H1>
+
+<!-- formse is Normal UI -->
+<FORM name="formse" id="formse" onsubmit="calc2(formse); return false;">
+<table style="width:1000px;">
+<TR>
+<td colspan="3">
+<H2 class='old'><span class="FL">M</span>athematical Expression Evaluator</H2>
+</TD>
+</TR>
+<TR>
+<td class="a" style='padding:3px 10px 3px 10px;'>
+<p class="scenter">Equation&nbsp;</p>
+</TD>
+<td ROWSPAN=2 class="c" style='text-align: center; vertical-align:middle; padding:3px 10px 3px 10px;'>
+<INPUT type="button" id="myEvalit" class="buttonNgrey" value="Evaluate"
+onClick="calc2(this.form);">
+</TD>
+<td class="b" style='padding:3px 10px 3px 10px;'>
+<p  class="scenter" >Result&nbsp;</p>
+</TD>
+</TR>
+<TR>
+<td class="a" style='padding:3px 10px 3px 10px;'>
+<INPUT type="text" class="text" name=expr style='width:100%;'>
+</TD>
+<td class='b' style='padding:3px 10px 3px 10px;'>
+<p id="myresult" class="myresult" style='width:80%;margin-right:10%;margin-left:10%;'></p>
+</TD>
+
+
+<TR>
+<td class="c"><p  class="scenter" >
+
+<INPUT type="button" id="hSS3" title="Toggle the Display of Instructions, Examples, Operators and Function Help" class="buttonNgold" value="Help"
+onClick="toggleDIVDisplay('hhinfo1','hSS3','Help' );">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT type="button" id="FN" title="Format Numbers with commas" class="buttonNgrey"
+value="Fn"
+onClick="formatOP();">
+&nbsp;
+<INPUT type="button" id="CF" title="Convert decimal to sixteenths" class="buttonNgrey"
+value="Convert to Fraction (16ths)"
+onClick="calcDisplayFracHere(this.form);">
+
+</p>
+</TD>
+<td class="c">
+<!-- blank row -->
+</TD>
+<td class="c"><p  class="scenter" >
+<INPUT type="button" id="RTE" title="Move Result to Equation Input" class="buttonNgrey"
+value="RtE"
+onClick="moveResult(this.form,'myresult');">
+</p>
+</TD>
+</TR>
+</TABLE>
+</form>
+</div> <!-- one -->
+
+<div id="place" style="width:100%;visibility:hidden; min-height:20%;overflow:auto;overflow-x:scroll;overflow-y:scroll;padding-left:4px;">
+<table style="padding-bottom:5px;">
+<TBODY>
+</TBODY>
+</TABLE>
+</div>
+
+<div id="myError" style="width:100%;display:none;overflow:visible;overflow-x:scroll;overflow-y:scroll;">
+<p id="pmyError">  </p>
+<p id="pmyError2">  </p>
+<INPUT type="button" id="myClearMe" class="buttonNgrey" value="Hide and Clear Me"
+onClick="hideError('myError');">
+</div>
+
+<div id="hhinfo1" style="display:none; min-width:35em; z-index:2;">
+<P>Multiply is <span class="FL">*</span> (not X!)</p>
+<P>The comma <span class="FL">,</span> is an operator. Numbers are stripped of commas!</p>
+<P><span class="b">+ - * / ^ | &amp; Math.sqrt(x) and more!</span></p>
+<A HREF="GaryJohnsonDisclaimer.html#Disclaimer1" target="_top">See Disclaimer on Prescision and Accuracy</A><BR>
+
+<p class="td1p italicblue"><SPAN class="GreyPattern" style="font-size: large;">&nbsp;Enter a mathmatical expresion and hit evaluate!</span></p>
+<p class="td1p italicblue"><SPAN class="GreyPattern" style="font-size: large;">&nbsp;Do it - Your input and results are shown below. </span></p>
+<BR>
+<P>Use the <span class="spanpbuttonNgrey">Fn</span> button to format numbers with commas in the output area</p>
+<P>Use the <span class="spanpbuttonNgrey">RtE</span> button to move your last results to the input area</p>
+<P>Use the <span class="spanpbuttonNgrey">Convert to Fractions</span> to convert a number in the input area to a fraction</p>
+<p class="italicblue GreyPattern">Examples</p>
+<TABLE>
+    <TR><td class="a"><P>(7 / 2) * 3</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>10.5</p></TD></TR>
+        <TR><td class="a"><P>12 % 5</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>2</p></TD></TR>
+        <TR><td class="a"><P>Math.sqrt(16)</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>4</p></TD></TR>
+        <TR><td class="a"><P>15 &amp; 9</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>9 (1111 &amp; 1001 = 1001)</p></TD></TR>
+        <TR><td class="a"><P>15 | 9</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>15 (1111 | 1001 = 1111)</p></TD></TR>
+        <TR><td class="a"><P> 15 ^ 9</p></TD><td class="c"><P>Evaluates to</p></TD><td class="a"><P>6 (1111 ^ 1001 = 0110)</p></TD></TR>
+        <TR><td class="a"><P>status = (20 &gt;= 18) ? "adult" : "minor"</p></TD> <td class="c"><P>Evaluates to</p></TD><td class="a"><P>adult</p></TD></TR>
+        <TR><td colspan=3 class="a"><P>BMI for weight 195 height 69 inches  Math.round((195 * 703) / (69 * 69) * 10) / 10</p></TD></TR>
+</TABLE>
+<p class="italicblue GreyPattern">Functions</p>
+<TABLE>
+        <TR><td class="a"><P>Math.abs(x)</p></TD><td class="c"><P>Calculates the absolute value of a number.</p></TD></TR>
+        <TR><td class="b"><P>Math.acos(x)</p></TD><td class="c"><P>Calculates the arccosine (in radians) of a number.</p></TD></TR>
+        <TR><td class="a"><P>Math.asin(x)</p></TD><td class="c"><P>Calculates the arcsine (in radians) of a number.</p></TD></TR>
+        <TR><td class="b"><P>Math.atan(x)</p></TD><td class="c"><P>Calculates the arctangent (in radians) of a number.</p></TD></TR>
+        <TR><td class="a"><P>Math.atan2(x,y)</p></TD><td class="c"><P>Calculates the arctangent of the quotient of its arguments.</p></TD></TR>
+        <TR><td class="b"><P>Math.ceil(x)</p></TD><td class="c"><P>Rounds up (Math.ceil(-9.01) = -9.0 :  counts up - towards zero).</p></TD></TR>
+        <TR><td class="a"><P>Math.cos(x)</p></TD><td class="c"><P>Calculates the cosine of a number.</p></TD></TR>
+        <TR><td class="a"><P>Math.E </p></TD><td class="c"><P>Returns Euler's constant - the base of the natural logarithms.</p></TD></TR>
+        <TR><td class="b"><P>Math.exp(x)</p></TD><td class="c"><P>Calculates e (the base of natural logarithms) raised to a power.</p></TD></TR>
+        <TR><td class="b"><P>Math.floor(x)</p></TD><td class="c"><P>Rounds down (Math.floor(-9.01) = -10.0 : counts down - away from zero).</p></TD></TR>
+        <TR><td class="a"><P>Math.log(x)</p></TD><td class="c"><P>Calculates the natural logarithm (base E) of a number.</p></TD></TR>
+        <TR><td class="b"><P>Math.max(x,y)</p></TD><td class="c"><P>Calculates the greater of two numbers.</p></TD></TR>
+        <TR><td class="a"><P>Math.min(x,y)</p></TD><td class="c"><P>Calculates the lesser of two numbers.</p></TD></TR>
+        <TR><td class="b"><P>Math.pow(base,ep)</p></TD><td class="c"><P>Calculates base to the ep (exponent power).</p></TD></TR>
+        <TR><td class="a"><P>Math.random()</p></TD><td class="c"><P>Calculates a pseudo-random number between 0 and 1.</p></TD></TR>
+        <TR><td class="b"><P>Math.round(x)</p></TD><td class="c"><P>Rounds up if the decimal is greater than or equal to .5, else it will round down.</p></TD></TR>
+        <TR><td class="a"><P>Math.sin(x)</p></TD><td class="c"><P>Calculates the sine of a number.</p></TD></TR>
+        <TR><td class="b"><P>Math.sqrt(x)</p></TD><td class="c"><P>Calculates the square root of a number.</p></TD></TR>
+        <TR><td class="a"><P>Math.tan(x)</p></TD><td class="c"><P>Calculates the tangent of a number.</p></TD></TR>
+        <TR><td class="b"><P>parseInt(string,[radix])</p></TD><td class="c"><P>attempts to return integer of the specified base.</p></TD></TR>
+        <TR><td class="a"><P>For Hex To Dec </p></TD><td class="c"><P>parseInt("E", 16) { parseInt("0xE", 16) } = 14</p></TD></TR>
+        <TR><td class="b"><P>For Octal To Dec</p></TD><td class="c"><P>parseInt("16", 8) { parseInt("016", 8)  } = 14 </p></TD></TR>
+        <TR><td class="a"><P>DecToOctal</p></TD><td class="c"><P>DecToOctal(224) = 0340</p></TD></TR>
+        <TR><td class="b"><P>DecToHex  </p></TD><td class="c"><P>DecToHex(224) = 0xE0</p></TD></TR>
+        <TR><td class="a"><P>DecToBin  </p></TD><td class="c"><P>DecToBin(8) = 100</p></TD></TR>
+        <TR><td class="b"><P>&nbsp;</p></TD><td class="c"><P>&nbsp; </p></TD></TR>
+
+</TABLE>
+<p class="italicblue GreyPattern">Operators</p>
+
+<TABLE>
+<TR>
+<td class="a"><P>addition/subtraction</p></TD>
+<td class="b"><P> + - </p></TD></TR>
+<TR>
+<td class="a"><P>multiply/divide/modulus</p></TD>
+<td class="b"><P> * / %</p></TD></TR>
+<TR><td class="a" colspan="2"><P>% modulus - Returns the integer remainder of dividing the two operands</p></TD></TR>
+
+<TR>
+<td class="a"><P>comma</p></TD>
+<td class="b"><P> ,</p></TD></TR>
+<TR>
+<td class="a"><P>assignment</p></TD>
+<td class="b"><P>= += -= *= /= %= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</p></TD></TR>
+<TR>
+<td class="a"><P>conditional</p></TD>
+<td class="b"><P> ?:</p></TD></TR>
+<TR>
+<td class="a"><P>logical-or</p></TD>
+<td class="b"><P> ||</p></TD></TR>
+<TR>
+<td class="a"><P>logical-and</p></TD>
+<td class="b"><P> &amp;&amp;</p></TD></TR>
+<TR>
+<td class="a"><P>bitwise-or</p></TD>
+<td class="b"><P> |</p></TD></TR>
+<TR>
+<td class="a"><P>bitwise-xor</p></TD>
+<td class="b"><P> ^</p></TD></TR>
+<TR>
+<td class="a"><P>bitwise-and</p></TD>
+<td class="b"><P> &amp;</p></TD></TR>
+
+<TR>
+<td class="a"><P>equality</p></TD>
+<td class="b"><P> == !=</p></TD></TR>
+<TR>
+<td class="a"><P>relational</p></TD>
+<td class="b"><P> &lt; &lt;= &gt; &gt;=</p></TD></TR>
+<TR>
+<td class="a"><P>bitwise shift</p></TD>
+<td class="b"><P>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</p></TD></TR>
+<TR>
+<td class="a"><P>negation/increment</p></TD>
+<td class="b"><P> ! ~ - + ++ -- typeof void delete</p></TD></TR>
+</TABLE>
+
+<blockquote style="margin:5px;">
+Cutting and pasting equations can fail due to character code incompatibilities
+If you think the equation is correct, often times typing over the operator characters,
+especially what looks like a minus sign can solve your problem.
+<BR><BR>
+Examples:<BR>
+&#8722; 	Minus Sign<BR>
+&ndash; 	en dash<BR>
+&mdash; 	em dash<BR>
+<BR>
+</blockquote>
+<pre style="margin:1EM;">
+<A HREF="http://www.mathopenref.com">Math Open Reference</A>
+<A HREF="http://dlmf.nist.gov/">Digital Library of Mathematical Functions</A>
+<A HREF="http://tycho.usno.navy.mil/what.html">Universal Time</A>
+<A HREF="http://en.wikipedia.org/wiki/Algebra">Algebra</A>
+<A HREF="http://joshua.smcvt.edu/linearalgebra">Linear Alegrbra</A>
+<A HREF="http://www.blc.edu/fac/rbuelow/common/glossarya-m.htm">Math Glossary</A>
+<A HREF="http://www.geom.uiuc.edu/">Geometry Center</A>
+<A HREF="http://en.wikipedia.org/wiki/Trigonometry">Trigonometry</A>
+<A HREF="http://www-stat.stanford.edu/~susan/surprise/">Probability by Suprise</A>
+<A HREF="http://www.falstad.com/mathphysics.html">Math and Physics Applets</A>
+<A HREF="http://people.usd.edu/~bwjames/tut/excel/">Excel Tutorial</A>
+<A HREF="http://en.wikipedia.org/wiki/Orders_of_magnitude_(data)">Orders of Magnitude</A>
+<A HREF="http://wiki.mcs.anl.gov/NEOS/index.php/NEOS_Wiki">Numerical Optimization</A>
+</pre>
+</div>
+
+</div>
+
+<div id="divgetit" style="visibility:hidden; position:absolute; background-color:lightseagreen; top:500px; left:100px; height:120px; width:480px; overflow:hidden; z-index:2; padding: 6px 6px 6px 6px; ">
+<FORM name ="getit" id="getit" onSubmit="StoreUserName(getit.inputida.value); return false;">
+<p class="LT">&nbsp; Please enter your first name and hit the SET Button </p>
+
+<INPUT type="text" size = 30 id="inputida" value="" >
+<INPUT type="button" id="aset" title="" class="buttonNgrey"
+      value="SET"
+      onmouseover="toggleHighLight('m', this.id);"
+      onClick="StoreUserName(getit.inputida.value);"
+      onmouseout="toggleHighLight('o', this.id);">
+</form>
+</div>
+
+<div id="gary" style="visibility:hidden; position:absolute; background-color:lightseagreen; top:500px; left:100px; height:120px; width:480px; overflow:hidden; z-index:2; padding: 6px 6px 6px 6px; ">
+<p class="LT">&nbsp; see the top</p>
+<INPUT type="button" id="aset2" title="" class="buttonNgrey"
+      value="SET"
+      onmouseover="toggleHighLight('m', this.id);"
+      onClick="goaway();"
+      onmouseout="toggleHighLight('o', this.id);">
+</div>
+
+
+<iframe id="iffooter1" class="myfooter" src="GaryDefaultFooter.html"></iframe>
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<script type="text/javascript" src="js/gjtrack.js"></script>
+
+<!--
+// Hexdump.js 0.1.1
+// (c) 2011 Dustin Willis Webber
+// Hexdump is freely distributable under the MIT license.
+// For all details and documentation:
+// http://github.com/mephux/hexdump.js
+-->
+<script type="text/javascript" src="js/hexdump.min.js"></script>
+<script type="text/javascript">
+//  Globals
+var toggleDisplayId;
+var theID;
+var toggleMoveIncrement = 25;
+var toggleMoveIncrementIE = 7;
+var toggleMoveTo  = 299;
+var getDisappearAT = 7;
+var intervalSpeed = 100;
+
+var gmgjc;
+var gmgjc1;
+var gmgjc2;
+var gmgjc3;
+var gmgjc4;
+var gmgjaa;
+
+function goaway()
+{
+  try
+  {
+    if(isGecko())
+    {
+      self.statusbar.visible=false;
+    }
+    StartID('gary');
+  }
+  catch (error)
+  {
+    gjonerror( error, " goaway ");
+  }
+}
+
+function displayID(idin)
+{
+  try
+  {
+    if(isGecko())
+    {
+      self.statusbar.visible=false;
+    }
+    StartID(idin);
+  }
+  catch (error)
+  {
+    gjonerror( error, " displayID ");
+  }
+}
+
+function StartID(idin)
+{
+var mytop;
+
+  setTheID(idin);
+
+  try
+  {
+    if(isGecko())
+    {
+      mytop = parseInt(document.getElementById(idin).style.top);
+    }
+    else
+    {
+      mytop = document.getElementById(idin).style.posTop;
+    }
+
+    if(mytop >= toggleMoveTo )
+    {
+      document.getElementById(idin).style.visibility = "visible";
+      toggleDisplayId = window.setInterval("IDMakeVisible()",intervalSpeed);
+    }
+    else
+    {
+      toggleDisplayId = window.setInterval("IDMakeInVisible()",intervalSpeed);
+    }
+  }
+  catch (error)
+  {
+    gjonerror( error, " StartID ");
+  }
+}
+
+function IDMakeVisible()
+{
+var top;
+
+  var idin = getTheID();
+
+  try
+  {
+    if(isGecko())
+    {
+      top = parseInt(document.getElementById(idin).style.top);
+      top -=toggleMoveIncrement;
+      var sztop = top + "px";
+      document.getElementById(idin).style.top = sztop;
+
+      if (top <= toggleMoveTo)
+      {
+        window.clearInterval(toggleDisplayId);
+      }
+    }
+    else
+    {
+      top = document.getElementById(idin).style.posTop;
+
+      top -=toggleMoveIncrementIE;
+
+      document.getElementById(idin).style.posTop = top;
+
+      if (top <= toggleMoveTo)
+      {
+        window.clearInterval(toggleDisplayId);
+      }
+    }
+  }
+  catch (error)
+  {
+    gjonerror( error, " IDMakeVisible ");
+  }
+}
+
+function IDMakeInVisible()
+{
+var top;
+
+  var idin = getTheID();
+  try
+  {
+    if(isGecko())
+    {
+      top = parseInt(document.getElementById(idin).style.top);
+      top -=toggleMoveIncrement;
+      var sztop = top + "px";
+      document.getElementById(idin).style.top = sztop;
+
+      if (top <= getDisappearAT)
+      {
+        window.clearInterval(toggleDisplayId);
+        //change 2/2/04
+        changeInnerHTML(idin, "");
+        wipe1();
+      }
+    }
+    else
+    {
+      top = document.getElementById(idin).style.posTop;
+
+      top -=toggleMoveIncrementIE;
+
+      document.getElementById(idin).style.posTop = top;
+
+      if(top <= getDisappearAT)
+      {
+        window.clearInterval(toggleDisplayId);
+        changeInnerHTML(idin, "");
+        wipe1();
+      }
+    }
+  }
+  catch (error)
+  {
+    gjonerror( error, " IDMakeInVisible ");
+  }
+}
+
+function getMoveTof()
+{
+  if(isGecko())
+  {
+    return 200;
+  }
+  else
+  {
+    return 300;
+  }
+}
+
+function getDisappearATf()
+{
+    if(isGecko())
+    {
+      return 7;
+    }
+    else
+    {
+      return 7;
+    }
+}
+
+function getTheID()
+{
+return  theID;
+}
+
+function setTheID(idin)
+{
+theID = idin;
+}
+
+function clipValues(obj,which)
+{
+  if (isGecko())
+  {
+    if (which=="t") return obj.clip.top;
+    if (which=="r") return obj.clip.right;
+    if (which=="b") return obj.clip.bottom;
+    if (which=="l") return obj.clip.left;
+  }
+  else if (isIE())
+  {
+    var clipv = obj.clip.split("rect(")[1].split(")")[0].split("px");
+    if (which=="t") return Number(clipv[0]);
+    if (which=="r") return Number(clipv[1]);
+    if (which=="b") return Number(clipv[2]);
+    if (which=="l") return Number(clipv[3]);
+  }
+
+return false;
+}
+
+/*
+The clipBy() Function:
+
+clipBy() allows you to shift the clip value by a given amount of pixels - it adds or
+subtracts from the current clip value for the edges:
+
+Mozilla has problems with clip
+clip.top:0; clip.right:0; clip.bottom:0; clip.left:0; no
+clip : rect(1px 1px 1px 1px );
+*/
+
+function clipBy(obj,t,r,b,l)
+{
+  if(isGecko())
+  {
+    obj.clip.top = clipValues(obj,'t') + t;
+    obj.clip.right = clipValues(obj,'r') + r;
+    obj.clip.bottom = clipValues(obj,'b') + b;
+    obj.clip.left = clipValues(obj,'l') + l;
+  }
+  else if (isIE())
+  {
+    obj.clip = "rect("+(this.clipValues(obj,'t')+t)+"px "+(this.clipValues(obj,'r')+r)+"px "+Number(this.clipValues(obj,'b')+b)+"px "+Number(this.clipValues(obj,'l')+l)+"px)";
+  }
+  else
+  {
+    alert("unknown Browser");
+  }
+}
+
+
+function wipe1()
+{
+  var idin = getTheID();
+
+  var width = parseInt(document.getElementById(idin).style.width);
+  var height= parseInt(document.getElementById(idin).style.height);
+  var left =  parseInt(document.getElementById(idin).style.left);
+
+  if (width > 10)
+  {
+    if((width % 100) === 0)
+    {
+      setLeft(idin, (left + 5));
+      setWidth(idin, (width - 10));
+      setTimeout("wipe1()",1);
+    }
+    else
+    {
+      setLeft(idin, (left + 5));
+      setHeight(idin,(height > 10 ?  (height  - 10): 0));  // Dec 18 2008  Error in parsing value for property 'height'
+      setWidth(idin, (width - 10));
+      setTimeout("wipe1()",1);
+    }
+  }
+  else
+  {
+    //I could set this off screen here
+    document.getElementById(idin).style.visibility = "hidden";
+  }
+
+}
+
+
+function Startup()
+{
+
+
+var abuserName;
+
+  //abuserName = getCookie("abuserName");
+
+//  if( abuserName == undefined || abuserName == "")
+//  {
+//    abuserName = gettheAbuserName();
+//  }
+
+  // displayID('gary');
+
+  if(abuserName === null || abuserName === undefined)
+  {
+    changeInnerHTML('thename',"<span class='HC'>" + "Your" + " Calculator" + "</span>");
+  }
+  else
+  {
+    changeInnerHTML('thename',"<span class='HC'>" + abuserName + "'s" + " Calculator" + "</span>");
+  }
+    gmgjc = document.createElement('TABLE');
+    gmgjc.setAttribute('border', '0');
+    gmgjc.setAttribute('cellpadding', '2');
+    gmgjc.setAttribute('cellspacing', '2');
+    gmgjc.setAttribute('width', '100%');
+    gmgjc1 = document.createElement('TBODY');
+    gmgjc1.appendChild( makeColumnHeader());
+
+}
+
+
+function gettheAbuserName()
+{
+  displayID('divgetit');
+}
+
+function StoreUserName(name)
+{
+var expdate = new Date();
+
+  if(name !== "")
+  {
+    //expiration 2000 days from today
+    expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 2000));
+    setCookie("abuserName", name, expdate, "/", null, false);
+  }
+
+  changeInnerHTML('thename',"<span class='HC'>" + name + "'s" + " Calculator" + "</span>");
+
+  displayID('divgetit');
+}
+
+
+function printTape()
+{
+
+var tape = document.getElementById('place');
+  if(tape.style.visibility == 'hidden')
+  {
+    alert('nothing to print');
+  }
+  else
+  {
+    tape.style.height = 'auto';
+    if(isGecko())
+    {
+      tape.style.overflowy = 'auto';
+    }
+
+    tape.style.height = 'auto';
+    tape.style.width = '100%';
+
+    tape.getElementsByTagName('TABLE')[0].style.width="100%";
+
+
+    document.getElementById('one').style.display='none';
+
+    changeInnerHTML('hhinfo1','');
+  }
+}
+
+function makerow(cell1, cell2)
+{
+    gmgjc2 = document.createElement('TR');
+
+    gmgjc2.appendChild( makecell(cell1 ));
+    gmgjc2.appendChild( makecell(cell2 ));
+
+return gmgjc2;
+}
+
+function makecell(cellin)
+{
+    gmgjc3 = document.createElement('TD');
+    if(isGecko())
+    {
+          gmgjc3.setAttribute("class","a1");
+    }
+    else
+    {
+          gmgjc3.setAttribute("className","a1");
+    }
+    gmgjc4 = document.createTextNode(cellin);
+    gmgjc3.appendChild( gmgjc4 );
+
+return gmgjc3;
+}
+
+function makeColumnHeader()
+{
+    gmgjc2 = document.createElement('TR');
+
+    gmgjc3 = document.createElement('TD');
+    if(isGecko())
+    {
+          gmgjc3.setAttribute("class","bh1");
+    }
+    else
+    {
+          gmgjc3.setAttribute("className","bh1");
+    }
+
+    gmgjc4 = document.createTextNode("Input");
+    gmgjc3.appendChild( gmgjc4 );
+    gmgjc2.appendChild( gmgjc3 );
+    gmgjc3 = document.createElement('TD');
+
+    if(isGecko())
+    {
+          gmgjc3.setAttribute("class","bh2");
+    }
+    else
+    {
+          gmgjc3.setAttribute("className","bh2");
+    }
+
+    gmgjc4 = document.createTextNode("Result");
+    gmgjc3.appendChild( gmgjc4 );
+    gmgjc2.appendChild( gmgjc3 );
+return gmgjc2;
+}
+
+
+function calcDisplayFracHere(form)
+{
+  try
+    {
+      if(checkit(form))
+      {
+        var temp = eval(form.expr.value);
+        var mynresult = frmtNumberFractionHere(temp, 3);
+      }
+      else
+      {
+        return;
+      }
+    }
+    catch (error)
+    {
+      checkError(form);
+      return;
+    }
+   form.expr.value = mynresult;
+}
+
+function frmtNumberFractionHere(expression,NumDigitsAfterDecimal)
+{
+  try
+  {
+    // see orginal frmtNumberFraction
+    var strNum = new String(expression);
+    var re = ".";
+    var intDec = strNum.indexOf(re);
+    var whole = strNum.substring(0, intDec);
+    if (whole == '0') {whole = "";}
+    var frac =  strNum.substring((intDec + 1), (intDec + 5));
+
+
+    if(intDec > 0)
+    {
+      intDec = (parseInt(intDec)+(NumDigitsAfterDecimal+1));
+      strNum = strNum.substr(0,intDec);
+      var fracln  =   Math.pow(10,frac.length);
+      var temp = (frac / fracln) *16;
+
+      strNum += " (" + whole + " " + temp + "/16)";
+
+      return strNum;
+    }
+    else
+    {
+      return strNum;
+    }
+  }
+  catch (error)
+  {
+    gjonerror( error, " frmtNumberFractionHere ");
+  }
+return 0;
+}
+
+function moveResult(form, idin)
+{
+
+    try
+    {
+    form.expr.value = returnInnerHTML(idin);
+    }
+    catch (error)
+    {
+    gjonerror( error, "Calculator - moveResult Error ");
+    }
+}
+
+
+function calc2(form)
+{
+  try
+    {
+      if(checkit(form))
+      {
+        var mynresult = eval(Trim(form.expr.value));
+      }
+      else
+      {
+        return;
+      }
+    }
+    catch (error)
+    {
+      checkError(form, error);
+      return;
+  }
+
+    changeInnerHTML('myresult',mynresult);
+
+    setVisible('place');
+
+    gmgjc1.appendChild(makerow(form.expr.value, mynresult ));
+    gmgjc.appendChild( gmgjc1 );
+    gmgjaa = document.getElementById('place');
+    gmgjaa.replaceChild(gmgjc, gmgjaa.getElementsByTagName('TABLE')[0]);
+
+}
+
+
+</script>
+</BODY>
+</HTML>
+
+

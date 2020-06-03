@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="Author" content="Gary G. Johnson">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Personal Test">
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+<!--
+<link rel="StyleSheet" href="css/musings.css" type="text/css">
+-->
+
+<script type="text/javascript" src="js/gjAppcore.min.js">
+</script><!-- This is need for the effect not easying -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!--
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+ -->
+
+
+<title>chmod.HTML</title>
+
+<script type="text/javascript">
+
+/*
+Jeroen's Chmod Calculator- By Jeroen Vermeulen of Alphamega Hosting <jeroen@alphamegahosting.com>
+Visit http://www.javascriptkit.com for this script and more
+This notice must stay intact
+*/
+
+function octalchange()
+{
+        var val = document.chmod.t_total.value;
+        var ownerbin = parseInt(val.charAt(0)).toString(2);
+        while (ownerbin.length<3) { ownerbin="0"+ownerbin; };
+        var groupbin = parseInt(val.charAt(1)).toString(2);
+        while (groupbin.length<3) { groupbin="0"+groupbin; };
+        var otherbin = parseInt(val.charAt(2)).toString(2);
+        while (otherbin.length<3) { otherbin="0"+otherbin; };
+        document.chmod.owner4.checked = parseInt(ownerbin.charAt(0));
+        document.chmod.owner2.checked = parseInt(ownerbin.charAt(1));
+        document.chmod.owner1.checked = parseInt(ownerbin.charAt(2));
+        document.chmod.group4.checked = parseInt(groupbin.charAt(0));
+        document.chmod.group2.checked = parseInt(groupbin.charAt(1));
+        document.chmod.group1.checked = parseInt(groupbin.charAt(2));
+        document.chmod.other4.checked = parseInt(otherbin.charAt(0));
+        document.chmod.other2.checked = parseInt(otherbin.charAt(1));
+        document.chmod.other1.checked = parseInt(otherbin.charAt(2));
+        calc_chmod(1);
+};
+
+function calc_chmod(nototals)
+{
+  var users = new Array("owner", "group", "other");
+  var totals = new Array("","","");
+  var syms = new Array("","","");
+
+        for (var i=0; i<users.length; i++)
+        {
+          var user=users[i];
+                var field4 = user + "4";
+                var field2 = user + "2";
+                var field1 = user + "1";
+                //var total = "t_" + user;
+                var symbolic = "sym_" + user;
+                var number = 0;
+                var sym_string = "";
+
+                if (document.chmod[field4].checked == true) { number += 4; }
+                if (document.chmod[field2].checked == true) { number += 2; }
+                if (document.chmod[field1].checked == true) { number += 1; }
+
+                if (document.chmod[field4].checked == true) {
+                        sym_string += "r";
+                } else {
+                        sym_string += "-";
+                }
+                if (document.chmod[field2].checked == true) {
+                        sym_string += "w";
+                } else {
+                        sym_string += "-";
+                }
+                if (document.chmod[field1].checked == true) {
+                        sym_string += "x";
+                } else {
+                        sym_string += "-";
+                }
+
+                //if (number == 0) { number = ""; }
+          //document.chmod[total].value =
+                totals[i] = totals[i]+number;
+                syms[i] =  syms[i]+sym_string;
+
+  };
+        if (!nototals) document.chmod.t_total.value = totals[0] + totals[1] + totals[2];
+        document.chmod.sym_total.value = "-" + syms[0] + syms[1] + syms[2];
+}
+window.onload=octalchange
+</script>
+</head>
+<body>
+
+<form name="chmod" id="chmod">
+<table border="0" cellspacing="0" cellpadding="0" style="font:normal 12px Verdana">
+<tr align="left" valign="middle">
+<td>Permissions:&nbsp;</td>
+<td><input type="text" name="t_total" value="751" size="4" onkeyup="octalchange()">&nbsp;</td>
+<td><input type="text" name="sym_total" value="" size="12" readonly="1" style='border: 0px none; font-family: "Courier New", Courier, mono;'></td>
+</tr>
+</table>
+<br>
+<table cellpadding="2" cellspacing="0" border="0" style="font:normal 12px Verdana">
+<tr bgcolor="#333333">
+<td width="60" align="left">&nbsp;</td>
+<td width="55" align="center" style="color:white"><b>owner</b></td>
+<td width="55" align="center" style="color:white"><b>group</b></td>
+<td width="55" align="center" style="color:white"><b>other</b></td>
+</tr>
+<tr bgcolor="#DDDDDD">
+<td width="60" align="left" nowrap bgcolor="#FFFFFF">read</td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="owner4" value="4" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#FFFFFF"><input type="checkbox" name="group4" value="4" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="other4" value="4" onclick="calc_chmod()"></td>
+</tr>
+<tr bgcolor="#DDDDDD">
+<td width="60" align="left" nowrap bgcolor="#FFFFFF">write</td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="owner2" value="2" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#FFFFFF"><input type="checkbox" name="group2" value="2" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="other2" value="2" onclick="calc_chmod()"></td>
+</tr>
+<tr bgcolor="#DDDDDD">
+<td width="60" align="left" nowrap bgcolor="#FFFFFF">execute</td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="owner1" value="1" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#FFFFFF"><input type="checkbox" name="group1" value="1" onclick="calc_chmod()"></td>
+<td width="55" align="center" bgcolor="#EEEEEE"><input type="checkbox" name="other1" value="1" onclick="calc_chmod()"></td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

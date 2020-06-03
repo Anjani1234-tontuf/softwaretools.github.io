@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+
+
+.c
+{
+height: 12px;
+}
+
+.s
+{
+height: 10px;
+}
+
+.ns
+{
+height: 10px;
+color:red;
+}
+
+/*
+.srgb
+{
+border-top: thick inset black;
+}
+
+.scmy
+{
+border-bottom: thick outset white;
+}
+*/
+em
+{
+font-variant:small-caps;
+}
+
+</style>
+<!--
+http://stuff.debugger-blog.net/coca/
+
+ hue (0..360): <<  >>
+ saturation (0..100): <<  >>
+ brightness (0..100): <<  >>
+
+http://www.rags-int-inc.com/PhotoTechStuff/ColorCalculator/
+
+http://www.colorpro.com/info/tools/converters.html
+
+http://www.w3.org/TR/css3-color/#hsla-color
+http://www.w3.org/TR/css3-color/
+
+Range 360 / 100
+
+ HSL color values
+
+CSS3 adds numerical hue-saturation-lightness (HSL) colors as a complement to numerical RGB colors. It has been observed that RGB colors have the following limitations:
+
+    * RGB is hardware-oriented: it reflects the use of CRTs.
+    * RGB is non-intuitive. People can learn how to use RGB, but actually by internalizing how to translate hue, saturation and lightness, or something similar, to RGB.
+
+There are several other color schemes possible. Advantages of HSL are that it is symmetrical to lightness and darkness (which is not the case with HSV for example), and it is trivial to convert HSL to RGB.
+
+HSL colors are encoding as a triple (hue, saturation, lightness). Hue is represented as an angle of the color circle (i.e. the rainbow represented in a circle). This angle is so typically measured in degrees that the unit is implicit in CSS; syntactically, only a <number> is given. By definition red=0=360, and the other colors are spread around the circle, so green=120, blue=240, etc. As an angle, it implicitly wraps around such that -120=240 and 480=120. One way an implementation could normalize such an angle x to the range [0,360) is to compute ((x mod 360) + 360) mod 360). Saturation and lightness are represented as percentages. 100% is full saturation, and 0% is a shade of grey. 0% lightness is black, 100% lightness is white, and 50% lightness is 'normal'.
+
+So for instance:
+
+-->
+<title>Color Chart of Safer Versions of the 16 named colors to Print on Most Inkjets</title>
+<body>
+<table cellspacing="4" width="auto" style='overflow:scroll'>
+<tbody>
+<!--
+
+-->
+
+<tr>
+<td style='background-color: hsl(180, 100%, 68%)' >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>hsl(50, 100%, 68%)</td><td> cyan like #5effff</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(0, 0%, 12%)' ></td>
+<td>hsl(0, 0%, 12%)</td><td> black like #1f1f1f</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(240, 100%, 68%)' ></td>
+<td>hsl(240, 100%, 68%)</td><td> blue like #5e5eff </td>
+</tr>
+
+<!--
+
+-->
+
+<tr>
+<td style='background-color: hsl(300, 100%, 68%)' ></td>
+<td>hsl(300, 100%, 68%)</td><td> magenta like #ff5eff </td>
+</tr>
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(300, 0%, 40%)' ></td>
+<td>hsl(300, 0%, 40%)</td><td> grey like #666566</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(120, 100%, 56%)' ></td>
+<td>hsl(120, 100%, 56%)</td><td> green like #1fff1f</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(120, 100%, 68%)' ></td>
+<td>hsl(120, 100%, 68%)</td><td> lime like #5eff5e</td>
+</tr>
+<!--
+high cmy
+-->
+<tr>
+<td style='background-color: hsl(358, 71%, 35%)' ></td>
+<td>hsl(358, 71%, 35%)</td><td> maroon like  991a1e</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(240, 50%, 53%)' ></td>
+<td>hsl(240, 50%, 53%)</td><td> navy like #4a4ac2</td>
+</tr>
+
+<!--
+ high yellow
+-->
+<tr>
+<td style='background-color: hsl(60, 100%, 29%)' ></td>
+<td>hsl(60, 100%, 29%)</td><td> olive like 969600</td>
+</tr>
+
+<!--
+lots of magenta
+-->
+<tr>
+<td style='background-color: hsl(270, 100%, 75%)' ></td>
+<td>hsl(270, 100%, 75%)</td><td> purple like #c080ff </td>
+</tr>
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(0, 79%, 46%)' ></td>
+<td>hsl(0, 79%, 46%)</td><td> red like d11919 </td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(0, 0%, 75%)' ></td>
+<td>hsl(0, 0%, 75%)</td><td>silver like c0c0c0  </td>
+</tr>
+<!--
+another high cmyk
+-->
+<tr>
+<td style='background-color: hsl(180, 80%, 36%)' ></td>
+<td>hsl(0, 0%, 75%)</td><td>teal like  #12a6a6   </td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td style='background-color: hsl(0, 0%, 94%)' ></td>
+<td>hsl(0, 0%, 75%)</td><td>white like #f0f0f0  </td>
+</tr>
+
+
+<tr>
+<td style='background-color: hsl(60, 100%, 75%)' ></td>
+<td>hsl(60, 100%, 75%)</td><td>yellow like #ffff80   </td>
+</tr>
+</tbody>
+</table>
+
+<img src="GraphicWidgets/HSLColorWheel.jpg">
+
+<table cellspacing="4" width="auto" style='overflow:scroll'>
+<tbody>
+
+
+<!--
+ alpha channel in the color to allow translucency, you can use RGBA or HSLA colors:
+-->
+<tr><td style='background-color: rgba(255, 0, 0, 0.5)' >&nbsp;</td></tr>
+<tr><td style='background-color: hsla(0, 100%, 50%, 0.5)' >&nbsp;</td></tr>
+
+</tbody>
+</table>
+
+</body>
+</html>

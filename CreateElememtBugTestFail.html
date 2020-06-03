@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>createElement embed with wav file test - Fail</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function testCreateElement()
+{ 
+  var embedRef;
+  var wavin = 'alarm_beep.wav';
+//  var wavin = 'just a test';
+
+  var deleteME = document.getElementById("myGJCBEmbed09");
+
+   if(deleteME)
+   {  
+        document.body.removeChild(deleteME);
+//      alert('deleted');
+   }
+
+    
+   embedRef =document.createElement('embed');
+   if( embedRef != null )
+   {
+     embedRef.setAttribute("id","myGJCBEmbed09");
+     embedRef.setAttribute("width","0");
+     embedRef.setAttribute("height","0");
+     embedRef.setAttribute("hidden","true");
+     embedRef.setAttribute("src", wavin);
+     document.body.appendChild(embedRef); 
+   }
+}
+
+function document.getElementById(idin)
+{
+  try
+  {
+    if(document.all)
+    {
+      return document.all[idin];
+    }
+    else
+    {
+      return document.getElementById(idin);
+    }
+  }
+  catch (error)
+  {
+    alert( error +  " getElement for " + idin);
+  }
+}
+
+</script>
+<pre>
+createElement embed with wav file test - Fail
+
+
+open bookmarks in the sidebar
+hit the test button
+it will play the wav file
+hit it again
+(You may have to click around a bit, but fairly soon ...)
+
+it will throw error
+
+Could not convert native argument nresult 0x805700a
+NS_ERROR_XPC_BAD_CONVERT_NATIVE 
+
+
+</pre>
+<input type="button" value="Test" onClick="testCreateElement();" >
+
+<object data="alarm_beep.wav" type="audio/wav">
+  alternative text
+</object>
+</body>
+</html>
+

@@ -1,0 +1,758 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Timers</title>
+<meta http-equiv="Cache-control" content="private">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CountDown, CountUpStopWatch and Timers and Time Alarm">
+<meta name="keywords" content="CountDown, CountUpStopWatch and Timers and Time Alarm">
+<link rel="icon" href="GraphicWidgets/x-clock.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<link rel="styleSheet" href="css/GaryDefaultApp.css" type="text/css">
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<!--
+Content Notes
+" Personal\XXSoftwareTools\images\x-clock-icon16x16.png"  series for this app
+-->
+<!--
+Technical Notes
+need power management - StopSleep in setSS()
+-->
+
+<!--
+Changelog
+-->
+<style type="text/css">
+body
+{
+  text-align: center;
+}
+td p, th p
+{
+  margin-top:0in;
+  margin-right:3px;
+  margin-left:3px;
+  margin-bottom:.0001px;
+  font-size:10px;
+  font-family: "Courier New", Courier,monospace;
+  padding:1px;
+}
+.mw
+{
+  background-color: black;
+  color: white;
+  display:block;
+  width:100%;
+  Height:100%;
+  margin:0;
+}
+
+.mw2
+{
+  background-color: black;
+  color: white;
+  display:none;
+}
+
+.pad6
+{
+  padding:1px 1px 1px 1px !important;
+}
+
+.HCCT
+{
+  font-weight: bold;
+ /* background:#CCCCFF; */
+  border-top:1px solid #336699;
+  text-align:center;
+}
+
+.gjhr
+{
+  color: blue;
+  border-top:1px solid #336699;
+  font-size: 1.0px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+/*
+  margin-right: 25%;
+  margin-left: 25%; */
+}
+/* overide color in a */
+.a
+{
+  background-color: white;
+  color: black;
+  padding:1px 1px 1px 1px;
+}
+
+.z
+{
+  background-color: white;
+  color: black;
+  padding:1px 1px 1px 1px;
+  vertical-align:bottom;
+  text-align:left;
+}
+
+.threedtext
+{
+font-weight: bold;
+text-shadow: #afe222 1px 1px, #000 2px 2px, #000 3px 3px;
+position: relative;
+-moz-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+-webkit-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+}
+
+.threedtext:hover
+{
+text-shadow: #afe222 1px 1px, #afe222 2px 2px, #afe222 3px 3px, #B7BDC8 4px 4px,#B7BDC8 5px 5px, #B7BDC8 6px 6px;
+left: -6px;
+top: -6px;
+}
+
+
+@media only screen and (orientation: portrait) ,
+only screen and (orientation: landscape) and (max-width: 999px) {
+
+body {width:100%}
+
+.mw2, .resp, .gjth {width:100%;}
+
+#CountDownTime{font-size:16px !important;}
+
+.gjrespfont{font-size:32px !important;}
+}
+
+</style>
+</head>
+<BODY onload="checkInstallStatus();" onBeforeUnload="return really();">
+
+<div id="mymain" class="threedtext mw2" style="width:100%;" >
+
+<table class="CTB">
+<tr>
+<td style='vertical-align:middle; color:black;'>
+<blockquote id="myblockq" style='color:black;margin-right:auto;margin-left:auto' class='fancy smallboldspaced center'>
+
+  This is the Timers Automatic Screen Saver
+  <br>
+  Every 5 Minute, for the first 3 seconds,  we blank the screen
+  <br>
+  We will be right Back
+
+</blockquote>
+</td>
+</tr>
+</table>
+
+</div>
+
+<div id="mymain2" class="myborder" style="width:100%;">
+<div id='TimeDiv' style="text-align: center;position:relative">
+<p class='LT'><span id='myTime' class='a'>:</span>&nbsp;<span id='myTime2' class='a'>:</span></p>
+</div>
+
+<p style="display:block;">
+<input style="text-align:center" id="xzCCz2" title="Switch Between Timer Types" class="buttonNgold" value="Count Down Timers"
+onclick="doSwitch();">
+</p>
+
+
+<form name ="CountDownT" id="CountDownT" style="display:block;">
+<table class="CTB">
+<tr>
+  <td class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Hours<br>
+  <select class="buttonNgrey" name="CHours" id="CHours" size="1">
+  <option value="0" selected>0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  </select>
+  </p>
+  </td>
+  <td class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Minutes<br>
+  <select class="buttonNgrey" name="CMinutes" id="CMinutes" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+  </p>
+  </td>
+  <td id='tdCSeconds' class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Seconds<br>
+  <select class="buttonNgrey" name="CSeconds" id="CSeconds" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+</p>
+  </td>
+</tr>
+</table>
+<table class="CTB">
+<tr>
+  <td class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Sound<br>
+  <select class="buttonNgrey" name="ringCDAlarm" id="ringCDAlarm" size="1">
+  <option value="Sounds/alarm_beep" selected>Short Beep</option>
+  <option value="Sounds/woosh">Whoosh</option>
+  <option value="Sounds/buzzer_x">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x">Frying Pan</option>
+  <option value="Sounds/kinison">Oh Oh</option>
+  <option value="Sounds/fanfare_x">Fan Fare</option>
+  <option value="Sounds/gunshots2_x">Gun Shots</option>
+  <option value="Sounds/Attention">Attention</option>
+  <option value="Sounds/Chimes">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy">Funky White</option>
+  <option value="Sounds/MyAlarm1">My Alarm1</option>
+  <option value="Sounds/MyAlarm2">My Alarm2</option>
+  </select>
+  </p>
+  </td>
+  <td class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Repeat Opts<br>
+  <select class="buttonNgrey" name="ARepeater" id="ARepeater" size="1">
+  <option value="-1">Continuous</option>
+  <option value="1" selected>Once</option>
+  <option value="2">2 times</option>
+  <option value="3">3 times</option>
+  <option value="4">4 times</option>
+  <option value="5">5 times</option>
+  <option value="6">6 times</option>
+  <option value="7">7 times</option>
+  <option value="8">8 times</option>
+  <option value="9">9 times</option>
+  <option value="10">10 times</option>
+  <option value="11">11 times</option>
+  </select>
+  </p>
+  </td>
+</tr>
+</table>
+<table class="CTB">
+<tr>
+  <td class="c" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Name<br>
+  <input name="AlarmName1" type="text" class="text" value="My Alarm" SIZE="8" >
+  </p>
+  </td>
+  <td class="c" style=' vertical-align:bottom'>
+  <input type="button" id="SCDT" class="buttonNgrey" value="Set Alarm"
+  onClick="setCountDownAlarm(this.form);">
+  </td>
+  </tr>
+</table>
+</form>
+
+<form name ="AlarmTimeT" id="AlarmTimeT" style="display:none">
+<table class="CTB">
+<tbody>
+<tr>
+<td class="c" style=' vertical-align:bottom'>
+<p class="td1p">Hour<br>
+<select class="buttonNgrey" name="AHours" id="AHours" size="1">
+  <option value="0">Midnight &nbsp;&nbsp;00:00 </option>
+  <option value="1">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 1 AM 01:00</option>
+  <option value="2">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2 AM 02:00</option>
+  <option value="3">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 3 AM 03:00</option>
+  <option value="4">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 4 AM 04:00</option>
+  <option value="5">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 5 AM 05:00</option>
+  <option value="6">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 6 AM 06:00</option>
+  <option value="7">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 7 AM 07:00</option>
+  <option value="8">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 8 AM 08:00</option>
+  <option value="9">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 9 AM 09:00</option>
+  <option value="10">&nbsp;&nbsp; &nbsp; &nbsp;10 AM 10:00</option>
+  <option value="11" selected>&nbsp;&nbsp; &nbsp; &nbsp;11 AM 11:00</option>
+  <option value="12" >Noon &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 12:00</option>
+  <option value="13">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 1 PM 13:00</option>
+  <option value="14">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2 PM 14:00</option>
+  <option value="15">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 3 PM 15:00</option>
+  <option value="16">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 4 PM 16:00</option>
+  <option value="17">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 5 PM 17:00</option>
+  <option value="18">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 6 PM 18:00</option>
+  <option value="19">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 7 PM 19:00</option>
+  <option value="20">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 8 PM 20:00</option>
+  <option value="21">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 9 PM 21:00</option>
+  <option value="22">&nbsp;&nbsp; &nbsp; &nbsp;10 PM 22:00</option>
+  <option value="23">&nbsp;&nbsp; &nbsp; &nbsp;11 PM 23:00</option>
+  </select>
+</p>
+</td>
+<td class="c" style=' vertical-align:bottom'>
+<p class="td1p">Minutes<br>
+  <select class="buttonNgrey" name="AMinutes" id="AMinutes" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+ </p>
+ </td>
+ </tr>
+<tr>
+ <td class="c" style=' vertical-align:bottom'>
+ <p class="td1p">Alarm Sound<br>
+   <select class="buttonNgrey" name="ringTimeAlarm" id="ringTimeAlarm" size="1">
+  <option value="Sounds/alarm_beep" selected>Short Beep</option>
+  <option value="Sounds/woosh">Whoosh</option>
+  <option value="Sounds/buzzer_x">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x">Frying Pan</option>
+  <option value="Sounds/kinison">Oh Oh</option>
+  <option value="Sounds/fanfare_x">Fan Fare</option>
+  <option value="Sounds/gunshots2_x">Gun Shots</option>
+  <option value="Sounds/Attention">Attention</option>
+  <option value="Sounds/Chimes">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy">Funky White</option>
+  <option value="Sounds/MyAlarm1">My Alarm1</option>
+  <option value="Sounds/MyAlarm2">My Alarm2</option>
+  </select>
+ </td>
+ <td class="c" style=' vertical-align:bottom'>
+    <input type="button" id="SATT" class="buttonNgrey" value="Set Alarm"
+    onClick="setTimeAlarm(this.form);">
+ </td>
+ </tr>
+</tbody>
+</table>
+</form>
+
+<form name ="StopWatchT" id="StopWatchT" style="display:none">
+<table class="CTB">
+<tbody>
+<tr>
+<td class="c" colspan="2" style=' vertical-align:bottom'>
+    <input type="button" id="STARTS" class="buttonNgrey" value="Start Stopwatches"
+    onClick="setStopWatch(this.form);">
+</td>
+</tr>
+ <tr>
+ <td colspan="2"><p>Test Alarm</p></td>
+ </tr>
+ <tr>
+<td class="c" style=' vertical-align:bottom'>
+  <select class="buttonNgrey" name="testringAlarm" id="testringAlarm" size="1">
+  <option value="Sounds/alarm_beep">Short Beep</option>
+  <option value="Sounds/woosh">Whoosh</option>
+  <option value="Sounds/buzzer_x">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x">Frying Pan Hit</option>
+  <option value="Sounds/kinison">Oh Oh</option>
+  <option value="Sounds/fanfare_x">Fan Fare</option>
+  <option value="Sounds/gunshots2_x">Gun Shots</option>
+  <option value="Sounds/Attention">Attention</option>
+  <option value="Sounds/Chimes" selected>Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy">Funky White Boy</option>
+  <option value="Sounds/MyAlarm1">My Alarm1</option>
+  <option value="Sounds/MyAlarm2">My Alarm2</option>
+  </select>
+</td>
+<td class="c" style=' vertical-align:bottom'>
+  <input type="button" id="doTestAlarm" title="Run a 4 Second Count Down Timer" class="buttonNgrey" value="Check Alarm Play"
+  onClick="testAlarm(3,testringAlarm.options[testringAlarm.selectedIndex].value, 'Test1');">
+</td>
+</tr>
+<tr>
+ <td colspan="2" ><p>Information and Options</p></td>
+ </tr>
+ <tr>
+<td class="c" style=' vertical-align:bottom'>
+  <input type="button" id="doOptions" class="buttonNgrey" value="Display Options"
+  onClick="showItT('TimeOptsinfo',480, 600,'doOptions','Options');">
+</td>
+<td class="c" style=' vertical-align:bottom'>
+  <input type="button" id="doHelp" class="buttonNgrey" value="Display Help"
+  onClick="showItT('TimerHelp',480, 600,'doHelp','Help');">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+
+<p class="gjhr"></p>
+
+
+<div id="CountDownTime" style='visibility:hidden'>
+<table class="CTB"><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+
+<div id="StopWatchTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+
+<div id="AlarmTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+
+<div id="place" style="visibility:hidden; width:320px; height:75px; overflow:auto;overflow-x:hidden;overflow-y:scroll;text-align:left">
+<p class="gjhr"></p>
+<table id='myresult' style="width:320px">
+<tbody>
+</tbody>
+</table>
+</div>
+
+<div id="TimeOptsinfo" style="visibility:hidden; background-color:white; padding-left:1px; padding-right:1px; z-index:2">
+<br>
+<input type="button" id="doCancel" class="buttonNgrey" value="Cancel All Timers"
+  onClick="alarmObject.cancel()">
+<br>
+
+<form name ="OptionsTime" id="OptionsTime">
+<table>
+<tbody>
+<tr class="HCCT">
+<td colspan="4"><p>Options</p></td>
+</tr>
+<tr>
+<td class="z" >
+<p class ='td1p'>Display Time</p>
+</td>
+<td class="z" >
+  <input id='fbShowTime' onclick="(this.checked) ? setTD('TDT:-1'): setTD('TDT:0');" type="checkbox">
+</td>
+</tr>
+<tr>
+<td class="z" >
+<p class ='td1p'>Display Date</p>
+</td>
+<td class="z" >
+  <input id='fbShowDate' onclick="(this.checked) ? setTD('TDD:-1'): setTD('TDD:0');" type="checkbox">
+</td>
+</tr>
+
+<tr>
+<td rowspan='4' class="z" style='vertical-align:middle'>
+<p class ='td1p' >Time Format</p>
+</td>
+
+<tr>
+<td class="z" >
+  <input type="radio" value="HMS" name="TimeDisplay" checked="checked" onclick="setTD('TDF:HMS');">Hours:Minutes:Seconds
+</td>
+</tr>
+<tr>
+<td class="z" >
+  <input type="radio" value="SMH" name="TimeDisplay" disabled='disabled' onclick="setTD('TDF:SMH');">Seconds:Minutes:Hours
+</td>
+</tr>
+<tr>
+<td class="z" >
+<input id='fb24HourClock' onclick="(this.checked) ? setTD('TDH:-1'): setTD('TDH:0');" type="checkbox">24 Hour Clock
+</td>
+</tr>
+<tr>
+<td class="z" >
+<p class='td1p'>Display Seconds</p>
+</td>
+<td class="z" >
+  <input id='fb24DisplaySeconds' onclick="(this.checked) ? setTD('TDS:-1'): setTD('TDS:0');" type="checkbox">
+</td>
+</tr>
+
+<tr>
+<td class="z" >
+<p class='td1p'>Update Interval</p>
+  </td>
+<td class="z" >
+  <input id='fiUpdateInterval' onchange="setTDi(this.value,this.id,'TDI:')" size="4">
+  </td>
+</tr>
+</tbody>
+</table>
+
+<input type="button" id="ApplyOptions" class="buttonNgrey" value="Apply"
+  onClick="checkValid();">
+</form>
+</div>
+
+<div id="TimerHelp" style="visibility:hidden; position:absolute; top:265px; width:320px !important; background-color:white; z-index:3; text-align:left;overflow:auto">
+<br>
+<p>These timers were created to help you run events and activities where there are multiple actions that need to be watched and performed.</p>
+<br>
+<p>You have to hit the apply button to save your options</p>
+<p>They will become active the next time you start the Timers</p>
+<p></p>
+<br>
+<p>You may currently set up to 5 timers for each type: Count Down, Alarm Time and Stopwatch.</p>
+<p>For example, set the options for a Count Down Timer (Hour:Minutes:Seconds, Alarm Sound etc) and Hit Set Alarm</p>
+<p>What we call an "Active Timer Display" appears at the bottom of the screen.</p>
+<p>Make another set of selections and hit Set Alarm and you will see another Active Timer Display</p>
+<p></p>
+<br>
+<p>Alarms are numbered sequentially.</p>
+<p>Repeating Alarms are given a new number for each repetion.</p>
+<p>The display of alarms shifts around as new alarms are added and old ones become inactive</p>
+<br>
+<p></p>
+<p>You can type in a short descriptive name for each of the Count Down Timers</p>
+<p></p>
+<p></p>
+<br>
+<p>The timers are accurate to +- 3 seconds plus the Update Interval.</p>
+<p>The Update Interval defaults to 1.</p>
+<p>The higher the Update Interval, the more time your computer has to do other tasks;however, it also effects how long it takes for the displays to get updated. So if the update interval is 10 seconds, you can wait up to ten seconds after clicking on one of the 'Set Alarm' buttons to see your 'Active Timer Display'</p>
+<p>We use an update interval of 3 seconds in our cooking </p>
+<p></p>
+<p>If you close the screen, the timers are no longer active.</p>
+<p>If you turn down the sound on your computer, it will be very hard to hear the alarms.</p>
+<p>Use the Check Alarm Play button to make sure you can hear the ALARMS!</p>
+<br>
+<p>If your computer goes into hibernation or standy, you will not hear your timers.</p>
+
+<p></p>
+
+<br>
+<p class='scenter b'>The Options</p>
+<br>
+<p>Display Time - When checked - shows the current time at the top of the Timer Window</p>
+<p>Display Date - When checked - shows the current date at the top of the Timer Window</p>
+
+<p>Time Format 'Hours:Minutes:Seconds' - is currently the only order for the time elements</p>
+<p>Time Format '24 Hour Clock' - When checked display time in military or 24 hour format</p>
+<p>Display Seconds - When checked - shows the seconds in the displayed Time and in the Count Down Timer Selection<br>
+Seconds are always displayed in the "Active Timer Displays"</p>
+
+<p>Update Interval - the number of seconds between Timer Window updates and displays</p>
+
+<p class='scenter b'>If you are unable to hear the test alarm.</p>
+<br>
+<p>Our Alarms are wav, mp3 and oog files.</p>
+<p>Make sure your volume control is not down or off</p>
+
+<p>Other multimedia playback programs on your computer may interfere with your Player file types settings!</p>
+<br>
+
+<p>
+<small>
+<a class="AOne" href="Copyright.html" target=_top>Copyright &copy;</a> 2000-20012 Gary Johnson. All rights reserved.
+<a class="AOne" href="http://www.iconarchive.com/show/tulliana-2-icons-by-umut-pulat.html" target=_top>Icon(s) by Umut Pulat</a></small></p>
+</div>
+
+</div> <!-- main width setting div -->
+</div> <!-- maybe bug in html validator, -->
+<script defer="defer" src="js/gjAppcore.min.js"></script>
+<script defer="defer" src="js/gjutil1.min.js"></script>
+<script defer="defer" src="js/gjqt.min.js"></script>
+<script defer="defer" src="js/gjAppmsg.min.js"></script>
+<script defer="defer" src="js/gjcalc1.min.js"></script>
+<script defer="defer" src="js/gjApptime.min.js"></script>
+<script defer="defer" src="js/gjApptimeGUI.min.js"></script>
+<script>
+
+function getInstalledCallback(data)
+{
+    if (data)
+    {
+      var str1 = data.manifest + " " + data.install_time + " " + data.install_origin;
+      alert( "installed " + str1);
+        // yes, we're installed
+        // data.manifest has the manifest
+        // data.install_time is when it was installed
+        // data.install_origin is the domain that called install
+        // data.install_data has the optional data from install
+    } else
+    {
+      alert( "running from web, not installed " );
+    }
+}
+function checkInstallStatus()
+{
+realsetUP();
+//  this crashes when done here navigator.mozApps.amInstalled(getInstalledCallback);
+}
+
+</script>
+</body>
+
+</html>
+

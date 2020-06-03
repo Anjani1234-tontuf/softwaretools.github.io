@@ -1,0 +1,849 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Pixes to PT to EM Conversions</title>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="../../CBSOURCE/gj53run/jar/content/gj53run/gj53runOptions.min.js"></script>
+<style type="text/css">
+</style>
+<!--
+
+ Absolute length units are only useful when the physical properties of the output medium are known.
+ The absolute units are:
+
+    * in: inches -- 1 inch is equal to 2.54 centimeters.
+    * cm: centimeters
+    * mm: millimeters
+    * pt: points -- the points used by CSS2 are equal to 1/72th of an inch.
+    * pc: picas -- 1 pica is equal to 12 points.
+
+    * em: the 'font-size' of the relevant font
+    * ex: the 'x-height' of the relevant font
+    * px: pixels, relative to the viewing device
+
+
+the subjective apparent size and legibility of a font are less dependent on their 'font-size' value than on the value of
+their 'x-height', or, more usefully, on the ratio of these two values, called the aspect value (font size divided by x-height).
+The higher the aspect value, the more likely it is that a font at smaller sizes will be legible.
+Inversely, faces with a lower aspect value will become illegible more rapidly below a given threshold size than faces with a
+higher aspect value. Straightforward font substitution that relies on font size alone may lead to illegible characters.
+
+For example, the popular font Verdana has an aspect value of 0.58; when Verdana's font size 100 units, its x-height is 58 units.
+For comparison, Times New Roman has an aspect value of 0.46.
+Verdana will therefore tend to remain legible at smaller sizes than Times New Roman.
+Conversely, Verdana will often look 'too big' if substituted for Times New Roman at a chosen size.
+
+            72 dpi   1 / 72 1 px = 0.013888888888888888 inches or 0.3527 mm
+            90 dpi   1 /90 1 px = 0.011111111111111112 inches or 0.28 mm
+            96 dpi
+            150 dpi   1/ 150  1 px = 0.006666666666666667150 or 0.1693 mm
+            120 dpi   1 / 120 1 px = 0.008333333333333333 or  or 0.2116 mm
+
+
+
+the points used by CSS2 are equal to 1/72th of an inch.
+
+computes 100 em with a default size of 16 px to be 1600px
+
+PPI: Pixels Per Inch
+DPI: Dots Per Inch
+pt: points -- the points used by CSS2 are equal to 1/72th of an inch.
+
+1 EM = The relevant or default font size in points * ( Display Pixels Per Inch / 72 ) pixels
+
+
+http://blogs.msdn.com/  fontblog
+
+-->
+<script type="text/javascript">
+
+
+function getDefaultFontSize(idin)
+{
+  //var ret = parseInt(getCompStyle('idin', 'font-size'));
+
+  var astylevalue;
+  var cstyle='font-size';
+  var myE = document.getElementById(idin);
+
+//  if(isGecko())
+//  {
+    if(document.defaultView)
+    {
+      if(cstyle == '')
+      {
+        cstyle = null;
+      }
+
+      var mystyle = document.defaultView.getComputedStyle(myE,'');
+
+      astylevalue = mystyle.getPropertyValue(cstyle);
+    }
+    else
+    {
+      astylevalue = 'no doument.defaultView';
+    }
+//  }
+//  else if(isIE())
+//  {
+//    var ieCstyle  = getInterCap(cstyle);  //still needs work . try []
+//    var ieValue   = myE.currentStyle + '.' + ieCstyle;
+//    astylevalue =  ieValue;
+//  }
+//  else
+//  {
+//    alert('getCompStyle not done for this browser');
+//    astylevalue = 'bad browser';
+//  }
+
+
+
+  var widthInEMs = parseInt(screen.width) / parseInt(astylevalue);
+
+  var myE = document.getElementById( idin ).innerHTML = "default font size in pixels " + astylevalue + " screen width in EMs " + widthInEMs;
+
+  document.getElementById( idin + 'div').style.width = widthInEMs +'em' ;
+
+}
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+function convertPointstoEM(pixels)
+{
+
+//1 EM = The relevant or default font size in points * ( Display Pixels Per Inch / 72 )
+
+    var myE= document.getElementById("idin2");
+
+    ptfs = parseInt(myE.style.fontSize);
+
+    emfs = ( ptfs * ( 96 / 72))
+
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + " Points " + ptfs + " EM " + emfs);
+
+}
+
+
+</script>
+</head>
+<body>
+
+
+<div id='idindiv' style='background-color:blue;color:white; width:30em;'>
+<p id='idin'>This blue box is 30EMs wide, hit the GetPixelstoEms buuton and I should expand to the width of your screen and show you the pixel size of the default font</p>
+<p id='idin2' style='font-size:12pt;'>Style Line - font-size:12pts </p>
+
+</div>
+
+<input type="button" id="ib1" value="GetPixelstoEms" onClick="getDefaultFontSize('idin');">
+
+
+<hr>
+<pre>
+
+Need to compute PPI at install time , add it to a preference and then pull it out
+for this calculation
+
+Also add drop down to show em per pixel in other PPI systems 72, 96, 150 etc
+the following is for this sytem at 96 pixels per inch
+
+do not see the below working yet
+
+to convert pixels to em divide the pixel count / 16 at 96 ppi
+
+
+</pre>
+
+
+<form name ="pointstoem" id="pointstoem">
+<fieldset class="b" style='width:50%'>
+<legend class="a"><em>Enter Pixels and see them converted to points and ems </em></LEGEND>
+
+<input type="text" size = 5 id="inputid2" value="50">
+
+<input type="button" id="ib2" title="" class="buttonNgrey" value="Get Pixels Pts Ems" onClick="convertPointstoEM(inputid2.value);">
+</fieldset>
+</form>
+
+<hr>
+<input type="button" id="ib5" title="" class="buttonNgrey" value="Clear"
+onClick="clearOP();">
+
+<div id="testplace" style="height:5em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+<div>
+<p>1 EM = The relevant or default font size in points * (
+Pixels Per Inch / 72 ) pixels</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>if I display at basefont 12  PPI 96  and I use width : pixels
+</p>
+
+<p>it corresponds to pixel width = / 16 </p>
+
+<p>&nbsp;</p>
+
+
+
+<p>My default font size is 12pt <br clear="all">
+</p>
+
+<p>Pixels Per Inch PPI<br clear="all">
+</p>
+
+<p>12 * 72 / 72</p>
+
+<p>12 * 96 / 72</p>
+
+<p>&nbsp;</p>
+
+<p>96 / 72              1.3333333333333333</p>
+
+<p>120 / 72            1.6666666666666667</p>
+
+<p>150 / 72            2.0833333333333335</p>
+
+<p>&nbsp;</p>
+
+<p>12 * 1.3333333333333333          16</p>
+
+<p>12 * 1.6666666666666667          20</p>
+
+<p>12 * 2.0833333333333335          25</p>
+
+<p>&nbsp;</p>
+
+<p>printing widths in portrait and landscape, at various fonts</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>1 /16     0.0625</p>
+
+<p>2 /16     0.125</p>
+
+<p>3 /16     0.1875</p>
+
+<p>4 /16     0.25</p>
+
+<p>5 /16     0.3125</p>
+
+<p>6 /16     0.375</p>
+
+<p>7 /16     0.4375</p>
+
+<p>8 /16     0.5</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<table border="1">
+ <tr>
+  <td>
+  <p>Width</p>
+  </td>
+  <td>
+  <p>Height</p>
+  </td>
+  <td>
+  <p>Aspect Ratio</p>
+  </td>
+  <td>
+  <p>PPI</p>
+  </td>
+  <td>
+  <p>1 EM in pixels  </p>
+  </td>
+  <td>
+  <p>Width in EMs</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>800 </p>
+  </td>
+  <td>
+  <p> 600      </p>
+  </td>
+  <td>
+  <p>1.3333333333333333</p>
+  </td>
+  <td>
+  <p>72</p>
+  </td>
+  <td>
+  <p>12</p>
+  </td>
+  <td>
+  <p>800 / 12            66.67</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>800 / 16            50</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>1024 </p>
+  </td>
+  <td>
+  <p> 768  </p>
+  </td>
+  <td>
+  <p>1.3333333333333333</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>1024 / 16          64</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>120</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>1024 / 20          51.2</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>150</p>
+  </td>
+  <td>
+  <p>25</p>
+  </td>
+  <td>
+  <p>1024 / 25          40.96</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>1152 </p>
+  </td>
+  <td>
+  <p> 882  </p>
+  </td>
+  <td>
+  <p>1.3061224489795917</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>1152 / 16          72</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>120</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>1152 / 20          57.6</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>1280 </p>
+  </td>
+  <td>
+  <p> 1024  </p>
+  </td>
+  <td>
+  <p>1.25</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>1280 / 16          80</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>120</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>1280 / 20          64</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>1440 </p>
+  </td>
+  <td>
+  <p> 900  </p>
+  </td>
+  <td>
+  <p>1.6</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>1440 / 16          90</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>120</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>1440 / 20          72</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>150</p>
+  </td>
+  <td>
+  <p>25</p>
+  </td>
+  <td>
+  <p>1440 / 25          57.6</p>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>1600 </p>
+  </td>
+  <td>
+  <p> 1200  </p>
+  </td>
+  <td>
+  <p>1.3333333333333333</p>
+  </td>
+  <td>
+  <p>96</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>120</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>16 </p>
+  </td>
+  <td>
+  <p> 9    </p>
+  </td>
+  <td>
+  <p>1.7777777777777777</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>4 </p>
+  </td>
+  <td>
+  <p>3    </p>
+  </td>
+  <td>
+  <p>1.3333333333333333</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>                         </p>
+
+<table border="1">
+ <tr>
+  <td>
+  <p>&nbsp;</p>
+  </td>
+  <td colspan="4">
+  <p align="center">EM pixels at</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>Reference  Font</p>
+  </td>
+  <td>
+  <p>PPI 72   </p>
+  </td>
+  <td>
+  <p>PPI 96</p>
+  </td>
+  <td>
+  <p>PPI 120 </p>
+  </td>
+  <td>
+  <p>PPI 150</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>10pt</p>
+  </td>
+  <td>
+  <p>10</p>
+  </td>
+  <td>
+  <p>13</p>
+  </td>
+  <td>
+  <p>16.6</p>
+  </td>
+  <td>
+  <p>21</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>12pt</p>
+  </td>
+  <td>
+  <p>12</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>20</p>
+  </td>
+  <td>
+  <p>25</p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p>16pt</p>
+  </td>
+  <td>
+  <p>16</p>
+  </td>
+  <td>
+  <p>21</p>
+  </td>
+  <td>
+  <p>26.6</p>
+  </td>
+  <td>
+  <p>33.3</p>
+  </td>
+ </tr>
+</table>
+
+
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

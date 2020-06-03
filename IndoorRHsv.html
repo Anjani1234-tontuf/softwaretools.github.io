@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+
+http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=KMACAMBR4
+
+KMACAMBR4  Central square cambridge
+//http://www.the-art-of-web.com/php/javascript-escape/
+//Ajax/XMLHTTP seems to be the developing way to do this. The php version is xajax. It's still pretty embryonic, but you can check out more here:
+//www.sourceforge.net/projects/xajax.
+echo '<b>',  date("M j o"), '</b><br>';
+
+
+Fri, 08 April 2011 12:00:5 GMT -- observation_time_rfc822
+Fri, 08 Apr 2011 08:03:59 -0400 -- date("r")
+
+9 out of 10 PHP problems can be resolved by setting
+PHP Code:
+ error_reporting(E_ALL);
+ini_set('display_errors', 1);
+php -l <filename> will identify 9 out of the remaining 10 problems
+Remember, the command line is your friend
+
+
+
+-->
+<?php
+echo '<b>', date("r"), '</b><br>';
+ //PHP supports 'C', 'C++' and Unix shell-style (Perl style) comments. For example:
+
+    // This is a one-line c++ style comment
+    /* This is a multi line comment
+       yet another line of comment */
+
+    # This is a one-line shell-style comment
+
+ $message = "a short piece of text
+ spanning more than one line
+ and containing \"double\" & 'single' quotes";
+
+$message = preg_replace("/\r?\n/", "\\n", addslashes($message));
+echo "\n<script type=\"text/javascript\">\n";
+
+$xml_current_cond = new SimpleXMLElement(file_get_contents("http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=KMACAMBR4"));
+echo("var ctf = $xml_current_cond->temp_f;\n");
+echo("var cws =  '$xml_current_cond->wind_string';\n");
+echo("var crh =  $xml_current_cond->relative_humidity;\n");
+echo("var asof =  '$xml_current_cond->observation_time_rfc822';\n");
+
+$phpdate =  strtotime  ( date("r") );
+//$rfcdate =  strtotime  ( '$xml_current_cond->observation_time_rfc822'  );
+echo '//phpdate ' , $phpdate, "\n";  //likes double quotes on slash n
+//echo '//rfcdate ' , $rfcdate, "\n";
+echo '//date r ', date("r"), "\n";
+echo '//date str ', date("D, d F Y H:i:s e"), "\n";
+echo '//gmdate ', gmdate(DATE_RFC822) , "\n";
+//Fri, 08 Apr 11 13:40:24 +0000
+?>
+
+<?php
+echo " //alert(\"$message\");\n";
+echo "</script>\n\n";
+?>
+<head>
+
+<title>Indoor Relative Humidity</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<style type="text/css">
+.mppad
+{
+  margin: 2em;
+}
+.aliceblue
+{
+background-color:aliceblue;
+}
+.lightgray
+{
+background-color:lightgray;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+</style>
+
+</head>
+
+<body onload=doIt()>
+
+
+<TABLE WIDTH="50%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+  <FORM NAME ="formWeatherIH">
+
+    <TR>
+      <TD width="40%">Outdoor Temperature:</TD>
+      <TD><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="T">&nbsp;&deg;F</TD>
+    </TR>
+
+    <TR>
+      <TD>Outdoor Humidity:</TD>
+      <TD><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="RHo">&nbsp;%</TD>
+    </TR>
+
+    <TR>
+      <TD>Indoor Temperature:</TD>
+      <TD ><INPUT TYPE="TEXT" VALUE="" SIZE="5" NAME="Th">&nbsp;&deg;F</TD>
+    </TR>
+
+    <TR>
+      <TD>Air conditioner on?</TD>
+      <TD><INPUT TYPE="RADIO" VALUE="T" NAME="ac">Yes <INPUT TYPE="RADIO" VALUE="F" NAME="ac" CHECKED>No</TD>
+    </tr>
+
+    <tr>
+      <td colspan="2"><p><INPUT TYPE="button" NAME="calculate" VALUE="Calc" onClick="calculateHumidity()">    <span id="results">&nbsp;</span></p>
+     </TD>
+     </TR>
+
+</table>
+
+<div id="testplace" style="height:40em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='details'>&nbsp;</p>
+<pre id='theop'> </pre>
+
+</div>
+
+
+</body>
+<script language="JavaScript">
+
+function doIt()
+{
+/*
+to do
+1) compare server date to Observation time and check to see if same day
+for the indoorRH browser version, use the Browser date
+
+check server date echo '<b>', date("r"), '</b><br>';
+against echo("var asof =  '$xml_current_cond->observation_time_rfc822';\n");
+
+WeatherUndergrouund format
+Fri, 08 April 2011 12:00:5 GMT -- observation_time_rfc822
+
+According to this
+http://www.w3.org/Protocols/rfc822/#z28
+it should be a 3 digit month like Apr
+
+FYI
+php generates date as
+Fri, 08 Apr 2011 08:03:59 -0400 -- date("r")
+
+RFC 2822 formatted date 	Example: Thu, 21 Dec 2000 16:01:07 +0200
+
+http://www.w3.org/Protocols/rfc822/
+
+rfc2822 supsedes rfc822
+
+2) add in acuse ac use
+
+3) put in file check to make sure its not executed from local
+
+*/
+var acuse;
+document.formWeatherIH.RHo.value = crh;
+if(ctf > 67)
+{
+  document.formWeatherIH.Th.value =ctf;
+}
+else
+{
+  document.formWeatherIH.Th.value =68;
+}
+document.formWeatherIH.T.value=ctf;
+
+if(ctf > 80)
+{
+  document.formWeatherIH.ac[0].checked =true;
+  acuse=true;
+}
+else
+{
+  document.formWeatherIH.ac[1].checked = true;
+  acuse=false;
+}
+
+
+calculatemyHumidity(ctf -0,cws,crh- 0, asof);
+if(!acuse)
+{
+  calculateHumidityTable();
+}
+
+}
+
+
+function calculateHumidityTable()
+{
+
+  var myhead = "Outdoor";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "Temp                                                   Outdoor Humidity";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "          0    5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80   85   90   95  100";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  myhead = "                                                     Indoor Humidity at 68&deg;";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+
+  for (var x = 0; x < 80; x+=5)  //temp
+  {
+    var myop="";
+    if (x == 70) x = 68;
+
+
+    for (var y = 0; y < 105; y+=5)  //rh
+    {
+      var rho = y; //45
+
+      var thc = 5/9*(68 - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+      var tc = 5/9*(x - 32);  //outdoor temp 5/9*(35-32)  1.67
+
+      var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+      var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+      var esi = 6.11*num;  //6.11*3.8 = 23
+
+      power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+      num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+      var eso = 6.11*num; //6.11*1.127 = 6.89
+      var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+      myop = myop + padit(ihumidity);
+    }
+
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + padx(x) + "&deg;" + myop);
+    if((x == 50) || (x == 30))
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" );
+    if(x == 68) break;
+  }
+}
+
+function padx(x)
+{
+  var mytempop;
+  if(x == 0)
+  mytempop = "    " + x;
+  else if(x < 10)
+  mytempop = "    " + x;
+  else if (x < 100)
+  mytempop = "   " + x;
+  else if (x == 100)
+  mytempop = "  " + x;
+  else if (x > 100)
+  mytempop = "     ";
+
+  return mytempop;
+}
+
+function padit(y)
+{
+  var mytempop; var x;
+  x = y;
+  if(x == 0)
+  mytempop = "    " + x;
+  else if(x < 10)
+  mytempop = "    " + x;
+  else if (x < 100)
+  mytempop = "   " + x;
+  else if (x == 100)
+  mytempop = "  " + x;
+  else if (x > 100)
+  mytempop = "     ";
+
+  if(y < 30)
+  return "<FONT color='red'>" + mytempop + "</FONT>";
+  else return mytempop;
+}
+
+
+
+function calculatemyHumidity(itf, iws, irh, when )
+{
+
+ if(itf > 80)
+{
+    changeInnerHTML("results", "Not Done");
+
+     myop = when + " Outdoor Temp " + itf +  "&deg; &frasl; with AC on not done ";
+
+    changeInnerHTML("details", "<br>" + myop + "<br>");
+return;
+}
+
+
+    var rho = irh;
+
+    var thc = 5/9*(68 - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+    var tc = 5/9*(itf - 32);
+
+    var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+    var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+    var esi = 6.11*num;  //6.11*3.8 = 23
+
+    power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+    num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+    var eso = 6.11*num; //6.11*1.127 = 6.89
+    var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+    var shumidity = "";
+
+    if (ihumidity > 100)
+    {
+      ihumidity = 100;
+    }
+    if (ihumidity < 0)
+    {
+      ihumidity = 0;
+    }
+    if ((ihumidity >= 0) && (ihumidity <= 30))
+    {
+      shumidity ="<FONT color='red'> % DRY </FONT>";
+    }
+    else if ((ihumidity >= 31) && (ihumidity <= 51))
+    {
+      shumidity ="% COMFORTABLE";
+    }
+    else
+    {
+      shumidity = "<FONT color='blue'> % WET </FONT>";
+    }
+
+    changeInnerHTML("results", ihumidity.toString() + shumidity);
+
+     myop = when + " Outdoor Temp " + itf +  "&deg; "  + " Outdoor humidity " + irh + " Indoor Temp 68 " + " Indoor Humity " + ihumidity.toString() + shumidity;
+
+    changeInnerHTML("details", "<br>" + myop + "<br>Outdoor Temperature and Humidity from Weather Station KMACAMBR4 Central Square, Cambridge,MA");
+
+}
+
+function calculateHumidity()
+{
+
+// outdoor temp 35 out door rh 45  thermostat 68
+/*
+
+Relative Humidity(%) Knowing Tdf and Tf= 	RH = (((6.11*10^(7.5*((Tdf-32)/1.8)/(237.7+((Tdf-32)/1.8))))/((6.11*10^(7.5*((Tf-32)/1.8)/
+(237.7+((Tf-32)/1.8)))))*100))
+
+http://www.aprweather.com/pages/calc.htm
+*/
+    var rho = document.formWeatherIH.RHo.value; //45
+
+
+    var thc = 5/9*(document.formWeatherIH.Th.value - 32);  //indoor temp in celsius 5/9*(68-32) = 20
+    var tc = 5/9*(document.formWeatherIH.T.value - 32);  //outdoor temp 5/9*(35-32)  1.67
+
+    // if(tc > 26.6 || tc > thc) if outdoor temp> 80F and outdoor temp > indoor temp - celsius
+     if(tc > 26.6)
+     {
+       changeInnerHTML("results", "Not Done");
+
+       myop = " Outdoor Temp " + tc +  "&deg; > 26.6 celsius (80F) &frasl; with AC on not done ";
+
+       changeInnerHTML("details", "<br>" + myop + "<br>");
+       return;
+     }
+
+    var power = 7.5*thc/(237.7+thc); // 7.5*20 /(237.7+20) = .58
+    var num = Math.pow(10, power); //Math.pow(10, .58) = 3.8
+    var esi = 6.11*num;  //6.11*3.8 = 23
+
+    power = 7.5*tc/(237.7+tc); // 7.5*1.67/(237.7+1.67) = .052
+    num = Math.pow(10, power);  //Math.pow(10, .052) = 1.127
+    var eso = 6.11*num; //6.11*1.127 = 6.89
+    var ihumidity = Math.round(rho*eso/esi); // Math.round( 45*6.89/23) = 13% dry
+    var shumidity = "";
+
+    if (document.formWeatherIH.ac[0].checked ==true)
+    {
+      acuse = true;
+    }
+    else
+    {
+     acuse = false
+    }
+
+    if (ihumidity > 100)
+    {
+      ihumidity = 100;
+    }
+    if (ihumidity < 0)
+    {
+      ihumidity = 0;
+    }
+    if ((ihumidity >= 0) && (ihumidity <= 30))
+    {
+      shumidity ="<FONT color='red'> % DRY </FONT>";
+    }
+    else if ((ihumidity >= 31) && (ihumidity <= 51))
+    {
+      shumidity ="% COMFORTABLE";
+    }
+    else
+    {
+      shumidity = "<FONT color='blue'> % WET </FONT>";
+    }
+
+    changeInnerHTML("results", ihumidity.toString() + shumidity);
+
+}
+
+
+</script>
+</html>
+

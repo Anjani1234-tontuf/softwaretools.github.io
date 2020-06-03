@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<!--
+-->
+<head>
+<style type="text/css">
+
+.mppad
+{
+  margin: 2em;
+}
+
+.aliceblue
+{
+background-color:aliceblue;
+}
+
+
+.lightgray
+{
+background-color:lightgray;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+<title>GaryTestIE.html</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+<!--
+
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/gj53runOptions.min.js"></script>
+
+-->
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="../../CBSOURCE/gj53run/jar/content/gj53run/gj53runOptions.min.js"></script>
+<script type="text/javascript">
+
+// keep dumpIt(win.window, "win.window");
+
+// does not     : / \ % . }
+// does remove ( [ ' {   at begginging and end
+function TestRegExp(word)
+{
+
+  word = word.replace(/(^[(\s*)\&\(\)\[\]\{\}\"\,\.\!\?\'\:\;])|([(\s*)\&\(\)\[\]\{\}\"\,\.\!\?\'\:\;]$)/g, "");
+//  word = word.replace(/(^\s*)|(\s*$)/g, "");
+
+
+    if(!(checkValidFileName(word)))
+    {
+       alert("FastTrack Notification - Search \nCall to ...GetSelectedWord \' * / : ; ? \\ | < > , are Invalid Characters \nin selected word" + word);
+      return;
+    }
+
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + "TestRegExp " + word);
+
+}
+
+
+function testclass(myidin, classin)
+{
+  setClass(myidin, classin);
+}
+
+
+function myatest(myin)
+{
+var u = unescape(myin);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>out " + "atest " + u + "<br> in" + myin );
+}
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+/*
+IE 6
+
+You can use the deviceYDPI and logicalYDPI properties of the screen object to calculate the vertical scale factor that Internet Explorer is applying. On most systems, however, there is no difference between horizontal and vertical dpi.
+
+  function fnScaleFactorX() {
+    var nScaleFactor = screen.deviceXDPI / screen.logicalXDPI;
+    return nScaleFactor;
+  }
+How to Activate Scaling
+Internet Explorer 6 and later automatically adjusts the scale on higher resolution systems when the dpi setting is higher than 96 dpi and the "UseHR" registry value is added to the registry. These are usually done by the manufacturers of higher resolution systems.
+
+Set the DPI
+These are the steps for changing the dpi setting on your system.
+
+Right-click the Windows desktop to display the context menu.
+Click Properties on the context menu to display the Display Properties dialog.
+Click the Settings tab on the Display Properties dialog to display the Settings tab.
+Click the Advanced button on the Settings tab to display the monitor properties dialog.
+Select a dpi setting in the Display frame of the monitor properties dialog to change the dpi setting.
+Restart your system to allow the changes to take effect.
+Add the UseHR Registry Entry
+The UseHR value is added to the Main key under "Internet Explorer" as follows:
+
+
+HKEY_CURRENT_USER
+Software
+Microsoft
+Internet Explorer
+Main
+UseHR= dword:00000001
+
+
+
+*/
+function checkScr()
+{
+    if(isGecko())
+    {
+      ;
+    }
+    else
+    {
+      changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + screen.deviceXDPI + " =dpi");
+      alert(screen.deviceXDPI + " dpi");
+    }
+}
+
+
+
+
+</script>
+
+</head>
+
+<body>
+
+
+<div class="MyButton" style='width:35em;' title=""><a tabindex="2" href="Why.html">why
+</a></div>
+
+<div class="MyButton" style='width:35em;' title=""><a tabindex="3" href="Moves.html">Moves
+</a></div>
+
+<div class="MyButton" style='width:35em;' title=""><a tabindex="3" href="GaryTestpics.html">Garytestpics</a></div>
+
+
+
+
+<br>
+<br>
+<input type="button" value="IE deviceXPDI" onClick="checkScr();" >
+<br>
+
+
+<form name ="myunescape" id="myunescape">
+<fieldset class="b" >
+<legend class="a"><em>"a test"</em></LEGEND>
+
+<input type="text" size = 110 id="inputid3" value=" ">
+
+<input type="button" id="ib3" title="Do a Javascript Function" class="buttonNgrey" value="unescape" onClick="myatest(inputid3.value);">
+</fieldset>
+</form>
+
+
+<form name ="regtest" id="regtest">
+<fieldset class="b" style='width:50%'>
+<legend class="a"><em>"Regular Expression Test One of '* / : ; ? \ | < > ,' is Invalid Character in ->"</em></LEGEND>
+
+<input type="button" id="ib4" title="" class="buttonNgrey" value="Run Reg Test" onClick="TestRegExp(inputid4.value);">
+</fieldset>
+</form>
+
+<input type="button" id="ib5" title="" class="buttonNgrey" value="Clear"
+onClick="clearOP();">
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

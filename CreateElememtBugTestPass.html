@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>createElement embed with wav file test - Pass</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function testCreateElement()
+{ 
+  var embedRef;
+//  var wavin = 'alarm_beep.wav';
+    var wavin = 'No error thrown';
+
+  var deleteME = document.getElementById("myGJCBEmbed09");
+
+   if(deleteME)
+   {  
+        document.body.removeChild(deleteME);
+//      alert('deleted');
+   }
+
+    
+   embedRef =document.createElement('embed');
+   if( embedRef != null )
+   {
+     embedRef.setAttribute("id","myGJCBEmbed09");
+     embedRef.setAttribute("width","0");
+     embedRef.setAttribute("height","0");
+     embedRef.setAttribute("hidden","true");
+     embedRef.setAttribute("src", wavin);
+     document.body.appendChild(embedRef); 
+   }
+}
+
+function document.getElementById(idin)
+{
+  try
+  {
+    if(document.all)
+    {
+      return document.all[idin];
+    }
+    else
+    {
+      return document.getElementById(idin);
+    }
+  }
+  catch (error)
+  {
+    alert( error +  " getElement for " + idin);
+  }
+}
+
+</script>
+
+<pre>
+createElement embed with wav file test - pass
+
+
+open bookmarks in the sidebar
+hit the test button
+it will play the wav file
+hit it again
+it will not trow error
+
+</pre>
+
+<input type="button" value="Test" onClick="testCreateElement();" >
+</body>
+</html>
+

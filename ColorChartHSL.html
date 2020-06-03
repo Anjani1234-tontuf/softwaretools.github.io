@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+
+
+.c
+{
+width: 20em;
+}
+
+.s
+{
+height: 10px;
+}
+
+.ns
+{
+height: 10px;
+color:red;
+}
+
+/*
+.srgb
+{
+border-top: thick inset black;
+}
+
+.scmy
+{
+border-bottom: thick outset white;
+}
+*/
+em
+{
+font-variant:small-caps;
+}
+
+</style>
+<!--
+http://stuff.debugger-blog.net/coca/
+
+ hue (0..360): <<  >>
+ saturation (0..100): <<  >>
+ brightness (0..100): <<  >>
+
+http://www.rags-int-inc.com/PhotoTechStuff/ColorCalculator/
+
+http://www.colorpro.com/info/tools/converters.html
+
+http://www.w3.org/TR/css3-color/#hsla-color
+
+
+Range 360 / 100
+
+ HSL color values
+
+CSS3 adds numerical hue-saturation-lightness (HSL) colors as a complement to numerical RGB colors. It has been observed that RGB colors have the following limitations:
+
+    * RGB is hardware-oriented: it reflects the use of CRTs.
+    * RGB is non-intuitive. People can learn how to use RGB, but actually by internalizing how to translate hue, saturation and lightness, or something similar, to RGB.
+
+There are several other color schemes possible. Advantages of HSL are that it is symmetrical to lightness and darkness (which is not the case with HSV for example), and it is trivial to convert HSL to RGB.
+
+HSL colors are encoding as a triple (hue, saturation, lightness). Hue is represented as an angle of the color circle (i.e. the rainbow represented in a circle). This angle is so typically measured in degrees that the unit is implicit in CSS; syntactically, only a <number> is given. By definition red=0=360, and the other colors are spread around the circle, so green=120, blue=240, etc. As an angle, it implicitly wraps around such that -120=240 and 480=120. One way an implementation could normalize such an angle x to the range [0,360) is to compute ((x mod 360) + 360) mod 360).
+
+100% is full saturation, and 0% is a shade of grey.
+0% lightness is black, 100% lightness is white, and 50% lightness is 'normal'.
+
+Hue   Saturation    Lightness
+
+red=0
+yellow=60
+green=120
+cyan=180
+blue=240
+magenta=300
+
+
+-->
+<title>Color Chart Based on HSL Hues</title>
+<body>
+<table cellspacing="4" width="auto" style='overflow:scroll'>
+<tbody>
+<!--
+
+-->
+
+<tr>
+<td class='c'  style='background-color: hsl(0, 100%, 50%)' ></td>
+<td class='c' >hsl(0, 100%, 50%) red</td>
+<td class='c'  style='background-color: hsl(0, 50%, 50%)' ></td>
+<td class='c' >hsl(0, 50%, 50%)</td>
+</tr>
+
+<!--
+
+-->
+
+<tr>
+<td class='c'  style='background-color: hsl(0, 100%, 25%)' ></td>
+<td class='c' >hsl(0, 100%, 25%)~maroon</td>
+<td class='c'  style='background-color: hsl(0, 50%, 25%)' ></td>
+<td class='c' >hsl(0, 50%, 25%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(30, 100%, 50%)' ></td>
+<td class='c' >hsl(30, 100%, 50%) orange</td>
+<td class='c'  style='background-color: hsl(30, 50%, 50%)' ></td>
+<td class='c' >hsl(30, 50%, 50%)</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(60, 100%, 50%)' ></td>
+<td class='c' >hsl(60, 100%, 50%) yellow</td>
+<td class='c'  style='background-color: hsl(60, 50%, 50%)' ></td>
+<td class='c' >hsl(60, 50%, 50%)</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(60, 50%, 38%)' ></td>
+<td class='c' >hsl(60, 50%, 38%) ~olive</td>
+<td class='c'  style='background-color: hsl(60, 50%, 38%)' ></td>
+<td class='c' >hsl(60, 50%, 38%)</td>
+</tr>
+
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(90, 100%, 50%)' ></td>
+<td class='c' >hsl(90, 100%, 50%) yellow green</td>
+<td class='c'  style='background-color: hsl(90, 50%, 50%)' ></td>
+<td class='c' >hsl(90, 50%, 50%) </td>
+</tr>
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(120, 100%, 50%)' ></td>
+<td class='c' >hsl(120, 100%, 50%)light green</td>
+<td class='c'  style='background-color: hsl(120, 50%, 50%)' ></td>
+<td class='c' >hsl(120, 50%, 50%)</td>
+</tr>
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(120, 38%, 50%)' ></td>
+<td class='c' >hsl(120, 38%, 50%)~ darker green</td>
+<td class='c'  style='background-color: hsl(120, 38%, 50%)' ></td>
+<td class='c' >hsl(120, 38%, 50%)</td>
+</tr>
+
+
+<!--
+
+-->
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(150, 100%, 50%)' ></td>
+<td class='c' >hsl(150, 100%, 50%)green cyan</td>
+<td class='c'  style='background-color: hsl(150, 50%, 50%)' ></td>
+<td class='c' >hsl(150, 50%, 50%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(180, 100%, 50%)' ></td>
+<td class='c' >hsl(180, 100%, 50%) cyan</td>
+<td class='c'  style='background-color: hsl(180, 50%, 50%)' ></td>
+<td class='c' >hsl(180, 50%, 50%) cyan</td>
+</tr>
+
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(210, 100%, 50%)' ></td>
+<td class='c' >hsl(210, 100%, 50%) cyan blue</td>
+<td class='c'  style='background-color: hsl(210, 50%, 50%)' ></td>
+<td class='c' >hsl(210, 50%, 50%)</td>
+</tr>
+
+
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(240, 100%, 50%)' ></td>
+<td class='c' >hsl(240, 100%, 50%) blue</td>
+<td class='c'  style='background-color: hsl(240, 50%, 40%)' ></td>
+<td class='c' >hsl(240, 50%, 40%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(240, 100%, 25%)' ></td>
+<td class='c' >hsl(240, 100%, 25%) ~navy blue</td>
+<td class='c'  style='background-color: hsl(240, 50%, 25%)' ></td>
+<td class='c' >hsl(240, 50%, 25%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(270, 100%, 50%)' ></td>
+<td class='c' >hsl(270, 100%, 50%) purple to blue magenta</td>
+<td class='c'  style='background-color: hsl(270, 50%, 50%)' ></td>
+<td class='c' >hsl(270, 50%, 50%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(300, 100%, 25%)' ></td>
+<td class='c' >hsl(300, 100%, 25%) ~purple </td>
+<td class='c'  style='background-color: hsl(300, 50%, 25%)' ></td>
+<td class='c' >hsl(300, 50%, 25%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(300, 100%, 50%)' ></td>
+<td class='c' >hsl(300, 100%, 50%) magenta</td>
+<td class='c'  style='background-color: hsl(300, 50%, 50%)' ></td>
+<td class='c' >hsl(300, 50%, 50%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(330, 100%, 50%)' ></td>
+<td class='c' >hsl(330, 100%, 50%) violet</td>
+<td class='c'  style='background-color: hsl(330, 50%, 50%)' ></td>
+<td class='c' >hsl(330, 50%, 50%)</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(0, 100%, 0%)' ></td>
+<td class='c' >hsl(0, 100%, 0%) black</td>
+
+<td class='c'  style='background-color: hsl(0, 50%, 0%)' ></td>
+<td class='c' >hsl(0, 50%, 0%) black</td>
+</tr>
+
+
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(0, 0%, 50%)' ></td>
+<td class='c' >hsl(0, 0%, 50%) ~gray</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(0, 0%, 75%)' ></td>
+<td class='c' >hsl(0, 0%, 75%) ~silver</td>
+</tr>
+
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(0, 0%, 88%)' ></td>
+<td class='c' >hsl(0, 0%, 88%) ~light silver</td>
+</tr>
+
+<!--
+
+-->
+<tr>
+<td class='c'  style='background-color: hsl(0, 0%, 100%)' ></td>
+<td class='c' >hsl(0, 0%, 100%) white</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<!--
+<img src="GraphicWidgets/HSLColorWheel.jpg">
+
+-->
+
+<p>
+<br>
+<a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/  </a>
+<br>
+<a href="http://stuff.debugger-blog.net/coca/"> http://stuff.debugger-blog.net/coca/ </a>
+</p>
+</body>
+</html>

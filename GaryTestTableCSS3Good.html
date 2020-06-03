@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="StyleSheet" href="XXSoftwareTools/css/GaryDefault.css" type="text/css">
+<link rel="stylesheet" href="XXSoftwareTools/css/Printit.css" type="text/css" media="print">
+<meta name="Author" content="Gary G. Johnson">
+<meta http-equiv="Expires" CONTENT ="Tue,01 Jan 1980 1:00:00 GMT">
+<meta http-equiv="Pragma" CONTENT ="no-cache">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Personal Home Page">
+<meta name="KeyWords" content="Gary Johnson,Anne Doherty">
+<script defer="defer" type="text/javascript" src="XXSoftwareTools/js/gjcore.min.js"></script>
+<script defer="defer" type="text/javascript" src="XXSoftwareTools/js/gjutil1.min.js"></script>
+<script defer="defer" type="text/javascript" src="XXSoftwareTools/js/pageindex.min.js"></script>
+<style type="text/css">
+.viewpoints .quote
+{
+  display:block;
+  border:7px solid #F5D362;
+  color:#272727;
+  font-family:Georgia,Times,Times New Roman,serif;
+  font-size:14px;
+  font-size-adjust:none;
+  font-stretch:normal;
+  font-style:italic;
+  font-variant:normal;
+  font-weight:normal;
+  line-height:21px;
+  padding:15px 15px 20px;
+  margin:8px 0 0;
+}
+
+
+.attribution
+{
+  height:200px;
+  font:normal 15px Verdana, sans-serif;
+  position:relative;
+  background:url(../images/quote_community.gif) no-repeat 36px top;
+  background-position:36px 67%;
+  color:#272727;
+  top:-8px;
+  padding:0 0 0 80px;
+  color:#272727;
+  z-index:1;
+}
+
+table{
+	font-size:1.2em;
+	width:100%;
+	margin-bottom:20px;
+}
+th{
+	font-weight:bold;
+}
+td,th{
+	border:1px solid #ccc;
+	padding:5px;
+}
+thead tr{
+	border-bottom:2px solid #ccc;
+}
+tbody tr:nth-of-type(odd){
+	background:#ffc;
+}
+/*--- EMPLOYEES ---*/
+#employees .col{
+	width:25%;
+}
+#employees tbody tr:hover{
+	font-weight:bold;
+	background:#ff8;
+
+	-moz-transform:scale(1.02);
+	-webkit-transform:scale(1.02);
+	-moz-box-shadow:0 0 5px #666;
+	-webkit-box-shadow:0 0 5px #666;
+}
+/*--- MATRIX ---*/
+#employees .col{
+	width:20%;
+}
+#matrix tbody td:hover{
+	font-weight:bold;
+	background:#ff8;
+
+	-moz-transform:scale(1.02);
+	-webkit-transform:scale(1.02);
+	-moz-box-shadow:0 0 5px #666;
+	-webkit-box-shadow:0 0 5px #666;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+</style>
+<title>Fancy quote</title>
+
+</head>
+
+<body >
+
+		<h2 class="caption">Transforms:</h2>
+		<h3 class="caption clear">Hover rows/cells list items</h3>
+
+		<table id="employees">
+			<colgroup>
+				<col id="employee-name" class="col">
+				<col id="employee-type" class="col">
+				<col id="employee-edit" class="col">
+				<col id="employee-remove" class="col">
+			</colgroup>
+			<thead>
+				<tr>
+
+					<th>Name</th>
+					<th>Type</th>
+					<th>Edit</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td>Ted Harris</td>
+					<td>Admin</td>
+					<td><a href="#">Edit details</a></td>
+					<td><a href="#">Delete user</a></td>
+				</tr>
+				<tr>
+
+					<td>Jane Peters</td>
+					<td>Sales</td>
+					<td><a href="#">Edit details</a></td>
+					<td><a href="#">Delete user</a></td>
+				</tr>
+				<tr>
+					<td>Sam Edwards</td>
+
+					<td>Web Developer</td>
+					<td><a href="#">Edit details</a></td>
+					<td><a href="#">Delete user</a></td>
+				</tr>
+				<tr>
+					<td>Allen Jones</td>
+					<td>Web Developer</td>
+
+					<td><a href="#">Edit details</a></td>
+					<td><a href="#">Delete user</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table id="matrix">
+			<colgroup>
+				<col id="matrix-title" class="col">
+
+				<col id="matrix-ted" class="col">
+				<col id="matrix-jane" class="col">
+				<col id="matrix-sam" class="col">
+				<col id="matrix-allen" class="col">
+			</colgroup>
+			<thead>
+				<tr>
+					<th></th>
+					<th>Ted</th>
+
+				<th>Jane</th>
+					<th>Sam</th>
+					<th>Allen</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+
+					<th>Age</th>
+					<td>45</td>
+					<td>31</td>
+					<td>34</td>
+					<td>27</td>
+				</tr>
+
+				<tr>
+					<th>Salary</th>
+					<td>£21,000</td>
+					<td>£26,000</td>
+					<td>£32,000</td>
+					<td>£29,000</td>
+
+				</tr>
+				<tr>
+					<th>Service</th>
+					<td>2 years</td>
+					<td>3 years</td>
+					<td>6 years</td>
+					<td>4 years</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+</body>
+
+</html>

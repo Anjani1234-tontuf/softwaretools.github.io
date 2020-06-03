@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!--
+
+-->
+<html>
+<head>
+<title>Install Timers</title>
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="Install CountDown, CountUpStopWatch and Timers and Time Alarm">
+<link rel="StyleSheet" href="../XXSoftwareTools/css/GaryDefaultApp.css" type="text/css">
+<link rel="stylesheet" href="../XXSoftwareTools/css/Printit.css" type="text/css" media="print">
+<link rel="icon" href="../XXSoftwareTools/GraphicWidgets/sliverclock.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="">
+
+<script defer="defer" src="../XXSoftwareTools/js/gjcore.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjutil1.min.js"></script>
+
+<script defer="defer" src="../XXSoftwareTools/js/gjqt.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjmsg.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjmove.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjcalc1.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjApptime.min.js"></script>
+<script defer="defer" src="../XXSoftwareTools/js/gjApptimeGUI.min.js"></script>
+
+<script src="https://myapps.mozillalabs.com/jsapi/include.min.js"></script>
+
+<script>
+function installCallback(result)
+{
+    alert("Sucess in installCallback " + result.code + " " + result.message);
+}
+
+function errorCallback(result)
+{
+    alert("Failure in errorCallback " + result.code + " " + result.message);
+}
+
+function installTimer()
+{
+
+navigator.mozApps.install(
+    "http://garyjohnsoninfo.info/Apps/MTimerApp.webapp",
+    installCallback,
+    errorCallback
+);
+
+}
+</script>
+</head>
+<body>
+
+<pre>
+Test Install of applications using navigator.MozApps.install
+
+MTimerApp.html is an html page turned application.
+Set up to 6 of each, Count Down, Stop Watch and at a specific Time timers.
+The screen size it s set to width 320px and a height of 356px, a nice size for smartphones.
+
+At a Time, CountDown,CountUp, StopWatch Timers, Kitchen, Event, To Do Timers.
+
+The Button at the top with the inital value of "Count Down Timers" is a toggle button that takes you
+to the other Timer functions
+Click on the button, The Stop Watch screen appears.
+Click on the button again the Time alarms screen appears
+
+The stopwatch screen has the 2 toggle buttons, to "Display options" and to "Display Help"
+Help is the documentation for this application.
+When you click on either of these 2 toggle buttons, they switch from ..Display to ..Hide
+
+
+These timers are not accurate enough for scientific or competitive sports.
+They are perfect for nap taking, cooking and other events where microsecond accuracy is not required.
+
+To see an preview of the app in this browser, click on the preview button
+<a href="https://apps-preview.mozilla.org/en-US/apps/app/timers/">Mozilla Marketplace for this app</a>
+
+</pre>
+
+
+<p><input id="xzCCz3" title="Install Timers" class="buttonNgold" value="Install Timers"
+onmouseover="toggleHighLight('m', this.id);"
+onclick="installTimer();"
+onmouseout="toggleHighLight('o', this.id);" type="button">
+</p>
+
+<a href="MTimerApp.html">Preview</a>
+</body>
+
+</html>

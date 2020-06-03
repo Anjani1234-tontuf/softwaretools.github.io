@@ -1,0 +1,681 @@
+table { border-collapse: collapse;}
+
+table td, table th {
+padding: 1px;
+border:none;
+vertical-align:top;}
+
+td p, th p,td h4 {
+margin-top:0;
+margin-right:7px;
+margin-left:7px;
+margin-bottom:1px;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif; }
+
+/* ft fancy table pt plain table */
+table.ft {
+background-color: white;
+color: black;
+vertical-align:top;
+text-align:center;
+border-collapse: collapse ;
+margin:auto;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+padding: 4px 7px;}
+
+table.ft tr:nth-of-type(odd) {background-color:azure;}
+
+table.pt {
+background-color: white;
+color: black;
+vertical-align:top;
+text-align:left;
+border-collapse: collapse ;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+padding: 4px 7px;
+border: 1px solid black;}
+
+table.ft tr th, table.ft tr td, table.pt tr th, table.pt tr td  {
+padding: 4px 7px;
+border: 1px solid black;
+color:blue;}
+
+.indent {text-indent:.5in}
+.indent1 {text-indent:.5in}
+.indent2 {text-indent:1.0in}
+.indent3 {text-indent:1.5in}
+.indent4 {text-indent:2.0in}
+.indent5 {text-indent:2.5in}
+
+H4 {
+font-size:26px;
+color: blue;
+font-weight: bolder;
+text-align: left;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+margin:0 0 0 0;
+text-shadow: 1px 1px 1px black;}
+
+.SHC {
+background: #dedede;
+padding-right:7px;
+padding-left:7px;
+padding-top:3px;
+padding-bottom:3px;
+border-top:1px solid #336699;}
+
+H3 {
+font-size:26px;
+color: blue;
+font-weight: bolder;
+text-align: center;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-shadow: 1px 1px 1px black;}
+
+H2 {
+color: teal;
+font-weight: bolder;
+text-align: center;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-shadow: 1px 1px 1px black}
+
+p {
+margin:0 0 1px 0;
+font-size:16px;
+font-weight: normal;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;}
+
+pre {
+font-size:16px;
+font-weight: normal;}
+
+p.tr, pre.tr {
+font-size:16px;
+font-weight: normal;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;}
+
+blockquote {
+font-size:16px;
+font-weight: normal;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+margin-right: 0;
+margin-left: 0;}
+
+.hrc {
+background-color:blue;
+border-top: thick groove blue;
+padding:0;
+font-size: 6.0px;
+margin-right: 25%;
+margin-left: 25%;}
+
+.first-line {
+font-weight: bolder;
+font-size:16px;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;}
+
+body {background-color:white;}
+
+ol.dec {list-style-type: decimal;}
+
+ul.none {
+border:0 none;
+list-style:none;
+list-style-type:none;
+margin:0;
+padding:0;}
+
+ul.none li, ol li {
+border:0 none;
+text-align:left;
+font-size:19px;
+margin:0;
+padding:0 0 5px 0;}
+
+ul.square {
+list-style: square;}
+
+ul.disc {list-style-type: disc;}
+
+ul.circle {list-style-type: circle;}
+
+ul.none {list-style-type: none;}
+
+a:link, a:visited {
+color: blue;
+text-decoration: underline;}
+
+a:hover {background-color:silver;}
+
+a.AFour:link {
+font-weight: bold;
+color: black;
+text-decoration: none;}
+
+a.AFour:visited {
+font-weight: bold;
+color: lightslategrey;
+text-decoration: none;}
+
+a.AFour:hover {
+font-weight: bold;
+color: #f05b35;
+text-decoration: none;}
+
+.a {
+background-color: #ddddee;
+color: black;
+padding:1px 1px 1px 1px;}
+
+.b {
+background-color: #eeeeff;
+color: black;
+padding:1px 1px 1px 1px;}
+
+.GreyPattern {
+border:none;
+background:#F5F5F5;}
+
+.alt {
+color:blue;
+font-size: 6.0px;
+background-color:maroon;
+margin-top:1em;
+margin-bottom:1em;}
+
+.CTB {margin:0 auto;}
+
+.graygradient {
+/* For WebKit (Safari, Google Chrome etc) */
+background: -webkit-gradient(linear, left top, left bottom, from(hsla(0, 0%, 81%,.4)), to(hsla(0, 0%, 70%,.8)) );
+/* For Mozilla/Gecko (Firefox etc) */
+background: -moz-linear-gradient(top, hsl(0, 0%, 81%),hsl(100,100%,100%), hsl(0, 0%, 70%));}
+
+hr.alt {
+color:blue;
+margin-top: .5em;
+margin-bottom: .5em;}
+
+.hrl {
+background-color:blue;
+border-top: thick outset blue;
+margin-top: 0;
+margin-bottom: 0;
+padding-top: 0;
+padding-bottom: 0;
+font-size: 6.0px;
+margin-left: 50%;}
+
+.hshr {
+margin:0;
+padding: 1px 7px 1px 0;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 2.0px;
+font-weight: bold;
+text-align:right;
+background-color: #eeeeff;}
+
+.hrr {
+background-color:blue;
+border-top: thick inset blue;
+margin-top: 0;
+margin-bottom: 0;
+padding-top: 0;
+padding-bottom: 0;
+font-size: 6.0px;
+margin-right: 50%;}
+
+#leftcolumn {
+width: 5%;
+float: left;
+margin: 0;
+padding: 40px;
+background-color:blue;}
+
+#righthtcolumn {
+margin: 0;
+padding: 0;}
+
+input { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+select { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey {
+font-weight:bold;
+font-size:16px;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+color: #000;
+border: 2px solid #000;
+background-color: #D5D5D4;}
+
+textarea.buttonNgrey:hover, select.buttonNgrey:hover, input.buttonNgrey:hover {
+background-color: #B0C4DE;}
+
+textarea.buttonNgold, select.buttonNgold, input.buttonNgold {
+font-weight:bold;
+font-size:16px;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+color: #000;
+border: 2px solid #000;
+background-color: #F4A460;}
+
+textarea.buttonNgold:hover, select.buttonNgold:hover, input.buttonNgold:hover {
+background-color: #CD853F;}
+
+.rounded-corners {
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+-khtml-border-radius: 20px;
+border-radius: 20px;}
+
+p.pos_fixed {
+position:fixed;
+bottom:0px;
+right:10px;}
+
+.Announce {
+background-color:#191970;
+color: #F5F5F5;
+margin-right: 20%;
+margin-left: 20%;
+padding: 2em;}
+
+hr.announce {
+background-color:yellow;
+border-top: thick groove yellow;
+margin-top: 6.0pt;
+margin-bottom: 6.0pt;
+padding-top: 0;
+padding-bottom: 0;
+font-size: 6px;}
+
+
+hr.dotted {
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAF0lEQVQIHWNgYGBY9v//fwYYhjOIFwAA1l0teiSFyaMAAAAASUVORK5CYII%3D) repeat center top;
+background-size: 4px 4px;
+border: 0;
+height: 1px;
+margin: 0 0 24px;
+}
+
+.fancy {
+margin-top: 0px;
+border-top: solid 1px rgb(100,100,100);
+border-bottom: solid 1px rgb(100,100,100);
+padding: 8px;
+background-color: #ffffd7;}
+
+.clearall {clear:both;}
+
+
+span.FL{
+text-shadow: 0px 1px 1px #FAF0E6;
+background-color:#ffffff;
+margin:0;
+padding-right:1.5px;
+padding-left:1px;}
+
+
+.myFixed {font-family:"Courier New",Courier,monospace;}
+
+.DGreyPattern {
+border:none;
+background:#CCCCCC;}
+
+.LGreyPattern {
+border:none;
+background:#9999ff;}
+
+
+h1 {
+font-weight:bold;
+font-size:12.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-align:center;}
+
+
+h2.old {
+font-weight:bold;
+color:black;
+font-size:12.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+background: #CCCCFF;
+text-align:left;
+padding:2.5pt 7.5pt;
+border-top:2px solid #336699;
+text-shadow: none;}
+
+
+h3.old {
+font-weight:bold;
+font-size:12.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-align:left;
+text-shadow: none;}
+
+.myfooter {
+border-style : none;
+width:100%;
+margin:0;
+background-color:transparent;}
+
+input.hidden {
+font-size: 2pt;
+visibility:hidden;}
+
+.scenter {
+font-weight:bold;
+font-size:10.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-align:center;}
+
+.myresult {
+font-weight:bold;
+font-size:10.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+color: #000;
+border: 2px solid #008080;
+display:block;
+width:15em;
+background-color:white;
+text-align:right;
+padding:3px;}
+
+.HC {
+background: #CCCCFF;
+padding:2.5pt 7.5pt;
+border-top:3px solid #336699;}
+
+.SHC {
+background: #dedede;
+padding-right:7.5pt;
+padding-left:7.5pt;
+padding-top:2.5pt;
+padding-bottom:2.5pt;
+border-top:1px solid #336699;}
+
+.SHF {
+background: #FFFAFA;
+padding-right:7.5pt;
+padding-left:7.5pt;
+padding-top:2.5pt;
+padding-bottom:2.5pt;
+border:1px solid #336699;}
+
+.HCCT {
+font-weight: bold;
+background:#CCCCFF;
+border-top:1px solid #336699;
+text-align:center;}
+
+.HCL {
+background:#CCCCFF;
+border-top:1px solid #336699;
+padding-top:1.5pt;
+padding-bottom:1.5pt;}
+
+.HCLT {
+font-weight:bold;
+text-align:left;
+margin-left:7.5pt;
+margin-right:7.5pt;}
+
+.SHCL {
+border-top:1px solid #336699;
+padding-top:1.0pt;
+padding-bottom:1.0pt;
+font-weight:bold;
+text-align:left;
+margin-left:7.5pt;
+margin-right:7.5pt;}
+
+.HCRT {
+font-weight:bold;
+text-align:right;
+padding-left:7.5pt;
+padding-right:7.5pt;}
+
+
+.bigMargin {
+position:relative;
+height:auto;
+margin-right: 10%;
+margin-left: 10%;}
+
+
+.regMargin {
+margin-right: 2em;
+margin-left: 2em;}
+
+
+.oval-thought {
+position:relative;
+width:80%;
+padding:50px 40px;
+margin:1em auto 80px;
+text-align:center;
+color:#fff;
+background:#075698;
+/* css3 */
+background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+background:-moz-linear-gradient(#2e88c4, #075698);
+background:-o-linear-gradient(#2e88c4, #075698);
+background:linear-gradient(#2e88c4, #075698);
+/*
+  NOTES:
+  -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
+  -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
+  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+*/
+-webkit-border-top-left-radius:220px 120px;
+-webkit-border-top-right-radius:220px 120px;
+-webkit-border-bottom-right-radius:220px 120px;
+-webkit-border-bottom-left-radius:220px 120px;
+-moz-border-radius:220px / 120px;
+border-radius:220px / 120px;}
+
+.oval-thought p {
+font-size:1.25em;
+text-shadow: 0px 1px 1px #FAF0E6;}
+
+/* creates the larger circle */
+.oval-thought:before {
+content:"";
+position:absolute;
+bottom:-20px;
+left:50px;
+width:30px;
+height:30px;
+background:#075698;
+/* css3 */
+-webkit-border-radius:30px;
+-moz-border-radius:30px;
+border-radius:30px;}
+
+/* creates the smaller circle */
+.oval-thought:after {
+content:"";
+position:absolute;
+bottom:-30px;
+left:30px;
+width:15px;
+height:15px;
+background:#075698;
+/* css3 */
+-webkit-border-radius:15px;
+-moz-border-radius:15px;
+border-radius:15px;}
+
+/* debugging jquery addClass  */
+.borderClassB{
+border-color: blue;
+border-width:1px;
+border-style: dotted;}
+
+.borderClassM{
+border-color: magenta;
+border-width:1px;
+border-style: dotted;}
+
+p.pos_fixedTR {
+position:fixed;
+top:10px;
+right:10px;
+margin-top: 0px;
+padding: 8px;
+z-index:-1;}
+
+
+p.pos_fixedBR {
+position:fixed;
+bottom:0px;
+right:10px;
+margin-top: 0px;
+border-top: solid 1px rgb(100,100,100);
+border-bottom: solid 1px rgb(100,100,100);
+padding: 8px;
+z-index:-1;}
+
+p.pos_fixedBL {
+position:fixed;
+bottom:0px;
+left: 10px;
+margin-top: 0px;
+border-top: solid 1px rgb(100,100,100);
+border-bottom: solid 1px rgb(100,100,100);
+padding: 8px;
+z-index:-1;}
+
+/* ----------------------------- */
+
+
+
+@media only screen and (max-width: 320px) {
+    /**phone in portrait CSS rules here**/
+.container {width: 100%; padding: 0 0}
+.noMobile { display:none; }
+
+
+body {
+width:100%;
+margin:2px 5px;}
+
+pre {white-space:normal}
+
+.hrc {margin: 10px 0 10px 0;}
+
+.indent {text-indent:10px}
+.indent1 {text-indent:10px}
+.indent2 {text-indent:15px}
+.indent3 {text-indent:20px}
+.indent4 {text-indent:25px}
+.indent5 {text-indent:30px}
+p.pos_fixed { position:relative;}
+
+.alt {
+color:blue;
+font-size: 2px;
+background-color:maroon;
+margin-top:2px;
+margin-bottom:2px;}
+
+.bigMargin {
+position:relative;
+height:auto;
+margin-right: 1em;
+margin-left: 1em;}
+
+.regMargin {
+margin-right: 10px;
+margin-left: 10px;}
+
+a.AFour:link {
+font-size: 16px;
+line-height:24px;}
+}
+
+@media only screen and (min-width : 321px) and (max-width : 480px) {
+.noMobile { display:none; }
+.container {width: 100%; padding: 0 0}
+
+body {
+width:100%;
+margin:2px 5px;}
+
+pre {white-space:normal}
+
+.hrc {margin: 10px 0 10px 0;}
+
+.indent {text-indent:10px}
+.indent1 {text-indent:10px}
+.indent2 {text-indent:15px}
+.indent3 {text-indent:20px}
+.indent4 {text-indent:25px}
+.indent5 {text-indent:30px}
+p.pos_fixed { position:relative;}
+
+.alt {
+color:blue;
+font-size: 2px;
+background-color:maroon;
+margin-top:2px;
+margin-bottom:2px;}
+
+.bigMargin {
+position:relative;
+height:auto;
+margin-right: 1em;
+margin-left: 1em;}
+
+.regMargin {
+margin-right: 10px;
+margin-left: 10px;}
+
+a.AFour:link {
+font-size: 16px;
+line-height:24px;}
+
+}
+
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+.container {width: 100%; padding: 0 10px;}
+p,input {font-size: 16px; line-height:24px;}
+.noMobile { display:none; }
+
+body {
+width:100%;
+margin:2px 5px;}
+
+pre {white-space:normal}
+
+.hrc {margin: 10px 0 10px 0;}
+
+.indent {text-indent:10px}
+.indent1 {text-indent:10px}
+.indent2 {text-indent:15px}
+.indent3 {text-indent:20px}
+.indent4 {text-indent:25px}
+.indent5 {text-indent:30px}
+p.pos_fixed { position:relative;}
+
+.alt {
+color:blue;
+font-size: 2px;
+background-color:maroon;
+margin-top:2px;
+margin-bottom:2px;}
+
+.bigMargin {
+position:relative;
+height:auto;
+margin-right: 1em;
+margin-left: 1em;}
+
+.regMargin {
+margin-right: 10px;
+margin-left: 10px;}
+
+a.AFour:link {
+font-size: 16px;
+line-height:24px;}
+}

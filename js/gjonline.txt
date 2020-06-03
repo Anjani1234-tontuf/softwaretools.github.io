@@ -1,0 +1,154 @@
+
+.skiplink, .myHidden
+{
+  display:none;
+}
+
+
+html mobile redirect
+
+//http:  www.quirksmode.org js detect.html ? Safari and OmniWeb because version information in their identity string.
+
+css Syntax (Toggle Plain Text)
+
+   1.
+      <style type="text/css" media="all">
+   2.
+      /* <![CDATA[ */
+   3.
+      /* Applying external style sheet */
+   4.
+
+   5.
+      @import "your-default.css" screen;
+   6.
+
+   7.
+      @import "css-mobile.css" handheld;
+   8.
+
+   9.
+      /* For inline style */
+  10.
+      @media screen {
+  11.
+      html, body {
+  12.
+      height: 100%;
+  13.
+      min-width: 800px;
+  14.
+      max-width: 1024px
+  15.
+      width: 100%;
+  16.
+      }
+  17.
+      body { background-color: #000; } }
+  18.
+
+  19.
+      @media handheld {
+  20.
+      body { width: 100%; height: 100%; background-color: #fff; } }
+  21.
+      /* ]]> */
+  22.
+      </style>
+
+
+<script type="text/javascript">
+if (screen.width<800)
+{
+window.location="Mobile page name"
+}
+else
+{
+window.location="Main page name"
+}
+
+
+<?php
+//compliments of http://www.buchfelder.biz/
+
+$mobile = "http://mobile.moonpro.us/index.html";
+$text = $_SERVER['HTTP_USER_AGENT'];
+$var[0] = 'Mozilla/4.';
+$var[1] = 'Mozilla/3.0';
+$var[2] = 'AvantGo';
+$var[3] = 'ProxiNet';
+$var[4] = 'Danger hiptop 1.0';
+$var[5] = 'DoCoMo/';
+$var[6] = 'Google CHTML Proxy/';
+$var[7] = 'UP.Browser/';
+$var[8] = 'SEMC-Browser/';
+$var[9] = 'J-PHONE/';
+$var[10] = 'PDXGW/';
+$var[11] = 'ASTEL/';
+$var[12] = 'Mozilla/1.22';
+$var[13] = 'Handspring';
+$var[14] = 'Windows CE';
+$var[15] = 'PPC';
+$var[16] = 'Mozilla/2.0';
+$var[17] = 'Blazer/';
+$var[18] = 'Palm';
+$var[19] = 'WebPro/';
+$var[20] = 'EPOC32-WTL/';
+$var[21] = 'Tungsten';
+$var[22] = 'Netfront/';
+$var[23] = 'Mobile Content Viewer/';
+$var[24] = 'PDA';
+$var[25] = 'MMP/2.0';
+$var[26] = 'Embedix/';
+$var[27] = 'Qtopia/';
+$var[28] = 'Xiino/';
+$var[29] = 'BlackBerry';
+$var[30] = 'Gecko/20031007';
+$var[31] = 'MOT-';
+$var[32] = 'UP.Link/';
+$var[33] = 'Smartphone';
+$var[34] = 'portalmmm/';
+$var[35] = 'Nokia';
+$var[36] = 'Symbian';
+$var[37] = 'AppleWebKit/413';
+$var[38] = 'UPG1 UP/';
+$var[39] = 'RegKing';
+$var[40] = 'STNC-WTL/';
+$var[41] = 'J2ME';
+$var[42] = 'Opera Mini/';
+$var[43] = 'SEC-';
+$var[44] = 'ReqwirelessWeb/';
+$var[45] = 'AU-MIC/';
+$var[46] = 'Sharp';
+$var[47] = 'SIE-';
+$var[48] = 'SonyEricsson';
+$var[49] = 'Elaine/';
+$var[50] = 'SAMSUNG-';
+$var[51] = 'Panasonic';
+$var[52] = 'Siemens';
+$var[53] = 'Sony';
+$var[54] = 'Verizon';
+$var[55] = 'Cingular';
+$var[56] = 'Sprint';
+$var[57] = 'AT&T';
+$var[58] = 'Nextel';
+$var[59] = 'Pocket PC';
+$var[60] = 'T-Mobile';
+$var[61] = 'Orange';
+$var[62] = 'Casio';
+$var[63] = 'HTC';
+$var[64] = 'Motorola';
+$var[65] = 'Samsung';
+$var[66] = 'NEC';
+
+$result = count($var);
+
+for ($i=0;$i0)
+{
+header(“location: $mobile”);
+echo ‘Mobile device detected … ‘;
+break;
+}
+
+}
+?>

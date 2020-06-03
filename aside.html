@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+
+<nav style="height: 1.5em">
+<style scoped="scoped">
+menu[type="toolbar"], menu[type="toolbar"] * {
+   margin: 0;
+   padding: 0:
+}
+menu[type="toolbar"] > li {
+   display: inline-block;
+   vertical-align: top;
+   border: 2px solid #000000;
+}
+menu[type="toolbar"] > li > menu {
+   float: left;
+   width: 8em;
+   background-color: #cccccc;
+   text-align: center;
+}
+menu[type="toolbar"] > li > menu:before {
+   content: attr(label);
+   color: #333333;
+}
+menu[type="toolbar"] > li > menu > li {
+   position: relative;
+   z-index: 1;
+   background-color: #cccccc;
+   text-align: left;
+   display: none;
+   -moz-transition: background-color 0.3s;
+   -webkit-transition: background-color 0.3s
+}
+menu[type="toolbar"] > li > menu:hover > li {
+   display: block;
+}
+menu[type="toolbar"] > li > menu:hover > li:first-child {
+   border-top: 2px solid #000000;
+}
+menu[type="toolbar"] > li > menu > li > a {
+   padding: 0 1em;
+   color: #333333;
+   text-decoration: none;
+}
+menu[type="toolbar"] > li > menu:hover,
+menu[type="toolbar"] > li > menu:hover:before,
+menu[type="toolbar"] > li > menu > li:hover,
+menu[type="toolbar"] > li > menu > li:hover > a
+{
+   background-color: #999999;
+   color: #000000;
+}
+</style>
+<menu type="toolbar">
+   <li>
+      <menu label="Sections">
+         <li><a href="../../tutorials/">Tutorials</a></li>
+         <li><a href="../../examples/">Examples</a></li>
+      </menu>
+   </li>
+   <li>
+      <menu label="&lt;menu&gt;">
+         <li><a href="#description">Description</a></li>
+         <li><a href="#syntax">Syntax</a></li>
+         <li><a href="#attributes">Attributes</a></li>
+         <li><a href="#examples">Examples</a></li>
+         <li><a href="#whats-new">Changes</a></li>
+      </menu>
+   </li>
+</menu>
+</nav>
+<body>
+
+<label>What is your favorite color? <input name="color" type="text" list="html-colors"/>
+   <datalist id="html-colors"><br/>Some suggestions:
+      <option value="black">Black</option>
+      <option value="blue">Blue</option>
+      <option value="fuchsia">Fuchsia</option>
+      <option value="gray">Gray</option>
+      <option value="green">Green</option>
+      <option value="lime">Lime</option>
+      <option value="maroon">Maroon</option>
+      <option value="navy">Navy</option>
+      <option value="olive">Olive</option>
+      <option value="purple">Purple</option>
+      <option value="red">Red</option>
+      <option value="silver">Silver</option>
+      <option value="teal">Teal</option>
+      <option value="white">White</option>
+      <option value="yellow">Yellow</option>
+   </datalist>
+</label>
+  <header>
+    <h1>My Blog</h1>
+  </header>
+  <article>
+    <h1>My Blog Post</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <aside>
+      <!-- Since this aside is contained within an article, a parser
+      should understand that the content of this aside is directly related
+      to the article itself. -->
+      <h1>Glossary</h1>
+      <dl>
+        <dt>Lorem</dt>
+        <dd>ipsum dolor sit amet</dd>
+      </dl>
+    </aside>
+  </article>
+  <aside>
+    <!-- This aside is outside of the article. Its content is related
+    to the page, but not as closely related to the above article -->
+    <h2>Blogroll</h2>
+    <ul>
+      <li><a href="#">My Friend</a></li>
+      <li><a href="#">My Other Friend</a></li>
+      <li><a href="#">My Best Friend</a></li>
+    </ul>
+  </aside>
+<blockquote>
+
+The <section> tag is used for generic sections in an HTML document. It is primarily used for two distinctly different purposes:
+
+    to indicate a generic section of the web page design, when the content is not appropriate for one of the other HTML sectioning tags:
+        <article> tag for the main theme(s) of an HTML document
+        <aside> tag for an HTML sidebar
+        <nav> tag for a navigation section
+
+    In the past, many developers have used the div element for this purpose.
+    to subdivide a long <article> or <aside> into subsections, such as for the "Tag Summary", "Tag Syntax", "Element Attributes", "Tag Examples" and "What's New / Changes" sections on this page.
+</blockquote>
+
+</html>

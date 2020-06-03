@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Palettizer css color contrast picker</title>
+<meta name="keywords" content="Palettizer" />
+<meta name="description" content="Palettizer A range of palettes are available." />
+<link type="text/css" rel="Stylesheet" href="css/p.css" />
+<script type="text/javascript" src="js/clrList.min.js">
+</script>
+<script type="text/javascript" src="js/p.min.js">
+</script>
+</head>
+<body onload="init()" id="body">
+<h1>
+<script type="text/javascript">
+// <![CDATA[
+document.write(document.title)
+//]]>
+</script>
+</h1>
+<div id="header">
+<span id="logo"><a href="pdefault.htm">&lt;MU&gt;</a></span>
+<span id="nav">
+<script type="text/javascript">
+// <![CDATA[
+document.write(location.pathname)
+//]]>
+</script>
+</span>
+
+<br />
+
+<br />
+</div>
+<div id="leftSidePanel">
+<fieldset style="float: left"><legend>color</legend>
+<label for="color" accesskey="c" title="accesskey for color list = alt + c"></label>
+<select  size="16" id="color" onmouseover="window.status='accesskey for color list = alt + c'">
+<option></option>
+</select>
+</fieldset>
+<fieldset><legend>background</legend>
+<label for="bkgrndClr" accesskey="b" title="accesskey for background-color list = alt + b" ></label>
+<select size="16" id="bkgrndClr" onmouseover="window.status='accesskey for background-color list = alt + b'">
+<option></option>
+</select>
+</fieldset>
+</div>
+
+<div id="displayClrDiv">
+
+<form action="#" id="clrpalette">
+<fieldset><legend>Load a color palette</legend>
+<input type="radio" name="palette" value="smallClrList" checked="checked" /><label>15 predefined</label>
+<br />
+<input type="radio" name="palette" value="clrList" /><label>140 named</label>
+<br />
+<input type="radio" name="palette"  value="bigClrList" /><label>216 non-dithering +GJ <label>
+<br />
+<input type="radio" name="palette" value="userClrPreferences"  /><label>User preferences</label>
+</fieldset>
+</form>
+
+
+<h2>CSS color and background-color</h2>
+
+<p><span id="namedColor"></span> : is the font color.
+<br />
+ <span id="namedBgColor"></span> : is the backgroundColor.</p>
+
+<p>The css style declarations are
+<br />
+<code>color: <span id="cssColor"></span>;
+<br />
+ background-color: <span id="cssBgClr"></span>;</code></p>
+
+<h2>Select colors with the picker</h2>
+
+<p>This color picker is designed to visually hilight the contrast between the font 'color' and 'background color'.</p>
+
+<p>The color picker consists of two dynamically coordinated select options lists. If you pick a font 'color' then the font 'color' in the background options will change. If you pick background color then background color will change in the 'color' options. Trying it out, you will soon see how easy it is to pick pleasing color contrasts.</p>
+<h2>Pick a color palette</h2>
+
+<p>
+The top right 'Load a color palette' gives you 4 radio options which will load these options into the select lists on the right
+</p>
+<ol>
+<li>
+15 predefined; This is the default, and gives you the basic 15 named color palette as stipulated in the w3c html4 recomendation.
+</li>
+<li>
+140 named; These are the 140 netscape named colors. These colors are cross browser in that the names are recognsed in Internet Explorer and  Netscape
+</li>
+
+<li>
+216 non-dithering; These are the 216 non dithering color which gives you the widist possible choice.
+</li>
+
+<li>
+User preferences; These are the system user preferences palette as outlined in the w3c css2 recomendation. They are based on the client machines user preference for things like 'button face'.
+
+</li>
+
+
+
+</ol>
+
+</div>
+</body>
+</html>
+

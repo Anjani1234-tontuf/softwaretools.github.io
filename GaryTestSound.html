@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+<meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+<meta http-equiv="pragma" content="no-cache">
+<!-- ensure that the page automatically reloads from the server every five minutes -->
+<meta http-equiv="Refresh" content="300">
+<title>Gary Test Sound</title>
+<style>
+body {
+width:400px;
+margin:0 auto;
+font-size:16px;
+text-align:center;}
+
+.re {font-size:16px;margin:16px;}
+.bk {font-size:16px;background-color:azure;border:solid 1px black;margin:16px;}
+.bk:hover {font-size:16px;background-color:teal;border:solid 1px white;margin:16px;}
+
+.bkp {font-size:16px;background-color:azure;}
+
+@media only screen and (orientation: portrait) ,
+only screen and (orientation: landscape) and (max-width: 401px) {
+body {width:100%}
+}
+</style>
+</head>
+<body>
+<p>Hit the <span class='bkp'>Blue buttons</span> below to play a sound sprite
+<hr>
+<button class='re' onclick="getCurTime()" type="button">Get current time position</button><br>
+<button class='bk' onclick="javascript:Attention();" type="button">Attention</button>
+<button class='bk' onclick="javascript:Begin();" type="button">Begin</button>
+<button class='bk' onclick="javascript:Done();" type="button">Done</button>
+<hr>
+<!--
+<br>
+<input type="button" title="Run Object Dumps" value="checkIT" onclick="checkIT();">
+<br>
+-->
+
+<pre style='text-align:left'>
+When you click on Play a sound Below, on an Android device, it does not play:
+Failed to execute play on 'html5medaielement' api can only be initiated by a user gesture
+
+see  https://code.google.com/p/chromium/issues/detail?id=178297
+In this case, its a bug, since, a select is a user gesture
+
+workarounds
+http://blog.foolip.org/2014/02/10/media-playback-restrictions-in-blink/
+http://webaudioapi.com/samples/audio-tag/
+https://github.com/borismus/webaudioapi.com
+</pre>
+
+
+
+  <p class="td1p">Play a Sound file<br>
+  <select class="buttonNgrey" name="ringCDAlarm1" id="ringCDAlarm1" size="1" onchange="splayFileApp();">
+  <option value="Sounds/Stop" selected>Stop</option>
+  <option value="Sounds/alarm_beep">Short Beep</option>
+  <option value="Sounds/woosh">Whoosh</option>
+  <option value="Sounds/buzzer_x">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x">Frying Pan</option>
+  <option value="Sounds/kinison">Oh Oh</option>
+  <option value="Sounds/fanfare_x">Fan Fare</option>
+  <option value="Sounds/gunshots2_x">Gun Shots</option>
+  <option value="Sounds/Attention">Attention</option>
+  <option value="Sounds/Chimes">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy">Funky White</option>
+  </select></p>
+
+<pre style='text-align:left'>
+Workaround functions for the opera guys : foolip
+
+mediaPlaybackRequiresUserGesture()
+removeBehaviorsRestrictions()
+mediaPlaybackRequiresUserGesture()
+
+</pre>
+
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjqt.js"></script>
+<script type="text/javascript">
+var mygjCBCreatedHTML5Audio;
+var segmentEnd;
+
+function splayFileApp() {
+  var theelem = document.getElementById('ringCDAlarm1');
+  playFileApp(theelem.value);
+}
+
+function checkIT(){
+  dumpAll();
+}
+
+function checkCanPlay(){
+  var a = document.createElement('audio');
+  var b = (a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
+  if(b) return 1;
+  else
+    {
+      var c = (a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+      if(c) return 2;
+    }
+    return 0;
+}
+
+function playFile(wavin){
+  wavin = typeof wavin !== 'undefined' ? wavin : 'Sounds/audiosprite';
+
+  try
+  {
+    //var iforWhich = checkCanPlay();
+    var iforWhich =tstHTML5audio();
+
+    if(iforWhich)
+    {
+      var theFile='';
+      if(iforWhich == 1) {
+          theFile = theFile.concat(wavin,'.wav');
+      } else if(iforWhich == 2) {
+          theFile += wavin + '.mp3';
+      } else if(iforWhich == 3) {
+          theFile += wavin + '.ogg';
+      }
+
+
+//      if(iforWhich == 2)
+//      {
+//        wavin = "Sounds/audiosprite.mp3";
+//      }
+//      else if(iforWhich == 1)
+//        {
+//          wavin = "Sounds/audiosprite.wav";
+//        }
+//        else
+//          {
+//            alert ("hosed");
+//            return;
+//          }
+
+        //<audio id="myGJCBEmbed09" src="sounds/audiosprite.wav" style="display:none" preload></audio>
+
+          var html5embedRef =document.createElement('audio');
+
+          html5embedRef.setAttribute("id","myGJCBEmbed09");
+          html5embedRef.setAttribute("width","0");
+          html5embedRef.setAttribute("height","0");
+          html5embedRef.setAttribute("hidden","false");
+          //html5embedRef.setAttribute("src", wavin);
+          html5embedRef.setAttribute("src", theFile);
+          document.body.appendChild(html5embedRef);
+          mygjCBCreatedHTML5Audio = document.getElementById("myGJCBEmbed09");
+
+          mygjCBCreatedHTML5Audio.addEventListener('timeupdate', function (){
+          if (segmentEnd && mygjCBCreatedHTML5Audio.currentTime >= segmentEnd)
+          {
+              mygjCBCreatedHTML5Audio.pause();
+          }}, false);
+        }
+        else
+          {
+            alert ("can not play file");
+            return;
+          }
+        }
+        catch(err)
+        {
+          gjonerror(err, 'try playFileWav');
+        }
+      }
+
+playFile();
+function playSegment(startTime, endTime, gj){
+    segmentEnd = endTime;
+    mygjCBCreatedHTML5Audio.currentTime = startTime;
+    mygjCBCreatedHTML5Audio.play();
+    if(gj) setTimeout(gj,0);
+}
+
+function getCurTime(){
+  alert(mygjCBCreatedHTML5Audio.currentTime);
+}
+
+function Attention(){
+  playSegment(0, 2.5);
+}
+function Begin(){
+  playSegment(3.0, 4);
+}
+function Done(){
+  playSegment(5.0, 5.5);
+}
+</script>
+</body>
+</html>
+
+

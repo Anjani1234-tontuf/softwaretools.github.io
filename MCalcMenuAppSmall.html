@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html manifest="MCalcMenuAppSmall.appcache">
+<head>
+<meta http-equiv="Cache-control" content="private">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="author" content="Gary GMGJ Johnson">
+<meta name="description" content="Calculator Converter Date Time">
+<meta name="keywords" content="Calculator, Math, Expression, History">
+<link rel="icon" href="GraphicWidgets/formula16x16.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<link rel="styleSheet" href="css/GaryDefaultApp.css" type="text/css">
+<!--
+# gjManifestVersion Nov 26 2015 version "1.00.28"
+-->
+<title>Calc Converter Menu</title>
+<style type="text/css">
+.gjInline{
+  border-style : none;
+  width:100%;
+  margin:0 auto;
+  padding:0;
+  height:3000px;
+  overflow:auto;}
+</style>
+</head>
+
+<body>
+<div id="containerSM" class="myborder" style="width:100%;">
+<form>
+<p style="text-align:center;">
+<!--
+
+-->
+<select name="myWhich1" id="myWhich1" size="1" class="menuNgrey" onChange="goThere(this)">
+<option value="MDateCalculatorApp.html">Date Calculator</option>
+<option value="MEvaluator-CalculatorApp.html"  selected>Evaluator - Calculator</option>
+<option value="MConversionCalculatorApp.html">Conversion Calculator</option>
+</select>
+</p>
+</form>
+<!--
+microwavewattage
+Temperature
+Terse
+WConvCalulator
+metrictoenglish
+feetinces
+-->
+
+<iframe id="gjFrame" class ="gjInline" src="MEvaluator-CalculatorApp.html"></iframe>
+
+</div>
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<script type="text/javascript" src="js/gjtrack.js"></script>
+
+<script type="text/javascript">
+
+function goThere(inthis) {
+  theinput = document.getElementById(inthis);
+  var idx = inthis.selectedIndex;
+  var content = inthis.options[idx].value;
+  document.getElementById("gjFrame").src=content;
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+/*
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Copyright © 2000-2012 by Gary Johnson
+
+
+COPYRIGHT
+
+The information contained on this site is protected by Canadian, United States of America and international copyright laws.
+
+All website materials, including, without limitation, design, text, graphics, photos, files, the Fast Track! logo, and
+the selection and arrangement thereof are © 2000-2009 Gary Johnson ALL RIGHTS RESERVED.
+
+Permission is granted to electronically copy and print to hard copy portions of this website for the sole purpose of
+using materials it contains for informational and non-commercial personal use only.
+
+Any other use of materials in this website, including any commercial use, reproduction for purposes other than those noted above,
+modification, distribution or republication, without the prior written consent of Gary Johnson is strictly prohibited.
+
+
+The Full Copyright statement is
+
+http://garyjohnsoninfo.info/XXSoftwareTools/Copyright.html
+
+To Be done
+Dictionary DEF SHO
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+/* GREYPale blue accents
+=============================================================================
+Changelog
+=============================================================================
+*/
+
+<!--[if IE]>
+
+#mygradient
+{
+
+background: transparent;
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0CFEFEC1,endColorstr=#FFFFFFFF)"; /* IE8 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0CFEFEC1,endColorstr=#FFFFFFFF);   /* IE6 & 7 */
+zoom: 1;
+
+}
+<![endif]-->

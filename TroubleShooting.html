@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+start with console
+
+\firefox.exe -console
+
+copy the shorcut
+left click on icon or shortcut you use to to start
+
+add -console
+-->
+<!--
+Changelog
+
+-->
+<head>
+
+  <title>Trouble Shooting</title>
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="CookBook">
+  <meta name="keywords" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<NOSCRIPT>
+<META HTTP-EQUIV="Refresh" content="0;URL=YouMustEnableJavascript.html">
+</NOSCRIPT>
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmsg.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjqt.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjtimeGUI.min.js"></script>
+<!--
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gj53runSearchHTML.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+<script type="text/javascript" src="chrome://browser/content/utilityOverlay.min.js"></script>
+-->
+<script type="text/javascript">
+
+//NOSCRIPT above checks for Javascipt
+
+function dumpAllL()
+{
+  try
+  {
+    dumpIt(window, 'Window object');  //IE same as window.window
+    dumpIt(document, 'Document object'); // FF yes
+    dumpIt(document.body, 'Document.body object'); //FF yes
+    //dumpIt(screen, 'Screen object');  //FF null
+    dumpIt(navigator, 'navigator object'); //FF yes
+    //dumpIt(document.documentElement, 'Document.documentElement object');  //It dumps the HTML of current document
+    // if you have a NOSCRIPT tag for javascript running this will bring up my noscript page
+    // META YouMustEnableJavascript.html">
+    //dumpIt(document.all, 'Document.all object'); //IE only
+    //  same same dumpIt(window.window, 'window.window object');//IE no
+    //dumpIt(window.screen, 'window.screen object');  //? see showScrSize
+  }
+  catch(err)
+  {
+    gjonerror( err, "dumpAllL");
+  }
+}
+
+
+function testDiag()
+{
+
+var msg1 = getCBdir()
+
+var op0 = " FireFox Preferences for gj53run";
+
+var op1 = " Do Animations = " + getFFpref("gj53run.doAnimations");
+var op2 = " Open in Tab = " + getFFpref("gj53run.OpeninTab");
+var op3 = " Show Verbose Help = " + getFFpref("gj53run.ShowDuh");
+var op4 = " Debug Extension Messages = " + getFFpref("gj53run.DebugExtension");
+var op5 = " Debug HTML = " + getFFpref("gj53run.DebugHTML");
+var op6 = " Your Install Directory = " + getFFpref("gj53run.URL1");
+var opx = " ";
+
+//var pp0 = "Cookie gj53runOptions Options"; there are no cookie options
+
+var cook1;
+
+  if(checkDebug())
+  {
+    cook1 = "DebugCB set in cookies on";
+  }
+  else
+  {
+    cook1 = "DebugCB set in cookies off";
+  }
+
+var whichOS
+var twhichOS = gjwhichOS()
+
+  if(twhichOS == 'w')
+  {
+    whichOS = "Windows";
+  }
+  else
+  if(twhichOS == 'm')
+  {
+    whichOS = "Macinstosh";
+  }
+  else
+  if(twhichOS == 'x')
+  {
+    whichOS = "Linux or Unix";
+  }
+  else
+  {
+    whichOS = "Unkown";
+  }
+
+
+
+var ok;
+  if(isGecko())
+  {
+    ok = "A Gecko Mozilla based browser";
+  }
+  else
+  {
+    ok = "Not a gecko based browser";
+  }
+
+
+var msg2 = "Your Current Theme Selection is: ";
+
+  if(!(vtheme = getCookie("THEME")))
+  {
+    vtheme = "UNKNOWN";
+  }
+
+   msg2 += vtheme;
+
+var msg2a=  unescape(document.cookie);
+
+var wavPlugs = "Wav Plugins " + checkPluginWav();
+
+var msg3 = "window.location.pathname: " +  window.location.pathname + " window.location.protocol: " + window.location.protocol;
+
+var msg4 = 'window.document.height = ' + window.document.height ;
+var msg5 = 'window.document.width = ' + window.document.width ;
+
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op0);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op1);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op2);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op3);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op4);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op5);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + op6);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + opx);
+
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + cook1);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + whichOS);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + ok);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg2);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg2a);
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + opx);
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + wavPlugs);
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + opx);
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + navigator.userAgent + " " + navigator.appVersion );
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg3 );
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg4 );
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + msg5 );
+
+
+
+  var op = getCBPath("charts", "TemperatureEquivalents.html", "not used")
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + "Checking get Path " + op);
+
+  //slightly different implementation on browsers
+  //its not define here so NG   var theBase = document.getElementsByTagName('base')[0].href;
+  //var theBase ="Base Hhref" + document.getElementsByTagName('base');
+  //changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + showtoString(theBase));
+
+  //showScrSize();
+
+
+  dumpAllL();
+
+//I really should check the permissions on return off getFFpref("gj53run.URL1");
+
+}
+
+
+</script>
+</head>
+<body>
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+
+
+<H1> Please send me an email and we will work out your problems  gary_johnson_53 [at] hotmail [dot] com </H1>
+
+<H2>KEYBOARD SHORTCUTS</H2>
+
+<pre class='fancy' WIDTH=90EM;>
+
+It is very common for extensions to have keyboard conflicts.
+We always provide a way to use either a menu or a keyboard shortcut in these situations,
+so if you have a problem opening something with a shortcut, try the menu option next.
+
+You can report the keyboard conflicts to me and I will find a way to help you.
+It is very common for third party keyboards to have different control keys on the Macintosh platform.
+
+The known list of Applications and Extensions who have Keyboard Shortcuts that can conflict with FastTrack
+
+Firefox Extensions
+
+  &quot;Web Developer&quot; by default sets a lot of keyboard shorctuts,
+
+    Select Tools ->Addons -> web developer
+      Select options
+        Select keys
+          You can just blank out M and N here to use the FastTrack options
+
+  &quot;Tab Mix&quot;
+
+Firefox - Help - Search &quot;Keyboard shortcuts" should get you the latest list of shortcuts
+<!--
+Firefox 3.5 may have a problem with Ctrl shift N - Bookmarks?
+-->
+
+</pre>
+
+<H2>CHECK THE ERROR CONSOLE</H2>
+<pre class='fancy' WIDTH=90EM;>
+
+Close all other Windows and Tabs except this one.
+
+Select Tools -> Error Console
+Click on ALL, then Click on Clear
+
+Select Tools ->Addons -> gj53run -> Options
+Click on Debug Extension Messages
+Click on Debug Annimation Messages
+Close the Addons window
+
+
+<a class="AOne" href="SetDebug.html">Go here and make sure alternate debugging is set on</a>
+
+Open the problem page in a new Tab and repeat the problem action.
+
+View the messages in the console.
+Its common to see many errors and messages in debug mode.
+You should probably contact me and set up a phone call or a chat to interpert these
+
+Clear the console after each viewing to make it easier to isolate the errors you are getting.
+
+Don't forget to turn off the debugging options when your done!
+</pre>
+
+<H2>EXTENSION DIAGNOSTICS</H2>
+<pre class='fancy' WIDTH=90EM;>
+
+<input type="button" id="dotestDiag" title="Run a few checks"class="buttonNgrey" value="Run Checks"
+onmouseover="toggleHighLight('m', this.id);"
+onClick="testDiag();"
+onmouseout="toggleHighLight('o', this.id);">
+
+<B>Scroll</b> down after you have hit the button, some of the output is on the bottom of the page.
+
+The popup windows are HTML DOM object dumps and are only expected to be useful in EXTREMELY rare situations.
+
+Nearly every Browser Tech Support person in the World will ask you to clear your cache first, so you might as well do it
+
+<a class="AOne" href="http://kb.mozillazine.org/Clearing_the_cache">How to clear the Cache</a>
+</pre>
+
+<H2>SOUND</H2>
+<pre class='fancy' WIDTH=90EM;>
+
+1) The very first thing to do is check your volume controls to make sure the volume is on (not muted)
+and that it is set high enough for you to hear it.
+
+2) Click on the button &quot;Run Checks&quot; above
+
+<B>Scroll down this page</B> and find the line &quot;Wav Plugins&quot;, if the line is blank after wav plugins, you need to install a plugin for wav files
+
+If you do have a wav plugin installed, find the line &quot;Your Install Directory&quot;
+From your Operating System's file Explorer,  go to your Install Directory -> XXSoftwareTools -> Sounds
+click on a wav file to see what by default plays wav files for your OS.
+If you do not hear anything, check your volume controls or contact an Operating System support person
+
+</pre>
+
+<H2>VIDEO</H2>
+<pre class='fancy' WIDTH=90EM;>
+1) Is a work in progress.  Please ignore video for now.
+
+</pre>
+<H2>Useful Links</H2>
+
+<pre class='fancy' WIDTH=90EM;>
+
+<a class="AOne" href="http://kb.mozillazine.org/Video_or_audio_does_not_play">MozillaZine Video and Audio do not play</a>
+<a class="AOne" href="http://support.mozilla.com">Mozilla SUMO Support</a>
+<a class="AOne" href="http://support.mozilla.com/en-US/kb/Using+the+QuickTime+plugin+with+Firefox">Windows and Mac - Using QuickTime  </a>
+<a class="AOne" href="http://ubuntuforums.org/showthread.php?t=205449&highlight=startup+sound">Ubuntu Forums Comprehenisve Sticky on Sound </a>
+</pre>
+
+
+<!--
+<a class="AOne" href="DisplayJavaEnv.html">Check Java</a>
+-->
+
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+
+</body>
+</html>
+
+
+

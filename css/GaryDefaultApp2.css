@@ -1,0 +1,888 @@
+/*
+
+*/
+
+/* GREYPale blue accents
+=============================================================================
+Changelog
+=============================================================================
+*/
+
+.myheader
+{
+  display:none;
+  width:100%;
+}
+
+body
+{
+  /* background-color: #F5F5F5;
+  color: #191970;
+  margin: 2em;*/
+}
+.bodybc
+{
+  background-color: #F5F5F5;
+}
+
+.skiplink, .myHidden
+{
+  display:none;
+}
+
+/* Start Links */
+
+a.AOne:link, a.Aone:visited
+{
+  color: blue;
+  text-decoration: underline;
+}
+
+a.AOne:hover
+{
+  background-color:#6F98A9;
+}
+
+a.AOne:focus
+{
+  color: #333333;
+}
+
+.DividerDot
+{
+  font-weight: bold;
+  font-size: 10pt;
+  color: #3366cc;
+  font-family: verdana
+}
+
+a.ATwo:link
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #3366cc;
+  text-decoration: none
+}
+a.ATwo:visited
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #3366cc;
+  text-decoration: none
+}
+a.ATwo:hover
+{
+  font-weight: bold;
+  font-size: 7.5pt;
+  color: #f05b35;
+  text-decoration: none
+}
+
+a.AThree:link, aAThree:visited
+{
+  color: blue;
+  text-decoration: underline;
+}
+
+a.AThree:hover
+{
+  background-color:#6F98A9;
+}
+
+a.AThree:focus
+{
+  color: #333333;
+}
+
+
+/* End Links */
+
+/* Start Lists, Directories */
+
+ol.lalpha
+{
+  list-style-type: lower-alpha;
+}
+
+ol.ualpha
+{
+  list-style-type: upper-alpha;
+}
+
+ul
+{
+  list-style: square
+}
+
+ul.square
+{
+  list-style: square
+}
+
+ul.disc
+{
+  list-style-type: disc
+}
+
+ul.circle
+{
+  list-style-type: circle
+}
+
+ul.none
+{
+  list-style-type: none
+}
+
+ul.inside
+{
+  background-color: #ffffd7;
+  color: black;
+  list-style-position: inside;
+  list-style-image: url("../GraphicWidgets/sdi-yl.gif");
+}
+
+ul.gbull
+{
+  color: black;
+  list-style-image: url("../GraphicWidgets/sdi-lb.gif");
+}
+
+ul li p, ol li p
+{
+  margin-top:0in;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+ul li p.ex, ol li p.ex
+{
+  margin-top:5px;
+  margin-bottom:5px;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.exp
+{
+  font-size: 10pt;
+  line-height: 14pt;
+  margin-top:7pt;
+  margin-bottom:7pt;
+  text-align:left;
+  display:block;
+}
+
+.mydt
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bolder;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.mydd
+{
+  text-indent:.3in;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+
+.mydtspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.myddspan
+{
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.mydt2
+{
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  /*  font-weight: bolder; */
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+.mydd2
+{
+  /*  text-indent:.3in; */
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: normal;
+  margin-top: 4px !important;
+  margin-bottom: 4px  !important;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+}
+
+
+.myFixed
+{
+  font-family:"Courier New",Courier,monospace;
+}
+
+
+.myborder
+{
+  margin:0;
+  padding-right:1px;
+  padding-left:1px;
+  border:.5pt solid black !important;
+}
+/* End Lists */
+
+/* Start HTML STD Text Tags */
+
+em
+{
+  /*  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%; */
+  font-style: italic;
+  color: blue;
+}
+
+strong
+{
+  color: #6F98A9;
+  font-weight: bold;
+  font-size: 120%;
+  font-variant: normal;
+  padding-right: .5em;
+  padding-left: .5em;
+}
+
+acronym, span.acronym
+{
+  cursor: help;
+  border: 1px dashed #000;
+  padding-right: .5em;
+  padding-left: .5em;
+  font-variant: small-caps;
+  background:silver;
+}
+
+h1
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+h2
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  background: #CCCCFF;
+  text-align:left;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:2px solid #336699;
+}
+
+h3
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:left;
+}
+
+h4
+{
+  font-weight: bold
+}
+
+h5
+{
+  font-weight: bold
+}
+
+
+.clearall
+{
+  clear:both;
+}
+
+input { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+select { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+}
+
+textarea.buttonNgrey:hover, select.buttonNgrey:hover, input.buttonNgrey:hover
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #B0C4DE;
+}
+
+textarea.buttonNgold, select.buttonNgold, input.buttonNgold
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #F4A460;
+}
+textarea.buttonNgold:hover, select.buttonNgold:hover, input.buttonNgold:hover
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #CD853F;
+}
+
+input.text
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  padding:3px;
+}
+
+input.number
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  padding:3px;
+}
+
+input.result
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+  padding:3px;
+}
+
+.myresult
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+  display:block;
+  width:15em;
+  background-color:white;
+  text-align:right;
+  padding:3px;
+}
+
+input.bold
+{
+  font-weight:bold;
+  font-size:14.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #008080;
+  background: #D5D5D4;
+}
+
+input.hidden
+{
+  font-size: 2pt;
+  visibility:hidden;
+}
+
+
+input.results
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  color: #000;
+  border: 2px solid #008080;
+}
+
+input.bolds
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #008080;
+  background: #D5D5D4;
+}
+
+button.playButton
+{
+  margin:0 0 0 0;
+  padding: 0 0 0 0;
+  font-size: 16px;
+  display:block;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  cursor:pointer;
+}
+
+button img
+{
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+}
+
+p
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+p.smaller
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.heading
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+  margin-bottom: 1em;
+}
+
+.center
+{
+  font-weight:bold;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenter
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.scenterpx
+{
+  font-weight:bold;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  text-align:center;
+}
+
+.smallcaps
+{
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.indent
+{
+  text-indent:.5in;
+}
+
+/* End Plain Paragraph Styles */
+
+/* Start Section Heading Helper Styles */
+
+.HC
+{
+  background: #CCCCFF;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:3px solid #336699;
+}
+
+.SHC
+{
+  background: #dedede;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border-top:1px solid #336699;
+}
+
+.SHF
+{
+  background: #FFFAFA;
+  padding-right:7.5pt;
+  padding-left:7.5pt;
+  padding-top:2.5pt;
+  padding-bottom:2.5pt;
+  border:1px solid #336699;
+}
+/*
+.HCCT
+{
+  font-weight: bold;
+  background:#CCCCFF;
+  border-top:1px solid #336699;
+  text-align:center;
+}
+*/
+.HCL
+{
+  background:#CCCCFF;
+  border-top:1px solid #336699;
+  padding-top:1.5pt;
+  padding-bottom:1.5pt;
+}
+
+.HCLT
+{
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.SHCL
+{
+  border-top:1px solid #336699;
+  padding-top:1.0pt;
+  padding-bottom:1.0pt;
+  font-weight:bold;
+  text-align:left;
+  margin-left:7.5pt;
+  margin-right:7.5pt;
+}
+
+.HCRT
+{
+  font-weight:bold;
+  text-align:right;
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+}
+
+/* End Section Heading Helper Styles */
+
+/* Start Font and Paragraph Style Modifiers */
+
+
+.TRC
+{
+  background: #FFFFFF;
+}
+
+.R1
+{
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.R2
+{
+  padding:1pt 1pt 1pt 1pt;
+  background-color: #CCCCFF;
+}
+
+.a
+{
+  /* background-color: #ddddee;  */
+  color: black;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.anp
+{
+  background-color: #ddddee;
+  color: black;
+}
+
+.apl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+  background-color: #ddddee;
+  color: black;
+}
+
+
+.b
+{
+  background-color: #eeeeff;
+  color: black;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.bnp
+{
+  background-color: #eeeeff;
+  color: black;
+}
+
+.bpl
+{
+  padding-left:7.5pt;
+  padding-right:7.5pt;
+  background-color: #eeeeff;
+  color: black;
+}
+
+
+
+/* td 1 for p an embedded p in td in table margins on right and left */
+.td1p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.td2p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family:"Courier New",Courier,monospace;
+  font-weight: bolder;
+}
+
+.td1px
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:13px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+.italicblue
+{
+  font-style: italic;
+  color: blue;
+}
+
+.CBerror
+{
+  font-weight: bold;
+  color: red;
+}
+
+.CBwarn
+{
+  font-weight: bold;
+  color: blue;
+}
+
+.LT
+{
+  font-size: 16.0pt;
+  font-family: "Times New Roman", Garamond,serif;
+  font-weight: bold;
+  margin-top:3pt;
+  margin-bottom:3pt;
+}
+
+/* GreyPattern is my mnemonic for another color background */
+
+.GreyPattern
+{
+  border: none;
+  background: #F0FFF0;
+}
+
+.DGreyPattern
+{
+  border:none;
+  background:#CCCCCC;
+}
+
+.LGreyPattern
+{
+  border:none;
+  background:#9999ff;
+}
+
+/* End Font Styles */
+
+/* Start Fancy Paragraphs */
+
+
+span.FL
+{
+  text-shadow: 0px 1px 1px #FAF0E6;
+  background-color:#ffffff;
+  margin:0;
+  padding-right:1.5px;
+  padding-left:1px;
+}
+
+span.DropCap
+{
+  float: left;
+  font-size: 1.7em;
+  padding: 0 0.15em;
+  margin: 0 0.15em 0 0;
+  color: #CC0066;
+  border: 1px solid blue;
+}
+
+
+/* End Fancy Paragraphs */
+
+/* Start Table Styles */
+
+
+td p, th p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+table
+{
+    border-collapse: collapse; /* 'cellspacing' equivalent */
+}
+
+table td, table th
+{
+    padding: 1px; /* 'cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+
+.CTB
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* no margin on float */
+.RTB
+{
+  float: right;
+}
+
+.LTB
+{
+  float: left;
+}
+
+/* End Table Styles */
+
+/* Spacers */
+
+.mythinsp mythinspFL
+{
+  font-size: 2pt;
+}
+
+
+.SHCm
+{
+  background-color: #efefef;
+}
+
+.SHFm
+{
+  background-color: #dedede;
+}
+
+.HCLm
+{
+  background-color:#CCCCFF;
+}
+
+
+#myleft
+{
+  float:left;
+  width:25em;
+  margin-right:10px;
+  padding-bottom:10px;
+  padding-right:10px;
+}
+
+#myright
+{
+  width:58%;
+}
+
+.DEF
+{
+  font-weight:normal;
+}
+.nohover a:hover
+{
+  background-color: transparent !important;
+}
+
+.closeit
+{
+  vertical-align: top;
+  float:right;
+  font-size:6pt;
+}
+
+
+.myReq
+{
+  border-left: 1em solid lightblue;
+}
+
+.myOpt
+{
+  border-left: 1em solid #ccc;
+}

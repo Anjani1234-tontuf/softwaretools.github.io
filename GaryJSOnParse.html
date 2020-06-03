@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+    <head>
+        <title>phpbasics.php</title>
+        <meta charset="utf-8">
+        <link rel="StyleSheet" href="../XXSoftwareTools/css/musings.css" type="text/css">
+    </head>
+    <body>
+<div id="placeholder"></div>
+<div id="placeholder2"></div>
+<div id="placeholder3"></div>
+<div id="placeholder4"></div>
+<div id="placeholder5"></div>
+<script>
+  var data={
+    "firstName":"Ray",
+    "lastName":"Villalobos",
+    "joined":2012
+  };
+  document.getElementById("placeholder").innerHTML=data.firstName+" "+data.lastName+" "+data.joined;
+
+  var data = { "users":[
+            {
+                "firstName":"Ray",
+                "lastName":"Villalobos",
+                "joined": {
+                    "month":"January",
+                    "day":12,
+                    "year":2012
+                }
+            },
+            {
+                "firstName":"John",
+                "lastName":"Jones",
+                "joined": {
+                    "month":"April",
+                    "day":28,
+                    "year":2010
+                }
+            }
+    ]}
+
+    var output="<ul>";
+    for (var i in data.users) {
+        output+="<li>" + data.users[i].firstName + " " + data.users[i].lastName + "--" + data.users[i].joined.month+"</li>";
+    }
+    output+="</ul>";
+
+    document.getElementById("placeholder2").innerHTML=output;
+
+var foo = "bar";
+var ob  = {};
+ob[foo] = "something"; // === ob.bar = "something"
+// this is undefined cant use variable foo document.getElementById("placeholder3").innerHTML=ob.foo;
+document.getElementById("placeholder3").innerHTML=ob.bar;
+
+var firstName = "xx";
+var lastName  = "xy";
+var phone     = "xz";
+var adress    = "x1";
+var obj = {"fN":firstName, "lN":lastName, "phone":phone, "address":adress};
+console.log(obj);
+document.getElementById("placeholder4").innerHTML=obj.fN + " " + obj.lN;
+
+var text = '{ "employees" : [' +
+'{ "firstName":"John" , "lastName":"Doe" },' +
+'{ "firstName":"Anna" , "lastName":"Smith" },' +
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+
+var obj = JSON.parse(text);
+document.getElementById("placeholder5").innerHTML =
+obj.employees[1].firstName + " " + obj.employees[1].lastName;
+
+</script>
+
+
+<hr class="alt">
+
+</body>
+</html>
+

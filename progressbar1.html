@@ -1,0 +1,197 @@
+<html>
+  <head>
+    <script>
+      var count = 0;
+      var k = 1024;
+      var m = k * k;
+      var maxFileSizeMB = 25;
+      var width = 200;
+
+      function updateBytes(evt) {
+        if (evt.lengthComputable) {
+          evt.target.curLoad = evt.loaded;
+          evt.target.log.parentNode.parentNode.previousSibling.textContent =
+            Number(evt.loaded/k).toFixed() + "/"+ Number(evt.total/k).toFixed() + "kB";
+        }
+      }
+
+      function updateSpeed(target) {
+        if (!target.curLoad) return;
+        target.log.parentNode.parentNode.previousSibling.previousSibling.textContent =
+          Number((target.curLoad - target.prevLoad)/k).toFixed() + "kB/s";
+        target.prevLoad = target.curLoad;
+      }
+
+      function updateProgress(evt) {
+         updateBytes(evt);
+        if (evt.lengthComputable) {
+          var loaded = (evt.loaded / evt.total);
+          if (loaded < 1) {
+            var newW = loaded * width;
+            if (newW < 10) newW = 10;
+            evt.target.log.style.width = newW + "px";
+          }
+        }
+      }
+
+      function loadError(evt) {
+        evt.target.log.setAttribute("status", "error");
+        evt.target.log.parentNode.parentNode.previousSibling.previousSibling.textContent = "error";
+        clearTarget(evt.target);
+      }
+
+      function loaded(evt) {
+        updateBytes(evt);
+        evt.target.log.style.width = width + "px";
+        evt.target.log.setAttribute("status", "loaded");
+        evt.target.log.parentNode.parentNode.previousSibling.previousSibling.textContent = "";
+        clearTarget(evt.target);
+      }
+
+      function clearTarget(target) {
+        clearInterval(target.interval);
+        target.onprogress = null;
+        target.onload = null;
+        target.onerror = null;
+      }
+
+      function initXHREventTarget(target, container) {
+        var speed = document.createElement("td");
+        speed.className = "speed";
+        container.appendChild(speed);
+
+        var info = document.createElement("td");
+        info.className = "info";
+        container.appendChild(info);
+
+        var progressContainerTd = document.createElement("td");
+        container.appendChild(progressContainerTd);
+
+        var progressContainer = document.createElement("div");
+        progressContainer.className = "progressBarContainer";
+        progressContainerTd.appendChild(progressContainer);
+
+        var progress = document.createElement("div");
+        progressContainer.appendChild(progress);
+        progress.className = "progressBar";
+
+        target.log = progress;
+        target.interval = setInterval(updateSpeed, 1000, target);
+        target.curLoad = 0;
+        target.prevLoad = 0;
+        target.onprogress = updateProgress;
+        target.onload = loaded;
+        target.onerror = loadError;
+      }
+
+      function start(file) {
+        var xhr = new XMLHttpRequest();
+        ++count;
+
+        var container = document.createElement("tr");
+
+        var line = document.createElement("td");
+        container.appendChild(line);
+        line.textContent = count + ".";
+
+        var filename = document.createElement("td");
+        container.appendChild(filename);
+        filename.textContent = file.fileName;
+        filename.className = "filename";
+
+        initXHREventTarget(xhr.upload, container);
+        initXHREventTarget(xhr, container);
+
+        var tbody = document.getElementById('tbody');
+        tbody.appendChild(container);
+        tbody.style.display = "";
+
+        xhr.open("POST", "cgi-bin/posthandler.pl");
+        xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+        xhr.sendAsBinary(file.getAsBinary());
+      }
+
+      function startXHR() {
+        var files = document.getElementById("file").files;
+        if (files) {
+          var file = files.item(0);
+          if (file && file.fileSize) {
+            if (file.fileSize > (maxFileSizeMB * m)) {
+              alert("The file is too big: " + file.fileName + ", " + Number(file.fileSize/m).toFixed(1) + "MB");
+              return;
+            }
+            start(file);
+            return;
+          }
+        }
+        alert("Nothing to upload!");
+      }
+
+    </script>
+     <style>
+       .progressBar {
+         height: 10px;
+         width: 0px;
+         background: blue;
+         -moz-box-shadow: inset 1px 1px 5px #0000AA;
+         -moz-border-radius: 5px;
+       }
+       .progressBar[status="loaded"] {
+         background: green;
+         -moz-box-shadow: inset 1px 1px 5px #00AA00;
+       }
+       .progressBar[status="error"] {
+         background: red;
+         -moz-box-shadow: inset 1px 1px 5px #AA0000;
+       }
+       fieldset, legend {
+         border: 1px inset;
+       }
+       .info {
+         font-size: 10px;
+         width: 100px;
+         text-align: right;
+       }
+       .speed {
+         font-size: 10px;
+         width: 60px;
+         text-align: right;
+       }
+       .progressBarContainer {
+         width: 200px;
+         -moz-box-shadow: inset 1px 1px 5px #CCCCCC;
+         -moz-border-radius: 5px;
+       }
+       .filename {
+         white-space: nowrap;
+       }
+     </style>
+  </head>
+  <body>
+    <h3>A test for nsIDOMFile and XMLHttpRequest progress events</h3>
+    <ul>
+
+      <li>The file data is sent to the server which sends the same data back.</li>
+      <li>Multiple files can be uploaded simultaneously.</li>
+      <li>Max file size in this demo is <script>document.write(maxFileSizeMB);</script>MB.</li>
+    </ul>
+    <fieldset>
+      <legend>Multiple simultaneous file transfers with progress</legend>
+
+      <input type="file" id="file">
+      <input type="button"
+             onclick="startXHR();"
+             value="Upload file using XHR">
+      <table>
+        <tbody id="tbody" style="display: none;">
+          <tr>
+            <td style="text-align: center;" colspan="2">Filename</td>
+            <td style="width: 370px; text-align: center;" colspan="3">Upload progress</td>
+            <td style="width: 370px; text-align: center;" colspan="3">Download progress</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </body>
+</html>

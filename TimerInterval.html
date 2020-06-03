@@ -1,0 +1,545 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Cache-control" content="private">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="Sprint Timers start and stop notifications for time intervals less than a minute">
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="icon" href="GraphicWidgets/sliverclock.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta name="keywords" content="">
+
+<title>Interval Timers</title>
+<script defer="defer" src="js/gjcore.min.js"></script>
+<script defer="defer" src="js/gjutil1.min.js"></script>
+<!-- <script defer="defer" src="js/gjqt.min.js"></script>
+-->
+<script defer="defer" src="js/gjqt.js"></script>
+<script defer="defer" src="js/gjmsg.min.js"></script>
+<script defer="defer" src="js/gjmove.min.js"></script>
+<script defer="defer" src="js/gjcalc1.min.js"></script>
+<script defer="defer" src="js/gjtime.js"></script>
+<!--   test
+<script defer="defer" src="js/gjtime.min.js"></script>
+<script defer="defer" src="js/gjtimeGUI.min.js"></script>
+-->
+<script defer="defer" src="js/gjtimeGUI.js"></script>
+<script defer="defer" src="js/gjtrack.js"></script>
+<style type="text/css">
+body {width:700px;margin:0 auto;}
+.gjrespfont{font-size:48px !important;}
+.gjth, .resp, .mw2 {width:700px; margin:0 auto;}
+
+td p, th p{
+margin-top:0in;
+margin-right:7.5pt;
+margin-left:7.5pt;
+margin-bottom:.0001pt;
+font-size:10.0pt;
+font-family: "Courier New", Courier,monospace;}
+
+.mw{
+position:absolute;
+top:0px;
+left:0px;
+z-index:1000;
+background-color: black;
+color: white;
+display:block;
+width:100%;
+height:100%;}
+
+.mw2{
+background-color: black;
+color: white;
+display:none;
+margin:0 auto;}
+
+#block_land{
+position:absolute;
+top:0;
+left:0;
+text-align:center;
+background:white;
+width:100%;
+height:100%;
+display:none;}
+
+p.CBwarn{
+display:block;
+margin-right:auto;
+margin-left:auto;
+text-align:center;}
+
+/*
+  This media query is for most responsive / smartphones and small tablets
+  if portrait == all smarphones and tablets
+  * can add if pixel ratio  gt 1.3 == newer smartphones and tablets in landscape
+  it should exclude normal  full size and hig density screens with this != max-width: 999px
+*/
+
+
+@media only screen and (orientation: portrait) and (max-width: 999px),
+only screen and (orientation: landscape) and (max-width: 999px) {
+
+body {width:100%}
+
+.mw2, .resp, .gjth {width:100%;}
+
+#CountDownTime{font-size:16px !important;}
+
+.gjrespfont{font-size:32px !important;}
+
+}/* */
+
+
+</style>
+</head>
+<body onload="realsetUP();" onbeforeunload="return really();">
+<div id="block_land">Turn your device to landscape mode and hit reload.</div>
+
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+
+
+<div id="mymain" class="mw2"> <!-- Div to use for blanking the screen -->
+
+
+<table class="CTB">
+<tr>
+<td class="gjth" style='vertical-align:middle; color:black;'>
+<blockquote id="myblockq" class='fancy smallboldspaced center gjth' style='color:black;margin-right:auto;margin-left:auto'>
+<br>
+  This is the Timers Automatic Screen Saver
+  <br><br>
+  Every 5 Minute, for the first 3 seconds,  we blank the screen
+  <br><br>
+  We will be right Back
+<br>
+</blockquote>
+</td>
+</tr>
+</table>
+
+</div>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<div id="mymain2" class="myinline" style="margin-left:auto;margin-right:auto;"> <!-- main width setting div -->
+
+<!--
+<div id="TimerWarning" style='color:blue;width:50em;margin-right:auto;margin-left:auto;display:none'>
+<input style="float:right; position:relative; z-index:2;" class="closeit" type="button" id="close01" value="-" onClick="toggleDisplayButton('TimerWarning','close01' );">
+
+<blockquote id="myblockq">
+Please familiarize yourself with the Options and Help before you uses these Timers.
+<br>
+Hit the Display Help Button and read the Help Section that becomes visible.  Hit the Hide Help Button.
+<br>
+Hit the "Check Alarm Play" Button.
+<br>
+If you don't hear the sound play, adjust the volume of your speakers.
+<br>
+If you do not see a Help or timer information become visible, enable popups for this page.
+<br>
+If you still having problems see the SOUND section in <a class="AOne" href="TroubleShooting.html">Trouble Shooting</a>
+<br>
+</blockquote>
+</div>
+-->
+
+
+<form name ="CountDownT" id="CountDownT">
+
+<table class='resp'>
+<thead>
+<div id='TimeDiv'>
+<p class="CBwarn" id='myTime2' style="font-size:24px;"></p>
+</div>
+</thead>
+<tbody>
+<tr class="HCCT">
+<td colspan="7"><p>Set Interval Timers</p></td>
+</tr>
+<tr>
+  <td class="b" style='vertical-align:middle'><p class="td1p CBwarn"> Timer 1</p>
+  <input type="hidden" name="CHours" id="CHours" value="0">
+<!--  <INPUT TYPE=hidden name="CMinutes" id="CMinutes" VALUE="0">  -->
+  </td>
+  <!-- seconds can be any integer value within reason example 10 - 2000 -->
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Seconds<br>
+  <input name="CSeconds" id="CSeconds" type="text" class="text" value="20" size="3">
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Sound<br>
+  <select class="buttonNgrey" name="ringCDAlarm1" id="ringCDAlarm1" size="1">
+  <option value="Sounds/Stop.wav" selected>Stop</option>
+  <option value="Sounds/alarm_beep.wav">Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White</option>
+  </select>
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Name<br>
+  <input name="AlarmName1" type="text" class="text" value="Sprint" size="8">
+  </p>
+  </td>
+    <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Repetitions<br>
+  <select class="buttonNgrey" name="ARepeater2" id="ARepeater2" size="1">
+  <option value="1">1 time</option>
+  <option value="2">2 times</option>
+  <option value="3" selected>3 times</option>
+  <option value="4">4 times</option>
+  <option value="5">5 times</option>
+  <option value="6">6 times</option>
+  <option value="7">7 times</option>
+  <option value="8">8 times</option>
+  <option value="9">9 times</option>
+  <option value="10">10 times</option>
+  <option value="11">11 times</option>
+  <option value="12">12 times</option>
+  <option value="13">13 times</option>
+  <option value="14">14 times</option>
+  <option value="15">15 times</option>
+  <option value="16">16 times</option>
+  <option value="17">17 times</option>
+  <option value="18">18 times</option>
+  <option value="19">19 times</option>
+  <option value="20">20 times</option>
+  <option value="21">21 times</option>
+  <option value="22">22 times</option>
+  <option value="23">23 times</option>
+  <option value="24">24 times</option>
+  <option value="25">25 times</option>
+  <option value="26">26 times</option>
+  <option value="27">27 times</option>
+  <option value="28">28 times</option>
+  <option value="29">29 times</option>
+  <option value="30">30 times</option>
+  <option value="31">31 times</option>
+  <option value="32">32 times</option>
+  <option value="33">33 times</option>
+  <option value="34">34 times</option>
+  <option value="35">35 times</option>
+  <option value="36">36 times</option>
+  <option value="37">37 times</option>
+  <option value="38">38 times</option>
+  <option value="39">39 times</option>
+  <option value="40">40 times</option>
+  </select>
+  </p>
+  </td>
+  <td class="a" rowspan="2" style='vertical-align:bottom'>
+  <p class="td1p">Delay Start <br>Seconds<br><br>
+  <input name="CMinutes" id="CMinutes" type="text" class="text" value="10" size="3">
+  </p>
+  </td>
+  </tr>
+
+<!-- -->
+<tr>
+  <td class="b" style='vertical-align:middle'><p class="td1p CBwarn"> Timer 2</p>
+  <input type="hidden" name="CHours2" id="CHours2" value="0">
+  <input type="hidden" name="CMinutes2" id="CMinutes2" value="0">
+  </td>
+
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Seconds<br>
+  <input name="CSeconds2" id="CSeconds2" type="text" class="text" value="40" size="3">
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Sound<br>
+  <select class="buttonNgrey" name="ringCDAlarm2" id="ringCDAlarm2" size="1">
+  <option value="Sounds/Start.wav" selected>Start</option>
+  <option value="Sounds/alarm_beep.wav">Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White</option>
+  </select>
+  </p>
+  </td>
+
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Name<br>
+  <input name="AlarmName2" type="text" class="text" value="Rest" size="8">
+  </p>
+  </td>
+
+  <td class="a" align="right" style='vertical-align:bottom'>
+  <p class="td1p">
+  <input type="button" id="SCDT2" class="buttonNgrey" value="Set Alarm"
+  onmouseover="toggleHighLight('m', this.id);"
+  onclick="setIntervalAlarms(this.form);"
+  onmouseout="toggleHighLight('o', this.id);">
+</p>
+  </td>
+  </tr>
+<tr>
+  <td colspan="3" class="b" style=' vertical-align:bottom'>
+  <p id="ExerciseTime" class="td1p"></p>
+  </td>
+  <td colspan="3" class="b" style=' vertical-align:bottom'>
+  <p id="TotalTime" class="td1p"></p>
+  </td>
+</tr>
+</tbody>
+</table>
+
+</form>
+
+<div id="CountDownTime" style='visibility:hidden;'>
+<table border=0 class="CTB gjrespfont"><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+
+<br clear=all>
+
+<form name ="StopWatchT" id="StopWatchT">
+
+<table class="CTB">
+<tbody>
+ <tr class="HCCT">
+ <td colspan="1"><p>Stopwatches</p></td>
+ <td colspan="3"><p>Test Alarm</p></td>
+ <td colspan="2"><p>Information and Options</p></td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+    <input type="button" id="STARTS"class="buttonNgrey" value="Start Stopwatches"
+    onmouseover="toggleHighLight('m', this.id);"
+    onclick="setStopWatch(this.form);"
+    onmouseout="toggleHighLight('o', this.id);">
+</td>
+<td class="a" style=' vertical-align:bottom'>
+&nbsp;
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <select class="buttonNgrey" name="testringAlarm" id="testringAlarm" size="1">
+  <option value="Sounds/alarm_beep.wav" >Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan Hit</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav" selected>Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White Boy</option>
+  </select>
+</td>
+<td class="a" style='vertical-align:bottom'>
+  <input type="button" id="doTestAlarm" title="Run a 4 Second Count Down Timer"class="buttonNgrey" value="Check Alarm Play"
+  onmouseover="toggleHighLight('m', this.id);"
+  onclick="testAlarm(3,testringAlarm.options[testringAlarm.selectedIndex].value,'Test1');"
+  onmouseout="toggleHighLight('o', this.id);">
+</td>
+
+<td class="a" style='text-align:center; vertical-align:bottom'>
+  <input type="button" id="doHelp"class="buttonNgrey" value="Display Help"
+  onmouseover="toggleHighLight('m', this.id);"
+  onclick="showItT('TimerHelp',480, 600,'doHelp','Help');"
+  onmouseout="toggleHighLight('o', this.id);">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+
+<div id="StopWatchTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+<br clear=all>
+
+
+<div id="TimeOptsinfo" style="visibility:hidden; position:absolute; width:25em; height:600px; background-color:white; border-left: 5pt solid #000; padding-left:5pt; padding-right:5pt; z-index:2">
+<br>
+<input type="button" id="doCancel"class="buttonNgrey" value="Cancel All Timers"
+  onmouseover="toggleHighLight('m', this.id);"
+  onclick="alarmObject.cancel()"
+  onmouseout="toggleHighLight('o', this.id);">
+<br>
+
+</div>
+<!--
+Mozilla length of the two divs here not right, can't make help white for its real length
+see store result in gjtime
+-->
+
+
+<div id="TimerHelp" style="visibility:hidden; position:absolute; left:300; width:30em; height:600px; background-color:white; border-left: 5pt solid #000; padding-right:15pt; z-index:3;  text-align:left">
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>These timers were created for doing sprints on a stationary bike.</p>
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Please adjust Timers.html, &quot;The Timers&quot;, Display Options -> Update Interval to 1 if you have not already done so. </p>
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Seconds can be any whole number; however, they have not been tested with values greater than 400 (6 plus minute intervals). The alarm names were intended to be short descriptive names, for example less then 8 characters.  If you have active interval timers, do not hit setAlarm to try and start another interval timer, it does not work at this time.  Only one instance of an interval timer per page.  These timers were created for doing sprints on a stationary bike.</p>
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>The timers are accurate to +- 3 seconds as long as you are not running processor intensive tasks that take away from Firefox and this page. If you want these timers to be accurate, don't run anything else that uses a lot of your computers' CPU or other resources at the same time.  Examples, programming compiles, multiple downloads, large spreadsheet recalculations, watching HD videos etc.  It can take up to 5 seconds between the actual end time of the alarm (when the display goes to zero) and the playing of the alarm.  In other words, the actual time between the timers visual cues will be accurate to +- 3 seconds and the actual time between the audio cues will be as accurate; however, the time between the visual cue for one timer and the audio cue for another event can be off by up to 5 seconds +- 3 seconds.  Your mileage will vary.  If you want more accuray for timing event a) this application would need to re written as a high priority service or daemon and b) it would have to be run on a Real Time Operating System (RTOS). </p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'></p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>The display of the number of repetitions is expanded to be the number of events left.  The wait time is included as a repetition.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'></p>
+<p></p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>If you close the screen, the timers are no longer active.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>If you turn down the sound on your computer, it will be very hard to hear the alarms.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Use the Check Alarm Play button to make sure you can hear the ALARMS!</p>
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>If your computer goes into hibernation or Standby, you will not hear your timers.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>On most windows systems from your Desktop, right click on a empty area. Navigate to Properties - Screen Saver - Power.  We set our computers so that the hard disks are always on it never goes into Standby or Hibernation when we use the timers.</p>
+<p></p>
+
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>You can open a new tab in FireFox or a new window in Internet Exploder to continue working and your timers will remain active.</p>
+<p></p>
+<br>
+<p class='scenter b'>If you are unable to hear the test alarm.</p>
+<br>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Our Alarms are wav files.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Make sure your hardware volume control is not down or off</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Use Control Panel to check you sound settings for your sound card and your media players </p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Examples</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Go to "Start -> Control Panel</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>->Sounds and Audio Devices -> make sure mute is off.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Open Firefox and type about:plugins in the Location Bar. &nbsp; When the display comes back do a search for wav. &nbsp;
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>If you do not find it, then you need to set a default wav player.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Example</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Go to "Start -> Control Panel</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>->Quicktime -> Browser (tab) -> Mime Settings" and make sure wav files are selected under the audio category.</p>
+<p class='td1p b' style='padding:6pt 6pt 6pt 6pt;'>Other multimedia playback programs on your computer may interfere with your Player file types settings!</p>
+<br>
+
+</div>
+
+
+<div id="place" style="visibility:hidden; height:300px;width:480px; overflow:auto;overflow-x:hidden;overflow-y:scroll;padding-left:4;margin:0 auto;">
+
+<table id='myresult' width="50%" border="0" cellpadding="0" cellspacing="0" style="padding-bottom:5;">
+<tbody>
+</tbody>
+</table>
+</div>
+</div> <!-- main width setting div -->
+</div> <!-- maybe bug in html validator, more likley 2 mymain screws them up -->
+<div id="Thefooter" style="position:relative">
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+</div>
+<script>
+function testOrientation() {
+  document.getElementById('block_land').style.display = (screen.width>screen.height) ? 'none' : 'block';
+}
+
+window.addEventListener("orientationchange", testOrientation);
+
+if(navigator.userAgent.toLowerCase().indexOf("msie") > -1)
+{
+  var IE5 = (navigator.userAgent.indexOf('MSIE 5') > 0);
+  var IE6 = (navigator.userAgent.indexOf('MSIE 6') > 0);
+  var IE7 = (navigator.userAgent.indexOf('MSIE 7') > 0);
+  var IE8 = (navigator.userAgent.indexOf('MSIE 8') > 0);
+  if(IE5 || IE6 || IE7)
+  {
+    alert('I do not work with IE 5 or 6 and I have not tested this with Internet Explorer 7')
+  }
+  else
+  {
+    alert("Internet Explorer 8 needs extra time for this page to run\nGive it a few seconds and then click okay to proceed");
+  }
+}
+
+</script>
+</body>
+<!--
+Content Notes
+
+remove date timer, make new date timer with an array of timers to set
+
+Timer 1  Sprint
+Timer 2  Rest
+
+-->
+
+<!--
+
+Technical Notes
+readonly='readonly'
+
+need to find sone way to speed up play of wav file
+-->
+
+
+<!--
+
+Changelog
+ Mar 21 2009
+
+ Jun 02 2009
+
+Interval Timers Post a log message at beginning of Time1 + time 2 * interval = Exercise Time + wait Time = Total Time
+
+if Time1 is 35 and Time2 is 45 and interval is 30 with 300 seconds start
+
+(35 + 45) * Intervals = (x/60 minutes) + Interval Time (x + wait time / 60) total time
+
+removed  ID="LOAD" and  ID="oContainer" here but left
+script block after html element myTime2 to get around slow loading times of the warning dialog
+changeInnerHTML('myTime2','Loading...')
+
+running timer.html and timerinterval.html at same time casued a browser script warning about possible
+loop
+
+function simulateClick() {
+  var evt = document.createEvent("MouseEvents");
+  evt.initMouseEvent("click", true, true, window,
+    0, 0, 0, 0, 0, false, false, false, false, 0, null);
+  var cb = document.getElementById("checkbox");
+  var canceled = !cb.dispatchEvent(evt);
+  if(canceled) {
+    // A handler called preventDefault
+    alert("canceled");
+  } else {
+    // None of the handlers called preventDefault
+    alert("not canceled");
+  }
+
+function simulateKeyEvent(character) {
+  var evt = document.createEvent("KeyboardEvent");
+  evt.initKeyEvent ("keypress", true, true, window,
+                    0, 0, 0, 0,
+                    0, character.charCodeAt(0))
+  var canceled = !body.dispatchEvent(evt);
+  if(canceled) {
+    // A handler called preventDefault
+    alert("canceled");
+  } else {
+    // None of the handlers called preventDefault
+    alert("not canceled");
+  }
+}
+
+
+-->
+</html>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+
+  p { font-family: Arial, sans-serif; }
+</style>
+
+</head>
+<body>
+<p id="fmyOP" class="accent"><!--[if IE]>Support for Internet Explorer is coming soon <br><![endif]--></p>
+
+  <p id="sandwich">An optional callback function example.</p>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+appendInnerHTML = function (idin, myHTML) {
+
+  var myE= document.getElementById(idin);
+  //if called from iframe
+  if(myE === null) {
+    var myE= window.top.document.getElementById(idin);
+  }
+
+ if(myE === null) {  //for testing just the iframes
+    var myE= document.getElementById('fmyOP');
+    if(myE === null) {
+      alert("Hosed trying to write to: " + idin + " myHTML: " + myHTML);
+      return;
+    }
+  }
+
+  myE.innerHTML  = myE.innerHTML + myHTML;
+}
+
+
+function mySandwich(param1, param2, callback) {
+appendInnerHTML("fmyOP",'<BR>' + 'Started eating my sandwich.It has: ' + param1 + ', ' + param2);
+
+
+
+    $('#sandwich').animate({
+        opacity: 0
+    }, 5000, function() {
+        // Animation complete.
+    });
+
+    if (callback && typeof(callback) === "function") {
+        callback();
+    }
+}
+
+mySandwich('ham', 'cheese', function() {
+    appendInnerHTML("fmyOP",'<BR>' + 'Finished eating my sandwich.');
+});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="Author" content="Gary G. Johnson">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Test Responsive">
+<link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+<link rel="StyleSheet" href="css/reset.css" type="text/css">
+
+<title>GaryTestCSSDOM2.HTML</title>
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+<![endif]-->
+
+<style type="text/css">
+.gjdbg1 {outline:1px dotted red;}
+.gjdbg2 {outline:1px dotted darkgreen;}
+.gjdbg3 {outline:1px dotted blue;}
+.gjdbg4 {outline:1px dotted orange;}
+.gjdbg5 {outline:1px dotted azure;}
+
+b {color:red;}
+
+.one {display:none}
+.two {display:none}
+.thr {display:none}
+.fou {display:none}
+.fiv {display:none}
+.six {display:none}
+.sev {display:none}
+.eig {display:none}
+.nin {display:none}
+.ten {display:none}
+.ful {display:none}
+.res {display:none}
+
+.rtest{color:darkgreen;}
+.rtest2{color:darkgreen;}
+
+.centerxb {
+position:absolute;
+left:50%;
+transform:translate(-50%, -50%); } /* Yep! */
+
+.centerxt {display:block; margin-left:auto; margin-right:auto}
+
+/* background-color:  site background */
+
+#sitenav {
+display:block;
+padding:0;
+margin:0;
+background-color:transparent;
+float:right;
+height:48px;}
+
+
+#sitenav a.slider {
+padding: 0px 10px 0px 10px;
+float: right;
+height: 48px;}
+
+
+#sitenav a.slider:hover{
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+#sitenav.gjshader {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;
+background-color:lightgrey;}
+
+
+#menu-main {
+position: absolute;
+right: 0px;
+top:50px; /* border top and bottom */
+/* width: 25%; */
+display: none;
+box-shadow: 0px 10px 5px #888888;
+background-color:white}
+
+#menu-main li {
+display:block;
+padding: 0px 10px 0px 2em;
+border-bottom:1px dotted silver;
+clear: both;
+font-size:120%;
+font-weight:500;
+font-family:"Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+line-height:1.5;}
+
+#menu-main li a {
+text-decoration:none;}
+
+#menu-main li a:link {
+font-weight:bold;
+color:black;
+text-decoration:none;}
+
+#menu-main li a:visited {
+font-weight:bold;
+color:lightslategrey;
+text-decoration:none;}
+
+/* hover not good for mobile, add focus */
+
+#menu-main li a:hover, #menu-main li a:focus {
+font-weight:bold;
+color:#f05b35;
+text-decoration:none;}
+
+
+/* #000 is menu bars */
+
+.hamburgermenu {
+display:block;
+margin:0 8px;
+height:48px;
+width:64px;
+background:linear-gradient(to bottom,
+ transparent 0%, transparent 20%,
+ #000 20%, #000 32%,
+ transparent 32%, transparent 44%,
+ #000 44%, #000 56%,
+ transparent 56%, transparent 68%,
+ #000 68%, #000 80%,
+ transparent 80%, transparent 100%);}
+
+.gjoutline {
+outline:1px dotted black;}
+
+.gjborder {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+.gjshader {
+background-color:lightgrey;}
+
+a.sitenavSite:link, a.sitenavSite:visited {
+display: inline;
+text-align:left;
+color: #000;
+text-decoration:none;
+font-style: italic;
+font-weight:bold;
+padding:0;
+font-size:15px;}
+
+a.sitenavSite:focus {
+color:lightsteelblue;
+text-decoration:none;}
+
+
+/* Full size screens - Desktops and laptops  1024 to 1000 */
+@media only screen and (min-width:1000px) {
+body {
+font-size:100%;
+line-height:1.2;
+max-width:1200px;
+margin:0 auto;
+}
+
+#contents {
+display:block;
+padding:16px;}
+
+
+.rtest{color:darkgreen;}
+.ful {display:block}
+.pbaimg {margin-bottom:20px;}
+} /* */
+
+/*
+  This media query is for most responsive / smartphones and small tablets
+  if portrait == all smarphones and tablets
+  * can add if pixel ratio  gt 1.3 == newer smartphones and tablets in landscape
+  it should exclude normal  full size and hig density screens with this != max-width:999px
+*/
+
+@media only screen and (orientation:portrait) ,
+only screen and (orientation:landscape) and (max-width:999px) {
+
+body {
+width:100%;
+line-height:1.5;}
+
+#contents {
+display:block;
+margin:0 auto;
+padding:16px;}
+
+.pbaimg {
+width:96%;
+height:auto;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-bottom:20px}
+
+.rtest {color:FireBrick;}
+.res {display:block}
+img {max-width:96%;height:auto;}
+
+#sitenav a.slider:focus {
+border:1px solid black;
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+
+}/* */
+
+.small {font-size:16px;}
+
+.out2 {
+ background-image: url("../images/back-790x413.jpg");
+}
+
+.out1 {
+background: transparent;
+margin:0:
+padding:0;
+border:0;
+}
+
+.acolor {
+background: #707070;
+}
+
+.inner {
+display:block;
+color: #fff;
+/*background: #333; */
+}
+
+</style>
+</head>
+<body class="gjdbg1">
+
+<div id="contents">
+
+<nav id="sitenav">
+<a href="#" class="slider">
+<div class="hamburgermenu"></div></a>
+<ul id="menu-main" class="menu" style="display:none">
+<li class="menu-item menu-item-type-taxonomy"><a href="http://mydevice.io/">http://mydevice.io/</a></li>
+<li class="menu-item menu-item-type-taxonomy"><a href="GaryTestFont.html">GaryTestFont.html</a></li>
+<li class="menu-item menu-item-type-taxonomy"><a href="http://www.w3schools.com/cssref/css3_pr_box-shadow.asp">Box Shadow</a></li>
+</ul>
+
+</nav>
+
+<h4 title="title">Respsonsive scale</h4>
+
+<div class="one">one</div>
+<div class="two">two</div>
+<div class="thr">thr</div>
+<div class="fou">fou</div>
+<div class="fiv">fiv</div>
+<div class="six">six</div>
+<div class="sev">sev</div>
+<div class="eig">eig</div>
+<div class="nin">nin</div>
+<div class="ten">ten</div>
+<div class="ful">ful</div>
+<div class="res">res</div>
+
+<div id="siteinfo">
+<a class="sitenavSite" href="#">ChesterCountyChiropracticandWellness</a>
+<div>
+
+
+<p id="op1" class="small"></p>
+<p id="op2" class="small" style='font-family:"courier new"'><b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 </p>
+<p id="op3" class="small" style='font-family:Arial'><b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 </p>
+
+<!--
+<pre class="small" style='font-family:"Courier New"'>
+<b>pre</b>345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678 <b>0</b>12345678
+</pre>
+-->
+
+<p class="small" style='font-family:Arial'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ arial</p>
+<p class="small" style='font-family:"Courier New"'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ courier new</p>
+
+
+<div class="gjdbg3">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+
+<img class="pbaimg centerxt gjdbg4" src="../images/back-790x413.jpg" alt="us" title="test" />
+
+</div> <!-- contents -->
+
+<div class="out2">
+<div class="out1">
+<div class="inner">
+<p> the text </p>
+</div>
+</div>
+</div>
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+var Browser = {
+Version:function() {
+  var version = 999; // we assume a sane browser
+  if (navigator.appVersion.indexOf("MSIE") != -1)
+  // bah, IE again, lets downgrade version number
+   version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+  return version;
+  }
+}
+
+var txt = "Platform:" + navigator.platform + "<br>";
+txt+= "User-agent header:" + navigator.userAgent + "<hr>";
+
+if (navigator.cpuClass) txt+= "cpuClass:" + navigator.cpuClass + "<br>";
+if (navigator.userAgent.indexOf("WOW64") != -1 ||
+    navigator.userAgent.indexOf("Win64") != -1 ) {
+  txt+= "64bit Windows " + "<br>";
+}
+
+if (Browser.Version() <= 8) {
+  txt+= "Version" + Browser.Version() + "<br>";
+  txt+= "This Browser is not supported <br>";
+}
+
+txt+="screen.width "  + screen.width + " screen.height " + screen.height + "<br>";
+txt+="window.innerWidth " + window.innerWidth;
+txt+="<br>";
+
+txt+= "window.devicePixelRatio :" +  window.devicePixelRatio;
+txt+="<br>";
+document.getElementById("op1").innerHTML=txt;
+
+
+$(document).ready(function(){
+	$("#sitenav a.slider").click(function() {
+	$("ul.menu").slideToggle("slow");
+  $("#sitenav").toggleClass("gjshader")
+	});
+});
+
+
+</script>
+</body>
+</html>

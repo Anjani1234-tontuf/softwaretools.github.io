@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Gary Test Sound Static</title>
+</head>
+<body>
+<hr>
+<button onclick="getCurTime()" type="button">Get current time position</button>
+<button onclick="javascript:Attention();" type="button">Attention</button>
+<button onclick="javascript:Begin();" type="button">Begin</button>
+<button onclick="javascript:Done();" type="button">Done</button>
+<hr>
+<!--
+<br>
+<input type="button" title="Run Object Dumps" value="checkIT" onclick="checkIT();">
+<br>
+-->
+
+<pre>
+html5 audio sprites
+FF IE Chrome Safari
+
+
+</pre>
+    <audio id="myGJCBEmbed09" src="Sounds/audiosprite.wav" style="display:none" preload></audio>
+
+<script type="text/javascript">
+var mygjCBCreatedHTML5Audio;
+var segmentEnd;
+
+function checkIT()
+{
+  dumpAll();
+}
+
+function checkCanPlay()
+{
+  var a = document.createElement('audio');
+  var b = (a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
+  if(b) return 1;
+  else
+    {
+      var c = (a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+      if(c) return 2;
+    }
+    return 0;
+}
+
+function playFile()
+{
+  var wavin = "Sounds/audiosprite.mp3";
+
+  try
+  {
+    var iforWhich = checkCanPlay();
+
+    if(iforWhich)
+    {
+      if(iforWhich == 2)
+      {
+        wavin = "Sounds/audiosprite.mp3"
+      }
+      else if(iforWhich == 1)
+        {
+          wavin = "Sounds/audiosprite.wav"
+        }
+        else
+        {
+            alert ("hosed");
+            return;
+       }
+
+      mygjCBCreatedHTML5Audio = document.getElementById("myGJCBEmbed09");
+      mygjCBCreatedHTML5Audio.src=wavin;
+
+          mygjCBCreatedHTML5Audio.addEventListener('timeupdate', function (){
+          if (segmentEnd && mygjCBCreatedHTML5Audio.currentTime >= segmentEnd)
+          {
+              mygjCBCreatedHTML5Audio.pause();
+          }}, false);
+        }
+        else
+          {
+            alert ("can not play file");
+            return;
+          }
+        }
+        catch(err)
+        {
+          gjonerror(err, 'try playFileWav');
+        }
+      }
+
+playFile();
+
+function playSegment(startTime, endTime, gj)
+{
+    segmentEnd = endTime;
+    mygjCBCreatedHTML5Audio.currentTime = startTime;
+    mygjCBCreatedHTML5Audio.play();
+    if(gj) setTimeout(gj,0)
+}
+
+function getCurTime()
+{
+  alert(mygjCBCreatedHTML5Audio.currentTime);
+}
+
+function Attention()
+{
+  playSegment(0, 2.5);
+}
+function Begin()
+{
+  playSegment(3.0, 4);
+}
+function Done()
+{
+  playSegment(5.0, 5.5);
+}
+</script>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjqt.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Animations in Jasvascript and the Dom Moves</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CookBook">
+<meta name="keywords" content="">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+pixesl to ems
+
+300 / 16  18.75
+10 / 16 0.625
+480 / 16  30
+150 / 16  9.375
+200 / 16  12.5
+100 / 16  6.25
+110 / 16  6.875
+240 / 16  15
+200 / 16  12.5
+320 / 16  20
+211 / 16  13.1875
+325 / 16  20.3125
+225 / 16  14.0625
+64 / 16 4
+700 / 16  43.75
+50 / 16 3.125
+
+
+-->
+<!--
+Changelog
+
+Mar 1 2006
+added delete of wrappers
+
+changed gjmoves.js
+
+calcs are fine, its the dynamic nature of what is going on that screws up the display
+
+no scrollbars at beggining, the it adds them in
+
+I could constrain the moves within a div
+
+what can I do with scrollbars
+
+-->
+
+<script type="text/javascript">
+
+var Msg   = "Fi on Your PopUp Blocker";
+
+function CSGSNext()
+{
+  var it;
+}
+
+CSGSNext.prototype.doNext = function()
+{
+  changeInnerHTML('E',"<p style='text-shadow: 0.2em 0.5em 0.1em #600,-0.3em 0.1em 0.1em #060,0.4em -0.3em 0.1em #006'>&nbsp;Hit &quot;Reload&quot; to see it again&nbsp;</p>")
+}
+
+
+function CWrapper(msg)
+{
+  this.msg = msg;
+}
+
+CWrapper.prototype.doIt = function(title)
+{
+
+  var theNextCall = new CSGSNext();
+
+  var headerChg = new CSGS();
+
+  headerChg.addElement('newheader1');
+  headerChg.setMI('newheader1', 15);
+  headerChg.addMove('newheader1','lr','lr', 'l','t','diag');
+
+  headerChg.addElement('newheader2');
+  headerChg.setMI('newheader2', 15);
+  headerChg.addMove('newheader2','ll','ll', 'r', 't','diag');
+
+  headerChg.addElement('newheader3');
+  headerChg.setMI('newheader3', 15);
+  headerChg.addMove('newheader3','tr','tr', 'l', 'b','diag');
+
+  headerChg.addElement('newheader4');
+  headerChg.setMI('newheader4', 15);
+  headerChg.addMove('newheader4','tl','tl', 'r', 'b','diag');
+
+  headerChg.addElement('clipDiv');
+  headerChg.addEffect('clipDiv','myClip','WTB')
+  headerChg.setMIE('clipDiv', 3);
+  headerChg.setMI('clipDiv', 13);
+  headerChg.addMove('clipDiv',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv2');
+  headerChg.addEffect('clipDiv2','myClip','WBT')
+  headerChg.setMIE('clipDiv2', 3);
+  headerChg.setMI('clipDiv2', 15);
+  headerChg.addMove('clipDiv2',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv3');
+  headerChg.addEffect('clipDiv3','myClip','WLR')
+  headerChg.setMIE('clipDiv3', 3);
+  headerChg.setMI('clipDiv3', 17);
+  headerChg.addMove('clipDiv3',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv4');
+  headerChg.addEffect('clipDiv4','myClip','WRL')
+  headerChg.setMIE('clipDiv4', 3);
+  headerChg.setMI('clipDiv4', 17);
+  headerChg.addMove('clipDiv4',0,0, 'c', 'c');
+
+
+  headerChg.addElement('Banner');
+  headerChg.addEffect('Banner','myClip')
+  headerChg.setMI('Banner', 15);
+  headerChg.addMove('Banner',1000,325, 0, 325);
+
+  headerChg.addElement('Chef');
+  headerChg.addEffect('Chef','myClip')
+  headerChg.setMI('Chef', 16);
+  headerChg.addMove('Chef','cl','cl', 700, 225);
+
+  headerChg.addElement('nose');
+  headerChg.setMI('nose', 7);
+  headerChg.addMove('nose',250,550, 'c', 'c');
+
+  headerChg.addElement('ChefSmiley');
+  headerChg.setMI('ChefSmiley', 7);
+  headerChg.addMove('ChefSmiley',220,550, 'c', 0);
+
+  headerChg.addElement('divgetit');
+  headerChg.addEffect('divgetit','myClip','WRL')
+  headerChg.setMI('divgetit', 12);
+  headerChg.setMIE('divgetit', 4);
+  headerChg.addMove('divgetit','tl','ll', 100, 500);
+
+  headerChg.setIntervalSpeed(60);
+  headerChg.doIt();
+  headerChg.synchFunc(theNextCall,'doNext');
+  delete headerChg;
+
+
+//  changeInnerHTML('E','<p>&nbsp;Thank You&nbsp;</p>')
+
+};
+
+function doDelay()
+{
+  var wrapper = new CWrapper(Msg);
+  //var callwrapper = new CCallWrapper(wrapper, 3000, 'doIt', 'Null');
+  var callwrapper = new CCallWrapper(wrapper, 1000, 'doIt', 'Null');
+  CCallWrapper.asyncExecute(callwrapper);
+
+  delete wrapper;
+  delete callwrapper;
+}
+
+
+</script>
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+</head>
+<!--
+
+this quite a few restrictions on what I can do
+I try and set top on this and I get no properties.
+I need to go through and check and make sure the CSS stuff is okay with the
+DOM
+
+Not only do I need more of computed style,
+but I have to check and see what I can do
+
+margin is part of it
+check for scrollbar calc - still may be off
+
+don't forge the IE influence
+IE does not like margin and width auto
+
+
+
+
+-->
+<body style="margin:0; overflow:hidden" onload=doDelay();>
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/nav1.1.min.js"></script>
+<script type="text/javascript" src="js/ULMenu4.js"></script>
+
+<!--[if lte IE 7]>
+ <p> Please get a better browser. After 2010, I took out the code that supported
+IE7 or less because it was non standard </p>
+<![endif]-->
+<div id="E" style="position:absolute; width:auto; height:auto; top:300px; left:10px; z-index:1;clip:rect(0px, 480px, 150px, 0px);">
+<p style='text-indent:1.5in;text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive;background-color:NAVY;color:white;'>&nbsp;Javascript DOM animation &nbsp;</p>
+</div>
+
+
+<div id="divgetit" style="visibility:hidden;position:absolute;width:200px;height:100px;top:110px;left:240px;clip:rect(0px, 200px, 100px, 0px);overflow:hidden; z-index:2;background-color:teal;">
+<p style='text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive; color:white;'><br>Imagine<br></p>
+</div>
+
+
+<div id="clipDiv2" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0px, 320px, 0px, 0px);background-color:green;text-align:center;z-index:2;">
+</div>
+<div id="clipDiv3" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0px, 320px, 0px, 0px);background-color:yellow;text-align:center;z-index:3;">
+</div>
+
+<div id="clipDiv4" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0px, 320px, 0px, 0px);background-color:red;text-align:center;z-index:1;">
+</div>
+
+<div id="clipDiv" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0px, 320px, 0px, 0px);background-color:blue;text-align:center;z-index:4;">
+<div style='border:20pt outset red;width:8em;text-align:center; margin-left:auto; margin-right:auto;'>
+<p style='font-weight:bold; font-size:16.0pt; color:black;  font-family: Courier, sans-serif;  text-align:center;   padding-right:7.5pt;  padding-left:7.5pt; padding-top:2.5pt;  padding-bottom:2.5pt;'>
+Hello
+</p>
+</div>
+</div>
+
+<img id="Banner" style="position:absolute; visibility:hidden; top:325px; left:700px; height:186px;width:102px;clip:rect(0px, 102px, 186px, 0px);z-index:1" alt="" src="GraphicWidgets/LikeKandinsky2.png">
+
+<img id="Chef" style="position:absolute; visibility:hidden; top:225px; left:-100px; height:211px;width:182px;clip:rect(0px, 182px, 211px, 0px);z-index:2" alt="" src="GraphicWidgets/Kitchen1.png">
+
+<img id="nose" style="position:absolute; visibility:hidden; top:225px; left:-100px; height:110px;width:98px;clip:rect(0px, 98px, 110px, 0px);z-index:3" alt="" src="GraphicWidgets/noseeysemouth.gif">
+
+<img id="ChefSmiley" style="position:absolute; visibility:hidden; top:225px; left:-120px; height:64px;width:64px;clip:rect(0px, 64px, 64px, 0px);z-index:4" alt="" src="GraphicWidgets/Fingers.png">
+
+<!--
+IE likes this
+<div id ='newheader2' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;
+height:50px;width:210px;'>
+change for FF to
+height:auto;width:auto;
+-->
+
+<div id ='newheader1' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader2' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader3' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader4' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+</body>
+</html>
+
+
+

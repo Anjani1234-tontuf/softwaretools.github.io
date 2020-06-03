@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Date Unit Converter And Evaluator",
+  "version": "1.0.13",
+  "description": "Calculator, Expression Evaluator, Date Calculator, Conversion Calculator",
+  "launch_path": "MCalcMenuApp.html",
+  "icons": {
+		"16": "images/formula16x16.png",
+		"48": "images/formula48x48.png",
+		"128": "images/formula128x128.png"
+	},
+  "start_url": "MCalcMenuApp.html",
+  "display":"standalone",
+  "orientation":"potrait"
+}

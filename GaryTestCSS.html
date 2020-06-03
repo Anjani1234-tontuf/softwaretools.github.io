@@ -1,0 +1,1583 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<!--[if gte IE 5]>
+  <link rel="StyleSheet" href="XXSoftwareTools/css/GarySpecial.css" type="text/css">
+<![endif]-->
+<link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+<meta name="author" content="Gary Johnson">
+<style type="text/css">
+
+/* see new doctype above */
+.threedtext
+{
+color: #fff;
+font-family: Arial, sans-serif;
+font-size: 48px;
+font-weight: bold;
+text-shadow: #afe222 1px 1px, #000 2px 2px, #000 3px 3px;
+position: relative;
+-moz-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+-webkit-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+}
+
+.threedtext:hover
+{
+color: #FFF;
+text-shadow: #afe222 1px 1px, #afe222 2px 2px, #afe222 3px 3px, #B7BDC8 4px 4px,#B7BDC8 5px 5px, #B7BDC8 6px 6px;
+left: -6px;
+top: -6px;
+}
+
+*#col1
+{
+  border: 3px solid black;
+}
+
+.cbcl1
+{
+  border: 3px solid red;
+}
+.cbcl2
+{
+  border: 3px solid blue;
+}
+.cbcl3
+{
+  border: 3px solid green;
+}
+/*
+TD.
+{
+  border: 1px solid red; padding: 1em;
+}
+*/
+TD.solid-blue
+{
+  border: 5px dashed blue;
+}
+
+TD.solid-green
+{
+  border: 5px solid green;
+}
+
+/* next color scheme theme */
+
+.HCCT
+{
+  font-weight: bold;
+  background-color:#00DD00;
+  border-top:2px solid #006600;
+  text-align:center;
+  color:black;
+}
+
+.a
+{
+  background-color: AZURE;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.b
+{
+  background-color: lightyellow;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+.scenter
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  text-align:center;
+    color:white;   /* check the p and this hinky - just a kludeg to get colors */
+}
+
+
+.R2
+{
+  padding:1pt 1pt 1pt 1pt;
+  background-color: black;
+ color:white;
+}
+
+
+
+.gradient-background
+{
+  position: relative;
+}
+.gradient-background img
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.gradient-background *
+{
+  position: relative;
+}
+
+
+pre
+{
+  padding: 0.5em;
+}
+
+#footer
+{
+  color: grey;
+  font-size: 0.8em;
+  font-style: italic;
+  border-top: 1px solid silver;
+}
+
+.modpadarrow   {padding-left:10px;text-indent:-13px;padding-right:5px;}
+
+.newfont
+{
+  font: small Georgia, serif;
+}
+
+
+p.Verdana
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+p.VERDANAREF
+{
+  font-family: "Verdana Ref", Arial, Helvetica, sans-serif;
+}
+
+
+p.nyt
+{
+  font: 84.5% Georgia, serif;
+}
+
+
+.engravedT
+{
+color: #000;
+background: #666;
+text-shadow: 0px 1px 1px #fff;
+}
+
+.engravedT2
+{
+  text-shadow: 0px 1px 1px #FAF0E6;
+  padding-right:1.5pt;
+  background-color:#ffffff;
+}
+
+.awesome
+{
+color: #000;
+background: #000;
+text-shadow: 0 0 4px #ccc, 0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px -15px 11px #f80, 2px -18px 18px #f20;
+}
+
+.FL2
+{
+  background-color:#ffffff;
+  /* text-shadow: 6px 2px 0px #fff !important; */
+  padding-right:7.5pt;
+}
+
+
+.mythinsp mythinspFL
+{
+  font-size: 2pt;
+  padding-right: 0pt;
+  padding-left: 0pt;
+}
+/* color schemes */
+.c1{background-color:blue}
+</style>
+
+<title>GaryTestCSS.html</title>
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+
+<script type="text/javascript">
+
+       //document.onload =setEventListener(disableKey);
+        function disableKey(event) {
+        //debugger
+          if (!event) event = window.event;
+          if (!event) return;
+
+          var keyCode = event.keyCode ? event.keyCode : event.charCode;
+
+          //window.status = keyCode;
+          alert(keyCode);
+
+          // keyCode for F% on Opera is 57349 ?!
+          if(keyCode >= 112 && keyCode  <= 123 ){
+          //if (keyCode == 116 ) {
+           window.status = "F5 key detected! Attempting to disabling default response.";
+           window.setTimeout("window.status='';", 2000);
+
+           // Standard DOM (Mozilla):
+
+           //if(event.srcElement.tagName.toUpperCase() != 'INPUT'){
+           if (event.preventDefault) event.preventDefault();
+
+           //}
+
+           //IE (exclude Opera with !event.preventDefault):
+           if (document.all && window.event && !event.preventDefault) {
+             event.cancelBubble = true;
+             event.returnValue = false;
+             event.keyCode = 0;
+           }
+
+           return false;
+          }
+        }
+
+        function setEventListener(eventListener) {
+        //debugger
+          if (document.addEventListener) document.addEventListener('keypress', eventListener, true);
+          else if (document.attachEvent) document.attachEvent('onkeydown', eventListener);
+          else document.onkeydown = eventListener;
+
+          if (!document.getElementById) return;
+          var el = document.getElementById("Msg");
+          if (el) el.innerHTML = "Event handler added.";
+        }
+
+        function unsetEventListener(eventListener) {
+        //debugger
+          if (document.removeEventListener) document.removeEventListener('keypress', eventListener, true);
+          else if (document.detachEvent) document.detachEvent('onkeydown', eventListener);
+          else document.onkeydown = null;
+
+          if (!document.getElementById) return;
+          var el = document.getElementById("Msg");
+          if (el) el.innerHTML = "Event handler removed.";
+        }
+
+function Test()
+{
+  alert('test');
+}
+
+function simulateKeyEvent(character,idin)
+{
+//  alert('simulateKeyEvent ' + character.charCodeAt(0) + " idin " + idin);
+
+  var onID = document.getElementById(idin);
+  var evt = document.createEvent("KeyboardEvent");
+/* chrome no initKeyevent  but initKeyboardEvent.
+event.initKeyEvent (type, bubbles, cancelable, viewArg,
+                        ctrlKeyArg, altKeyArg, shiftKeyArg, metaKeyArg,
+                        keyCodeArg, charCodeArg) */
+/* Ctrl true */
+  /*evt.initKeyEvent ("keypress", true, false, window,
+                    true, 0, 0, 0,
+                    112, character.charCodeAt(0));*/
+//  evt.initKeyEvent("keypress", true, true, null, false, false, false, false, 112, 0);
+  evt.initKeyEvent("keypress", true, false, null, false, false, false, false, 126, 0);
+  var canceled = !onID.dispatchEvent(evt);
+  if(canceled)
+  {
+    // A handler called preventDefault
+    alert("simulateKeyEvent canceled for " + idin);
+  }
+}
+
+
+function setDisplayV(id)
+{
+  try
+  {
+    document.getElementById(id).style.display = 'block';
+  }
+  catch (error)
+  {
+    gjonerror( error, " setDisplayV ");
+  }
+}
+
+function showScrSize2()
+{
+  var msg = showScrSize(1);
+  changeInnerHTML('myresult',msg);
+}
+
+</script>
+
+
+<!--
+
+    Mickey
+        GLITCH supports the ACRONYM but no the ABBR
+        is having a problem with color:red
+    ================================
+
+    Changelog
+
+
+    ================================
+    temp
+      <base href="
+
+    Tidy (vers 4th August 2000) Parsing "GaryDefaultCSS.html"
+
+    line 298 column 1 - Warning: <table> lacks "summary" attribute
+
+    GaryDefaultCSS.html: Doctype given is "-//W3C//DTD HTML 4.0 Transitional//EN"
+    GaryDefaultCSS.html: Document content looks like HTML proprietary
+    13 warnings/errors were found!
+
+
+
+this needs the correct background in grey and black
+class heading background should be same as body backgorund
+
+/*
+expected selector for psuedo class not found
+experimental
+q:
+{
+  quotes: '"' '"' "'" "'";
+}
+
+q:before
+{
+  content: open-quote;
+}
+
+q:after
+{
+  content: close-quote;
+}
+
+blockquote P:before
+{
+  content: open-quote
+}
+
+blockquote P:after
+{
+  content: no-close-quote
+}
+
+blockquote P.last:after
+{
+  content: close-quote
+}
+
+*/
+
+-->
+
+</head>
+<body id='thebody' >
+
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+<table>
+<tr>
+<td>
+<p><span class="threedtext">GoozerNation has video game commentary, news and videos</span>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</table>
+
+<div class="c1" style="width:40px;height:40px"></div>
+
+<form name ="zz" id="zz">
+<FIELDSET class="z" style='width:25%'>
+<LEGEND class="z"><strong>Test Button:</strong></LEGEND>
+<input  type="button" tabindex="2" id="zxzCC" class="buttonNgrey" value="simulateKeyEvent" onClick="simulateKeyEvent('F15','thebody');">
+</FIELDSET>
+</form>
+
+
+<p> CSS 3 animations <span class="threedtext">Put Your Text Here</span> test</p>
+
+
+<div class="gradient-background">
+<img src="GraphicWidgets/hgradient.png" alt="">
+<h1>CSS Gradient fill</h1>
+</div>
+
+
+<div class="modpadarrow">&nbsp;
+<img alt="" src="GraphicWidgets/icn_arrow_blue.gif" height="10" width="10">
+<a href="javascript:popWrapper('http://www.theupsstore.com','pop_up_full_page')">The UPS Store
+<img alt="" src="GraphicWidgets/1x1px.gif" height="1" width="3">
+<img src="GraphicWidgets/icn_popup_blue.gif" alt="" height="9" width="9"></a>
+</div>
+
+<h2 id='theh2'><span class="FL">F</span>irst Level SubHeading&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="image" onclick="displayTSS(event);" SRC="GraphicWidgets/TSS.gif" ALT='The Short Story' title='The Short Story'>
+&nbsp;With the Short Story Button - Click the icon on this line</h2>
+
+
+
+    <p class="heading"><span class="HC">Centered Heading</span></p>
+    <br>
+
+    <p class="HCCT">Centered Heading Width 100%</p>
+    <br>
+    <p class="HCL"><span class="HCLT">Heading Left Justified Width 100%</span></p>
+    <br>
+
+   <p class="HCL" style='font-weight:bold;'>&nbsp;&nbsp;&nbsp;Heading Left Justified Width 100% spaces </p>
+    <br>
+
+    <p class="HCL" style="line-height:18pt;"><span class="HCLT"  style="vertical-align:bottom;"><span class='myborder'>H</span>eading Left Justified Width 100%</span></p>
+    <br>
+    <p class="HCL" style="line-height:18pt;"><span class="HCLT"  style="vertical-align:bottom;"><span style="background:#F5F5F5; margin:0; padding-right:1px; padding-left:1px; border:.5pt solid black;">H</span>eading Left Justified Width 100%</span></p>
+    <br>
+    <p class="HCL" style="line-height:18pt;"><span class="HCLT"  style="vertical-align:bottom;"><span style="background:#ffffd7; margin:0; padding-right:1px; padding-left:1px;">H</span>eading Left Justified Width 100%</span></p>
+    <br>
+    <p class="HCL" style="line-height:18pt;"><span class="HCLT"  style="vertical-align:bottom;"><span style="background:#ffffd7; margin:0; padding-right:1px; padding-left:1px;">D</span>escription</span></p>
+    <br>
+
+    <p class="HCL"><span class="DH"><span class="FL">D</span>escription Test</span></p>
+    <br>
+
+    <p><span class="HCL"><span class="HCLT">Heading Left Justified</span></span></p>
+    <br>
+
+<!--
+    IE does not like this, it carries over the blue to all subsequent elements
+    note second to last <span> should be </span>
+
+    <p><span class="HCL"><span class="HCLT">Heading Left Justified<span></span></p>
+
+-->
+    <p class="HCRT"><span class="HC">Heading Right</span></p>
+  <br>
+    <p class="HCL HCRT">Heading Right Justified Width 100%</p>
+  <br>
+
+    <p class="hshl"><span class="hshlbt">Fancy Heading </span> some vertically centered text</p>
+  <br>
+
+  <br>
+
+    <p class="center">p class = heading</p>
+  <br>
+    <p class="center GreyPattern">p class = heading GreyPattern - centered width 100%</p>
+  <br>
+<!-- notice that the color does not have the padding -->
+   <p class="center"><span class="GreyPattern">p class = heading span Greypattern : centered</span></p>
+  <br>
+<pre class="PRE">
+Text Shadow
+
+p { <B>text-shadow</B>: 1px 1px 1px #000; }
+
+The first two values specify the length of the shadow offset.
+The first value specifies the horizontal distance and the second specifies the vertical distance of the shadow.
+The third value specifies the blur radius and the last value describes the color of the shadow:
+
+1. value = The X-ccordinate
+2. value = The Y-coordinate
+3. value = The blur radius
+4. value = The color of the shadow
+
+Using positive numbers as the first two values ends up with placing the shadow to the right of the text horizontically
+(first value) and placing the shadow below the text vertically (second value).
+
+The third value, the blur radius, is an optional value which can be specified but dont have to.
+Its the amount of pixels the text is stretched which causes a blur effect. If you dont use the third value it is threated as if you sepcified a blur radius of zero.
+</pre>
+
+<div style="color: #000; background: #666; height: 35px; width: 400px; padding-left: 20px; line-height: 32px; font-size: 1.8em; font-weight: bold; margin-bottom: 5px; margin-left: 15px; text-shadow: 0px 1px 1px #fff;">a DIV I&#8217;m engraved text</div>
+
+<div class='awesome' style="height: 35px; width: 400px; padding-left: 20px; line-height: 32px; font-size: 1.8em; font-weight: bold; margin-bottom: 5px; margin-left: 15px; ">AWesome</div>
+
+<a class="AOne" href="http://www.kremalicious.com/2008/04/make-cool-and-clever-text-effects-with-css-text-shadow/">CSS text Shadow Examples </a>
+<p> </p>
+<pre>
+
+a pre
+</pre>
+
+<pre class="PRE">
+a pre class pre
+</pre>
+
+<br class='clearall'>
+<div style="width:1024px;height:1em;background-color:blue;">
+</div>
+
+<div style="width:1024px;height:1em;background-color:red;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.0625em;background-color:blue;">
+</div>
+
+<div style="width:1024px;height:.1em;background-color:red;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.125em;background-color:blue;">
+</div>
+
+<div style="width:1024px;height:.2em;background-color:red;">
+</div>
+
+
+<br class='clearall'>
+<div style="width:1024px;height:0.1875em;background-color:blue;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.25em;background-color:blue;">
+</div>
+
+
+<div style="width:1024px;height:.3em;background-color:red;">
+</div>
+<br class='clearall'>
+<div style="width:1024px;height:0.3125em;background-color:blue;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.375em;background-color:blue;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.4375em;background-color:blue;">
+</div>
+
+<br class='clearall'>
+<div style="width:1024px;height:0.5em;background-color:blue;">
+</div>
+
+
+<div class="dynDom">
+
+<pre>
+.dynDom
+{
+  border: .1em solid #000000;
+  padding: .2em;
+  background-color: #ffff66;
+
+}
+</pre>
+</div>
+
+
+<TABLE class='shoppinglist'>
+<COL id="col1"><COL id="col2"><COL id="col3">
+<TR id="row1">
+    <TD> 1
+    <TD> 2
+    <TD> 3
+</TR>
+<TR id="row2">
+    <TD> 4
+    <TD class="solid-blue"> 5
+    <TD class="solid-green"> 6
+</TR>
+<TR id="row3">
+    <TD> 7
+    <TD> 8
+    <TD> 9
+</TR>
+<TR id="row4">
+    <TD> 10
+    <TD> 11
+    <TD> 12
+</TR>
+<TR id="row5">
+    <TD> 13
+    <TD> 14
+    <TD> 15
+</TR>
+
+</table>
+
+<table class="shoppinglist CTB">
+<COL class="cbcl1"><COL class="cbcl2"><COL class="cbcl3">
+<tr class="HCCT">
+<td colspan="3"><p>Test of border collapse
+</p></td>
+</tr>
+
+
+<tr>
+<td class="a"><p>column 1
+  </p></td>
+<td class="a"><p>column 2
+  </p></td>
+<td class="a"><p>column 3
+</p></td>
+</tr>
+
+<tr>
+<td class="c"><p>lets see what we get
+  </p></td>
+<td class="c"><p>I want a table with border lines on the columns
+  </p></td>
+<td class="c"><p>but not on the rows
+</p></td>
+</tr>
+
+</table>
+
+<br class='clearall'>
+
+<TABLE class="LTB" >
+  <TBODY>
+    <tr>  <!-- r1 -->
+      <td class='b'  rowspan=4>C1 R1</td>   <!--1  -->
+      <td class='b'  rowspan=2>C2 R1</td>   <!--2  -->
+      <td class='b'>C3 R1</td>              <!--3 -->
+    </tr>
+    <tr>  <!-- r2 -->
+      <td class='b'>C3 R2</td>               <!--2  -->
+    </tr>
+    <tr>   <!-- r3 -->
+      <td class='b' rowspan=2>C2 R2</td>
+      <td class='b' >C3 R3</td>
+    </tr>
+    <tr>   <!-- r4  -->
+      <td class='b'>C3 R4</td>
+    </tr>
+    </tbody>
+  </table>
+
+<br class='clearall'>
+<TABLE class="LTB" >
+  <TBODY>
+    <tr>    <!-- 1 -->
+      <td class='a' rowspan=2>C1 R1</td>
+      <td class='a' rowspan=2>C2 R1</td>
+      <td class='a' >C3 R1</td>
+    </tr>
+    <tr>    <!-- 2  -->
+      <td class='a' >C3 R2</td>
+    </tr>
+    <tr>   <!-- 3 -->
+      <td class='b' >C1 R2</td>
+      <td class='b' >C2 R2</td>
+      <td class='b' >C3 R2</td>
+    </tr>
+    </tbody>
+  </table>
+
+<br class='clearall'>
+
+<p>&nbsp;</p>
+<!--
+
+11.3.1 Borders and rules
+
+The following attributes affect a table's external frame and internal rules.
+
+Attribute definitions
+
+frame = void|above|below|hsides|lhs|rhs|vsides|box|border [CI]
+    This attribute specifies which sides of the frame surrounding a table will be visible. Possible values:
+
+        * void: No sides. This is the default value.
+        * above: The top side only.
+        * below: The bottom side only.
+        * hsides: The top and bottom sides only.
+        * vsides: The right and left sides only.
+        * lhs: The left-hand side only.
+        * rhs: The right-hand side only.
+        * box: All four sides.
+        * border: All four sides.
+
+rules = none|groups|rows|cols|all [CI]
+    This attribute specifies which rules will appear between cells within a table. The rendering of rules is user agent dependent. Possible values:
+
+        * none: No rules. This is the default value.
+        * groups: Rules will appear between row groups (see THEAD, TFOOT, and TBODY) and column groups (see COLGROUP and COL) only.
+        * rows: Rules will appear between rows only.
+        * cols: Rules will appear between columns only.
+        * all: Rules will appear between all rows and columns.
+
+
+height age in one column - span 2
+color - weight - velocity in one column  - span 3
+
+-->
+
+<table border="2" frame="hsides" rules="groups">
+  <caption>An Example of Grouping</caption>
+  <colgroup align="right">  </colgroup>
+  <colgroup align="left">   </colgroup>
+  <colgroup span="2" align="center">  </colgroup>
+  <colgroup span="3" align="center"> </colgroup>
+  <thead >
+    <tr>
+      <th>Sequence<br>number  </th>
+      <th>Name  </th>
+      <th>Height<br>(cm)  </th>
+      <th>Age<br>(months)</th>
+      <th>Color </th>
+      <th>Weight<br>(lbs) </th>
+      <th>Velocity<br>(ft/second)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>1</td>
+        <td>Raptor</td>
+        <td> 21</td>
+        <td> 5</td>
+        <td> red</td>
+        <td> 5</td>
+        <td> 33 </td>
+    </tr>
+    <tr><td>2</td><td>Senator</td><td> 26</td><td> 4</td><td> green</td><td> 6</td><td> 56 </td></tr>
+  </tbody>
+  <tbody>
+    <tr><td>3</td><td>Dingo</td><td> 45</td><td> 9</td><td> blue</td><td> 3</td><td> 23 </td></tr>
+    <tr><td>4</td><td>Rabbit</td><td> 43</td><td> 3</td><td> purple</td><td> 4</td><td> 45 </td></tr>
+  </tbody>
+</table>
+
+
+<hr>
+
+<div style="position:relative; font-size:40px; z-index:2;">LAYER 1</div>
+<div style="position:relative; top:-50; left:5; color:red; font-size:60px; z-index:1">LAYER 2</div>
+
+<form name ="ScreenSize" id="ScreenSize">
+<FIELDSET class="b" style='width:25%'>
+<LEGEND class="a"><strong>Show Me Screen Sizes:</strong></LEGEND>
+<input  type="button" tabindex="2" id="xzCC" title="screen sizes" class="buttonNgrey"
+    value="Show Me Screen Sizes"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="showScrSize2();"
+    onmouseout="toggleHighLight('o', this.id);">
+</FIELDSET>
+</form>
+
+<blockquote id='myresult'  class='fancy smallboldspaced'>
+</blockquote>
+
+
+<!-- Error  Line 455, column 22: document type does not allow element "UL" here; assuming missing "LI" start-tag .-->
+
+<ul class='cb'>
+<li><p><span class="apl">The shoot system is above ground and may include:</span></p></li>
+        <ul class='cb'>
+          <li><p class="exp"><span class="bpl">Leaves
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Buds
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Stems
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Flowers
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Fruits
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Fruits
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Seeds
+            </span></p></li>
+        </ul>
+<li><p><span class="apl">The root system is below ground and may include:</span></p></li>
+        <ul class='cb'>
+          <li><p class="exp"><span class="bpl">Roots
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Tubers
+            </span></p></li>
+          <li><p class="exp"><span class="bpl">Rhizomes
+            </span></p></li>
+        </ul>
+</ul>
+
+
+
+<ul class='cb'>
+<li class="bnp"><p>This site uses many features that are designed to make its content accessible to a wide audience.  New features and extensions will be added to help any person wishing to use this information
+  </p></li>
+<li class="bnp"><p>Most of the U.S. Federal Government <a class="AOne" href="http://www.section508.gov/">Section 508 Guidelines</a> have been implemented.
+  </p></li>
+
+<li class="bnp"><p>In general, structured semantic markup is used. H2 tags are used for main titles, H3 tags for subtitles.
+  </p></li>
+
+<li class="bnp"><p>Users of Screen readers will find &quot;SkipLinks&quot; to skip over our banners on each page and other visual information not pertinent to the main content of the page.
+  </p></li>
+</ul>
+
+
+<div style='background-color:white;'>
+
+<br>
+
+<table>
+
+<tbody><tr class="HCCT">
+<td colspan="2"><p>Table Caption and Sub Heading Color</p></td>
+</tr><tr class="R2">
+<td><p class="scenter">Column</p></td>
+<td><p class="scenter">Headings</p></td>
+</tr>
+
+<tr class="b">
+<td><p>Table row color b</p> </td>
+<td><p>Table row color b</p></td>
+</tr>
+
+<tr>
+<td class="a"><p>Table row color a</p> </td>
+<td class="a"><p>Table row color a</p></td>
+</tr>
+
+<tr>
+<td class="b"><p>Table row color b</p></td>
+<td class="b"><p>Table row color b</p></td>
+</tr>
+
+<tr>
+<td class="a"><p>This uses contextual selectors</p></td>
+<td class="a"><p>td p </p></td>
+</tr>
+
+</tbody></table>
+<br>
+</div>
+
+
+<p class="nyt">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ &nbsp;84.5 Georgia</p>
+<br>
+<p class="Verdana">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Verdana</p>
+<br>
+<p class="VERDANAREF">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ VERDANAREF</p>
+<br>
+
+<p>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ plain p</p>
+<br>
+<p class="smaller">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ p class smaller </p>
+<br>
+<p class="td1p">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ td1p</p>
+<br>
+
+<p style='font-variant:small-caps'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ small caps</p>
+<br>
+
+<p style="line-height:12pt;font-size:12pt;" >
+<span style="font-size:24pt;">Text </span>
+<span style="font-size:18pt;vertical-align: top;"> Vertically aligned Heading </span>
+<span style="font-size:12pt;vertical-align: top;"> <b>with Text in different font sizes</b></span>
+</p>
+
+<br>
+<pre>
+This Calls testError(with the value in the input box) and testError does and eval in my standard try catch block
+
+Note: use quotes around function arguments f('arg')
+
+Give it a function name, like:
+
+    doMessage('hi gary')
+    showScrSize()
+    checkPosNumber('2') checkPosNumber('-1')
+
+    and if the function has a return value, you might see it in an alert box (else You see undefined)
+
+Enter some crap to see if gjonerror is working:  "'' your are ASOL
+
+Any valid javascript expression : if its a debug build of Mozilla  dumpTree()
+
+</pre>
+<form name="testErrorF">
+<FIELDSET class="b" style='width:25%'>
+<LEGEND class="a">Please enter a term to evaluate</LEGEND>
+<input type="text" size = 50 tabindex="0" id="query_text" value="">
+<input type="button" id="testErrorb" name="Runit" value="Runit" onclick="testError(event, this.form.query_text.value);">
+</FIELDSET>
+</form>
+
+<br>
+
+
+
+    <table class="CTB">
+        <caption class="HC">Table Caption and Sub Heading Color</caption>
+        <tr class="R1">
+      <td colspan="2"><p class="td1p">Table row color R1</p></td>
+        </tr>
+
+         <tr>
+      <td class="a"><p class="td1p">Table row color a</p> </td>
+      <td class="a"><p class="td1p">Table row color a</p></td>
+        </tr>
+       <tr>
+      <td class="c"><p class="td1p">Table row color c</p> </td>
+      <td class="c"><p class="td1p">Table row color c</p></td>
+        </tr>
+        <tr>
+      <td class="b"><p class="td1p">Table row color b</p></td>
+      <td class="b"><p class="td1p">Table row color b</p></td>
+        </tr>
+       <tr>
+      <td class="c"><p class="td1p">Table row color c</p></td>
+      <td class="c"><p class="td1p">Table row color c</p></td>
+        </tr>
+        <tr class="R2">
+      <td colspan="2"><p class="td1p">Table row color R2</p></td>
+        </tr>
+   </table>
+    <br>
+
+
+<!--
+
+http://www.w3.org/TR/CSS2/generate.html#propdef-quotes
+
+IE does not add quotes around quote, mozilla does
+
+-->
+
+
+
+    <br>
+<!-- Mickey does not support abbr
+    &nbsp&nbsp
+    &nbsp&nbsp<ABBR title="World Wide Web">WWW</ABBR>
+    &nbsp&nbsp<ABBR lang="fr" title="Soci&eacute;t&eacute; Nationale des Chemins de Fer">SNCF</ABBR>
+    &nbsp&nbsp<ABBR lang="es" title="Do&ntilde;a">Do&ntilde;a</ABBR>
+-->
+
+    <p>Acronyms, abbreviations and words needing more of an explaination are coded with a
+    dotted line around the word
+    <br>
+
+    <br>
+    <br>
+    <dfn>The DFN Tag</dfn>
+    <br>
+    <samp>SAMP KBD and VAR</samp>
+    <br>
+
+    <h1>h1</h1>
+
+    <h2>h2</h2>
+
+    <h3>h3</h3>
+
+    <h4>h4</h4>
+
+    <h5>h5</h5>
+
+    <p class="LT">LT Large Text Line 1</p>
+
+    <p class="LT">LT Large Text Line 2</p>
+
+    <p><span class="DropCap">D</span>ropCap spaned in p </p>
+
+    <p><span class="GreyPattern">span class=GreyPattern</span><span class="LGreyPattern">span class=LGreyPattern</span> <span class="DGreyPattern">span
+    class=DGreyPattern</span></p>
+
+    <p><span class="italicblue">p span class italicblue</span></p>
+
+    <p class="smallcaps">P Class first-line- Notice the P and C are large, small caps makes Caps in orginal slightly large than lowercase.  Also notice that they are slighty ragged, so maybe I want to check out the fonts in my preferences, to see if I want downalod, install, activate more </p>
+
+    <p class="indent" style=" border:none; background:#F0F8FF;">light blue background</p>
+    <p class="indent" style=" border:none; background:#F0FFFF;">azure background</p>
+    <p class="indent" style=" border:none; background:#FFFAF0;">floral white background</p>
+    <p class="indent" style=" border:none; background:#F8F8FF;">ghost white background</p>
+    <p class="indent" style=" border:none; background:#F0FFF0;">honeydew background</p>
+    <p class="indent" style=" border:none; background:#FFFFF0;">ivory background</p>
+    <p class="indent" style=" border:none; background:#FAF0E6;">linen background</p>
+    <p class="indent" style=" border:none; background:#FFF5EE;">seashell background</p>
+    <p class="indent" style=" border:none; background:#FFFAFA;">snow background</p>
+    <p class="indent" style=" border:none; background:#F5F5F5;">white smoke background</p>
+
+    <p> </p>
+    <p class="indent" style=" border:none; background:#ffffd7;">Black Grey UL background</p>
+    <p class="indent" style=" border:none; background:#ffffd7;">Black UL background</p>
+
+    <p class="indent" style=" border:none; background:#dedede;">Old Grey background</p>
+    <p class="indent" style=" border:none; background:#FFFFF0">Grey background</p>
+    <p class="indent" style=" border:none; background:#FFFAFA;">Grey background</p>
+    <p class="indent" style=" border:none; background:#F5F5F5">New Grey background</p>
+    <p class="indent" style=" border:none; background:#dedede;">Grey background</p>
+    <p class="indent" style=" border:none; background:#6666FF;">Grey text</p>
+
+    <p class="indent" style=" border:none; background:#CCCCFF;">Grey and White HC -darker blue than b</p>
+    <p class="indent" style=" border:none; background:#ddddee;">Grey and White a -a grey blue</p>
+
+    <p class="indent" style=" border:none; background:#eeeeff;">Grey And White b -a very light blue</p>
+<hr>
+    <p class="indent" style=" border:none; background:#CCCCCC;">CCCCCC Domm background</p>
+    <p class="indent" style=" border:none; background:#DCDCDC;">gainsboro background</p>
+    <p class="indent" style="border:none; background:ivory;">ivory</p>
+    <p class="indent" style=" border:none; background:#6666FF;">Grey text</p>
+
+
+<!--
+   <p class="indent"> &#8226; Start of a Bullet, but discontinued as its pretty useless</p>
+
+    <p class="indent"> &#8226;  <span class="LGreyPattern">Another Bullet</span></p>
+
+    <p class="indent"> &#8226;  <span class="LGreyPattern">Another Bullet with a somewhat longer descrption that will wrap around to the next line and then, make me really angry by not indenting, making this only good for really short bullets</span></p>
+-->
+<!--
+    <dl>
+ <dt>This is a DT (Defintion Term)for the DL (Defintion List)</dt>
+ <dd>This is the DD (Definition Description)</dd>
+    </dl>
+-->
+    <br>
+    <hr>
+
+    <dl>
+        <dd>
+       <h3 id="CookBookID">Main DL</h3>
+        </dd>
+        <dd>
+      <dl>
+        <dt><a href="Appetizers.html">a Sub DL DT</a></dt>
+        <dd>
+           <dl>
+            <dt><a href="SoupsStews.html">a Sub Sub DL DT</a></dt>
+          </dl>
+        </dd>
+
+        <dt><a href="SoupsStews.html">Soups and Stews</a></dt>
+
+        <dt><a href="Salads.html">Salads</a></dt>
+
+        <dt><a href="Eggs.html">Eggs</a></dt>
+        <dt>plain dt no a</dt>
+      </dl>
+    </dd>
+  </dl>
+
+    <hr>
+
+      <dl>
+        <dt>A DT</dt>
+        <dt>plain </dt>
+        <dt>and simple</dt>
+        <dt>with perhaps one very long line to see how this wants to wrap at different reslotuions on view settings.  Looks like I wll need a lot more text in this sentence to make it wrap at 90%</dt>
+        <dt>a</dt>
+      </dl>
+
+    <ul>
+        <li class="anp">
+      <p>ul un-ordered list example</p>
+        </li>
+
+        <li class="anp">
+      <p>ADDRESS</p>
+        </li>
+
+        <li class="anp">
+      <p>PHONE</p>
+        </li>
+    </ul>
+
+    <p>or</p>
+
+<!--
+
+<li><p> would not give me the bullet on the same line as the text
+
+-->
+<hr>
+    <ul style='background-color: #ffffd7; color: black; list-style-position: inside; list-style-image: url("GraphicWidgets/sdi-yl.gif")'>
+    <li>Inside Position Yellow Graphic</li>
+    </ul>
+
+    <ul style='color: black; list-style-image: url("GraphicWidgets/sdi-lb.gif")'>
+        <li><p>Light Blue Graphic</p></li>
+        <li class="white"><p><span class="LGreyPattern">Another Bullet with a somewhat longer descrption that will wrap around to the next and it will indent the line (I am happy) making this really, really good and good for really long bullets with multiple sentences a piece</span></p></li>
+    </ul>
+<hr>
+    <ol>
+        <li><p>ol ordered list example</p></li>
+        <li><p>I</p></li>
+        <li><p>II</p></li>
+    </ol>
+<!--
+    <ul>
+        <li class="white"><p><span class="LGreyPattern">Another Bullet with a somewhat longer descrption that will wrap around to the next and it will indent the line (I am happy) making this really, really good and good for really long bullets with multiple sentences a piece</span></p></li>
+        <li class="white"><p><span class="LGreyPattern">Another Bullet</span></p></li>
+        <li class="white"><p><span class="LGreyPattern">PHONE</span></p>
+        </li>
+    </ul>
+-->
+<hr>
+    <ul>
+        <li><p><span style="background-color:#ddddee;">Another Bullet with a somewhat longer descrption that will wrap around to the next and it will indent the line (I am happy) making this really, really good and good for really long bullets with multiple sentences a piece</span></p></li>
+        <li><p><span style="background-color:#eeeeff;">Another Bullet</span></p></li>
+        <li><p><span style="background-color:#ddddee;">PHONE</span></p></li>
+    </ul>
+
+
+<hr>
+<ul>
+<li><p><span class="LGreyPattern">Multiple ul /ul pairs used so that Mozilla and IE will format these lists correctly
+and so I can leave some of the background(white space) between list items</span></p></li>
+</ul>
+
+<ul>
+<li><p><span class="LGreyPattern">searching cooking websites for a simple Tomato Pasta Sauce.&nbsp;&nbsp;
+Oops, that&rsquo;s an enormous amount to wade through.&nbsp;&nbsp;
+Click, Click, Click, Click, Click, Click, Click, Click, Click,
+Click, Click&nbsp;&nbsp;
+"Whats all this, Where is the RECIPE?", Click, Click, Click, Click,
+Click, Click, Click ...</span></p></li>
+</ul>
+
+<ul>
+<li><p><span class="LGreyPattern">seeing a site with video instructions on how to prepare a leg
+of lamb.&nbsp;&nbsp;Bought the leg.&nbsp;&nbsp;Got home, getting
+ready -- the website was down.</span></p></li>
+</ul>
+
+<ul>
+<li> <p><span class="LGreyPattern">watching a show and taking notes.&nbsp;&nbsp;Oops, how did I
+miss that?&nbsp; What were all those ingredients?&nbsp; Why
+doesn&rsquo;t mine look or taste like theirs?&nbsp;&nbsp;What
+gives?</span></p></li>
+</ul>
+
+<!--
+Lets see if its the span class- replace with style color
+does case matter in CSS style sheets and the corresponding html"
+-->
+<hr>
+<ul class="none">
+        <li><p style="background-color:#ddddee;">a un-ordered list example without a bullet</p></li>
+
+        <li><p style="background-color:#eeeeff;">ADDRESS</p></li>
+
+        <li><p style="background-color:#ddddee;">PHONE</p></li>
+</ul>
+
+<!-- GLITCH no IE for &cong or &#8773;
+
+    <p>Approximately equal to &#8773;</p>
+
+    To ensure that a string of characters has no markup,
+    it is sufficient to represent all occurrences of < , > , and & by character or entity references.
+
+    Latin-1 (ISO-8859-1)
+
+-->
+<pre>
+right single quote ' (Windows x96 146 latin-1 8217) &rsquo; or &#8217;
+</pre>
+
+
+    <p>&quot;, &amp;, &lt;, &gt;</p>
+
+    <p>Degree °  &deg;</p>
+
+    <p>Bullet &bull;</p>
+
+    <p>double horizontal arrow  &harr; &#8596;</p>
+
+    <p>registered trademark ® &reg;</p>
+
+    <p>paragraph ¶ &para;</p>
+
+    <p>1/4 ¼ &frac14;</p>
+
+    <p>1/2 ½  &frac12;</p>
+
+    <p>3/4 ¾ &frac34;</p>
+
+    <p>almost equal to &asymp; &#8776;</p>
+
+    <p>equivalent &equiv; &#8801;</p>
+
+    <p>left single quote ' &lsquo;</p>
+
+    <p>plus minus, ±  &plusmn;</p>
+
+    <p>Middle dot · &middot;</p>
+
+    <p>division �ivide;</p>
+
+    <p>Greek Delta &Delta; &#916;</p>
+
+    <p>Trademark &trade; &#8482;</p>
+
+    <p>en dash &ndash; -</p>
+
+    <p>em dash &mdash; -</p>
+
+  <p><em>I</em>t&rsquo;s   no space</p>
+  <p><em>I</em>&thinsp;t&rsquo;s   thin space</p>
+  <p><em>I</em>&ensp;t&rsquo;s   en  space</p>
+  <p><em>I</em><span class="mythinsp">&nbsp;</span>t&rsquo;s   class mythinsp</p>
+  <p>tilde &tilde;</p>
+
+
+
+    <div class="borderdraw bluedown">
+        <!-- -->
+    </div>
+
+
+<p
+style='text-shadow: 0px 1px 1px red;font-weight:bold; font-size: 24pt;font-variant:normal;font-style: oblique ;padding-right:.5em; padding-left:.5em; font-family: "Times New Roman",Garamond,serif;margin-top:3pt;margin-bottom:3pt;'>
+abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Times with Special types
+</p>
+<br>
+<p style="text-shadow: 0.2em 0.5em 0.1em #600,-0.3em 0.1em 0.1em #060,0.4em -0.3em 0.1em #006">
+abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Times with Special types
+</p>
+
+
+
+
+<p style='font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive'> My favorite Calligraphy style</p>
+<br>
+
+<p>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ default</p>
+<br>
+<p style='font-size:12pt; font-family:"verdana", Times, serif'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ verdana</p>
+<br>
+<p style='font-size:12pt; font-family:"Georgia", Times, serif'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ georgia</p>
+<br>
+<p style='font-size:12pt; font-family:"Times New Roman", Times, serif'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ times new roman</p>
+<br>
+<p style='font-size:12pt;font-family:Arial, Helvetica, sans-serif'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ arial</p>
+<br>
+<p style='font-size:12pt;font-family:Algerian, Western, fantasy'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ fantasy</p>
+<br>
+<p style='font-size:12pt;font-family:"Courier New",Courier'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ courier</p>
+<br>
+<p style='font-size:12pt;font-family: Mistral, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Mistrial cursive</p>
+<br>
+<p style='font-size:12pt;font-family: cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Brush Script MT", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Brush Script MT cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Vladimar Script", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Validmir Script cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Vivaldi", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Vivladi cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Lucida Calligraphy cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Kunstler Script", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Kunstler Script cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Harlow Solid Italic", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Harlow Solid Italic cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Georgia Ref", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Georgia Ref cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"French Script MT", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ French Script MT cursive</p>
+<br>
+
+<p style='font-size:12pt;font-family:"Footlight MT Light", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Footlight MT Light cursive</p>
+<br>
+<p style='font-size:12pt;font-style: italic; font-family:"Engravers MT", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Engravers MT italic cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Copperplate Gothic Bold", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Copperplate Gothic Bold cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Castellar", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Castellar cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Century Schoolbook", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Century Schoolbook cursive</p>
+<br>
+<p style='font-size:12pt;font-style: italic;font-family:"Book Antiqua", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Book Antiqua font-style: italic cursive</p>
+<br>
+<p style='font-size:12pt;font-family:"Berling Antiqua", Lucida Calligraphy, cursive'> abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Berling Antiqua cursive</p>
+<br>
+
+<p style='text-align:justify; font-size:12pt; font-family:Arial, Helvetica, sans-serif'>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ Know is the time for all good men to come to the aid of their country arial Justified</p>
+<br>
+
+
+
+
+<pre>&lt;SPAN STYLE="font-size: x-small;"&gt;</pre>
+<p><span STYLE="font-size: x-small;">x-small</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: small;"&gt;</pre>
+<p><span STYLE="font-size: small;">small</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: medium;"&gt;</pre>
+<p><span STYLE="font-size: medium;">medium</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: large;"&gt;</pre>
+<p><span STYLE="font-size: large;">large</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: x-large;"&gt;</pre>
+<p><span STYLE="font-size: x-large;">x-large</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: xx-large;"&gt;</pre>
+<p><span STYLE="font-size: xx-large;">xx-large</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: larger;"&gt; and
+    &lt;SPAN STYLE="font-size: smaller;"&gt;</pre>
+
+<p><span STYLE="font-size: smaller;">smaller</span>.</p>
+<p><span STYLE="font-size: larger;">larger</span>.</p>
+
+<pre>&lt;SPAN STYLE="font-size: 18pt;"&gt;</pre>
+<p><span STYLE="font-size: 18pt;">18 point font size</span>.</p>
+<h4>The CSS way: Percentage</h4>
+
+<pre>&lt;SPAN STYLE="font-size: 110%;"&gt;</pre>
+<p><span STYLE="font-size: 110%;">110% font size</span>.</p>
+<br>
+<p STYLE="font-size: medium;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ medium</p>
+<br>
+<p STYLE="font-size: medium; padding:2pt 2pt 2pt 2pt;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ medium padding</p>
+<br>
+<p STYLE="font-size: small; padding:1pt 1pt 1pt 1pt;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ small with padding</p>
+<br>
+<p STYLE="font-size: small;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ small</p>
+<br>
+<p STYLE="font-size: large;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ large</p>
+<br>
+
+<p ><img SRC="GraphicWidgets/sdi-bl.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p><img SRC="GraphicWidgets/sdi-cy.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p ><img SRC="GraphicWidgets/sdi-gr.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p ><img SRC="GraphicWidgets/sdi-lb.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p ><img SRC="GraphicWidgets/sdi-pr.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p ><img SRC="GraphicWidgets/sdi-rd.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p CLASS="space-line">&nbsp;</p>
+
+<p ><img SRC="GraphicWidgets/sdi-yl.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+
+   <p class="heading">&ndash;Gary&ndash;</p>
+   <p class="heading">Johnson</p>
+
+
+
+
+<!--
+<div style="height:100px;width:154px;background-color:FCEA9D;overflow:auto;overflow-x:hidden;overflow-y:scroll;padding-left:4;">
+
+div has to be langer than the table (probably need to include scroll bar as well
+-->
+
+<br>
+
+<div style="height:100px;width:180px;background-color:#FFFAF0;overflow:auto;overflow-x:hidden;overflow-y:scroll;padding-left:4;">
+
+<table>
+<tr><td><a class="AOne" href="Appetizers.html">Appetizer Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Barbeque Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Beef Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Beverage Recipes</a></td></tr>
+
+<tr><td><a class="AOne" href="Appetizers.html">Brunch Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Chicken Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Christmas Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Cooking Light</a></td></tr>
+
+<tr><td><a class="AOne" href="Appetizers.html">Main Dish Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Mexican Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Pasta Recipes</a></td></tr>
+
+<tr><td><a class="AOne" href="Appetizers.html">Pork Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Quick and Easy Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Salad Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Seafood Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Side Dish Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Soup Recipes</a></td></tr>
+<tr><td><a class="AOne" href="Appetizers.html">Thanksgiving Recipes</a></td></tr>
+
+<tr><td><a class="AOne" href="Appetizers.html">Vegetarian Recipes</a></td></tr>
+</table>
+
+</div>
+
+
+<select name="state" class="buttonNgrey">
+<option value="" selected>-- Select a State --</option>
+<option value="AL" > ALABAMA</option>
+<option value="AK" > ALASKA</option>
+<option value="AZ" > ARIZONA</option>
+<option value="AR" > ARKANSAS</option>
+
+<option value="CA" > CALIFORNIA</option>
+<option value="CO" > COLORADO</option>
+<option value="CT" > CONNECTICUT</option>
+<option value="DE" > DELAWARE</option>
+<option value="FL" > FLORIDA</option>
+<option value="GA" > GEORGIA</option>
+
+<option value="HI" > HAWAII</option>
+<option value="ID" > IDAHO</option>
+<option value="IL" > ILLINOIS</option>
+<option value="IN" > INDIANA</option>
+<option value="IA" > IOWA</option>
+<option value="KS" > KANSAS</option>
+
+<option value="KY" > KENTUCKY</option>
+<option value="LA" > LOUISIANA</option>
+<option value="ME" > MAINE</option>
+<option value="MD" > MARYLAND</option>
+<option value="MA" > MASSACHUSETTS</option>
+<option value="MI" > MICHIGAN</option>
+
+<option value="MN" > MINNESOTA</option>
+<option value="MS" > MISSISSIPPI</option>
+<option value="MO" > MISSOURI</option>
+<option value="MT" > MONTANA</option>
+<option value="NE" > NEBRASKA</option>
+<option value="NV" > NEVADA</option>
+
+<option value="NH" > NEW HAMPSHIRE</option>
+<option value="NJ" > NEW JERSEY</option>
+<option value="NM" > NEW MEXICO</option>
+<option value="NY" > NEW YORK</option>
+<option value="NC" > NORTH CAROLINA</option>
+<option value="ND" > NORTH DAKOTA</option>
+
+<option value="OH" > OHIO</option>
+<option value="OK" > OKLAHOMA</option>
+<option value="OR" > OREGON</option>
+<option value="PA" > PENNSYLVANIA</option>
+<option value="RI" > RHODE ISLAND</option>
+<option value="SC" > SOUTH CAROLINA</option>
+
+<option value="SD" > SOUTH DAKOTA</option>
+<option value="TN" > TENNESSEE</option>
+<option value="TX" > TEXAS</option>
+<option value="UT" > UTAH</option>
+<option value="VT" > VERMONT</option>
+<option value="VA" > VIRGINIA</option>
+
+<option value="WA" > WASHINGTON</option>
+<option value="DC" > WASHINGTON DC</option>
+<option value="WV" > WEST VIRGINIA</option>
+<option value="WI" > WISCONSIN</option>
+<option value="WY" > WYOMING</option>
+</select>
+
+<!--
+<FORM action="..." method="post">
+ <P>
+ <FIELDSET>
+  <LEGEND>Personal Information</LEGEND>
+  Last Name: <INPUT name="personal_lastname" type="text" tabindex="1">
+  First Name: <INPUT name="personal_firstname" type="text" tabindex="2">
+  Address: <INPUT name="personal_address" type="text" tabindex="3">
+  ...more personal information...
+ </FIELDSET>
+ <FIELDSET>
+  <LEGEND>Medical History</LEGEND>
+  <INPUT name="history_illness"
+         type="checkbox"
+         value="Smallpox" tabindex="20"> Smallpox
+  <INPUT name="history_illness"
+         type="checkbox"
+         value="Mumps" tabindex="21"> Mumps
+  <INPUT name="history_illness"
+         type="checkbox"
+         value="Dizziness" tabindex="22"> Dizziness
+  <INPUT name="history_illness"
+         type="checkbox"
+         value="Sneezing" tabindex="23"> Sneezing
+  ...more medical history...
+ </FIELDSET>
+ <FIELDSET>
+  <LEGEND>Current Medication</LEGEND>
+  Are you currently taking any medication?
+  <INPUT name="medication_now"
+         type="radio"
+         value="Yes" tabindex="35">Yes
+  <INPUT name="medication_now"
+         type="radio"
+         value="No" tabindex="35">No
+
+  If you are currently taking medication, please indicate
+  it in the space below:
+  <TEXTAREA name="current_medication"
+            rows="20" cols="50"
+            tabindex="40">
+  </TEXTAREA>
+ </FIELDSET>
+</FORM>
+-->
+
+
+<ul>
+        <li><p class="exp"><span class="bpl">Vine-ripened are usually the most flavorful.</span></p></li>
+        <li><p class="exp"><span class="bpl">Avoid bruised or cracked tomatoes.</span></p></li>
+        <li><p class="exp"><span class="bpl">Choose well shaped, firm and uniformly colorful tomatoes without blemishes.</span></p></li>
+        <li><p class="exp"><span class="bpl">A ripe tomato yields slightly to gentle pressure.</span></p></li>
+        <li><p class="exp"><span class="bpl">It is okay to purchase unripened fruit.</span></p></li>
+        <li><p class="exp"><span class="bpl">If tomatoes need to ripen, store them at room temperature in a brown paper bag (or in a fruit-ripening bowl).</span></p></li>
+</ul>
+
+<ul>
+        <li><p class="exp mb">Vine-ripened are usually the most flavorful.</p></li>
+        <li><p class="exp mb">Avoid bruised or cracked tomatoes.</p></li>
+        <li><p class="exp mb">Choose well shaped, firm and uniformly colorful tomatoes without blemishes.</p></li>
+        <li><p class="exp mb">A ripe tomato yields slightly to gentle pressure.</p></li>
+        <li><p class="exp mb">It is okay to purchase unripened fruit.</p></li>
+        <li><p class="exp mb">If tomatoes need to ripen, store them at room temperature in a brown paper bag (or in a fruit-ripening bowl).</p></li>
+</ul>
+
+
+
+
+
+
+<ul class="none">
+  <li><p class='exp'><span class='anp mydtspan'>ul list p exp span anp mydtspan</span></p></li>
+  <li><p class='exp'><span class='anp mydtspan'>this looks nice when it wraps p exp span anp mydtspan</span></p></li>
+</ul>
+
+  <p class='exp'><span class='anp mydtspan'>Non List p exp span anp mydtspan</span></p>
+  <p class='exp'><span class='anp mydtspan'>p exp span anp mydtspan</span></p>
+
+  <p class='exp'><span class='anp'><span class='mydtspan'>2Non List p exp span anp mydtspan</span></span></p>
+  <p class='exp'><span class='anp'><span class='mydtspan'>2p exp span anp mydtspan</span></span></p>
+
+  <p class='exp' style='margin-left:1em;'><span class='anp'><span class='mydtspan'>3Non List p exp span anp mydtspan</span></span></p>
+  <p class='exp' style='margin-left:1em;'><span class='anp'><span class='mydtspan'>3p exp span anp mydtspan</span></span></p>
+
+
+
+<iframe id="iffooter1" class="myfooter" src="GaryDefaultFooter.html"></iframe>
+
+
+</body>
+</html>
+
+
+

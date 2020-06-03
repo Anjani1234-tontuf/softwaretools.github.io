@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+
+<!--
+
+Content Notes
+
+value substance over style
+
+I already have 20 cookbooks
+
+-->
+<!--
+
+Technical Notes
+
+-->
+<!--
+
+Changelog
+
+-->
+<!--
+
+-->
+
+<style type="text/css">
+.container
+{
+        width: 100%;
+        height: 100%;
+}
+
+.myFixedDiv
+{
+        position: fixed;
+        width: auto;
+        margin: 0;
+        padding: 10px;
+        top:12em;
+        left:39em;
+        min-height: 20px;
+        height: auto;
+        border: 2px outset;
+}
+
+</style>
+
+    <title>Is this Right for You</title>
+    <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+    <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+    <link rel="Copyright" href="Copyright.html">
+    <meta name="author" content="Gary Johnson">
+    <meta name="description" content="CookBook">
+    <meta name="keywords" content="">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjquiz.min.js"></script>
+<script type="text/javascript" src="js/gjform.min.js"></script>
+<script type="text/javascript" src="js/gjonline.min.js"></script>
+
+
+<script type="text/javascript">
+
+theGoodandBad = new myCounter();
+
+function setResponse( idin, what, effect)
+{
+
+var newWhat = what;
+
+  try
+  {
+//    setClass(idin,"italicblue");
+    setClass(idin,"CBwarn");
+
+    var isReq = idin.substr(0,1);
+
+    if(isReq == "R")
+    {
+      var len = idin.length;
+      var realId = idin.substr(0,(len - 2));
+      var realHidden = "H" + realId;
+      var theE = document.getElementById(realHidden);
+      if(theE)
+      {
+        theE.value = 1;
+      }
+      else
+      {
+        alert("setResponse error in form for id : " + idin);
+      }
+    }
+
+    if(effect == "Bad")
+    {
+      //alert("the width " + getCW() + " width " + mygetWidth("Strikes") + " " + getWidth("Strikes") );
+      //alert(getCW() -  mygetWidth("Strikes") + 5);
+      theGoodandBad.setBad(idin);
+      //nope setLeft( "Strikes", getCW() -  mygetWidth("Strikes") + 5);
+      //var wintxt = "Positives: " + theGoodandBad.getGoods() + "<br> Negatives: " + theGoodandBad.getBads();
+      var wintxt = "Positives: " + theGoodandBad.getGoods() + "<br> Negatives: " + theGoodandBad.getBads();
+      changeInnerHTML("Strikes", wintxt);
+      setClass(idin,"CBwarn")
+    }
+
+    if(effect == "Good")
+    {
+      //alert("the width " + getCW() + " width " + mygetWidth("Strikes") + " " + getWidth("Strikes") );
+      //alert(getCW() -  mygetWidth("Strikes") + 5);
+      theGoodandBad.setGood(idin);
+      //nope setLeft( "Strikes", getCW() -  mygetWidth("Strikes") + 5);
+      //var wintxt = "Positives: " + theGoodandBad.getGoods() + "<br> Negatives: " + theGoodandBad.getBads();
+     var wintxt = "Positives: " + theGoodandBad.getGoods() + "<br> Negatives: " + theGoodandBad.getBads();
+      changeInnerHTML("Strikes", wintxt);
+      setClass(idin,"CBwarn")
+    }
+
+
+    if (what == "LIMITED")
+    {
+      newWhat = 'You will like the food dictionary and the widgets; however, the recipes are not for you at this time';
+      setClass(idin,"CBwarn")
+    }
+    else if (what == "No")
+    {
+      newWhat = 'You might like the widgets; however, the recipes and dictionary are not for you at this time';
+      setClass(idin,"CBerror")
+    }
+    else if (what == "Beyond")
+    {
+      newWhat = 'Who knows, You might like the widgets; however, you are probably beyond this';
+      setClass(idin,"CBerror")
+    }
+    else if (what == "Duh")
+    {
+      newWhat = 'We do not think you will like this';
+      setClass(idin,"CBerror")
+    }
+    else if (what == "HR")
+    {
+      newWhat = 'We will try and help you in any way we can';
+      setClass(idin,"SHC")
+    }
+    changeInnerHTML(idin, newWhat  );
+  }
+  catch(err)
+  {
+     gjonerror(err,"setResponse idin " + idin + " what " + what);
+  }
+}
+
+function testOP()
+{
+
+      var wintxt = "testOP Positives: " + theGoodandBad.getGoods() + "<br> Negatives: " + theGoodandBad.getBads();
+      changeInnerHTML("Strikes", wintxt);
+}
+
+</script>
+
+</head><body style="max-width: 54em; margin-left: auto; margin-right: auto;">
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader" id="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<h1 class="heading"><span class="HC">Is this Right for You?</span></h1>
+
+
+<div class="myinline container"> <!-- main width setting div -->
+
+<hr>
+<br class="clearall">
+
+
+<form onsubmit="return submitIt(this, this.id)" name="myForm" id="myForm">
+  <table summary="Survey Options" style="min-width: 40em; max-width: 54em;" border="0" cellpadding="8" cellspacing="8">
+    <tbody><tr><td class="R2" colspan="2" style="width: 54em;" width="100%"><p>I am </p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="REATF1" name="REATF" onclick="setResponse('REATFop', 'LIMITED','Bad');" type="radio"> a vegan<br>
+        <input value="REATF2" name="REATF" onclick="setResponse('REATFop', 'LIMITED','Bad');" type="radio"> a vegetarian<br>
+        <input value="REATF3" name="REATF" onclick="setResponse('REATFop', 'No','Bad');" type="radio"> diabetic or have very special dietary needs<br>
+        <input value="REATF4" name="REATF" onclick="setResponse('REATFop', 'you\'re just the kind of person who is going to like this','Good');" type="radio"> an omnivore<br>
+        <input value="REATF5" name="REATF" onclick="setResponse('REATFop', 'No desserts in our recipes as yet, but, you\'re just the kind of person who is going to like this','Good');" type="radio"> a dessertatarian<br>
+        <input value="REATF5" name="REATF" onclick="setResponse('REATFop', 'All our recipes have been certified by the Potatoe Chip Lovers of America','Good');" type="radio"> a person would eats salty food for dessert<br>
+      </td>
+      <td width="30%"><p class="CBwarn" id="REATFop"></p>&nbsp;</td>
+    </tr>
+
+   <tr><td class="R2" colspan="2"><p>I want to learn how to bake and make desserts.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="RTF01" onclick="setResponse('RTF01op', 'LIMITED','Bad');" type="radio"> True<br>
+        <input value="false" name="RTF01" onclick="setResponse('RTF01op', 'you\'re just the kind of person who is going to like this','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="CBwarn" id="RTF01op"></p>&nbsp;</td>
+    </tr>
+
+   <tr><td class="R2" colspan="2"><p>I do not like seasonings and spices.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="RTF02" onclick="setResponse('RTF02op', 'That\'s too bad','Bad');" type="radio"> True<br>
+        <input value="false" name="RTF02" onclick="setResponse('RTF02op', 'Good','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="RTF02op"></p>&nbsp;</td>
+    </tr>
+
+   <tr><td class="R2" colspan="2"><p>I hate garlic.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="RTF03" onclick="setResponse('RTF03op', 'LIMITED','Bad');" type="radio"> True<br>
+        <input value="false" name="RTF03" onclick="setResponse('RTF03op', 'you\'re just the kind of person who is going to like this','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="RTF03op"></p>&nbsp;</td>
+    </tr>
+
+    <tr><td class="R2" colspan="2"><p>Watching the food network is my idea of fun.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="OTF04" onclick="setResponse('OTF04op', 'Beyond','Bad');" type="radio"> True<br>
+        <input value="false" name="OTF04" onclick="setResponse('OTF04op', 'Good.','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="OTF04op"></p>&nbsp;</td>
+    </tr>
+
+   <tr><td class="R2" colspan="2"><p>You think the idea of a computer as a tool in the kitchen is absurd.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="RTF05" onclick="setResponse('RTF05op', 'Why?, its a tool!','Bad');" type="radio"> True<br>
+        <input value="false" name="RTF05" onclick="setResponse('RTF05op', 'Good.','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="RTF05op"></p>&nbsp;</td>
+    </tr>
+
+
+   <tr><td class="R2" colspan="2"><p>You know exactly what it means to "Cook over medium-high heat".</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="RTF06" onclick="setResponse('RTF06op', 'Beyond','Bad');" type="radio"> True<br>
+        <input value="false" name="RTF06" onclick="setResponse('RTF06op', 'you\'re just the kind of person who is going to like this','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="RTF06op"></p>&nbsp;</td>
+    </tr>
+
+
+    <tr><td class="R2" colspan="2"><p>You
+think filtered, purified, light, refreshing water has to taste better
+than plain "safe" drinking water and is definitely worth a dollar for
+12 ounces.</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="true" name="OTF02" onclick="setResponse('OTF02op', 'Duh','Bad');" type="radio"> True<br>
+        <input value="false" name="OTF02" onclick="setResponse('OTF02op', 'your brain appears to be working','Good');" type="radio"> False<br>
+      </td>
+      <td width="30%"><p class="td1p" id="OTF02op"></p>&nbsp;</td>
+    </tr>
+ </tbody></table>
+ <input value="1" name="HREATF" id="HREATF" type="hidden">
+ <input value="1" name="HRTF01" id="HRTF01" type="hidden">
+ <input value="-1" name="HRTF02" id="HRTF02" type="hidden">
+ <input value="-1" name="HRTF03" id="HRTF03" type="hidden">
+ <input value="-1" name="HRTF05" id="HRTF05" type="hidden">
+ <input value="-1" name="HRTF06" id="HRTF06" type="hidden">
+</form>
+
+<p class="mythinsp">&nbsp;</p>
+<p class="SHC heading">If the Positives are greater than the Negatives, give us a try</p>
+<table class="CTB" border="0" cellpadding="4" cellspacing="4">
+<tbody><tr>
+<td class="a"><p>
+<a href="WHY.html" target="_top">Why did I do this?</a>
+</p></td>
+<td class="c"><p>
+<a href="http://home.comcast.net/~adgj/RealComcastMySidebar.htm">Example Pages</a>
+</p></td>
+<td class="a"><p>
+<a href="Privacy_Policy.html" target="_top">Privacy Policy</a>
+</p></td>
+</tr>
+</tbody></table>
+
+<h1 class="heading"><span class="HC">Just for Fun</span></h1>
+<br class="clearall">
+
+<hr>
+
+<form onsubmit="return submitIt(this, this.id)" name="myForm2" id="myForm2">
+  <table summary="Fun Options" style="min-width: 40em; max-width: 54em;" border="0" cellpadding="8" cellspacing="8">
+   <tbody><tr><td class="R2" colspan="2" style="width: 54em;" width="100%"><p>RTFM stands for </p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="RTFM1" name="ORTFM" onclick="setResponse('ORTFMop', 'A correct answer','');" type="radio"> Real Time Frequency Modulation<br>
+        <input value="RTFM2" name="ORTFM" onclick="setResponse('ORTFMop', 'A correct answer','');" type="radio"> Realtime Traffic Flow Measurement<br>
+        <input value="RTFM3" name="ORTFM" onclick="setResponse('ORTFMop', 'you\'re just the kind of person who is going to like this','');" type="radio"> Read the F@##in Manual<br>
+      </td>
+      <td width="30%"><p class="td1p" id="ORTFMop"></p>&nbsp;</td>
+    </tr>
+
+    <tr><td class="R2" colspan="2"><p>If tech support says the problem is the bit bucket is full</p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="OBBF1" name="OBBFM" onclick="setResponse('OBBFop', 'Not really','');" type="radio"> You know all you have to do is reboot, you don't need to buy more bits.<br>
+        <input value="OBBF2" name="OBBFM" onclick="setResponse('OBBFop', 'Not really','');" type="radio"> There is a problem is Vector C air space, repartition main memory<br>
+        <input value="OBBF3" name="OBBFM" onclick="setResponse('OBBFop', 'Not really','');" type="radio"> You need to refrag you're hard drive<br>
+        <input value="OBBF3" name="OBBFM" onclick="setResponse('OBBFop', 'you\'re just the kind of person who is going to like this','');" type="radio"> Other<br>
+      </td>
+      <td width="30%"><p class="td1p" id="OBBFop"></p>&nbsp;</td>
+    </tr>
+
+    <tr><td class="R2" colspan="2"><p>Bugzilla is </p></td></tr>
+    <tr>
+      <td width="70%">
+        <input value="OBUGZ1" name="OBUGZ" onclick="setResponse('OBUGZop', 'Maybe?','');" type="radio"> Godzilla's best friend<br>
+        <input value="OBUGZ2" name="OBUGZ" onclick="setResponse('OBUGZop', 'A correct answer','');" type="radio"> A software product like Filezilla, Podzilla and Shopzilla<br>
+        <input value="OBUGZ3" name="OBUGZ" onclick="setResponse('OBUGZop', 'HR','');" type="radio"> One of my most important resources<br>
+      </td>
+      <td width="30%"><p class="td1p" id="OBUGZop"></p>&nbsp;</td>
+    </tr>
+
+<!--
+
+
+
+
+
+For the Guys
+
+
+
+which statement best describes you\'re current lifestyle
+
+
+
+Live hard, die young, leave a beautiful corpse
+
+Spend 90% of my money on wine, women and song, the rest I spend foolishly
+
+All work and no play make jack a dull boy
+
+Trying to set a new "space endurance" record
+
+School is a drag
+
+
+
+Pizza and Beer are primary food groups
+
+McDonalds and Burger King make tasty burgers
+
+
+
+
+
+Adding simpler recipes (prep and ingredients)
+
+More elaborate recipes (prep and presentation)
+
+I am comfortable with my computer
+
+
+
+
+
+
+
+    <tr><td class="R2" colspan="2"><p>Email Address:</p></td></tr>
+
+    <tr><td width="70%">
+
+        <input name="OEmail" id="OEmail" type="text" size="30" onchange="validateEmail(this.id,this.value)"/>
+
+        </td>
+
+      <td width="30%"><p id="OEmailop"></p>&nbsp;</td>
+
+    </tr>
+
+
+
+    <tr>
+
+      <td>
+
+        <p><input type="submit" value="Submit" /> <input type="reset" /></p>
+
+      </td>
+
+    </tr>
+
+
+
+-->
+  </tbody></table>
+
+</form>
+
+<hr>
+<br class="clearall">
+<iframe id="iffooter1" class="myfooter" src="GaryDefaultFooter.html" frameborder="0" scrolling="no"></iframe>
+<div class="myFixedDiv">
+      <p id="Strikes" class="CBwarn">Positives: 0<br> Negatives: 0</p>
+</div>
+
+</div> <!-- myinline -->
+
+
+</body></html>

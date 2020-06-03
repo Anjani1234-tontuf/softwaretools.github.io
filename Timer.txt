@@ -1,0 +1,469 @@
+
+
+<!--
+Content Notes
+
+a day begins at midnight
+
+its incorrect to refer to 12 am or pm
+its is either 12 noon or 12 mid night
+
+the start of the day is 00:00
+the end of the day is 24:00
+the end of one day is the start of another
+http://tycho.usno.navy.mil/what.html   Time service
+
+How about playing a system sound when you cross the 1 minute barrier?
+If alarm time > 4 minutes, play = false,  if played and less than 60
+played=true , playsystem sound
+
+-->
+
+
+<!--
+Technical Notes Windows
+
+If QucikTime, set ->Streaming -> enable instant-on
+
+
+To populate a list of files to uses as alarms
+have them drag wav files to a directory.
+
+populate a list or a grid from the elements in the directory
+
+see garymenudriver and ttrw2.js
+
+
+CTimerOptions 0 is false anything else is true
+
+
+IE allow site popups
+=====================================
+12 - 11 - 2005
+
+to add a Count Down timer event from another page
+
+set a button to make this visible
+C:\CookBook\XXSoftwareTools\CDtimeOptions.htm
+
+or
+
+
+  callExternalAlarm(0,0,0,1,1,"My Alarm", 'CountDownTime',1 );
+
+  Writes a cookie that is read from Timer.html
+
+-> Somehow a Timer.html needs to be made active to process the alarm and set the off
+
+only allows my preset wav files
+
+see OpenTimer.html
+
+CheckForExternalAlarmAndSet
+========================================
+
+
+if adding - deleting tables - adjust the index
+should be 8th table 7 th index
+function storeResults( AlarmNum , sName)in gjtime
+
+
+
+toolbar=yes,location=no,directories=yes,menubar=yes,scrollbars=yes,resizable=yes,width=600,height=470')
+test to see if its the prompt service that is whacking me
+
+
+
+issues
+
+check FireFox support for object tag
+
+=====================================
+mozilla - firefox and unrequested windows
+=====================================
+pref("dom.disable_open_during_load",true);
+
+This really says, don't allow Javascript to open unreguested windows.
+And it stops you from doing it, if the event chain is all Javascript
+
+However, it is smart enough to figure out that if you click on a button to start an event, its okay to pop up a window.
+
+
+Changed it to false and it started working
+
+pref("dom.disable_open_during_load",false);
+
+also
+I thought previously it had to do with this
+Preferences
+
+pref.js in user directory
+
+user_pref("capability.principal.codebase.p4.granted", "UniversalXPConnect UniversalBrowserWrite");
+user_pref("capability.principal.codebase.p4.id", " ../XXSoftwareTools/Timer.html");
+
+however, using mozilla when this was loaded from a web site , UniverslXPconnect was denied
+Bugzilla 169429 2002
+
+browser.windows.loadOnNewWindow
+browser.tabs.loadOnNewTab
+dom.allow_scripts_to_close_windows
+dom.disable_window_open_feature.close
+javascript.enabled
+
+dom.disable_open_during_loadfalse
+
+function openAndReuseOneTabPerURL(aURL) {
+var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+     .getService(Components.interfaces.nsIWindowMediator);
+
+var winEnum = wm.getEnumerator("navigator:browser");
+while (winEnum.hasMoreElements()) {
+  var win = winEnum.getNext();
+  var browser = win.getBrowser();
+  for (var i = 0; i < browser.mTabs.length; i++) {
+  // aURL is a string
+  if (aURL == browser.getBrowserForTab(browser.mTabs[i]).currentURI.spec) {
+    win.focus(); // bring that window to the foreground
+    browser.selectedTab = browser.mTabs[i];
+    return;
+  }
+  }
+}
+
+// Our URL isn't open. Open it now.
+var recentWindow = wm.getMostRecentWindow("navigator:browser");
+if (recentWindow) {
+  // Use an existing browser window
+  recentWindow.delayedOpenTab(aURL);
+}
+else {
+  window.open(aURL);
+}
+}
+
+
+ Jun 12 2006
+sabarinathan wrote:
+> I have created XPCOM C++ component and registered it sucessfuly. I
+> want to fire an event on toolbarsbuttons .
+> Is it possible to fire an event on toolbars or toolbar elementsfrom
+> XPCOM c++ component. If there is any document please refer to me.
+
+
+gBrowser.selectedTab = theTab;
+
+
+the createElement code is called before there is a body.
+its working, but when I added a create embed, that failed, see note in startup below
+
+
+Hibernate sleep suspend
+the power aware application
+==================
+
+Use SetThreadExecutionState
+
+SetSystemPowerState
+
+Suspends the system by shutting power down. Depending on the ForceFlag parameter, the function either suspends operation immediately or requests permission from all applications and device drivers before doing so.
+
+
+BOOL SetSystemPowerState(
+BOOL fSuspend,
+BOOL fForce
+);
+
+Parameters
+fSuspend
+[in] If this parameter is TRUE, the system is suspended. If the parameter is FALSE, the system hibernates.
+fForce
+[in] If this parameter is TRUE, the function broadcasts a PBT_APMSUSPEND event to each application and driver, then immediately suspends operation. If the parameter is FALSE, the function broadcasts a PBT_APMQUERYSUSPEND event to each application to request permission to suspend operation.
+
+MSDN
+Power Manager Functions
+Power Manager Reference
+
+Retrieves information about the system power capabilities.
+
+
+BOOLEAN GetPwrCapabilities(
+PSYSTEM_POWER_CAPABILITIES lpSystemPowerCapabilities
+);
+
+Parameters
+lpSystemPowerCapabilities
+[out] A pointer to a SYSTEM_POWER_CAPABILITIES structure that receives the information.
+Return Value
+If the function succeeds, the return value is nonzero.
+
+If the function fails, the return value is zero. To get extended error information, call GetLastError.
+
+Remarks
+This function retrieves detailed information about the current system power management hardware resources and capabilities. This includes information about the presence of hardware features such as power buttons, lid switches, and batteries. Other details returned include information about current power management capabilities and configurations that can change dynamically, such as the minimum sleep state currently supported, which may change as new drivers are introduced into the system, or the presence of the system hibernation file.
+
+This information is also available through the CallNtPowerInformation function, using the SystemPowerCapabilities level.
+
+For more information on using PowrProf.h, see Power Schemes.
+
+
+
+New shutdown process
+Application developers need to be aware of changes in the shutdown process in Windows Vista. The net result is that when users want to turn off their computers, they're much more likely to get what they ask for.
+
+Prior to Windows Vista, an application could veto a sleep transition by responding to the PBT_APMQUERYSUSPEND power broadcast. Now, applications cannot veto sleep transitions, although system administrators can allow applications to veto sleep transitions by using Group Policy.)
+
+Applications can still veto a shutdown by responding to the WM_QUERYENDSESSION message. However, Windows Vista provides a user interface for managing applications that are blocking shutdown.
+
+Applications can provide a descriptive string that explains why they're vetoing shutdown. For more information about creating the string for the shutdown procedure, see ShutdownBlockReasonCreate()ShutdownBlockReasonCreate().
+
+Applications that don't have a top-level window or that stop responding are automatically closed when the computer is shutting down.
+
+The following screen shot shows two applications that are blocking Windows from shutting down.
+
+
+SetSystemPowerState
+
+ShutdownBlockReasonCreate
+
+Indicates that the system cannot be shut down and sets a reason string to be displayed to the user if system shutdown is initiated.
+
+
+BOOL WINAPI ShutdownBlockReasonCreate(
+HWND hWnd,
+LPCWSTR pwszReason
+);
+
+Power management interfaces
+Windows Vista uses the WM_POWERBROADCAST window message to notify applications about power management events. The message includes a set of power broadcast codes that identify the various events. You can subscribe to these events by using two new functions that are introduced in Windows Vista:
+
+RegisterPowerSettingNotificationRegisterPowerSettingNotification
+
+UnregisterPowerSettingNotificationUnregisterPowerSettingNotification
+
+Power management notifications provide complete information about the power management status of the system and its components. By using notifications, your application eliminates the need to poll the system, which drains energy.
+
+
+=======
+Avoid delaying idle-to-sleep
+One key user expectation is that the computer will observe idle time-outs. People expect their computers to shut down display and storage devices and go to sleep after requested idle periods.
+
+In certain rare instances, an ongoing process might take precedence over an idle-to-sleep setting. For example, if a media application is burning a CD (which would be ruined if the process were interrupted), the application might temporarily disable the idle-mode time-out, and then restore the time-out after it finishes burning the CD.
+
+You can use the SetThreadExecutionState function to disable the idle-to-sleep and display-blanking time-outs. However, disable these time-out periods only if absolutely necessary, such as when data or media loss will occur, or when there are special "hands-off" scenarios, such as watching a movie. Be sure to restore the time-out periods after your operation is completed.
++++++++
+
+
+
+you should see a line at the end of quicktime
+audio/x-wav   WAVE audio  wav,bwf   Yes
+
+http://kb.mozillazine.org/Video_or_audio_does_not_play
+
+Plugins
+
+Background music usually needs a plugin to work in Mozilla browsers. The Windows Media Player plugin will only play Microsoft's proprietary audio formats and so will not play Wave and Midi files. (Internet Explorer does not use the Windows Media Player plugin; instead it uses an ActiveX control which provides much more functionality than the plugin.) For Mozilla Suite and Firefox users, Quicktime is often the required plugin. Make sure you have Quicktime installed and that the Quicktime browser settings are configured to enable the plugin for the type of media the page uses.
+
+http://plugindoc.mozdev.org/windows.html
+
+
+Plugins 101 - Each plugin has a list of file extensions and MIME Types it can play. Firefox sticks rigidly to these lists - it will never assume that a plugin can play a file type it does not list.
+
+
+The Windows Media Player plugin only lists these file types: .asf, .asx, .wm, .wma, .wax, .wmv, and .wvx (and their associated MIME Types). Neither the WMP plugin, the Quicktime plugin, or the Real Player plugin list the commonly used media formats, like mp3, m3u, wav, midi, etc - so, Firefox cannot find a plugin to play those files if it comes across them. It works in IE because IE doesn't use the WMP plugin (which is 6 years old now) - it uses the newer WMP ActiveX control, which works differently. IE will use it to play any media format that WMP itself can play.
+The WMP plugin is capable of playing anything that WMP itself can play - the trick is getting it to. A MIME Type is an identifier sent with each file on the internet (e.g. the MIME Type for a web page is text/html) - a browser is supposed to use the MIME Type to decide how to treat a file - this should have allowed a website author to force a browser to treat specific files specific ways (by giving those files specific MIME Types), and would have been very useful. But it never worked, because IE ignores MIME Types and instead analyses the content of a file to decide for itself what should be done with it. This is bad for many reasons.
+
+Firefox, does use MIME Types to decide what to do with files. The embed tag supports the type attribute, which allows a page author to specify a specific MIME Type which will override the MIME Type of the file to be played, effectively allowing the page author to choose which plugin a browser will use to play the file without changing the MIME Type of the file itself. The MIME Type application/x-mplayer2 is associated with the WMP plugin, but not to any file extension. If you specify type="application/x-mplayer2" in yor embed statement, Firefox will use the WMP plugin to play it.
+The WMP plugin is old, and doesn't support as much stuff as the ActiveX control. For instance, it doesn't support attribute values of "true" and "false" - (apart from the playcount attribute) - you must use "1" and "0" instead - that's why autostart="true" is now autostart="1". It doesn't support the loop attribute - you must use playcount instead.
+style='display:none' is one way of hiding things. I don't know if it would work for a media file, but a simpler way is to just set the width and height to 0, as I did. There is a 'hidden' attribute, but it prevents the WMP plugin from autostarting.
+
+
+Webpage authors: To make your site play background music in Mozilla applications using the Windows Media Player plugin, add (MIME) type "application/x-mplayer2", set height and width to "0" to hide it, and set the "autostart" value to "1" (explanation). Here is a standards-compliant, cross-browser object example:
+
+<object data="music.mp3" type="application/x-mplayer2" width="0" height="0">
+  <param name="filename" value="music.mp3">
+  <param name="autostart" value="1">
+  <param name="playcount" value="true">
+</object>
+
+This will be hidden, play automatically and loop forever.
+ Jul 01 2008
+Google gadget
+[[embed]]
+<script src="http://gmodules.com/ig/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/105048095583033371706/player.xml&amp;up_username=gerdami&amp;up_mode=Similar%20Artists&amp;up_str=Bowie&amp;up_autostart=1&amp;up_showmode=0&amp;synd=open&amp;w=340&amp;h=123&amp;title=Ultimate+LastFM+Radio+Player&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+[[/embed]]
+
+
+-->
+
+<!--
+Technical Notes Linux
+
+Need help for installing wav plugin for FireFox
+well you can install a few packages to help you out.
+To start try this link:
+https:  help.ubuntu.com community Medibuntu
+Medibuntu will aid you in getting things like the win32codecs you will need.
+Then I suggest installing mozilla-mplayer, it too might help getting these files to play.
+If you need help on installing these packages just ask
+
+sudo apt-get install mozilla-mplayer
+
+-->
+
+<!--
+Changelog
+
+ Apr 25 2006
+ got CDtimeOptions.htm to find if Timer.html was already up
+ stull working on focus
+ kludged up checking of updateinsterval before saving options
+ add setTDi and checkValid
+
+ Jun 12 2006
+ changed from playmozsound to playwav
+ could add browse for wav now
+
+ Sep 05 2006
+
+changed 12pm to be 13 and 12am to be 24
+
+1) can they set and alarm in the past
+2) 12am is actually the next day
+
+Cancel all alarms - if debugging is one - will display all alarms
+
+ Nov 05 2006
+ moved currentTime up to beginning of Setup
+ changed time2 to loading
+ if the browser has not loaded the plugin to play the sound, it can take a long time to render
+
+ Nov 22 2006
+with update interval at 10 seconds can hang
+
+ Aug 09 2007
+
+ changed some tabs to spaces and tabs to spaces
+
+  Feb 18 2008
+
+  added mini screen saver every 5 minutes
+
+  Mar 2009
+
+  moved most of the javascript to gjtimeGUI.js when I made the interval timers
+  added stuff about
+   ID="LOAD" and  ID="oContainer" but it does not appear to be working
+
+ Jun 04 2009
+added script block after html element myTime2 to get around slow loading times of the warning dialog
+changeInnerHTML('myTime2','Loading...')
+
+ See Nov 05 2006, moved currentTime up to beginning of Setup, know moving it after the display of the
+dialog box
+
+changed second mymain to maymain2
+
+-->
+
+<!--
+<link rel="icon" href="GraphicWidgets/CLOCK06.ICO" type="image/x-icon">
+<script type="application/x-javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+
+<script type="application/x-javascript" src="js/gjtime.min.js"></script>
+<script type="application/x-javascript" src="js/gjtimeGUI.min.js"></script>
+<script type="application/x-javascript" src="js/gjutil1.min.js"></script>
+<script type="application/x-javascript" src="js/gjcore.min.js"></script>
+<script type="application/x-javascript" src="js/gjmsg.min.js"></script>
+<script type="application/x-javascript" src="js/gjmove.min.js"></script>
+<script type="application/x-javascript" src="js/gjqt.min.js"></script>
+
+-->
+<!--
+
+-->
+
+<!--
+<body onLoad="setUP()"
+
+IE ok moz 1.7 no
+<BODY onLoad="setUP()"; onBeforeUnload="really();">
+
+IE no moz okay
+<BODY onLoad="setUP()"; onBeforeUnload="return really();">
+
+
+
+-->
+
+<!--
+<td class="a" style=' vertical-align:bottom'>
+    <p class="td1p">Seconds<br>
+  <select class="buttonNgrey" name="ASeconds" id="ASeconds" size="1"
+    onmouseover="toggleHighLight('m', this.id);"
+    onmouseout="toggleHighLight('o', this.id);">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+</p>
+  </td>
+-->

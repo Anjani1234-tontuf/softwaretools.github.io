@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<!--
+Use GaryTestandMatchRegExpressions
+the new approach to Regular Epression testings doe not involve inputting a regular expression and a value to test.
+-->
+
+<meta name="ROBOTS" CONTENT="INDEX">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Description" content="Auto Fill Regular Expression Tester">
+
+<style type="text/css">
+
+p
+{
+  font-weight:bold;
+  margin-top:5pt;
+  margin-bottom:5pt;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+input.text
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  padding:5px;
+}
+.R
+{
+  color: red;
+}
+
+.B
+{
+  color: blue;
+}
+
+.G
+{
+  color: green;
+}
+.P
+{
+  color: purple;
+}
+.T
+{
+  color: teal;
+}
+.M
+{
+  color: maroon;
+}
+.O
+{
+  color: olive;
+}
+.C
+{
+  color: navy;
+}
+.Ma
+{
+  color: magenta;
+}
+
+tip{background:#cfc}.footnote{font-size:80%;margin:0}
+
+table
+{
+    border-collapse: separate; /* cellspacing' equivalent */
+}
+
+table td, table th
+{
+    padding: 0 10px 0 10px; /* cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+
+</style>
+<!--
+Inspired by http://www.regular-expressions.info/javascriptexample.html
+JavaScript RegExp Tester Source Code
+-->
+<SCRIPT LANGUAGE="JavaScript">
+function checkMatch()
+{
+  try
+  {
+    if(re) delete re;
+    var testReg = document.RegForm.regex.value;
+    var re = new RegExp(testReg,"i");
+    var gjit = document.RegForm.subject.value.match(re);
+    if (gjit)
+    {
+      alert("Successful match of \n" + document.RegForm.subject.value + "\n with \n" + document.RegForm.regex.value + "\n return " + gjit);
+    } else
+      {
+        alert("No match of \n" + document.RegForm.subject.value + "\n with \n" + document.RegForm.regex.value + "\n return " + gjit);
+      }
+  }
+    catch (theerror)
+  {
+      var wintxt = "\n" + " -- - " +  "\n" + "\n" + " " + " - - -  "  + "Regular Expression Error" +  " - - - " + "\n" + theerror.name + " - - -  " + " " +  theerror.message + " - - - " + "\n" + "\n" + " - - -  " ;
+      alert(wintxt);
+  }
+window.location= "TestRegular.html";
+}
+function checkTest()
+{
+    var testReg = document.RegForm.regex.value;
+    var re = new RegExp(testReg,"i");
+    var gjit = re.test(document.RegForm.subject.value);
+
+  if(gjit)
+  {
+      alert("Successful test of \n" + document.RegForm.subject.value + "\n with \n" + document.RegForm.regex.value + "\n return " + gjit);
+  } else
+      {
+        alert("Test failed of \n" + document.RegForm.subject.value + "\n with \n" + document.RegForm.regex.value + "\n return " + gjit);
+      }
+window.location= "TestRegular.html";
+}
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+function myDump(str1)
+{
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + str1);
+}
+
+function changeInnerHTML(idin, myHTML)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+    myE.innerHTML = myHTML;
+  }
+  catch (error)
+  {
+    alert( error, "changeInnerHTML" + idin + " " + myHTML);
+  }
+}
+
+function returnInnerHTML(idin)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+  }
+  catch (error)
+  {
+    alert( error, "returnInnerHTML id" + idin);
+  }
+
+  return myE.innerHTML;
+}
+
+</SCRIPT>
+<title>Autofill Regular Expression Tester</title>
+
+</head>
+
+<body id="mybody" >
+
+<div style="float:right">
+<b><a href="GaryTestandMatchRegExpressions.html">!Gary Test &amp; Match Reg Exp</a></b><br>
+<a href="http://regexpal.com/">Steven Levithan tester</a><br>
+<a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp">JS RegExp Object</a><br>
+<a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/RegExp#Special_characters_in_regular_expressions">Good reference</a></br>
+<a href="http://www.cheatography.com/davechild/cheat-sheets/regular-expressions/">D Child Cheat Sheet</a><br>
+<a href="http://www.visibone.com/regular-expressions/">Visbone Cheat Sheet</a><br>
+</div>
+
+<p >
+This is a case insenstive search and uses the Javascript Regular expression syntax.<br>
+Regular Expressions are for advanced users and folks who program. <br>
+Most Autofill users will be well served using the Autofill wizard to create autofill rules for themselves.
+
+</p>
+<p class="tip box" >
+        <b>TIP:</b> Autofill also supports <a href="http://www.regular-expressions.info/lookaround.html#lookbehind" onclick="_gaq.push(['_trackEvent','Autofill Help','lookbehind'])">lookbehind</a> Regular Expression syntax (<code>?&lt;=</code> and <code>?&lt;!</code>) that is not offered in JavaScript's RegExp object. This allows you to create highly complex text patterns such as the one below, which matches anything that contains "name" but is not immediately preceded by "first" or "last":<br><br>
+
+        <code style="white-space: nowrap;">&nbsp; &nbsp;(?&lt;!first|last)name</code><br><br>
+        This will, for example, match "name", "uname", "username", "artistname", and "bookname", but NOT "firstname" or "lastname". Lookbehind syntax only works on the <code>name</code>, <code>id</code>, and <code>class</code> attribute values; you cannot use lookbehinds when matching against field labels.
+</p>
+
+
+<FORM ID="RegForm" NAME="RegForm" METHOD=POST ACTION="javascript:void(0)" style="clear:both;">
+<p>Regular Expression &nbsp;&nbsp; &nbsp;&nbsp;Do not enclose Match with &frasl;&frasl;  <br>
+<INPUT TYPE=TEXT class="text" NAME="regex" VALUE="" SIZE=100></p>
+<p>Url or FieldName<br>
+<INPUT TYPE=TEXT class="text" NAME="subject" VALUE="" SIZE=150></p>
+
+<p><br><INPUT TYPE=SUBMIT VALUE="Regular Expression Match" ONCLICK="checkMatch()">
+<INPUT TYPE=SUBMIT VALUE="&frasl;Regular Expression&frasl; Test" ONCLICK="checkTest()"></p>
+</FORM>
+<div id="testplace" style="height:15em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'>
+.*live\.com/.*(add|edit).*\.com<br>
+http://profile.live.com/P.mvc#!/cid-dc39/details/Add/?break=1&ru=http%3A%2F%2Fco7w.col107.mail.live.com%2Fmail%2FContactMainLight.aspx%3Fn%3D42 <br>
+[a-zA-Z0-9'\.\-\s]+<br>
+sksksk'.-<br><br>
+[\d,\w,\s]+<br>
+<i>sksksk'.-<i>
+
+[a-zA-Z0-9ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ'\.\s]+<br>
+</p>
+</div>
+
+<p>A brief explanation of the regular expression :  .*live\.com/.*(add|edit).*\.com<br>Match the colors in the expression with the corresponding matches in the target string.</p>
+<p><span class=R>.*</span><span class=B>live</span><span class=G>\.</span>com/<span class=P>.*</span> <span class=T>(add|edit)</span><span class=C>.*</span><span class=Ma>\.</span>com</p>
+<p><span class=R>http://profile.</span><span class=B>live</span><span class=G>.</span>com/<span class=P>P.mvc#!/cid-dc39/details/</span><span class=T>Add</span><span class=C>/?break=1&ru=http%3A%2F%2Fco7w.col107.mail.live</span> <span class=Ma>.</span>com</p>
+
+<pre>
+.             Matches any one character
+*             Matches zero or more occurrences of the preceding expression
+\             Matches the character following the backslash {Used to Find reserved Reg Exp notation characters}
+(|)           Match either a or b {match either string1 or string2}
+</pre>
+<hr>
+<p><span class=R> .*</span>, <span class=B>live</span>,<span class=G> \.</span>,com/</p>
+<p><span class=R> any character zero or more times</span>, <span class=B>live</span>,<span class=G>the reserved Reg Exp char . </span>,com/</p>
+<p><span class=R> http://profile</span>, <span class=B>live</span>,<span class=G>.</span>,com/</p>
+
+<hr>
+<p><span class=P> .*</span>, <span class=T>(add|edit)</span></p>
+<p><span class=P> any character zero or more times</span>, <span class=T>Match either add or edit</span></p>
+<p><span class=P> P.mvc#!/cid-dc39/details/</span>, <span class=T>Add</span></p>
+<hr>
+<p><span class=C> .*</span>, <span class=Ma>\.</span>,com</p>
+<p><span class=C> any character zero or more times</span>, <span class=Ma>the reserved Reg Exp char . </span>,com</p>
+<p><span class=C> /?break=1&ru=http%3A%2F%2Fco7w.col107.mail.live</span>, <span class=Ma>.</span>,com</p>
+<hr>
+
+	<div style="margin:0 0 0 60px;">
+		<h2>JavaScript Regex Quick Reference</h2>
+		<table summary="Regular expressions reference">
+			<tbody>
+				<tr>
+					<td><code>.</code></td>
+					<td>Any character except newline.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>\.</code></td>
+					<td>A period (and so on for <code>\*</code>, <code>\(</code>, <code>\\</code>, etc.)</td>
+				</tr>
+				<tr>
+					<td><code>^</code></td>
+					<td>The start of the string.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>$</code></td>
+					<td>The end of the string.</td>
+				</tr>
+				<tr>
+					<td><code>\d</code>,<code>\w</code>,<code>\s</code></td>
+					<td>A digit, word character <code>[A-Za-z0-9_]</code>, or whitespace.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>\D</code>,<code>\W</code>,<code>\S</code></td>
+					<td>Anything except a digit, word character, or whitespace.</td>
+				</tr>
+				<tr>
+					<td><code>[abc]</code></td>
+					<td>Character a, b, or c.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>[a-z]</code></td>
+					<td>a through z.</td>
+				</tr>
+				<tr>
+					<td><code>[^abc]</code></td>
+					<td>Any character except a, b, or c.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>aa|bb</code></td>
+					<td>Either aa or bb.</td>
+				</tr>
+				<tr>
+					<td><code>?</code></td>
+					<td>Zero or one of the preceding element.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>*</code></td>
+					<td>Zero or more of the preceding element.</td>
+				</tr>
+				<tr>
+					<td><code>+</code></td>
+					<td>One or more of the preceding element.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>{<em>n</em>}</code></td>
+					<td>Exactly <em>n</em> of the preceding element.</td>
+				</tr>
+				<tr>
+					<td><code>{<em>n</em>,}</code></td>
+					<td><em>n</em> or more of the preceding element.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>{<em>m</em>,<em>n</em>}</code></td>
+					<td>Between <em>m</em> and <em>n</em> of the preceding element.</td>
+				</tr>
+				<tr>
+					<td><code>??</code>,<code>*?</code>,<code>+?</code>,<br/><code>{<em>n</em>}?</code>, etc.</td>
+					<td>Same as above, but as few as possible.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>(</code><em>expr</em><code>)</code></td>
+					<td>Capture <em>expr</em> for use with <code>\1</code>, etc.</td>
+				</tr>
+				<tr>
+					<td><code>(?:</code><em>expr</em><code>)</code></td>
+					<td>Non-capturing group.</td>
+				</tr>
+				<tr class="altBg">
+					<td><code>(?=</code><em>expr</em><code>)</code></td>
+					<td>Followed by <em>expr</em>.</td>
+				</tr>
+				<tr>
+					<td><code>(?!</code><em>expr</em><code>)</code></td>
+					<td>Not followed by <em>expr</em>.</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+	</div>
+
+</body>
+</html>

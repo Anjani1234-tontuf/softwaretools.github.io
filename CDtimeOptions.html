@@ -1,0 +1,381 @@
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+
+<!--
+
+
+ var oldWin = window.open("url.html","oldName");
+ oldWin.focus(); // give focus
+
+      temp = mywin.document.title;
+      //alert(temp);
+      //alert(temp.substring(0, 10));
+      //no yet
+      if (temp.substring(0, 10) == "The Timers")
+      {
+         mywin.focus();
+      }
+
+if (youAreInMozillaOrSeaMonkey)
+{
+  window.openNewTabWith(url, false, false);
+}
+else
+{ // So you're in Firefox or Flock or some other toolkit thingy
+    window.openNewTabWith(url, null, null, null, null, false);
+}
+
+getBrowser().contentWindow.document
+
+-->
+
+<script type="text/javascript" src="js/gjtime.min.js"></script>
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<!--
+
+<script type="text/javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+<script type="text/javascript" src="chrome://browser/content/utilityOverlay.min.js"></script>
+-->
+
+<script type="text/javascript">
+function setCountDownAlarm(form)
+{
+  var cdHours   = form.CHours.selectedIndex;
+  var cdMinutes = form.CMinutes.selectedIndex;
+
+//    if(myOptions.m_bDisplayClockSecond)
+//    {
+      var cdSeconds = form.CSeconds.selectedIndex;
+//    }
+//    else
+//    {
+//        var cdSeconds   = '';
+//    }
+
+  var iFileSpec   = form.ringCDAlarm.options[form.ringCDAlarm.selectedIndex].value;
+  var iRepeater   = form.ARepeater.options[form.ARepeater.selectedIndex].value;
+  var sName       = form.AlarmName1.value;
+
+  if((cdHours == 0) && (cdMinutes == 0) && (cdSeconds == 0))
+  {
+    return false;
+  }
+  else
+  {
+//    var msg2 = cdHours + ':' + cdMinutes + ':' + cdSeconds;
+//    document.getElementById('CountDownTime').firstChild.nodeValue = msg2;
+
+//    if(alarmObject.SuperKludgewithJimmies(myAlarm.COUNTDOWN)) { return false;}
+//    setVisible('CountDownTime');
+
+//        alert(' iFileSpec ' + iFileSpec);
+    setExternalAlarm(cdHours, cdMinutes, cdSeconds, iFileSpec,iRepeater,sName, 'CountDownTime',1 );
+
+//      need to only have one instance of Timer.html open
+
+
+        if(!(areTimersOpen()))
+        {
+
+        //  if(!getFFpref("gj53run.OpenInTab"))
+
+          if(!gj53runGetPrefBool("OpenInTab"))
+          {
+            theuri = getCBPath("tools", "Timer.html", "")
+            mySBopenURLIn(theuri, "tab" )
+          }
+          else
+          {
+            var newwin = window.open("Timer.html", "CBTimer");
+            if(newwin)
+            {
+                newwin.focus();
+            }
+          }
+        }
+  }
+}
+
+function areTimersOpen()
+{
+//alert(content.document.title);
+
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+
+var mywm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+
+//  should specify only dom or browser windows here instead of null
+var myenumerator = mywm.getEnumerator(null);
+
+    while(myenumerator.hasMoreElements())
+    {
+      //this gets windows, I then need to get tabs in windows
+      var mywin = myenumerator.getNext();
+
+      //
+      try
+      {
+        var mygbrowser = mywin.getBrowser();
+      }
+      catch(err)
+      {
+        //looks like the console and other xul windows
+        //alert('Hopefully? Non Crtical Error: mywin.getBrowser is not a function CDtimeOptions.html');
+        continue;
+      }
+
+      for (var i = 0; i < mygbrowser.mTabs.length; i++)
+      {
+           var thebrowser = mygbrowser.getBrowserForTab(mygbrowser.mTabs[i]);
+
+            if(thebrowser.contentTitle == "The Timers")
+            {
+              alert('found it');
+              //mywin.focus(); // bring that window to the foreground
+              thebrowser.focus(); // this worked FF 1.5 debug build
+              mygbrowser.selectedTab = mygbrowser.mTabs[i];
+              return true;
+            }
+      }
+    }
+
+return false;
+}
+
+</script>
+
+
+<blockquote style='width:50em; margin-right:auto; margin-left:auto;' class='fancy smallboldspaced center' >
+
+This Version is HOSED.  If sets a gazillion timers
+Check Cookies and delete ExternalAlarm in the first localhost cookie
+
+see runit.html CheckForExternalAlarmAndSet and deleteCookie
+
+whatever reads the cookie is probably supposed to delete it after the read but somthing is
+not letting it
+
+This tests the capability to set a timer, outside of a timer
+<br>
+Recipes will have the ability to auto set timers
+  <br>
+Only one instance of the timers will be open
+
+</blockquote>
+
+
+<form name ="CountDownT" id="CountDownT">
+
+<table class='CTB' border=0 cellspacing=2 cellpadding=2 summary="An Alarm timer">
+<tbody>
+<tr class="HCCT">
+<td colspan="7"><p>Count Down Timer</p></td>
+</tr>
+<tr>
+      <td class="a" style=' vertical-align:bottom'>
+      <p class="td1p">Hours<br>
+    <select class="buttonNgrey" name="CHours" id="CHours" size="1">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11&nbsp; &nbsp; &nbsp;</option>
+      <option value="12">12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+      </select>
+    </p>
+    </td>
+      <td class="a" style=' vertical-align:bottom'>
+      <p class="td1p">Minutes<br>
+    <select class="buttonNgrey" name="CMinutes" id="CMinutes" size="1">
+      <option value="00" selected>00</option>
+      <option value="01">01</option>
+      <option value="02">02</option>
+      <option value="03">03</option>
+      <option value="04">04</option>
+      <option value="05">05</option>
+      <option value="06">06</option>
+      <option value="07">07</option>
+      <option value="08">08</option>
+      <option value="09">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+      <option value="32">32</option>
+      <option value="33">33</option>
+      <option value="34">34</option>
+      <option value="35">35</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+      <option value="41">41</option>
+      <option value="42">42</option>
+      <option value="43">43</option>
+      <option value="44">44</option>
+      <option value="45">45</option>
+      <option value="46">46</option>
+      <option value="47">47</option>
+      <option value="48">48</option>
+      <option value="49">49</option>
+      <option value="50">50</option>
+      <option value="51">51</option>
+      <option value="52">52</option>
+      <option value="53">53</option>
+      <option value="54">54</option>
+      <option value="55">55</option>
+      <option value="56">56</option>
+      <option value="57">57</option>
+      <option value="58">58</option>
+      <option value="59">59</option>
+      <option value="60">60</option>
+      </select>
+    </p>
+    </td>
+      <td id='tdCSeconds' class="a" style=' vertical-align:bottom'>
+          <p class="td1p">Seconds<br>
+    <select class="buttonNgrey" name="CSeconds" id="CSeconds" size="1">
+      <option value="00" selected>00</option>
+      <option value="01">01</option>
+      <option value="02">02</option>
+      <option value="03">03</option>
+      <option value="04">04</option>
+      <option value="05">05</option>
+      <option value="06">06</option>
+      <option value="07">07</option>
+      <option value="08">08</option>
+      <option value="09">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+      <option value="32">32</option>
+      <option value="33">33</option>
+      <option value="34">34</option>
+      <option value="35">35</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+      <option value="41">41</option>
+      <option value="42">42</option>
+      <option value="43">43</option>
+      <option value="44">44</option>
+      <option value="45">45</option>
+      <option value="46">46</option>
+      <option value="47">47</option>
+      <option value="48">48</option>
+      <option value="49">49</option>
+      <option value="50">50</option>
+      <option value="51">51</option>
+      <option value="52">52</option>
+      <option value="53">53</option>
+      <option value="54">54</option>
+      <option value="55">55</option>
+      <option value="56">56</option>
+      <option value="57">57</option>
+      <option value="58">58</option>
+      <option value="59">59</option>
+      <option value="60">60</option>
+      </select>
+  </p>
+    </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Sound<br>
+    <select class="buttonNgrey" name="ringCDAlarm" id="ringCDAlarm" size="1">
+      <option value="0" selected>Short Beep</option>
+      <option value="1">Whoosh</option>
+      <option value="2">Buzzer</option>
+      <option value="3">Frying Pan</option>
+      <option value="4">Oh Oh</option>
+      <option value="5">Fan Fare</option>
+      <option value="6">Gun Shots</option>
+      <option value="7">Funky White</option>
+      </select>
+    </p>
+    </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Repeat Opts<br>
+    <select class="buttonNgrey" name="ARepeater" id="ARepeater" size="1">
+      <option value="-1">Continuous</option>
+      <option value="1" selected>1 time</option>
+      <option value="2">2 times</option>
+      <option value="3">3 times</option>
+      <option value="4">4 times</option>
+      <option value="4">5 times</option>
+      <option value="6">6 times</option>
+      <option value="7">7 times</option>
+      <option value="8">8 times</option>
+      <option value="9">9 times</option>
+      <option value="10">10 times</option>
+      <option value="11">11 times</option>
+      </select>
+    </p>
+    </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Name<br>
+    <input name="AlarmName1" type="text" class="text" value="My Alarm" SIZE="8" >
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+    <input type="button" id="SCDT"  class="buttonNgrey" value="Set Alarm"
+      onmouseover="toggleHighLight('m', this.id);"
+      onClick="setCountDownAlarm(this.form);"
+      onmouseout="toggleHighLight('o', this.id);">
+  </td>
+  </tr>
+  </tbody>
+</table>
+
+</form>

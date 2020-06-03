@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+    <title>Doodle.js r1 Demo - Spiral Pattern</title>
+    <!--[if IE]>
+      <script src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+    <![endif]-->
+<script type="text/javascript" src="js/doodle-0.1.1.js"></script>
+ <!--
+I use $doodle so I do not use doodle.d.js
+saved as unix line endings utf-8
+<script  type="text/javascript" src="js/doodle.d.js"></script> -->
+    <script type="text/javascript">
+    function init() {
+      (function(oo) {
+          oo.canvas('#my_canvas');
+          //canvas center
+          var cx = oo.canvas().width/2;
+          var cy = oo.canvas().height/2;
+
+          var random_color = function () {
+              var color = (0xffffff * Math.random()).toString(16);
+              return "#" + color.replace(/\./i,"").slice(0,6);
+          };
+
+          //degrees to radians
+          var radians = function (deg) { return deg * Math.PI / 180; };
+
+          //circle position
+          var circle_x = function (a) { return cx + Math.cos(radians(a)) * r };
+          var circle_y = function (a) { return cy + Math.sin(radians(a)) * r };
+
+          var r = 5; //radius of our outside circle
+          var a = 0; //angle of rotation in degrees
+          var frame = 0; //frame count
+
+          //create our circle
+          var dot = oo.circle({x:function(){ return circle_x(a); },
+                               y:function(){ return circle_y(a); },
+                               radius:4});
+
+          dot.loop({x: function(){ return circle_x(a); },
+                    y: function(){ return circle_y(a); },
+                    on_update: function(o){
+                        //increments
+                        frame += 1; //framecount
+                        r += 0.3;   //spiral radius
+                        a += 10;    //angle
+
+                        //change color to black every 15 degrees
+                        if(a % 15 == 0){ dot.fill = '#000000'; }
+                        else{ dot.fill = random_color(); }
+
+                        //every 800th frame, clear canvas and reset spiral
+                        if(frame % 800 === 0){
+                            oo.canvas().clear();
+                            r = 5;
+                        }
+                     }
+                    }, 0, '48fps'); //loop indefinitely at 48 frames/sec
+
+          })($doodle);
+    };
+    </script>
+  </head>
+
+  <body onload="javascript:init();">
+    <canvas id="my_canvas" width="600" height="400">
+        <p>Sorry, this browser doesn't support the canvas element.</p>
+    </canvas>
+
+
+  </body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  <meta name="keywords" content="">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+
+<style type="text/css">
+
+.funky {
+transform:rotate(2deg);}
+
+/*
+table
+{
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  vertical-align:top;
+  text-align:center;
+  border-collapse: collapse ;
+  border-spacing: 0;
+  margin:auto;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}
+
+table td, table th
+{
+  padding: 4px 7px;
+    border:none;
+    vertical-align:top;
+  border: 1px solid black;
+}
+
+tbody tr:nth-of-type(odd)
+{
+	background:#ffc;
+}
+
+*/
+/* ft fancy table pt plain table */
+table.ft
+{
+  background-color: white;
+  color: black;
+  vertical-align:top;
+  text-align:center;
+  border-collapse: collapse ;
+  margin:auto;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  padding: 4px 7px;
+}
+
+table.ft tr:nth-of-type(odd)
+{
+	background-color:azure;
+}
+
+table.pt
+{
+  background-color: white;
+  color: black;
+  vertical-align:top;
+  text-align:left;
+  border-collapse: collapse ;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  padding: 4px 7px;
+  border: 1px solid black;
+}
+
+table.ft tr th, table.ft tr td, table.pt tr th, table.pt tr td
+ {
+  padding: 4px 7px;
+  border: 1px solid black;
+  color:blue;
+}
+
+
+
+.left, .hidden {
+    float: left;
+    height:350px;
+}
+
+.left {
+    width: 50%;
+    background: #fff;
+    z-index:1;
+}
+
+.hidden {
+    width:25%;
+    z-index:2;
+    position:absolute;
+    left:-1000px;
+    background:#f90;
+    color:#000;
+}
+
+.right {
+    width:50%;
+    float: right;
+    height:350px;
+    background:#000;
+    color:#fff;
+}
+
+.clear {
+    clear:both;
+}
+
+/*   */
+
+
+</style>
+<title>GaryTest.html</title>
+
+  <link rel="StyleSheet" href="css/musings.css" type="text/css">
+
+<!--
+
+<link rel="StyleSheet" href="css/Socailiconsin.css" type="text/css">
+-->
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript">
+
+function doNothing()
+{
+ var amplitude = 175;
+}
+
+
+function gjCalc()
+{
+  var amplitude = 75; //175 bigger amplitude bigger increment
+  var oldt=-1;
+  var count=0;
+  var myhead = "amp   Period centerx        Next x              time";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + myhead);
+
+  for(var i=0;i < 1000000; i++)
+  {
+    // Increase compatibility with unnamed functions
+    //setTimeout(function() {  doNothing();}, 100);  // will work with every browser
+    var time = new Date().getTime();
+    if( oldt==-1)
+    {
+      oldt = time;
+      continue;
+    }
+
+    if((time - oldt) > 5)
+    {
+      oldt = time;
+      var period = 1000;  // larger values make increments smaller  2000 looks good
+      var centerX = 100; //
+      var nextX = amplitude * Math.sin(time * 2 * Math.PI / period) + centerX;
+      changeInnerHTML("theop", returnInnerHTML("theop") + "<br> " + amplitude + " : " + period + " : " + centerX + " : " + nextX + " : " + time + " : " + Math.sin(time * 2 * Math.PI / period));
+      if (count++ > 100) break;
+    }
+    else
+      {
+        continue;
+        //changeInnerHTML("theop", returnInnerHTML("theop") + "<br> " +( time - oldt));
+      }
+
+    }
+  }
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+function toggleMenuOpen(idin,buttonid)
+{
+  try
+  {
+    var aMenu = document.getElementById(idin);
+    //var aButton = document.getElementById(buttonid);
+
+    if(aMenu.style.left =="") {
+      //aMenu.style.left="180px";
+      document.getElementById("closeitx").style.display='block';
+      document.getElementById("openitp").style.display='none';
+    } else {
+      //aMenu.style.left="";
+      document.getElementById("openitp").style.display='block';
+      document.getElementById("closeitx").style.display='none';
+    }
+
+  }
+  catch (error)
+  {
+    gjonerror( error, "toggleMenuOpen");
+  }
+}
+
+
+
+</script>
+
+
+</head>
+<body>
+
+
+
+<div class="hidden">Here I am !</div>
+<div class="left">Left panel</div>
+<div class="right">Right panel</div>
+<div class="clear"></div>
+
+<a href="#" id="slide">Show/hide Slide Panel</a>
+
+
+
+<table class="ft">
+<tbody>
+<!--
+<tr><td class="pt">cast-128</td><td class="pt">gost</td><td class="pt">rijndael-128</td><td class="pt">twofish</td><td class="pt">cast-256</td></tr>
+<tr><td class="pt">loki97</td><td class="pt">rijndael-192</td><td class="pt">saferplus</td><td class="pt">wake</td><td class="pt">blowfish-compat</td>
+</tr><tr><td class="pt">des</td><td class="pt">rijndael-256</td><td class="pt">serpent</td><td class="pt">xtea</td><td class="pt">blowfish</td></tr>
+<tr><td class="pt">enigma</td><td class="pt">rc2</td><td class="pt">tripledes</td><td class="pt">arcfour</td></tr>
+</tbody>
+-->
+<tr><td class='nc'>cast-128</td><td class='nc'>gost</td><td class='nc'>rijndael-128</td><td class='nc'>twofish</td><td class='nc'>cast-256</td></tr>
+<tr><td class='nc'>loki97</td><td class='nc'>rijndael-192</td><td class='nc'>saferplus</td><td class='nc'>wake</td><td class='nc'>blowfish-compat</td>
+</tr><tr><td class='nc'>des</td><td class='nc'>rijndael-256</td><td class='nc'>serpent</td><td class='nc'>xtea</td><td class='nc'>blowfish</td></tr>
+<tr><td class='nc'>enigma</td><td class='nc'>rc2</td><td class='nc'>tripledes</td><td class='nc'>arcfour</td></tr>
+</tbody>
+</table>
+
+
+<hr class="Announce">
+
+<pre style="background-color:#e60; color:#fff">
+ background-color:#e60; color:#fff
+</pre>
+
+<hr class="dotted">
+
+
+<!-- hot esad -->
+<div class="MyButton" style="width:180px;" title="Toggle Menu Stay Open" onclick="toggleMenuOpen('flyout2')">
+<img id="closeitx" style="display:none;margin-right:auto;margin-left:auto;" width=16 height=12 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAHNJREFUOE9jYKAWkJeXF1BRUvmvrKg8H9lMEB8kDpLHaxdIEQzDDIFphonjNQBdMTY+Qd+ia0J3EUEDQArIshlmsrKS8mLksICzFVUOE7QdXTOGdwgZgmIzVLEKkEYWx+sKWDoAaUJWCDOEYDog6EdaKQAAjH5Q7JnIjF8AAAAASUVORK5CYII%3D">
+<img id="openitp" style="display:block;margin-right:auto;margin-left:auto;" width=18 height=12 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAMCAYAAABvEu28AAAABGdBTUEAALGPC/xhBQAAAEhJREFUOE9jYKAnUFFS+a+iqHJWWVnZCNlekBhJ7gAbhAOTZxDQBegGEjQIqwvIMQglLGDeoppBWMKJoNcwXESNWCPJ1uGnGAAvfT3e73gDpgAAAABJRU5ErkJggg%3D%3D">
+</div>
+
+
+
+<input type="button" id="ib1" title="" class="buttonNgrey" value="Clear" onClick="clearOP();">
+<input type="button" id="ib2" title="" class="buttonNgrey" value="doIt" onClick="doIt();">
+
+<div style="clear: both;"></div>
+
+<div id="testplace" style="border: 1px solid;height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<pre id='theop'> </pre>
+</div>
+
+<p>
+<!--[if IE 6]>
+According to the conditional comment this is IE 6<br />
+<![endif]-->
+<!--[if lte IE 6]>
+According to the conditional comment this is IE less than or equal to  6<br />
+<![endif]-->
+</p>
+
+<!--
+<ul>
+   <li class="facebook"><a href="#non" title="Share on Facebook">Facebook</a></li>
+   <li class="twitter"><a href="#non" title="Share on Twitter">Twitter</a></li>
+   <li class="rss"><a href="#non" title="Subscribe to the RSS feed">RSS</a></li>
+   <li class="flickr"><a href="#non" title="Share on Flickr">Flickr</a></li>
+   <li class="delicious"><a href="#non" title="Bookmark on Delicious">Delicious</a></li>
+   <li class="linkedin"><a href="#non" title="Share on LinkedIn">LinkedIn</a></li>
+   <li class="google"><a href="#non" title="Bookmark with Google">Google</a></li>
+   <li class="orkut"><a href="#non" title="Share on Orkut">Orkut</a></li>
+   <li class="technorati"><a href="#non" title="Add to Technorati">Technorati</a></li>
+   <li class="netvibes"><a href="#non" title="Add to NetVibes">NetVibes</a></li>
+</ul>
+
+<pre>
+		$charstable  = array(
+						"\x80" => "EUR",                 # &euro;
+						"\x82" => "\x2c",                # &sbquo;
+						"\x83" => "\x46",                # &fnof;
+						"\x84" => "\x2c\x2c",            # &bdquo;
+						"\x85" => "\x2e\x2e\x2e",        # &hellip;
+						"\x86" => "\x2b",                # &dagger;
+						"\x87" => "\x3f",                # &Dagger;
+						"\x88" => "\x5e",                # &circ;
+						"\x89" => "percent",             # &permil;
+						"\x8a" => "\x53",                # &Scaron;
+						"\x8b" => "&lt;",                # &lsaquo;
+						"\x8c" => "\x4f\4e",             # &OElig;
+						"\x8e" => "\x5a",                # &x17D;
+						"\x91" => "\x27",                # &lsquo;
+						"\x92" => "\x27",                # &rsquo;
+						"\x93" => "\x22",                # &ldquo;
+						"\x94" => "\x22",                # &rdquo;
+						"\x95" => "\x6f",                # &bull;
+						"\x96" => "\x2d",                # &ndash;
+						"\x97" => "\x2d\x2d",            # &mdash;
+						"\x98" => "\x7e",                # &tilde;
+						"\x99" => "\x28\x54\x4d\x29",    # &trade;
+						"\x9a" => "\x73",                # &scaron;
+						"\x9b" => "&gt;",                # &rsaquo;
+						"\x9c" => "\x6f\6d",             # &oelig;
+						"\x9e" => "\x7a",                # &#x17E;
+						"\x9f" => "\x59",                # &Yuml;
+						"\xa0" => "\x20",                # nbsp;
+						"\xa1" => "!",                   # &iexcl;
+						"\xa2" => "cent",                # &cent;
+						"\xa3" => "GBP",                 # &pound;
+						"\xa4" => "currency",            # &curren;
+						"\xa5" => "Yen",                 # &yen;
+						"\xa6" => "\x7c",                # &brvbar
+						"\xa7" => " s. ",                # &sect;
+						"\xa8" => "diaersis",            # &uml;
+						"\xa9" => "\x28\x43\29",         # &copy;
+						"\xaa" => "Femine Ordinal",      # &ordf;
+						"\xab" => "left double angle",   # &laquo; double right pointing problem
+						"\xac" => "not ",                # &not;
+						#  soft hypen not translated
+						"\xae" => "\x28\x52\x29",        # &reg;
+						"\xaf" => "macron",              # macr; spacing macron - overline
+						"\xb0" => "degree",              # &deg;
+						"\xb1" => "plus minus",          # &plusmn;
+						"\xb2" => "superscript 2",       # &sup2;
+						"\xb3" => "superscript 3",       # &sup3;
+						"\xb4" => "Acute",               # &acute;
+						"\xb5" => "micro",               # &micro;
+						"\xb6" => "pilcrow",             # &para;
+						"\xb7" => "middle dot",          # &middot;
+						"\xb8" => "\x2c",                # &cedil;
+						"\xb9" => "superscript 1",       # &sup1;
+						"\xba" => "masculine ordinal",   # &ordm;
+						"\xbb" => "right double angle",  # &raquo;
+						"\xbc" => "1/4",         # &frac14;
+						"\xbd" => "1/2",         # &frac12;
+						"\xbe" => "3/4",         # &frac34;
+						"\xbf" => "?",           # &iquest;
+						"\xc0" => "\x41",        # &Agrave;
+						"\xc1" => "\x41",        # &Aacute;
+						"\xc2" => "\x41",        # &Acirc;
+						"\xc3" => "\x41",        # &Atilde;
+						"\xc4" => "\x41",        # &Auml;
+						"\xc5" => "\x41",        # &Aring;
+						"\xc6" => "\x41\x45",    # &AElig;
+						"\xc7" => "\x43",        # &Ccedil;
+						"\xc8" => "\x45",        # &Egrave;
+						"\xc9" => "\x45",        # &Eacute;
+						"\xca" => "\x45",        # &Ecirc;
+						"\xcb" => "\x45",        # &Euml;
+						"\xcc" => "\x49",        # &Igrave;
+						"\xcd" => "\x49",        # &Iacute;
+						"\xce" => "\x49",        # &Icirc;
+						"\xcf" => "\x49",        # &Iuml;
+						"\xd0" => "\x3f",        # &ETH;
+						"\xd1" => "\x4e",        # &Ntilde;
+						"\xd2" => "\x4f",        # &Ograve;
+						"\xd3" => "\x4f",        # &Oacute
+						"\xd4" => "\x4f",        # &Ocirc;
+						"\xd5" => "\x4f",        # &Otilde
+						"\xd6" => "\x4f",        # &Ouml;
+						"\xd7" => "\x78",        # &times;
+						"\xd8" => "\x4f",        # &Oslash;
+						"\xd9" => "\x55",        # &Ugrave;
+						"\xda" => "\x55",        # &Uacute;
+						"\xdb" => "\x55",        # &Ucirc;
+						"\xdc" => "\x55",        # &Uuml;
+						"\xdd" => "\x59",        # &Yacute;
+						"\xde" => "THORN",       # &THORN;
+						"\xdf" => "\x73\x73",    # &szlig;
+						"\xe0" => "\x61",        # &agrave;
+						"\xe1" => "\x61",        # &aacute;
+						"\xe2" => "\x61",        # &acirc;
+						"\xe3" => "\x61",        # &atilde
+						"\xe4" => "\x61",        # &auml;
+						"\xe5" => "\x61",        # &aring;
+						"\xe6" => "\x61\x65",    # &aelig;
+						"\xe7" => "\x63",        # &ccedil;
+						"\xe8" => "\x65",        # &egrave;
+						"\xe9" => "\x65",        # &eacute;
+						"\xea" => "\x65",        # &ecirc;
+						"\xeb" => "\x65",        # &euml;
+						"\xec" => "\x69",        # &igrave;
+						"\xed" => "\x69",        # &iacute;
+						"\xee" => "\x69",        # &icirc;
+						"\xef" => "\x69",        # &iuml;
+						"\xf0" => "\x3f",        # &eth;
+						"\xf1" => "\x6e",        # &ntilde;
+						"\xf2" => "\x6f",        # &ograve;
+						"\xf3" => "\x6f",        # &oacute;
+						"\xf4" => "\x6f",        # &ocirc;
+						"\xf5" => "\x6f",        # &otilde;
+						"\xf6" => "\x6f",        # &ouml;
+						"\xf7" => "\x3f",        # &divide;
+						"\xf8" => "\x6f",        # &oslash;
+						"\xf9" => "\x75",        # &ugrave;
+						"\xfa" => "\x75",        # &uacute;
+						"\xfb" => "\x75",        # &ucirc;
+						"\xfc" => "\x75",        # &uuml;
+						"\xfd" => "\x79",        # &yacute;
+						"\xfe" => "thorn",       # &thorn;
+						"\xff" => "y",           # &yuml;
+						);
+</pre>
+-->
+<div>
+
+<pre id='demo1'>
+</pre>
+
+<hr>
+<pre id='demo2'>
+</pre>
+
+
+<hr>
+<pre id='demo3'>
+</pre>
+
+
+<hr>
+<pre id='demo4'>
+</pre>
+
+
+<img style="max-width:100%;height:auto;display:block;margin-right:8px;float:left;" src="http://garyjohnsoninfo.info/XXSoftwareTools/GraphicWidgets/noseeysemouth.gif" title='boo'>
+
+<p style="margin:40px 0 0 0;text-align:left;display:inline-block;float:left;font-size:smaller">
+<span>I assume full responsibility for my actions, except the ones that are not my fault.</span></p>
+
+</div>
+
+<div class="clear"></div>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+
+$(document).ready(function() {
+    $('#slide').click(function() {
+    var hidden = $('.hidden');
+    if (hidden.hasClass('visible')) {
+        hidden.animate({"left":"-1000px"}, "slow").removeClass('visible');
+    } else {
+        hidden.animate({"left":"0px"}, "slow").addClass('visible');
+    }
+    });
+});
+
+
+function garytestobject() {
+
+
+myObj1 = { "name":"John", "age":30, "car":null };
+
+for (x in myObj1) {
+    document.getElementById("demo1").innerHTML += x + '&nbsp;';
+}
+
+
+
+myObj2 =
+{
+"name":"John",
+"age":30,
+"cars":[ "Ford", "BMW", "Fiat" ]
+};
+
+for (x in myObj2) {
+    document.getElementById("demo2").innerHTML += x + '&nbsp;';
+}
+x = '';
+
+ document.getElementById("demo2").innerHTML += "\n";
+
+for (i in myObj2.cars) {
+    x = myObj2.cars[i];
+    document.getElementById("demo2").innerHTML += x + '&nbsp;';
+}
+
+myObj3 =
+{
+   "stop_id":"28741",
+   "stop_name":"Sullivan Station - Lower Busway",
+   "mode":[
+      {
+         "route_type":"3",
+         "mode_name":"Bus",
+         "route":[
+            {
+               "route_id":"747",
+               "route_name":"CT2",
+               "direction":[
+                  {
+                     "direction_id":"1",
+                     "direction_name":"Inbound",
+                     "trip":[
+                        {
+                           "trip_id":"33656386",
+                           "trip_name":"11:55 am from Sullivan Station - Lower Busway to Ruggles Upper Busway",
+                           "trip_headsign":"Ruggles (Limited Stops)",
+                           "sch_arr_dt":"1494604500",
+                           "sch_dep_dt":"1494604500",
+                           "pre_dt":"1494604500",
+                           "pre_away":"501"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "route_id":"86",
+               "route_name":"86",
+               "direction":[
+                  {
+                     "direction_id":"1",
+                     "direction_name":"Inbound",
+                     "trip":[
+                        {
+                           "trip_id":"33666706",
+                           "trip_name":"12:15 pm from Sullivan Station - Lower Busway to Chestnut Hill Ave @ Reservoir Busway",
+                           "trip_headsign":"Reservoir",
+                           "sch_arr_dt":"1494605700",
+                           "sch_dep_dt":"1494605700",
+                           "pre_dt":"1494605700",
+                           "pre_away":"1701"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "route_id":"91",
+               "route_name":"91",
+               "direction":[
+                  {
+                     "direction_id":"1",
+                     "direction_name":"Inbound",
+                     "trip":[
+                        {
+                           "trip_id":"33400622",
+                           "trip_name":"12:00 pm from Sullivan Station - Lower Busway to Magazine St @ Green St",
+                           "trip_headsign":"Central",
+                           "sch_arr_dt":"1494604800",
+                           "sch_dep_dt":"1494604800",
+                           "pre_dt":"1494605299",
+                           "pre_away":"1300"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "route_id":"92",
+               "route_name":"92",
+               "direction":[
+                  {
+                     "direction_id":"1",
+                     "direction_name":"Inbound",
+                     "trip":[
+                        {
+                           "trip_id":"33400751",
+                           "trip_name":"12:00 pm from Grand Union Blvd opp Artisan Way to Devonshire St @ Milk St",
+                           "trip_headsign":"Downtown",
+                           "sch_arr_dt":"1494605100",
+                           "sch_dep_dt":"1494605100",
+                           "pre_dt":"1494605150",
+                           "pre_away":"1151"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "route_id":"93",
+               "route_name":"93",
+               "direction":[
+                  {
+                     "direction_id":"1",
+                     "direction_name":"Inbound",
+                     "trip":[
+                        {
+                           "trip_id":"33400897",
+                           "trip_name":"12:00 pm from Sullivan Station - Lower Busway to Devonshire St @ Milk St",
+                           "trip_headsign":"Downtown via Navy Yard",
+                           "sch_arr_dt":"1494604800",
+                           "sch_dep_dt":"1494604800",
+                           "pre_dt":"1494604800",
+                           "pre_away":"801"
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "alert_headers":[
+
+   ]
+};
+
+
+for (x in myObj3) {
+    document.getElementById("demo3").innerHTML += x + '&nbsp;';
+}
+x = '';
+
+
+ document.getElementById("demo3").innerHTML += "\n";
+
+for (i in myObj3.mode) {
+  for (j in myObj3.mode[i].route) {
+    if(myObj3.mode[i].route[j].route_id != '93') continue; //just this route
+    x = myObj3.mode[i].route[j].route_id;
+    document.getElementById("demo4").innerHTML += x + '&nbsp;';
+    for (k in myObj3.mode[i].route[j].direction) {
+
+      y = myObj3.mode[i].route[j].direction[k].direction_name;
+      document.getElementById("demo4").innerHTML += y + '&nbsp;';
+      for (l in myObj3.mode[i].route[j].direction[k].trip) {
+        z = myObj3.mode[i].route[j].direction[k].trip[l].trip_name + '&nbsp;' +
+            myObj3.mode[i].route[j].direction[k].trip[l].trip_headsign;
+        document.getElementById("demo4").innerHTML += z + '&nbsp;<hr>';
+        //cleanText = tst.replace(/<\/?[^>]+(>|$)/g, "");
+				cleanText = $("#demo4").text();
+        alert(cleanText)
+      }
+    }
+  }
+}
+
+
+
+
+//dumpIt(myObj3, 'myObj3');
+
+
+
+}
+
+garytestobject();
+
+
+var yourDrink = "coffee";
+
+var reverse = function(s) {
+return s.split("").reverse().join("");
+};
+
+  var Barista = {
+    str1 : "ers",
+    str2 : reverse("arap"),
+    str3: "met",
+    request: function (preference) {
+    return preference + ".secret word: " + this.str2 + this.str3 + this.str1;
+  }
+};
+
+
+var op1 = Barista.request("coffee");
+
+changeInnerHTML("theop", returnInnerHTML("theop") +  op1);
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

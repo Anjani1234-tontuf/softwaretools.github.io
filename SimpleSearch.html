@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Search the Food Dictionary</title>
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<!--
+Change log
+Added the onSubmit and it now does RunSqlite() when return is hit in the form
+<form name ="SimpleSearch" id="SimpleSearch" onSubmit="RunSqlite(); return false;">
+clean up and validate
+notes in cbsource gj53run
+-->
+
+<script type="text/javascript">
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+var gj53run = Components.classes["@garyjohnson.org/gj53run;1"].createInstance();
+gj53run = gj53run.QueryInterface(Components.interfaces.nsIGj53run);
+
+  hideStatus();
+
+function RunSqlite()
+{
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+
+    var field = document.SimpleSearch.query_text.value;
+
+  if(isVisible('iPIC'))
+  {
+    setHidden('iPIC');
+  }
+
+/*
+    check the field for obvious problems
+    '  causes error
+    '' is unessary because I enclose it in quotes
+    check for empty length
+*/
+    var re1 = /[\"\']/;
+
+    if(field.length == 0)
+        document.SimpleSearch.query_text.value = "Please Enter Something and Hit Search";
+    else
+    if(re1.test(field))
+        document.SimpleSearch.query_text.value = "invalid character in " + field;
+    else
+    {
+        var re2 = /%/;
+        if(re2.test(field))  // wilcard
+            setUP('1', 'place', field);
+        else
+            setUP('2', 'place', field); // name and synonym
+    } //setUP('3' name
+
+}
+
+function setUP(SearchType, place, term)
+{
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+
+    var rowData = {value : []};
+    var rowDataCnt = {value : 0};
+
+    var c = document.createElement('TABLE');
+    c.setAttribute('border', '0')
+    c.setAttribute('cellpadding', '2')
+    c.setAttribute('cellspacing', '2')
+    c.setAttribute('width', '100%')
+    var c1 = document.createElement('TBODY');
+
+    try
+    {
+        gj53run.poke5(getCBdir());
+        gj53run.poke2(SearchType + term);
+
+        var cols = gj53run.numCols();
+        var rows = gj53run.numRows();
+//      alert('Number of columns ' + cols + ' Number of rows ' + rows);
+
+        if (rows == 1)
+            c1.appendChild( DisplayIT());
+        else
+        if((cols == 0)  || (rows ==0))
+        {
+            c1.appendChild( makeError(0, "No Results", 'color: blue') );
+        }
+        else
+        if(rows > 200)
+        {
+            c1.appendChild(makeError(0,"Too Many Results, try again",'color:blue'));
+        }
+        else
+        {
+            gj53run.fetchRow( rowDataCnt,rowData);
+
+            if(rowDataCnt.value == 0)
+                c1.appendChild( makeError(0, "fetchRow", 'color: blue') );
+
+/*
+            c1.appendChild( makeColumnHeader('padding:1pt 1pt 1pt 1pt;  margin-right:7.5pt; margin-left:7.5pt; font-weight:bold; color:black;  background-color:#dedede;') );
+*/
+
+            c1.appendChild( makeColumnHeader('  text-indent:.5in; font-weight:bold; color:black;  background-color:#dedede;') );
+            while (rowDataCnt.value != 0)
+            {
+                c1.appendChild( makerow(rowDataCnt.value, rowData.value, '') );
+                gj53run.fetchRow( rowDataCnt, rowData);
+            }
+        }
+    }
+    catch (e)
+    {
+            c1.appendChild( makeError(e, "setUP", 'color: red') );
+    }
+
+    c.appendChild( c1 );
+    aa = document.getElementById(place);
+    aa.replaceChild(c, aa.getElementsByTagName('TABLE')[0]);
+
+    gj53run.downDB();
+}
+
+function makerow(tdcnt, text, style)
+{
+    c2 = document.createElement('TR');
+    for (var i=0; i < tdcnt; i++)
+    {
+        c3 = document.createElement('TD');
+        c3.setAttribute("style","font-size: 13px; font-family: verdana,arial,sans-serif;border:0 none;padding:1px;"+style);
+        if(text[i] == 'null')
+            text[i] = ' ';
+
+        if(i == 0)
+            c4 = makeHREF(text[i]);
+        else
+            c4 = document.createTextNode(text[i]);
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+    }
+    return c2;
+}
+
+function makeHREF(instr)
+{
+/*
+3 == name search <A HREF="javascript:setUp('3','place', field);"><\/A>
+*/
+
+    var str1 ="javascript:setUP('3','place','";
+    var str2 = "')";
+    str1 += instr + str2;
+
+    var aTag = document.createElement('A');
+    aTag.setAttribute('href', str1);
+    var aText = document.createTextNode(instr);
+    aTag.appendChild(aText);
+
+return aTag;
+}
+
+function makeError(e, where, style)
+{
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+
+var errno = new Object();
+var message=' ';
+var errString = {value : []};
+
+    if(e)
+    {
+        message += 'System Error:' + e;
+    }
+    else
+    {
+        gj53run.lastErrorNo(errno);
+        // errno is in the message else it is 0
+
+        if(errno.value)
+        {
+            message += 'CookBook Database Error at location ' + where;
+            gj53run.showError(errString)
+            message += 'Error: ' + errString.value;
+        }
+        else
+        {
+            message += where;
+//          alert('where ' + where);
+        }
+    }
+
+    c2 = document.createElement('TR');
+        c3 = document.createElement('TD');
+        c3.setAttribute("style","font-size: 13px; font-family: verdana,arial,sans-serif;border:0 none; padding:1pt;"+style);
+        c4 = document.createTextNode(message);
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+
+return c2;
+}
+
+function makeColumnHeader(style)
+{
+    c2 = document.createElement('TR');
+
+        c3 = document.createElement('TD');
+        c3.setAttribute("style","font-size: 13px; font-family: verdana,arial,sans-serif;border:0 none;padding:1pt;"+style);
+        c4 = document.createTextNode("Name");
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+        c3 = document.createElement('TD');
+        c3.setAttribute("style","font-size: 13px; font-family: verdana,arial,sans-serif;border:0 none;padding:1pt;"+style);
+        c4 = document.createTextNode("Synonym");
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+    return c2;
+}
+
+function DisplayIT()
+{
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite");
+
+// see notes at the end
+    if(gj53run.value2 != 'null')
+    {
+        c2 = document.createElement('TR');
+        c3 = document.createElement('TD');
+        c4 = document.createTextNode(gj53run.value2);
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+    }
+    else
+    {
+        c2 = document.createElement('TR');
+        c3 = document.createElement('TD');
+        c4 = document.createTextNode('Error no definition');
+        c3.appendChild( c4 );
+        c2.appendChild( c3 );
+    }
+
+    var nodeObj = document.getElementById('iPIC');
+
+    if(gj53run.value != 'null')
+    {
+        var newsrc = 'file:///' + gj53run.value;
+        nodeObj.setAttribute('SRC',newsrc);
+        nodeObj.style.visibility = 'visible';
+    }
+    else
+        nodeObj.style.visibility = 'hidden';
+
+return c2;
+}
+
+</script>
+</head>
+<body style="margin:10px;">
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+<div id="myleft">
+
+<table cellpadding="2" cellspacing="2">
+<tr>
+<td colspan="2"><h2 class="scenterpx" >Search the Food Dictionary</h2></td>
+</tr>
+<tr class="HCCT">
+<td colspan="2"><p class="scenterpx"><span class="FL">%</span>&nbsp;is the <acronym title="Matches one or more characters">wild card</acronym> character</p></td>
+</tr>
+
+<tr class="R2">
+<td><p class="scenterpx">Enter Term</p></td>
+<td><p class="scenterpx">Example Result</p></td>
+</tr>
+
+<tr class="a">
+<td><p class="td1px">a<span class="FL">%</span></p></td>
+<td><p class="td1px">apple, Ababai, abalone ...</p></td>
+</tr>
+
+<tr class="b">
+<td><p class="td1px"><span class="FL">%</span>ing</p></td>
+<td><p class="td1px">blood pudding, a la King, Angling ...</p></td>
+</tr>
+
+<tr class="a">
+<td><p class="td1px">a<span class="FL">%</span>ing</p></td>
+<td><p class="td1px">a la King, Angling ...</p></td>
+</tr>
+<tr>
+<td colspan="2">
+<br>
+<form name ="SimpleSearch" id="SimpleSearch" onSubmit="RunSqlite(); return false;">
+<FIELDSET class="b">
+<LEGEND class="a"><strong>Please enter your search term:</strong></LEGEND>
+<br>
+<input  type="text" size =30 tabindex="1" id="query_text" value="">
+<input  type="button" id="CC" title="Search" class="buttonNgrey"
+    value="Search"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="RunSqlite();"
+    onmouseout="toggleHighLight('o', this.id);">
+</FIELDSET>
+</form>
+</td>
+</table>
+
+</div>
+
+<!--
+fix case sensitive search
+glitch - got to have a name on the form or no properties
+<div style="z-index: 1; position: absolute; right: 10px; bottom: 10px; background-color: #cc3300; width: 280px; padding: 10px; color: white; ">
+-->
+
+<div id="myright">
+<br>
+<div id="place" style="visibility:visible">
+<table border="0" cellpadding="2" cellspacing="2">
+<tr>
+<td></td>
+</tr>
+</table>
+</div>
+<br>
+</div>
+<table border="0" width="100%">
+  <tbody>
+    <tr>
+      <td WIDTH="50%"><IMG id="iPIC" style="visibility:hidden" SRC ="GraphicWidgets/noseeysemouth.gif" WIDTH="90%" alt="" ></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br class="clearall">
+</body>
+</html>
+

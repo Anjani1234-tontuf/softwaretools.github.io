@@ -1,0 +1,504 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>GaryCodePage.html Single byte </title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style type="text/css">
+.mppad {
+  margin: 2em;
+}
+
+.aliceblue {
+background-color:aliceblue;
+}
+
+.lightgray {
+background-color:lightgrey;
+}
+
+.l {
+background-color:lightskyblue;
+color:darkblue;
+font-weight:normal; }
+
+body {
+margin:0 0 0 1em;
+font-family:monospace;
+font-size:12pt;  /* matches the spacing of the image */
+}
+
+table { border-collapse: separate;}
+
+table td, table th {
+padding: 8px;
+border:none;
+vertical-align:top;}
+
+td p, th p,td h4, td pre, td img {
+margin-top:0;
+margin-right:7px;
+margin-left:7px;
+margin-bottom:1px;
+padding: 4px 7px;
+}
+pre, code, img {margin:0;padding:0}
+
+table.pt {
+background-color: white;
+color: black;
+vertical-align:top;
+text-align:left;
+border-collapse: collapse ;
+padding: 2px;
+border: 1px solid black;}
+
+
+table.pt tr td  {
+padding: 3px 3px;
+font-weight:bold;
+border: 1px dotted black;
+color:blue;}
+
+
+</style>
+
+<!--
+1) save with as correct code page encoding
+
+2) use corect Content Type<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+3) use a font that corresponds to the encoding
+
+<p>see <a target="_blank" href="http://www.htmlhelp.com/reference/html40/entities/">http://www.htmlhelp.com/reference/html40/entities/</a> for special characters </p>
+
+
+no euro, carons , curved quotes CE or ce or TM,
+
+iconv crashes trying to convert them so I am removing them
+
+
+<p id='theop' style="font-size:12.0pt;  font-family:'Courier New',Courier,monospace;"> </p>  this always gives you what they have for
+Courier New
+
+http://en.wikipedia.org/wiki/Cp1252
+
+http://www.htmlhelp.com/cgi-bin/search.cgi?q=charset
+
+http://www.cs.tut.fi/~jkorpela/chars.html
+
+In ISO 8859-1, code positions 128 - 159 are explicitly reserved for control purposes;
+they "correspond to bit combinations that do not represent graphic characters".
+The so-called Windows character set (WinLatin1, or Windows code page 1252, to be exact) uses some of
+those positions for printable characters. Thus, the Windows character set is not identical with
+ISO 8859-1.
+
+The Windows character set exists in different variations, or "code pages" (CP), which generally differ from the
+corresponding ISO 8859 standard so that it contains same characters in positions 128 - 159 as code page 1252. (However, there are some
+more differences between ISO 8859-7 and win-1253 (WinGreek).) See Code page &Co. by Roman Czyborra and Windows codepages by Microsoft.
+See also CP to Unicode mappings. What we have discussed here is the most usual one, resembling ISO 8859-1. Its status in the officially
+IANA registry was unclear; an encoding had been registered under the name ISO-8859-1-Windows-3.1-Latin-1 by Hewlett-Packard (!),
+assumably intending to refer to WinLatin1, but in 1999-12 Microsoft finally registered it under the name windows-1252.
+That name has in fact been widely used for it. (The name cp-1252 has been used too, but it isn't officially registered even as
+an alias name.)
+
+http://webtools.live2support.com/misc_htmlcharset.php
+
+-->
+
+
+</head>
+
+<body id='testbod'>
+<a target="_blank" href="GaryCodePage1252.html">GaryCodePage1252.html</a>
+<a target="_blank" href="GaryCodePageutf8.html">GaryCodePageutf8.html</a>
+<a target="_blank" href="index.php">Run Sample Conversions</a>
+
+
+<p><b>Content Type ISO-8859-1 Encoding ISO-8859-1</b> </p>
+
+<p>Be careful with fonts, they can imply a code page</p>
+<p>If you hit 'View' - 'Character Encoding' and change the encoding, The code points will reflect that chosen encoding.
+<br>You can try changing the font and encoding in the browser to see if this reflects things differently
+example
+</p>
+
+<table>
+<tr>
+<td>Code Points 32 to 255<br>without Non printing codes<br></td>
+<td>&nbsp; Image of <br>&nbsp; Codepage ISO-8859-1<br></td>
+</tr>
+<tr>
+<td>
+<pre><code>
+!"#$%&'()*+,-./
+0123456789:;<=>?
+@ABCDEFGHIJKLMNO
+PQRSTUVWXYZ[\]^_
+`abcdefghijklmno
+pqrstuvwxyz{|}~?
+
+ ¡¢£¤¥¦§¨©ª«¬­®¯
+°±²³´µ¶·¸¹º»¼½¾¿
+ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
+ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+àáâãäåæçèéêëìíîï
+ðñòóôõö÷øùúûüýþÿ
+</code></pre>
+</td>
+<td><br><img src="ANSI2.jpg"></td>
+</tr>
+</table>
+
+<div>
+
+<pre>
+ISO-8859-1 no code &gt;= 128 &amp;&amp;  &lt;= 159
+
+Non printing codes (or unavailable)
+127 x7F delete can not display
+
+129 x81 unasigned 8859 and 1252
+141 x8D unasigned 8859 and 1252
+143 x8F unasigned 8859 and 1252
+144 x90 unasigned 8859 and 1252
+157 x9D unasigned 8859 and 1252
+
+173 xAD soft hyphen - display problem
+
+If you try and print the soft hyphen, AKA the discretionary hyphen, for example,
+like I try and do here between the greater than and less than &gt;&shy;&lt;,
+it can screw up the display, mainly because its at the browsers discretion to display it.
+
+Code Points from Javascript for characters 32 - 255
+
+<input type="button" value="codepoints from 32 - 255" onclick="genChars();"> <input type="button" id="ib5" title="wipe out" class="buttonNgrey" value="Clear OP" onclick="clearOP();">
+</pre>
+<div id='theop' style="font-family:monospace;font-size:12.0pt;"></div>
+</div>
+
+<pre>
+<a target="_blank" href="http://www.i18nguy.com/">http://www.i18nguy.com/</a>
+<a target="_blank" href="http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html">http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html</a>
+<a target="_blank" href="http://www.ascii.cl/htmlcodes.htm">http://www.ascii.cl/htmlcodes.htm</a>
+
+see utf-8 for additional resources
+</pre>
+<p>
+This talks a little about the problems displaying code pages, encodings and character sets:
+<a target="_blank" href="http://www.columbia.edu/kermit/utf8-t1.htmlhttp://www.columbia.edu/kermit/utf8-t1.html">http://www.columbia.edu/kermit/utf8-t1.htmlhttp://www.columbia.edu/kermit/utf8-t1.html</a><br>
+...Since many of these characters might not be not available in a monospace font (or might be taken from monospace fonts that have different widths) your browser is likely to pick wider or narrower versions from different fonts, so the columns might not line up. This table was adapted programmatically for Web presentation as follows:
+<br>
+"&" is encoded as "&amp;", "<" as "&lt;", and ">" as "&gt;".
+Combining marks have a space inserted before them, so the mark will have something to combine with. Double combining marks (e.g. COMBINING DOUBLE INVERTED BREVE) also have a space inserted after.
+Right-to-Left characters (Hebrew, Arabic, Syriac, Thaana) are followed by a Left-to-Right marks (U+200F) to force the adjacent right bracket to the right location and orientation.
+</p>
+
+<pre>
+xml character entities
+</pre>
+<table class='pt'>
+<tr><td>22</td><td>"  &amp;#34;  &ampquot;</td><td>Double quotes (or speech marks)</td></tr>
+<tr><td>26</td><td>&  &amp;#38;  &ampamp;</td><td>Ampersand</td></tr>
+<tr><td>27</td><td>'  &amp;#39;  &ampapos;</td><td>Single quote</td></tr>
+<tr><td>3C</td><td><  &amp;#60;  &amplt;</td><td>Less than (or open angled bracket)</td></tr>
+<tr><td>3E</td><td>>  &amp;#62;  &ampgt;</td><td>Greater than (or close angled bracket)</td></tr>
+</table>
+
+<pre>
+Single byte > 128
+
+iso8859-1 and Windows 1252 > 150 < 255
+</pre>
+
+<table class='pt'>
+<tr><td>a0=> '&nbsp;' </td>    <td>non-breaking space</td></tr>
+<tr><td>a1=> '&iexcl;' </td>   <td>inverted exclamation mark</td></tr>
+<tr><td>a2=> '&cent;' </td>    <td>cent sign</td></tr>
+<tr><td>a3=> '&pound;' </td>   <td>pound sign</td></tr>
+<tr><td>a4=> '&curren;' </td>  <td>currency sign</td></tr>
+<tr><td>a5=> '&yen;' </td>     <td>yen sign</td></tr>
+<tr><td>a6=> '&brvbar;' </td>  <td>broken vertical bar</td></tr>
+<tr><td>a7=> '&sect;' </td>    <td>section sign</td></tr>
+<tr><td>a8=> '&uml;' </td>     <td>spacing diaeresis - umlaut</td></tr>
+<tr><td>a9=> '&copy;' </td>    <td>copyright sign</td></tr>
+<tr><td>aa=> '&ordf;' </td>    <td>feminine ordinal indicator</td></tr>
+<tr><td>ab=> '&laquo;' </td>   <td>left double angle quotes</td></tr>
+<tr><td>ac=> '&not;' </td>     <td>not sign</td></tr>
+<tr><td>ad=> '&shy;' </td>     <td>soft hyphen</td></tr>
+<tr><td>ae=> '&reg;' </td>     <td>registered trade mark sign</td></tr>
+<tr><td>af=> '&macr;' </td>    <td>spacing macron - overline  175</td></tr>
+<tr><td>b0=> '&deg;' </td>     <td>degree sign  xb0  176</td></tr>
+<tr><td>b1=> '&plusmn;' </td>  <td>plus-or-minus sign</td></tr>
+<tr><td>b2=> '&sup2;' </td>    <td>superscript two - squared</td></tr>
+<tr><td>b3=> '&sup3;' </td>    <td>superscript three - cubed</td></tr>
+<tr><td>b4=> '&acute;' </td>   <td>acute accent - spacing acute</td></tr>
+<tr><td>b5=> '&micro;' </td>   <td>micro sign</td></tr>
+<tr><td>b6=> '&para;' </td>    <td>pilcrow sign - paragraph sign</td></tr>
+<tr><td>b7=> '&middot;' </td>  <td>middle dot - Georgian comma</td></tr>
+<tr><td>b8=> '&cedil;' </td>   <td>spacing cedilla</td></tr>
+<tr><td>b9=> '&sup1;' </td>    <td>superscript one</td></tr>
+<tr><td>ba=> '&ordm;' </td>    <td>masculine ordinal indicator</td></tr>
+<tr><td>bb=> '&raquo;' </td>   <td>right double angle quotes</td></tr>
+<tr><td>bc=> '&frac14;' </td>  <td>fraction one quarter</td></tr>
+<tr><td>bd=> '&frac12;' </td>  <td>fraction one half</td></tr>
+<tr><td>be=> '&frac34;' </td>  <td>fraction three quarters</td></tr>
+<tr><td>bf=> '&iquest;' </td>  <td>inverted question mark    191</td></tr>
+<tr><td>c0=> '&Agrave;' </td>  <td>latin capital letter A with grave  192</td></tr>
+<tr><td>c1=> '&Aacute;' </td>  <td>latin capital letter A with acute</td></tr>
+<tr><td>c2=> '&Acirc;' </td>   <td>latin capital letter A with circumflex</td></tr>
+<tr><td>c3=> '&Atilde;' </td>  <td>latin capital letter A with tilde</td></tr>
+<tr><td>c4=> '&Auml;' </td>    <td>latin capital letter A with diaeresis</td></tr>
+<tr><td>c5=> '&Aring;' </td>   <td>latin capital letter A with ring above</td></tr>
+<tr><td>c6=> '&AElig;' </td>   <td>latin capital letter AE</td></tr>
+<tr><td>c7=> '&Ccedil;' </td>  <td>latin capital letter C with cedilla</td></tr>
+<tr><td>c8=> '&Egrave;' </td>  <td>latin capital letter E with grave</td></tr>
+<tr><td>c9=> '&Eacute;' </td>  <td>latin capital letter E with acute</td></tr>
+<tr><td>ca=> '&Ecirc;' </td>   <td>latin capital letter E with circumflex</td></tr>
+<tr><td>cb=> '&Euml;' </td>    <td>latin capital letter E with diaeresis</td></tr>
+<tr><td>cc=> '&Igrave;' </td>  <td>latin capital letter I with grave</td></tr>
+<tr><td>cd=> '&Iacute;' </td>  <td>latin capital letter I with acute</td></tr>
+<tr><td>ce=> '&Icirc;' </td>   <td>latin capital letter I with circumflex</td></tr>
+<tr><td>cf=> '&Iuml;' </td>    <td>latin capital letter I with diaeresis xcf  207</td></tr>
+<tr><td>d0=> '&ETH;' </td>     <td>latin capital letter ETH  208</td></tr>
+<tr><td>d1=> '&Ntilde;' </td>  <td>latin capital letter N with tilde</td></tr>
+<tr><td>d2=> '&Ograve;' </td>  <td>latin capital letter O with grave</td></tr>
+<tr><td>d3=> '&Oacute;' </td>  <td>latin capital letter O with acute</td></tr>
+<tr><td>d4=> '&Ocirc;' </td>   <td>latin capital letter O with circumflex</td></tr>
+<tr><td>d5=> '&Otilde;' </td>  <td>latin capital letter O with tilde</td></tr>
+<tr><td>d6=> '&Ouml;' </td>    <td>latin capital letter O with diaeresis</td></tr>
+<tr><td>d7=> '&times;' </td>   <td>multiplication sign</td></tr>
+<tr><td>d8=> '&Oslash;' </td>  <td>latin capital letter O with slash</td></tr>
+<tr><td>d9=> '&Ugrave;' </td>  <td>latin capital letter U with grave</td></tr>
+<tr><td>da=> '&Uacute;' </td>  <td>latin capital letter U with acute</td></tr>
+<tr><td>db=> '&Ucirc;' </td>   <td>latin capital letter U with circumflex</td></tr>
+<tr><td>dc=> '&Uuml;' </td>    <td>latin capital letter U with diaeresis</td></tr>
+<tr><td>dd=> '&Yacute;' </td>  <td>latin capital letter Y with acute</td></tr>
+<tr><td>de=> '&THORN;' </td>   <td>latin capital letter THORN</td></tr>
+<tr><td>df=> '&szlig;' </td>   <td>latin small letter sharp s - ess-zed  223</td></tr>
+<tr><td>e0=> '&agrave;' </td>  <td>latin small letter a with grave 224</td></tr>
+<tr><td>e1=> '&aacute;' </td>  <td>latin small letter a with acute</td></tr>
+<tr><td>e2=> '&acirc;' </td>   <td>latin small letter a with circumflex</td></tr>
+<tr><td>e3=> '&atilde;' </td>  <td>latin small letter a with tilde</td></tr>
+<tr><td>e4=> '&auml;' </td>    <td>latin small letter a with diaeresis</td></tr>
+<tr><td>e5=> '&aring;' </td>   <td>latin small letter a with ring above</td></tr>
+<tr><td>e6=> '&aelig;' </td>   <td>latin small letter ae</td></tr>
+<tr><td>e7=> '&ccedil;' </td>  <td>latin small letter c with cedilla</td></tr>
+<tr><td>e8=> '&egrave;' </td>  <td>latin small letter e with grave</td></tr>
+<tr><td>e9=> '&eacute;' </td>  <td>latin small letter e with acute</td></tr>
+<tr><td>ea=> '&ecirc;' </td>   <td>latin small letter e with circumflex</td></tr>
+<tr><td>eb=> '&euml;' </td>    <td>latin small letter e with diaeresis</td></tr>
+<tr><td>ec=> '&igrave;' </td>  <td>latin small letter i with grave</td></tr>
+<tr><td>ed=> '&iacute;' </td>  <td>latin small letter i with acute</td></tr>
+<tr><td>ee=> '&icirc;' </td>   <td>latin small letter i with circumflex</td></tr>
+<tr><td>ef=> '&iuml;' </td>    <td>latin small letter i with diaeresis 239</td></tr>
+<tr><td>f0=> '&eth;' </td>     <td>latin small letter eth  240</td></tr>
+<tr><td>f1=> '&ntilde;' </td>  <td>latin small letter n with tilde</td></tr>
+<tr><td>f2=> '&ograve;' </td>  <td>latin small letter o with grave</td></tr>
+<tr><td>f3=> '&oacute;' </td>  <td>latin small letter o with acute</td></tr>
+<tr><td>f4=> '&ocirc;' </td>   <td>latin small letter o with circumflex</td></tr>
+<tr><td>f5=> '&otilde;' </td>  <td>latin small letter o with tilde</td></tr>
+<tr><td>f6=> '&ouml;' </td>    <td>latin small letter o with diaeresis</td></tr>
+<tr><td>f7=> '&divide;' </td>  <td>division sign</td></tr>
+<tr><td>f8=> '&oslash;' </td>  <td>latin small letter o with slash</td></tr>
+<tr><td>f9=> '&ugrave;' </td>  <td>latin small letter u with grave</td></tr>
+<tr><td>fa=> '&uacute;' </td>  <td>latin small letter u with acute</td></tr>
+<tr><td>fb=> '&ucirc;' </td>   <td>latin small letter u with circumflex</td></tr>
+<tr><td>fc=> '&uuml;' </td>    <td>latin small letter u with diaeresis</td></tr>
+<tr><td>fd=> '&yacute;' </td>  <td>latin small letter y with acute</td></tr>
+<tr><td>fe=> '&thorn;' </td>   <td>latin small letter thorn</td></tr>
+<tr><td>ff=> '&yuml;' </td>    <td>latin small letter y with diaeresis  255</td></tr>
+</table>
+
+
+<pre>
+Single byte < 128
+</pre>
+<table class='pt'>
+<tr><td>20</td><td>   &amp;#32;</td><td>Space</td></tr>
+<tr><td>21</td><td>!  &amp;#33;</td><td>Exclamation mark</td></tr>
+<tr><td>22</td><td>"  &amp;#34;</td><td>Double quotes (or speech marks)</td></tr>
+<tr><td>23</td><td>#  &amp;#35;</td><td>Number</td></tr>
+<tr><td>24</td><td>$  &amp;#36;</td><td>Dollar</td></tr>
+<tr><td>25</td><td>%  &amp;#37;</td><td>Percent</td></tr>
+<tr><td>26</td><td>&  &amp;#38;</td><td>Ampersand</td></tr>
+<tr><td>27</td><td>'  &amp;#39;</td><td>Single quote</td></tr>
+<tr><td>28</td><td>(  &amp;#40;</td><td>Open parenthesis (or open bracket)</td></tr>
+<tr><td>29</td><td>)  &amp;#41;</td><td>Close parenthesis (or close bracket)</td></tr>
+<tr><td>2A</td><td>*  &amp;#42;</td><td>Asterisk</td></tr>
+<tr><td>2B</td><td>+  &amp;#43;</td><td>Plus</td></tr>
+<tr><td>2C</td><td>,  &amp;#44;</td><td>Comma</td></tr>
+<tr><td>2D</td><td>-  &amp;#45;</td><td>Hyphen</td></tr>
+<tr><td>2E</td><td>.  &amp;#46;</td><td>Period, dot or full stop</td></tr>
+<tr><td>2F</td><td>/  &amp;#47;</td><td>Slash or divide</td></tr>
+<tr><td>30</td><td>0  &amp;#48;</td><td>Zero</td></tr>
+<tr><td>31</td><td>1  &amp;#49;</td><td>One</td></tr>
+<tr><td>32</td><td>2  &amp;#50;</td><td>Two</td></tr>
+<tr><td>33</td><td>3  &amp;#51;</td><td>Three</td></tr>
+<tr><td>34</td><td>4  &amp;#52;</td><td>Four</td></tr>
+<tr><td>35</td><td>5  &amp;#53;</td><td>Five</td></tr>
+<tr><td>36</td><td>6  &amp;#54;</td><td>Six</td></tr>
+<tr><td>37</td><td>7  &amp;#55;</td><td>Seven</td></tr>
+<tr><td>38</td><td>8  &amp;#56;</td><td>Eight</td></tr>
+<tr><td>39</td><td>9  &amp;#57;</td><td>Nine</td></tr>
+<tr><td>3A</td><td>:  &amp;#58;</td><td>Colon</td></tr>
+<tr><td>3B</td><td>;  &amp;#59;</td><td>Semicolon</td></tr>
+<tr><td>3C</td><td><  &amp;#60;</td><td>Less than (or open angled bracket)</td></tr>
+<tr><td>3D</td><td>=  &amp;#61;</td><td>Equals</td></tr>
+<tr><td>3E</td><td>>  &amp;#62;</td><td>Greater than (or close angled bracket)</td></tr>
+<tr><td>3F</td><td>?  &amp;#63;</td><td>Question mark</td></tr>
+<tr><td>40</td><td>@  &amp;#64;</td><td>At symbol</td></tr>
+<tr><td>41</td><td>A  &amp;#65;</td><td>Uppercase A</td></tr>
+<tr><td>42</td><td>B  &amp;#66;</td><td>Uppercase B</td></tr>
+<tr><td>43</td><td>C  &amp;#67;</td><td>Uppercase C</td></tr>
+<tr><td>44</td><td>D  &amp;#68;</td><td>Uppercase D</td></tr>
+<tr><td>45</td><td>E  &amp;#69;</td><td>Uppercase E</td></tr>
+<tr><td>46</td><td>F  &amp;#70;</td><td>Uppercase F</td></tr>
+<tr><td>47</td><td>G  &amp;#71;</td><td>Uppercase G</td></tr>
+<tr><td>48</td><td>H  &amp;#72;</td><td>Uppercase H</td></tr>
+<tr><td>49</td><td>I  &amp;#73;</td><td>Uppercase I</td></tr>
+<tr><td>4A</td><td>J  &amp;#74;</td><td>Uppercase J</td></tr>
+<tr><td>4B</td><td>K  &amp;#75;</td><td>Uppercase K</td></tr>
+<tr><td>4C</td><td>L  &amp;#76;</td><td>Uppercase L</td></tr>
+<tr><td>4D</td><td>M  &amp;#77;</td><td>Uppercase M</td></tr>
+<tr><td>4E</td><td>N  &amp;#78;</td><td>Uppercase N</td></tr>
+<tr><td>4F</td><td>O  &amp;#79;</td><td>Uppercase O</td></tr>
+<tr><td>50</td><td>P  &amp;#80;</td><td>Uppercase P</td></tr>
+<tr><td>51</td><td>Q  &amp;#81;</td><td>Uppercase Q</td></tr>
+<tr><td>52</td><td>R  &amp;#82;</td><td>Uppercase R</td></tr>
+<tr><td>53</td><td>S  &amp;#83;</td><td>Uppercase S</td></tr>
+<tr><td>54</td><td>T  &amp;#84;</td><td>Uppercase T</td></tr>
+<tr><td>55</td><td>U  &amp;#85;</td><td>Uppercase U</td></tr>
+<tr><td>56</td><td>V  &amp;#86;</td><td>Uppercase V</td></tr>
+<tr><td>57</td><td>W  &amp;#87;</td><td>Uppercase W</td></tr>
+<tr><td>58</td><td>X  &amp;#88;</td><td>Uppercase X</td></tr>
+<tr><td>59</td><td>Y  &amp;#89;</td><td>Uppercase Y</td></tr>
+<tr><td>5A</td><td>Z  &amp;#90;</td><td>Uppercase Z</td></tr>
+<tr><td>5B</td><td>[  &amp;#91;</td><td>Opening bracket</td></tr>
+<tr><td>5C</td><td>\  &amp;#92;</td><td>Backslash</td></tr>
+<tr><td>5D</td><td>]  &amp;#93;</td><td>Closing bracket</td></tr>
+<tr><td>5E</td><td>^  &amp;#94;</td><td>Caret - circumflex</td></tr>
+<tr><td>5F</td><td>_  &amp;#95;</td><td>Underscore</td></tr>
+<tr><td>60</td><td>`  &amp;#96;</td><td>Grave accent</td></tr>
+<tr><td>61</td><td>a  &amp;#97;</td><td>Lowercase a</td></tr>
+<tr><td>62</td><td>b  &amp;#98;</td><td>Lowercase b</td></tr>
+<tr><td>63</td><td>c  &amp;#99;</td><td>Lowercase c</td></tr>
+<tr><td>64</td><td>d  &amp;#100;</td><td>Lowercase d</td></tr>
+<tr><td>65</td><td>e  &amp;#101;</td><td>Lowercase e</td></tr>
+<tr><td>66</td><td>f  &amp;#102;</td><td>Lowercase f</td></tr>
+<tr><td>67</td><td>g  &amp;#103;</td><td>Lowercase g</td></tr>
+<tr><td>68</td><td>h  &amp;#104;</td><td>Lowercase h</td></tr>
+<tr><td>69</td><td>i  &amp;#105;</td><td>Lowercase i</td></tr>
+<tr><td>6A</td><td>j  &amp;#106;</td><td>Lowercase j</td></tr>
+<tr><td>6B</td><td>k  &amp;#107;</td><td>Lowercase k</td></tr>
+<tr><td>6C</td><td>l  &amp;#108;</td><td>Lowercase l</td></tr>
+<tr><td>6D</td><td>m  &amp;#109;</td><td>Lowercase m</td></tr>
+<tr><td>6E</td><td>n  &amp;#110;</td><td>Lowercase n</td></tr>
+<tr><td>6F</td><td>o  &amp;#111;</td><td>Lowercase o</td></tr>
+<tr><td>70</td><td>p  &amp;#112;</td><td>Lowercase p</td></tr>
+<tr><td>71</td><td>q  &amp;#113;</td><td>Lowercase q</td></tr>
+<tr><td>72</td><td>r  &amp;#114;</td><td>Lowercase r</td></tr>
+<tr><td>73</td><td>s  &amp;#115;</td><td>Lowercase s</td></tr>
+<tr><td>74</td><td>t  &amp;#116;</td><td>Lowercase t</td></tr>
+<tr><td>75</td><td>u  &amp;#117;</td><td>Lowercase u</td></tr>
+<tr><td>76</td><td>v  &amp;#118;</td><td>Lowercase v</td></tr>
+<tr><td>77</td><td>w  &amp;#119;</td><td>Lowercase w</td></tr>
+<tr><td>78</td><td>x  &amp;#120;</td><td>Lowercase x</td></tr>
+<tr><td>79</td><td>y  &amp;#121;</td><td>Lowercase y</td></tr>
+<tr><td>7A</td><td>z  &amp;#122;</td><td>Lowercase z</td></tr>
+<tr><td>7B</td><td>{  &amp;#123;</td><td>Opening brace</td></tr>
+<tr><td>7C</td><td>|  &amp;#124;</td><td>Vertical bar</td></tr>
+<tr><td>7D</td><td>}  &amp;#125;</td><td>Closing brace</td></tr>
+<tr><td>7E</td><td>~  &amp;#126;</td><td>Equivalency sign - tilde</td></tr>
+<tr><td>7F</td><td>  &amp;#127;</td><td>Delete</td></tr>
+</table>
+
+
+
+<script type="text/javascript">
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+//this alwyas looks like ISO-8859-1 might be a all the String. returns
+function genChars()
+{
+  var skunk = '<table class="pt"><tr>';
+  var c = 0;
+  for (var i=32;  i < 256; i++)
+  {
+    c = i;
+
+    if(i === 34) {
+      skunk = skunk + '<td>&quot;</td>';
+      continue;
+    }
+
+    if((i === 127) || (i === 129) || (i === 141) || (i === 143) || (i === 144) || (i === 157) || (i === 173))
+    {
+      if(i % 16 == 0) {
+        skunk = skunk +  '<td  class="l">' + (c - 16) + ' to </td><td  class="l">' + (c - 1) + '</td></tr><tr><td>' + String.fromCharCode(32) + '</td>';
+      } else {
+        skunk = skunk + '<td>' + String.fromCharCode(32) + '</td>';
+      }
+
+    } else {
+
+      if((i % 16 == 0) && (i != 32)) {
+        //skunk = skunk + ' ' + (c - 16) + ' ' + (c - 1) + '<br>' + String.fromCharCode(i) ;
+        skunk = skunk +  '<td class="l">' + (c - 16) + ' to </td><td class="l">' + (c - 1) + '</td></tr><tr><td>' + String.fromCharCode(i) + '</td>';
+      } else {
+        skunk = skunk + '<td>' + String.fromCharCode(i) + '</td>';
+        //skunk = skunk + String.fromCharCode(i);
+      }
+    }
+  }
+
+  skunk = skunk + '<td class="l">' + (c - 15) + ' to </td><td class="l">' + (c) + '</td></tr></table>';
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + skunk);
+  return;
+}
+
+
+function changeInnerHTML(idin, myHTML)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+    myE.innerHTML = myHTML;
+  }
+  catch (error)
+  {
+    alert( error, "changeInnerHTML" + idin + " " + myHTML);
+  }
+}
+
+function returnInnerHTML(idin)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+  }
+  catch (error)
+  {
+    alert( error, "returnInnerHTML id" + idin);
+  }
+
+  return myE.innerHTML;
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

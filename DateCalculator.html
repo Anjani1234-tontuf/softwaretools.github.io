@@ -1,0 +1,937 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Cache-control" content="private">
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="Date Calculator">
+  <meta name="keywords" content="Date Calculator">
+  <link rel="icon" href="GraphicWidgets/calendar16x16.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="styleSheet" href="css/musings.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<!--
+# gjManifestVersion Nov 19 2015 version "1.00.27"
+-->
+<title>Date Calculator</title>
+<!--
+document loaded from appcache
+http://127.0.0.1/garyjohnsoninfo.info/XXSoftwareTools/MCalcMenuAppBig.appcache
+chrome://appcache-internals/
+
+Note changed to 365.25  - maybe more accurate for years
+-->
+<style type="text/css">
+table td, table th {
+padding: 1px; /* 'cellpadding' equivalent */
+border:none;
+vertical-align:top;}
+
+</style>
+</head>
+
+<body onload="Startup();">
+<div class="myinline" style="max-width:55em;  margin-left: auto;  margin-right: auto;"> <!-- main width setting div -->
+
+<form name="datepicker1" id="datepicker1">
+
+<input type="button" id="sFCD" title="Set dates to current date" class="buttonNgrey"
+       value="Set Dates to Today"
+       onclick="setFormCurrentDate(this.form);">
+
+<h3 class='old'><span class="HCL"><span class="HCLT">Calculate the number of days between 2 dates</span></span></h3>
+
+
+<table>
+<tbody>
+    <tr class="HCCT">
+      <td colspan="3"><p> <span class="LGreyPattern">First</span> Date</p></td>
+    </tr>
+    <tr>
+      <td class="a">
+        <p class="td1p">Month&nbsp;
+        <select class="buttonNgrey" name="month1" id="month1" size="1">
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        <option value="5">6</option>
+        <option value="6">7</option>
+        <option value="7">8</option>
+        <option value="8">9</option>
+        <option value="9">10</option>
+        <option value="10">11</option>
+        <option value="11">12</option>
+        </select></p>
+      </td>
+      <td class="a">
+        <p class="td1p">&nbsp;Day&nbsp;
+        <select class="buttonNgrey" name="day1" id="day1" size="1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        </select></p>
+      </td>
+      <td class="a" style="min-width:12em;">
+        <p class="td1p">&nbsp;Year&nbsp;
+        <select class="buttonNgrey" name="year1" id="year1" size="1">
+        <option value="19">19</option>
+        <option value="20" selected>20</option>
+        </select>
+        <select class="buttonNgrey" name="year2" id="year2" size="1">
+        <option value="00">00</option>
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04" selected>04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+        <option value="60">60</option>
+        <option value="61">61</option>
+        <option value="62">62</option>
+        <option value="63">63</option>
+        <option value="64">64</option>
+        <option value="65">65</option>
+        <option value="66">66</option>
+        <option value="67">67</option>
+        <option value="68">68</option>
+        <option value="69">69</option>
+        <option value="70">70</option>
+        <option value="71">71</option>
+        <option value="72">72</option>
+        <option value="73">73</option>
+        <option value="74">74</option>
+        <option value="75">75</option>
+        <option value="76">76</option>
+        <option value="77">77</option>
+        <option value="78">78</option>
+        <option value="79">79</option>
+        <option value="80">80</option>
+        <option value="81">81</option>
+        <option value="82">82</option>
+        <option value="83">83</option>
+        <option value="84">84</option>
+        <option value="85">85</option>
+        <option value="86">86</option>
+        <option value="87">87</option>
+        <option value="88">88</option>
+        <option value="89">89</option>
+        <option value="90">90</option>
+        <option value="91">91</option>
+        <option value="92">92</option>
+        <option value="93">93</option>
+        <option value="94">94</option>
+        <option value="95">95</option>
+        <option value="96">96</option>
+        <option value="97">97</option>
+        <option value="98">98</option>
+        <option value="99">99</option>
+        </select></p>
+      </td>
+    </tr>
+</tbody>
+</table>
+
+<br>
+
+
+<table>
+<tbody>
+<tr>
+<td class="HCCT" colspan="3"><p>Second Date</p></td>
+  <td class="bodybc" rowspan="6" style="min-width:5em;">
+    <pre class="myFixed" id='place1'></pre>
+</tr>
+<tr>
+      <td class="a">
+      <p class="td1p">Month&nbsp;
+    <select class="buttonNgrey" name="month2" id="month2" size="1">
+      <option value="0">1</option>
+      <option value="1">2</option>
+      <option value="2">3</option>
+      <option value="3">4</option>
+      <option value="4">5</option>
+      <option value="5">6</option>
+      <option value="6">7</option>
+      <option value="7">8</option>
+      <option value="8">9</option>
+      <option value="9">10</option>
+      <option value="10">11</option>
+      <option value="11">12</option>
+      </select>
+    </p>
+    </td>
+      <td class="a">
+      <p class="td1p">&nbsp;Day&nbsp;
+    <select class="buttonNgrey" name="day2" id="day2" size="1">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+      </select>
+    </p>
+    </td>
+      <td class="a" style="min-width:12em;word-wrap:break-word">
+          <p class="td1p">&nbsp;Year&nbsp;
+    <select class="buttonNgrey" name="year3" id="year3" size="1">
+      <option value="19">19</option>
+      <option value="20" selected>20</option>
+      </select>
+    <select class="buttonNgrey" name="year4" id="year4" size="1">
+      <option value="00">00</option>
+      <option value="01">01</option>
+      <option value="02">02</option>
+      <option value="03">03</option>
+      <option value="04" selected>04</option>
+      <option value="05">05</option>
+      <option value="06">06</option>
+      <option value="07">07</option>
+      <option value="08">08</option>
+      <option value="09">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+      <option value="32">32</option>
+      <option value="33">33</option>
+      <option value="34">34</option>
+      <option value="35">35</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+      <option value="41">41</option>
+      <option value="42">42</option>
+      <option value="43">43</option>
+      <option value="44">44</option>
+      <option value="45">45</option>
+      <option value="46">46</option>
+      <option value="47">47</option>
+      <option value="48">48</option>
+      <option value="49">49</option>
+      <option value="50">50</option>
+      <option value="51">51</option>
+      <option value="52">52</option>
+      <option value="53">53</option>
+      <option value="54">54</option>
+      <option value="55">55</option>
+      <option value="56">56</option>
+      <option value="57">57</option>
+      <option value="58">58</option>
+      <option value="59">59</option>
+      <option value="60">60</option>
+      <option value="61">61</option>
+      <option value="62">62</option>
+      <option value="63">63</option>
+      <option value="64">64</option>
+      <option value="65">65</option>
+      <option value="66">66</option>
+      <option value="67">67</option>
+      <option value="68">68</option>
+      <option value="69">69</option>
+      <option value="70">70</option>
+      <option value="71">71</option>
+      <option value="72">72</option>
+      <option value="73">73</option>
+      <option value="74">74</option>
+      <option value="75">75</option>
+      <option value="76">76</option>
+      <option value="77">77</option>
+      <option value="78">78</option>
+      <option value="79">79</option>
+      <option value="80">80</option>
+      <option value="81">81</option>
+      <option value="82">82</option>
+      <option value="83">83</option>
+      <option value="84">84</option>
+      <option value="85">85</option>
+      <option value="86">86</option>
+      <option value="87">87</option>
+      <option value="88">88</option>
+      <option value="89">89</option>
+      <option value="90">90</option>
+      <option value="91">91</option>
+      <option value="92">92</option>
+      <option value="93">93</option>
+      <option value="94">94</option>
+      <option value="95">95</option>
+      <option value="96">96</option>
+      <option value="97">97</option>
+      <option value="98">98</option>
+      <option value="99">99</option>
+      </select>
+  </p>
+    </td>
+</tr>
+  </tbody>
+</table>
+<br>
+<table>
+<tr>
+<td>
+    <input type="button" id="validateDatesI"  class="buttonNgrey" value="Calculate -> Difference In Days"
+    onclick="calcDaysDiff(this.form); return false;">
+</td>
+</tr>
+</table>
+<hr>
+<h3 class='old'><span class="HCL"><span class="HCLT">Calculate Future Date(s) From <span class="LGreyPattern">First</span> Date</span></span></h3>
+
+
+<table>
+<tbody>
+<tr>
+  <td class="a">
+    <p class="scenter" style='font-weight:normal;'>Enter Days
+    <input name="numdays" type="text" class="text" value="" size="6"></p>
+  </td>
+  <td class="bodybcc">
+    <pre class="myFixed" id='place2'></pre>
+  </td>
+</tr>
+</tbody>
+</table>
+<br>
+<table>
+  <tr>
+    <td>
+    <input type="button" id="calcNewDateI"  class="buttonNgrey" value="Calculate -> Future Date = Days + First Date"
+    onclick="calcNewDate(this.form); return false;">
+  </td>
+  </tr>
+<tr>
+<td>
+<input type="button" id="sFCDW" title="Calulate week table from First Date" class="buttonNgrey"
+       value="Calculate 12 week table from First Date"
+       onclick="calcWeekTable(this.form);">
+</td>
+  </tr>
+<tr><td colspan="2"><hr></td></tr>
+  <tr>
+<td>
+<input type="button" id="sFCD2" title="Set First Date to Results" class="buttonNgrey"
+       value="Results to First Date"
+       onclick="setFormFutureDate(this.form);">
+</td>
+</tr>
+<tr>
+<td>
+<input type="button" id="sFCJ" title="Get Julain of First Date" class="buttonNgrey"
+       value="Julian of of First Date"
+       onclick="getJulainFormDate(this.form);">
+</td>
+</tr>
+</table>
+<p style='display:none' id='place3'>~</p>
+</form>
+
+<hr>
+
+</div> <!-- main width setting div -->
+
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<script type="text/javascript">
+
+setFormCurrentDateL('datepicker1');
+function setFormCurrentDateL(form)
+{
+    try
+    {
+      var today=new Date(); //today.getFullYear()
+      var formid = document.getElementById(form);
+
+        formid.month1.selectedIndex = today.getMonth();
+        formid.day1.selectedIndex = today.getDate()- 1;
+        formid.year2.selectedIndex = today.getFullYear() - 2000;
+
+        formid.month2.selectedIndex = today.getMonth();
+        formid.day2.selectedIndex = today.getDate() -1;
+        formid.year4.selectedIndex = today.getFullYear() - 2000;
+
+    }
+    catch (error)
+    {
+    gjonerror( error, "setFormCurrentDateL");
+    }
+}
+
+/*
+my short date
+*/
+
+function mySdate(datein) {
+  var wday = getShortDayName(datein.getDay());
+  var month = getShortMonthName(datein.getMonth());
+  var day = datein.getDate();
+  if(day < 10) {day = "&nbsp;" + day;}
+  var year = datein.getFullYear()  - 2000;
+return (wday + " " + month + " " + day + "," + year);
+}
+
+var FutureDate;
+
+/*
+Set UnitDate to True
+The year calclulation for dates in the 19?? compared to dates in the 20?? are off
+example
+
+Today: Thu Nov 19 2015
+ Day: 323 of the Year
+ First Date: Tue Jun 16 1953
+ Second Date: Tue Jun 16 2015
+ Difference in Days: 22645
+ or 62 years and 0 days  okay
+
+Today: Thu Nov 19 2015
+ Day: 323 of the Year
+ First Date: Tue Jun 16 1953
+ Second Date: Thu Jun 16 2016
+ Difference in Days: 23011
+ or 63 years and 1 days not okay
+
+
+This is weird
+First Date: Thu Jan 01 2015
+Second Date: Thu Dec 31 2015
+Difference in Days: 364
+
+http://mxr.mozilla.org/mozilla/source/js/src/jsdate.c
+
+*/
+
+function calcDaysDiff(form) {
+var dateObjArray = Array();
+var UnitTest = false;
+
+  if(getFormDates(form,dateObjArray)) {
+    computeDayYears(dateObjArray);
+    displayDateResults(dateObjArray,UnitTest);
+  }
+
+ if(UnitTest) {
+    //Year,  Month is 0-11 in JavaScript, Day
+    //Earliest date is first date
+    var D11 = Array(2015, 0, 1);
+    var D21 = Array(2015,11,31);
+
+    var D12 = Array(1999, 1,  1);
+    var D22 = Array(2016, 1, 10);
+
+    var D13 = Array(1999, 0, 1);
+    var D23 = Array(2015, 0, 1);
+
+    var D14 = Array(2015, 5, 14);
+    var D24 = Array(2015, 5, 17);
+
+    var D15 = Array(2015, 5, 15);
+    var D25 = Array(2015, 5, 18);
+
+    var D16 = Array(2010, 5, 14);
+    var D26 = Array(2015, 5, 17);
+
+    var D17 = Array(2010, 5, 15);
+    var D27 = Array(2015, 5, 18);
+
+    var D18 = Array(1953, 5, 16);
+    var D28 = Array(2016, 5, 16);
+
+    var D19 = Array(1953, 5, 16);
+    var D29 = Array(2015, 5, 16);
+
+
+    var D1  = Array(D11,D12,D13,D14,D15,D16,D17,D18,D19);
+    var D2  = Array(D21,D22,D23,D24,D25,D26,D27,D28,D29);
+  }
+
+  if(UnitTest) {
+
+      for(var i=0; i <D1.length;i++){
+        var Date1=new Date(D1[i][0], D1[i][1], D1[i][2]);
+        var Date2=new Date(D2[i][0], D2[i][1], D2[i][2]);
+
+        dateObjArray[0]=Date1;
+        dateObjArray[1]=Date2;
+        dateObjArray[2] = 0;
+        dateObjArray[3] = 0;
+        dateObjArray[4] = 0;
+        dateObjArray[5] = 0;
+        dateObjArray[6] = 0;
+        computeDayYears(dateObjArray);
+        displayDateResults(dateObjArray,UnitTest);
+      }
+    }
+}
+
+function getFormDates(form, dateObjArray){
+    try {
+    var month1 = form.month1.selectedIndex;
+    var day1 = form.day1.selectedIndex + 1;
+
+    var ty = form.year1.selectedIndex;
+    var year1 = form.year1.options[ty].value;
+    ty = form.year2.selectedIndex;
+    var year2 = form.year2.options[ty].value;
+    var fullyear1 = String(year1) + String(year2);
+
+    var Date1=new Date(fullyear1, month1, day1); //Month is 0-11 in JavaScript
+
+    var month2 = form.month2.selectedIndex;
+    var day2 = form.day2.selectedIndex + 1;
+
+    ty = form.year3.selectedIndex;
+    var year3 = form.year3.options[ty].value;
+    ty = form.year4.selectedIndex;
+    var year4 = form.year4.options[ty].value;
+    var fullyear2 = String(year3) + String(year4);
+
+    var Date2=new Date(fullyear2, month2, day2); //Month is 0-11 in JavaScript
+
+    FutureDate = Date2;  // so the button results to works
+    // Convert both dates to milliseconds
+    var date1_ms = Date1.getTime();
+    var date2_ms = Date2.getTime();
+    if(date1_ms >= date2_ms) {
+      alert('put the earlier date first please');
+      return false;
+    }
+
+    dateObjArray[0]=Date1;
+    dateObjArray[1]=Date2;
+
+  } catch (ex) {
+    var wintxt =  "\n" + " " + ex.name + " " +  ex.message + " in: " +  "\n"  +  ex.fileName  + " line: " + ex.lineNumber + "\n" + " UA " + navigator.userAgent;
+    alert(wintxt);
+  }
+return true;
+}
+
+function computeDayYears(dateObjArray) {
+    try {
+      Date1 = dateObjArray[0];
+      Date2 = dateObjArray[1];
+
+      var theDays = days_between(Date1, Date2);
+      dateObjArray[2] = theDays;
+
+      var theYears=0;
+      var leapYears = 0;
+      if(theDays > 365) {
+        // 365.242196   changed to 365.25
+        // using leap years in calculations was not as accurate as using 365.242196
+        // possible kludge is to take if andDays < 0, adjust years by -1 and 365 - andDays
+        // or take year1 - years2 and adjust for julian of day month 1 and day month2
+
+        leapYears = no_of_leap_years(Date1, Date2);
+        dateObjArray[3] = leapYears;
+
+        theYears = parseInt((theDays) / 365);
+        dateObjArray[4] = theYears;
+
+        var yrTimesPreciseDaysPerYear = 0;
+        if(leapYears) {
+           yrTimesPreciseDaysPerYear = theYears * 365.25;
+        }
+
+        andDays =  theDays - Math.floor(yrTimesPreciseDaysPerYear);
+        dateObjArray[5] = andDays;
+        dateObjArray[6] = yrTimesPreciseDaysPerYear;
+        // tmp = (theDays % 365);
+        // daytst = tmp - leapYears;
+      } else {
+        dateObjArray[3] = 0;
+        dateObjArray[4] = 0;
+        dateObjArray[5] = 0;
+        dateObjArray[6] = 0;
+      }
+    } catch (ex) {
+      var wintxt =  "\n" + " " + ex.name + " " +  ex.message + " in: " +  "\n"  +  ex.fileName  + " line: " + ex.lineNumber + "\n" + " UA " + navigator.userAgent;
+      alert(wintxt);
+    }
+}
+
+function  displayDateResults(dateObjArray,UnitTest) {
+UnitTest = typeof UnitTest !== 'undefined' ? UnitTest: false;
+
+var Date1     = dateObjArray[0];
+var Date2     = dateObjArray[1];
+var theDays   = dateObjArray[2];
+
+var leapYears = dateObjArray[3];
+var theYears  =  dateObjArray[4];
+var andDays   =   dateObjArray[5];
+var yrTimesPreciseDaysPerYear  =  dateObjArray[6];
+
+var today=new Date(); //today.getFullYear()
+var str1 = "<br> Today: ";
+var str2 = '<br> Day: ';
+var str3 = "<br> First Date: ";
+var str4 = "<br> Second Date: ";
+var str5 = "<br> Difference in Days: ";
+var str6 ="";
+var str7 ="";
+    str1 += today.toDateString();
+    str2 += getJulian(today.getDate(),today.getMonth()-1,today.getYear) + ' of the Year';
+    str3 += Date1.toDateString();
+    str4 += Date2.toDateString();
+    str5 += theDays;
+
+if(theDays > 365) {
+    str6 = "<br> or Approximatley " + theYears + " years and " + andDays + " days";
+    str6 += "<br> a year = 365.25 days";
+    str6 += "<br> There are " + leapYears + " leapYears in this date range";
+    if(UnitTest) {
+      years2 = theDays / 365.25;
+      str7 = "<br> leapYears " + leapYears + " yrTimes " + yrTimesPreciseDaysPerYear + " years2 " + years2;
+    }
+} else {
+    theYears = "";
+    andDays = "";
+    str6 = "";
+}
+
+if(UnitTest) {
+  changeInnerHTML('place1',returnInnerHTML('place1') + '<br> -------------' + str1 + str2 + str3 + str4 + str5 + str6 + str7);
+} else {
+  changeInnerHTML('place1',str1 + str2 + str3 + str4 + str5 + str6);
+}
+
+}
+
+
+function no_of_leap_years(dt1, dt2) {
+  var no_of_leap_years = 0;
+  var dt1year = dt1.getFullYear();
+  var dt2year = dt2.getFullYear();
+//  var dt1month = dt1.getMonth();
+//  var dt2month = dt2.getMonth();
+//  var dt1day = dt1.getDay();
+//  var dt2day = dt2.getDay();
+
+  while (dt1year <= dt2year) {
+   // if((dt1month > 2) || dt1month = 2 && dt1day
+    if (LeapYear(dt1year)) {
+      no_of_leap_years++;
+    }
+    dt1year++;
+  }
+return no_of_leap_years;
+}
+
+
+
+function calcNewDate(form)
+{
+  try
+  {
+    var today=new Date(); //today.getFullYear()
+
+
+    var month1 = form.month1.selectedIndex;
+    var day1 = form.day1.selectedIndex + 1;
+
+    var ty = form.year1.selectedIndex;
+    var year1 = form.year1.options[ty].value;
+    ty = form.year2.selectedIndex;
+    var year2 = form.year2.options[ty].value;
+    var fullyear1 = String(year1) + String(year2);
+
+    var Date1=new Date(fullyear1, month1, day1); //Month is 0-11 in JavaScript
+
+    var Days = form.numdays.value;
+
+    if(!testInteger(Days))
+    {
+      alert('please enter a whole number');
+      return;
+    }
+
+    FutureDate = date_from_days_and_date(Date1, Days);
+
+    var str1 = "<br> Today: " + today.toDateString();
+    var str2 = '<br> Day: ' + getJulian(today.getDate(),today.getMonth()-1,today.getYear) + ' of the Year';
+    var str3 = "<br> First Date: " + Date1.toDateString();
+    var str4 = "<br> Number of Days: " + Days;
+    var str5 = "<br> Future Date: " + FutureDate.toDateString();
+
+    changeInnerHTML('place2',str1 + str2 + str3 + str4 + str5);
+
+//    changeInnerHTML('place3',FutureDate);
+  }
+  catch (ex)
+  {
+    var wintxt =  "\n" + " " + ex.name + " " +  ex.message + " in: " +  "\n"  +  ex.fileName  + " line: " + ex.lineNumber + "\n" + " UA " + navigator.userAgent;
+    alert(wintxt);
+  }
+}
+
+function calcWeekTable(form)
+{
+    try
+    {
+
+    var today=new Date(); //today.getFullYear()
+
+    var month1 = form.month1.selectedIndex;
+    var day1 = form.day1.selectedIndex + 1;
+
+    var ty = form.year1.selectedIndex;
+    var year1 = form.year1.options[ty].value;
+    ty = form.year2.selectedIndex;
+    var year2 = form.year2.options[ty].value;
+    var fullyear1 = String(year1) + String(year2);
+
+    var Date1=new Date(fullyear1, month1, day1); //Month is 0-11 in JavaScript
+
+    var str1 = "<br> Today: " + today.toDateString();
+    var str2 = '<br> Day: ' + getJulian(today.getDate(),today.getMonth()-1,today.getYear) + ' of the Year';
+    var str3 = "<br> First Date: " + Date1.toDateString();
+
+
+    var str5 = "";
+    totdays = 85; //(12 weeks * 7)
+
+        var str6 = "";
+        var weeks = totdays / 7;
+        var start = Date1;
+        var end;
+        var i;
+        var pi;
+        for(i=0;i < 12;i++)
+        {
+          if(i < 10) {pi = "&nbsp;" + i;} else {pi = i;}
+          end = date_from_days_and_date(start, 7);
+          str6 = str6 + "<br>" + pi + " " + mySdate(start) + "&nbsp; " + mySdate(end);
+          start = end;
+        }
+
+
+
+    changeInnerHTML('place2',str1 + str2 + str3 + str5 + str6);
+  }
+  catch (ex)
+  {
+    var wintxt =  "\n" + " " + ex.name + " " +  ex.message + " in: " +  "\n"  +  ex.fileName  + " line: " + ex.lineNumber + "\n" + " UA " + navigator.userAgent;
+    alert(wintxt);
+  }
+}
+
+
+function getJulainFormDate(form)
+{
+  try
+  {
+    //var today=new Date(); //today.getFullYear()
+
+
+    var month1 = form.month1.selectedIndex;
+    var day1 = form.day1.selectedIndex + 1;
+
+    var ty = form.year1.selectedIndex;
+    var year1 = form.year1.options[ty].value;
+    ty = form.year2.selectedIndex;
+    var year2 = form.year2.options[ty].value;
+    var fullyear1 = String(year1) + String(year2);
+
+    var Date1=new Date(fullyear1, month1, day1); //Month is 0-11 in JavaScript
+    var iJulian = '<br> is day ' + getJulian(day1,(month1 - 1),fullyear1) + ' day of year';
+    var str3 = "<br> First Date:  " + Date1.toDateString();
+
+    changeInnerHTML('place2',str3 + iJulian );
+
+//    changeInnerHTML('place3',FutureDate);
+  }
+  catch (ex)
+  {
+    var wintxt =  "\n" + " " + ex.name + " " +  ex.message + " in: " +  "\n"  +  ex.fileName  + " line: " + ex.lineNumber + "\n" + " UA " + navigator.userAgent;
+    alert(wintxt);
+  }
+}
+
+function setFormCurrentDate(form)
+{
+    try
+    {
+      var today=new Date(); //today.getFullYear()
+
+        form.month1.selectedIndex = today.getMonth();
+        form.day1.selectedIndex = today.getDate()- 1;
+        form.year2.selectedIndex = today.getFullYear() - 2000;
+
+        form.month2.selectedIndex = today.getMonth();
+        form.day2.selectedIndex = today.getDate() -1;
+        form.year4.selectedIndex = today.getFullYear() - 2000;
+
+    }
+    catch (error)
+    {
+    gjonerror( error, "setFormCurrentDate");
+    }
+}
+
+
+function setFormFutureDate(form)
+{
+    try
+    {
+
+        if(!FutureDate)
+        {
+          alert('Please do a Date Calculation First!');
+          return;
+        }
+
+        form.month1.selectedIndex = FutureDate.getMonth();
+        form.day1.selectedIndex = FutureDate.getDate()- 1;
+        form.year2.selectedIndex = FutureDate.getFullYear() - 2000;
+
+
+    }
+    catch (error)
+    {
+    gjonerror( error, "setFormFutureDate");
+    }
+}
+function Startup()
+{
+
+
+}
+
+</script>
+
+<iframe id="iffooter1" class="myfooter" src="GaryDefaultFooter.html"></iframe>
+
+</body>
+</html>
+

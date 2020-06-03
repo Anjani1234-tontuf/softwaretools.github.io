@@ -1,0 +1,31 @@
+jparse.js notes
+
+//http://www.double.co.nz/cgi-bin/gitweb.cgi?p=jsparse.git;a=commit;h=496ced546183f6d8292d1aa1d59d6810d4167dd8
+//http://www.bluishcoder.co.nz/2007/10/javascript-parser-combinators.html
+
+
+A parser in this library is a function that takes an input string and returns a result object. The result object contains three fields. They are:
+
+    * remaining: the remaining part of the input string to be parsed
+    * matched: the part of the input string that was successfully parsed by the parser
+    * ast: The abstract syntax tree produced by the parsr
+
+Parser combinators combine parsers together to enable parsing more complex grammars. A number of standard parsers and combinators are provided.
+
+'token' is a combinator that takes a string and returns a parser that will successfully parse an instance of that string:
+
+js> load("jsparse.min.js")
+js> var p = token("begin")
+js> uneval(p("begin ... end"))
+({remaining:" ... end", matched:"begin", ast:"begin"})
+
+just going to use regexp
+nonformatted:
+        function xtractNums(str){
+            return str.match(/\d+/g);
+        }
+
+Formatted:
+        function xtractFormattedNums(str) {
+            return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
+        }

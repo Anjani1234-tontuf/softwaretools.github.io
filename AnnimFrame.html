@@ -1,0 +1,678 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<title>requestAnim Example with audio</title>
+</head>
+<body>
+
+<canvas style=" border: 1px solid #9C9898;" id="c1" width="320" height="200"
+    onmouseover="msg1Me(this.id);"
+    onmouseout="msg2Me(this.id);"></canvas>
+
+<script type="text/javascript">
+function checkIT()
+{
+  dumpAll();
+}
+
+function gjcheckCanPlay()
+{
+  var a = document.createElement('audio');
+  var b = a.canPlayType('audio/wav; codecs="1"').replace(/^no$/,'');
+  if(b) return 1;
+  var c =  a.canPlayType('audio/mpeg;').replace(/^no$/,'');
+  if(c) return 2;
+  var d =  a.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/,'');
+  if(d) return 3;
+return 0;
+}
+
+function gjloadAudio()
+{
+  var wavin = "../wavs/ClipofBurningTalkingHeads.wav"
+
+  try
+  {
+    var iforWhich = gjcheckCanPlay();
+
+    if(iforWhich)
+    {
+      if(iforWhich == 2)
+      {
+        wavin = "../wavs/ClipofBurningTalkingHeads.mp3"  // not here
+      }
+      else if(iforWhich == 1)
+      {
+            var wavin = "../wavs/ClipofBurningTalkingHeads.wav"
+      }
+      else
+      {
+        alert ("can not play any of my audio files");
+        return;
+      }
+
+      var html5embedRef =document.createElement('audio');
+      var mygjCBCreatedHTML5Audio = document.getElementById("myGJCBEmbed09");
+
+      if(mygjCBCreatedHTML5Audio)
+      {
+         document.body.removeChild(mygjCBCreatedHTML5Audio);
+      }
+
+      html5embedRef.setAttribute("id","myGJCBEmbed09");
+      html5embedRef.setAttribute("width","0");
+      html5embedRef.setAttribute("height","0");
+      html5embedRef.setAttribute("hidden","false");
+      html5embedRef.setAttribute("src", wavin);
+      document.body.appendChild(html5embedRef);
+      mygjCBCreatedHTML5Audio = document.getElementById("myGJCBEmbed09");
+
+     // mygjCBCreatedHTML5Audio.play();
+    }
+    else
+    {
+        alert ("Browser Can't Play any of the audio files I want - we are hosed");
+        return;
+    }
+  }
+  catch(err)
+  {
+      alert(err, 'crash gjloadAudio');
+  }
+}
+
+//setup audio to be played
+gjloadAudio();
+
+function tstHTML5Canvas()
+{
+  return !!document.createElement('canvas').getContext;
+}
+
+//I need a lot of counters that I can set and reset any way I want
+
+var time, canvas, context, ctx, lastx=0, lastx1=25, lastx2=0, lastx3=0, lasty=0,oldt=-1,tick=0,canvasWidth,canvasHeight;
+var myDoCanvas = tstHTML5Canvas();
+
+if(myDoCanvas)
+{
+var canvas = document.getElementById("c1");
+  if(!canvas)
+  {
+    alert("No canvas for you ");
+  }
+  else
+  {
+    ctx = canvas.getContext("2d");
+  }
+}
+
+  // don't do this every iteration
+  canvasWidth = canvas.width;
+  canvasHeight = canvas.height;
+
+// requestAnim shim layer by Paul Irish
+window.requestAnimFrame = (function(){
+  return window.requestAnimationFrame  ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.oRequestAnimationFrame  ||
+  window.msRequestAnimationFrame  ||
+  function(/* function */ callback, /* DOMElement */ element){
+    window.setTimeout(callback, 1000 / 60);
+  };
+})();
+
+init();
+animate();
+function init()
+{
+/*
+       this.init = function()
+        {
+
+             for(var i = 0; i < numsqr; i++)
+             {
+                 mShapes[i] = {
+                    angle:0,
+                    width:20,
+                    height:20,
+                    x: 100 + i*10,
+                    y: 250,
+                    centerX: 290,
+                    centerY: 290,
+                    radius: 250 - (1 + i * 5),
+                    borderWidth: 1
+                }
+             }
+*/
+
+}
+
+function animate()
+{
+/*
+        function animate(lastTime, mShapes, animProp)
+        {
+            if (animProp.animate)
+            {
+                var date = new Date();
+                var time = date.getTime();
+                var timeDiff = time - lastTime;
+
+                for(var j = 0; j < numsqr; j++)
+                {
+                    mShapes[j].x = mShapes[j].centerX + Math.cos( mShapes[j].angle * Math.PI/180 ) * mShapes[j].radius;
+                    mShapes[j].y = mShapes[j].centerY + Math.sin( mShapes[j].angle * Math.PI/180 ) * mShapes[j].radius;
+
+                    (mShapes[j].angle < 360) ? mShapes[j].angle += 1 : mShapes[j].angle = 0;
+                }
+                lastTime = time;
+
+                // clear canvas
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // draw
+                for(var l = 0; l < numsqr; l++)
+                   drawRect(mShapes[l]);
+
+                // request new frame
+                requestAnimFrame(function(){
+                    animate(lastTime,  mShapes, animProp);
+                })
+            }
+        }
+*/
+
+  requestAnimFrame( animate );
+  draw();
+}
+
+function draw()
+{
+  time = new Date().getTime();
+  /*
+  var time = new Date().getTime() * 0.002;
+  looks like numbers between -100 to 100
+  var x = Math.abs(Math.sin( time ) * 96);//   + 128;
+  var y = Math.abs(Math.cos( time * 0.9 ) * 96) ;//+ 128;
+  */
+  if( oldt==-1)
+  {
+    oldt = time;
+    return;
+  }
+
+    draw1();
+
+/*
+if((time - oldt) > 40000)  //40 seconds
+    draw2();
+ if((time - oldt) > 30000)  //30 seconds
+    drawCenterWhiskers();
+  else if((time - oldt) > 20000)  //20 seconds
+   drawBKCircles();
+ else if((time - oldt) > 10000)  //10 seconds
+    drawArcs();
+  else
+    draw1();
+*/
+
+
+}
+
+
+function draw1(idin)
+{
+
+  if(tick % 2 == 0)
+  {
+    drawBKCircles();
+  }
+
+  if(tick % 3 == 0)
+  {
+    ctx.clearRect(0,50,400,130);
+    y = 100;
+
+    if(lastx1 == 30) play3();
+    if(lastx1 == 260) play2();
+
+    if(lastx1 >= 30 && lastx1 <= 99 )
+    {
+      msg2Me();
+    }
+    else if(lastx1 >= 240 && lastx1 <= 290)
+    {
+      msg1Me();
+    }
+    else
+    {
+      ctx.beginPath();
+      ctx.font = "italic bold 20px cursive";
+      ctx.fillStyle = "black";
+      ctx.fillText("GetMemberly", lastx1, y );
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    lastx1++;
+    if(lastx1 > 300)
+    {
+      lastx1=0;
+    }
+  }
+
+/* i was getting flicker in drawArcs if the if tick was different.
+   if I set  tick for drawArcs and draw1 same, however, can increase x increment in drawArcs to be more
+  did not have same problem with drawBKCircles
+*/
+  if(tick % 3 == 0)
+  {
+    drawArcs();
+  }
+
+tick++;
+}
+
+function draw2(idin)
+{
+
+  /*
+  if((x <25) && (y < 25))
+  ctx.rotate(Math.PI / 45);
+  else
+  ctx.rotate(Math.PI );
+  */
+
+  ctx.beginPath();
+
+  ctx.shadowBlur    = 4;
+  ctx.shadowColor="blue";
+  ctx.shadowOffsetX = 1;
+  ctx.shadowOffsetY = 1;
+
+  ctx.font = "italic bold 24px cursive";
+  ctx.fillStyle = "blue";
+  ctx.fillText("yeah ", 50, 60);
+  ctx.fill();
+
+  ctx.closePath()
+}
+
+function msg1Me(idin)
+{
+  /*
+  I clear the rectangle and draw the the gj; yet the
+  quadraticCurveTo is still there in FF and chrome , interesting
+  */
+
+  ctx.font = "italic bold 24px cursive";
+  ctx.fillStyle = "blue";
+  ctx.fillText("Your secret ", 250, 78);
+  ctx.fillText(" weapon!", 250, 98);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.lineWidth="3";
+  ctx.strokeStyle="rgba( 244,164,96, .9)";
+
+  ctx.lineCap="round";
+  ctx.lineJoin="bevel";
+  ctx.miterlimit="9";
+
+  ctx.moveTo(0, 54);
+  ctx.lineTo(400,54);
+  ctx.stroke();
+  ctx.closePath();
+}
+
+function msg2Me(idin)
+{
+  ctx.beginPath();
+  ctx.font = "italic bold 20px cursive";
+  ctx.fillStyle = "teal";
+  ctx.fillText("Get us Today", 20, 78 );
+  ctx.closePath();
+}
+
+
+function drawBKCircles()
+{
+// 4 arcs along the line in the center  not really a circle
+
+  //ctx.clearRect(0,0,400,74); // clear canvas
+  rdrawBKCircles(lastx2);
+  lastx2++;
+
+  if(lastx2 > 250)
+  {
+    lastx2 = 0;
+  }
+
+}
+
+
+
+function rdrawBKCircles(thex)
+{
+  ctx.clearRect(0,0,400,50);
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="rgba( 139,69,19, .9)"; //saddlebrown
+  ctx.fillStyle="rgba( 255,228,196, .9)"; //bisque
+  var x              = 350 - thex;               // The x-coordinate.
+  var y              = 25;               // The y-coordinate.
+  var radius         = 19;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI * 2;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="rgba( 244,164,96, .9)"; //sandybrown
+  ctx.fillStyle="rgba( 224,255,255, .9)"; //light cyan
+  var x              = 350 - thex;               // The x-coordinate.
+  var y              = 25;               // The y-coordinate.
+  var radius         = 12;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI * 2;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.fill();
+  ctx.closePath();
+
+// the very small black half of the black white circle
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="black";
+  ctx.fillStyle="black"; //light cyan
+  var x              = 350 - thex;               // The x-coordinate.
+  var y              = 25;               // The y-coordinate.
+  var radius         = 3;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI * 2;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawArcs()
+{
+// 4 arcs along the line in the center  not really a circle
+
+  //ctx.clearRect(0,150,400,200); // clear canvas
+  rDrawArcs(lastx3);
+  //lastx3++;
+  lastx3=lastx3+2;
+
+  if(lastx3 > (canvasWidth - 187))
+  {
+    lastx3 = 0;
+  }
+}
+
+function rDrawArcs(thex)
+{
+  ctx.clearRect(0,165,400,200);
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="navy";
+  ctx.fillStyle="rgba( 248,248,255, 1)";  //ghostwhite
+  var x              = 0 + thex;               // The x-coordinate.
+  var y              = 200;               // The y-coordinate.
+  var radius         = 27;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="olive";
+  ctx.fillStyle="rgba( 248,248,255, 1)";  //ghostwhite
+  var x              = 47 + thex;               // The x-coordinate.
+  var y              = 200;               // The y-coordinate.
+  var radius         = 27;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="#cc6600";
+  ctx.fillStyle="rgba( 248,248,255, 1)";  //ghostwhite
+  var x              = 101 + thex;               // The x-coordinate.
+  var y              = 200;               // The y-coordinate.
+  var radius         = 27;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.strokeStyle="rgba(105,105,105,1)"; //dimgrey
+  ctx.fillStyle="rgba( 248,248,255, 1)";  //ghostwhite
+  var x              = 155 + thex;               // The x-coordinate.
+  var y              = 200;               // The y-coordinate.
+  var radius         = 27;                // The arc radius.
+  var startAngle     = 0;                 // The starting point on the circle.
+  var endAngle       = Math.PI;           // The end point on the circle.
+  var anticlockwise  = true;
+  ctx.arc(x,y,radius,startAngle,endAngle, anticlockwise); // Create the arc path.
+  ctx.stroke();
+  ctx.closePath();
+  ctx.fill();
+}
+
+
+function drawCenterWhiskers()
+{
+var x=200, y=100;  // oldx - 387 + x  oldy - 159 + y
+
+if(tick % 10 == 0)
+{
+  ctx.clearRect(0,0,400,200); // clear canvas
+  ctx.beginPath();
+  ctx.strokeStyle="rgba(  0,   0,  5, .8)";
+  ctx.fillStyle="rgba(205,92,92,.8)";
+  ctx.moveTo(x + 5,28 + y);
+  ctx.lineTo(x + 40,54 + y);
+  ctx.lineTo(x + 0,33 + y);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.strokeStyle="rgba(  0,   0,  5, .8)";
+  ctx.fillStyle="rgba(0,0,5,.5)";
+  ctx.moveTo(x + 5,28 + y);
+  ctx.lineTo(x + 16,37 + y);
+  ctx.lineTo(x + 13,39 + y);
+  ctx.lineTo(x + 0,33 + y);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+
+  ctx.beginPath();
+  ctx.strokeStyle="rgba(  0,   0,  5, .8)";
+  ctx.fillStyle="rgba(0,0,5,.30)";
+  ctx.moveTo(x + 80,4 + y);
+  ctx.lineTo(x + 34,57 + y);
+  ctx.lineTo(x + 77,0 + y);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+
+  ctx.beginPath();
+  ctx.strokeStyle="rgba(  0,   0,  5, .8)";
+  ctx.fillStyle="rgba(255,0,0,.5)";
+  ctx.moveTo(x + 65,20 + y);
+  ctx.lineTo(x + 60,28 + y);
+  ctx.lineTo(x + 59,25 + y);
+  ctx.lineTo(x + 66,17 + y);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+
+  ctx.beginPath();
+  ctx.strokeStyle="rgba(  0,   0,  5, .8)";
+  ctx.fillStyle="rgba(255,255, 0,.80)";
+  ctx.moveTo(x + 97,114 + y);
+  ctx.lineTo(x + 37,50 + y);
+  ctx.lineTo(x + 105,110 + y);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fill();
+
+//lines
+
+  ctx.lineWidth="1.5";
+  ctx.strokeStyle="rgba(  0,   0,  5,1)";
+
+  ctx.beginPath();
+  ctx.moveTo(x + 73,80 + y);
+  ctx.lineTo(x + 70,84 + y);
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x + 70,78 + y);
+  ctx.lineTo(x + 67,82 + y);
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x + 67,76 + y);
+  ctx.lineTo(x + 64,80 + y);
+  ctx.closePath();
+  ctx.stroke();
+  //ctx.scale(.5, .5)
+
+  // Move registration point to the center of the canvas
+  ctx.translate(canvasWidth / 2, canvasHeight / 2);
+
+  // Rotate 1 degree
+  ctx.rotate(Math.PI / 180);
+
+  // Move registration point back to the top left corner of canvas
+  ctx.translate(-canvasWidth/2, -canvasHeight/2);
+
+}
+tick++;
+}
+
+
+//Test Stuff=====
+
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+function myDump(str1)
+{
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + str1);
+}
+
+function changeInnerHTML(idin, myHTML)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+    myE.innerHTML = myHTML;
+  }
+  catch (error)
+  {
+    alert( error, "changeInnerHTML" + idin + " " + myHTML);
+  }
+}
+
+function returnInnerHTML(idin)
+{
+  try
+  {
+    var myE= document.getElementById(idin);
+  }
+  catch (error)
+  {
+    alert( error, "returnInnerHTML id" + idin);
+  }
+
+  return myE.innerHTML;
+}
+
+//html5 audio sprites
+var gjaudio = document.getElementById('myGJCBEmbed09');
+var segmentEnd;
+
+
+if(gjaudio.currentTime !== undefined)
+{
+  gjaudio.addEventListener('timeupdate', function (){
+    if (segmentEnd && gjaudio.currentTime >= segmentEnd) {
+      gjaudio.pause();
+    }
+  }, false);
+}
+else
+{
+    myDump("Your browser does not support this pages audio features");
+    document.writeln("<p>Your browser does not support this pages audio features</p> ");
+}
+
+  function playSegment(startTime, endTime, gj)
+  {
+    try
+    {
+    segmentEnd = endTime;
+    gjaudio.currentTime = startTime;
+    gjaudio.play();
+    //if(gj) setTimeout(gj,0)
+    }
+    catch(e) {}
+  }
+
+  function play1()
+  {
+    playSegment(3.0, 4.0);
+  }
+  function play2()
+  {
+    playSegment(5.0, 6.0);
+  }
+  function play3()
+  {
+    playSegment(8.5, 10.5);
+  }
+
+</script>
+</body>
+</html>
+
+

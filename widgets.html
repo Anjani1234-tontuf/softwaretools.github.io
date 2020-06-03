@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="Author" content="Gary GMGJ Johnson">
+<meta name="ROBOTS" content="INDEX, follow">
+<meta name="Description" content="Useful Calculators and References, Math, Time, Date, Indoor Relative Humidity, printer color test">
+<meta name="KeyWords" content="GMGJ Gary Johnson,Anne Doherty">
+<link rel="icon" href="GraphicWidgets/noseeyesmouthbold.ico" type="image/x-icon">
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<!--
+Content Notes
+-->
+<!--
+Technical Notes
+
+-->
+<!--
+Changelog
+Created May 14 2010
+-->
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript">
+function Startup()
+{
+
+if (screen.width <= 600) {
+setUIMin('1');
+changeInnerHTML("wui", "My Widgets Minimal");
+return;
+}
+
+
+  var gjMinUI;
+
+  gjMinUI = getCookie("UIMin");
+
+  //if its not set proceed normally  || screen.width>800
+  if(gjMinUI == undefined)
+  {
+    changeInnerHTML("wui", "My Widgets Normal");
+  }
+  else if(gjMinUI == "0")
+  {
+    changeInnerHTML("wui", "My Widgets Normal");
+  }
+  else // if(gjMinUI == "1")
+  {
+    changeInnerHTML("wui", "My Widgets Minimal");
+  }
+
+}
+function thissetUIMin(onoff)
+{
+  setUIMin(onoff);
+  Startup();
+
+}
+</script>
+<style type="text/css">
+
+a.AFour:link {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  font-size:16px;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+  padding:2px;
+}
+a.AFour:visited {
+  font-weight: bold;
+  color: lightslategrey;
+  text-decoration: none;
+  padding:2px;
+}
+a.AFour:hover {
+  font-weight: bold;
+  color: #f05b35;
+  text-decoration: none;
+  padding:2px;
+}
+.d {
+  background-color: #ccffff;
+  color: #ffcc99;
+  padding:1pt 1pt 1pt 1pt;
+}
+
+table {
+    border-collapse: separate; /* 'cellspacing' equivalent */
+}
+
+table td, table th {
+    padding: 1px; /* 'cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+
+.noAny { display:none; }
+.noLarge { display:none; }
+.mySize {width:30em;}
+
+
+@media only screen and (orientation: portrait) ,
+only screen and (orientation: landscape) and (max-width: 999px) {
+
+body { margin:10px; }
+.noMobile { display:none; }
+.yesMobile { display:table-cell; }
+.noLarge { display:table-row; }
+.mySize {width:20em;}
+table td, table th {
+    padding: 6px; /* 'cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+a.AFour{
+line-height:2.0;
+}
+p.pos_fixed {
+position:relative;
+}
+}
+
+</style>
+<title>Gary GMGJ Johnson&quot;s Widgets</title>
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+</head>
+<body onload="Startup();">
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/nav1.1.min.js"></script>
+<script type="text/javascript" src="js/ULMenu4.js"></script>
+<div style="position:relative;height:auto;padding:2em 0 0 0;">
+
+<h1 id="wui" class="scenter">Widgets</h1>
+<table style="margin:auto;" class='mySize'>
+<tr class="noMobile">
+<td style="text-align:center;">
+<input type="button" id="sSS2" title="Do not display optional items, good for mobile devices" class="buttonNgold" value="Set Minimum User Interface"
+onmouseover="toggleHighLight('m', this.id);"
+onclick="thissetUIMin('1');"
+onmouseout="toggleHighLight('o', this.id);">
+&nbsp;&nbsp;&nbsp;
+<input type="button" id="sSS3" title="Display optional items" class="buttonNgold" value="Set Normal UI"
+onmouseover="toggleHighLight('m', this.id);"
+onclick="thissetUIMin('0');"
+onmouseout="toggleHighLight('o', this.id);">
+</td>
+</tr>
+
+<tr  class='noMobile'>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MCalcMenuAppBig.html">Date-Conversion-Calculator App</a></p>
+</td>
+</tr>
+<tr class='noLarge'>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MCalcMenuAppSmall.html">Date-Conversion-Calculator App</a></p>
+</td>
+</tr>
+<tr class='noAny'>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MTimerApp.html">Small Screen Timer App</a></p>
+</td>
+</tr>
+<!--
+<tr class="noMobile">
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MCalcMenuApp.html">Big Screen Menu App</a></p>
+</td>
+</tr>
+-->
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="../FoodFactsHintsTips/BodyFat.html">Body Fat Calculations</a></p>
+</td>
+</tr>
+<!--
+<tr>
+<td class="a noMobile">
+<p><a class="AFour" target="_blank"  href="ConversionCalculator.html">Conversion Calculators</a></p>
+</td>
+</tr>
+-->
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="../ToolsChartsTables/CookingMeasurementEquivalents.html">Cooking Measurements</a></p>
+</td>
+</tr>
+<!--
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="DateCalculator.html">Date Calculator</a></p>
+</td>
+</tr>
+-->
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="TimerInterval.html">Interval Timers for Workouts etc.</a></p>
+</td>
+</tr>
+<!--
+</tr>
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="TheCalculator.html">Calculator</a></p>
+</td>
+</tr>
+-->
+<tr class="noMobile">
+<td class="a">
+<p><a class="AFour" target="_blank"  href="Timer.html">Timers</a></p>
+</td>
+</tr>
+
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="ColorChart16NamedSmall.html">16 Color Print Test for Browsers</a></p>
+</td>
+</tr>
+
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="16ColorsPrinterTest.pdf">16 Color Print Test PDF</a></p>
+</td>
+</tr>
+
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="http://garyjohnsoninfo.info/XXSoftwareTools/IndoorRH.php">Winter Indoor Humidity</a></p>
+</td>
+</tr>
+<tr class='noMobile'>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MCalcMenuAppSmall.html">Small Screen Menu App</a></p>
+</td>
+</tr>
+<tr class='noMobile'>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="MTimerApp.html">Small Screen Timer App</a></p>
+</td>
+</tr>
+
+<!--
+<tr>
+<td class="a">
+<p><a class="AFour" target="_blank"  href="TestRegular.html">Gary Test Regular Expressions</a></p>
+</td>
+</tr>
+-->
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.googleguide.com/advanced_operators_reference.html"><small>Google guide</small></a></p>
+</td>
+</tr>
+
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="https://gchq.github.io/CyberChef/"><small>CyberChef - Programming widgets</small></a></p>
+</td>
+</tr>
+
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.lastcalc.com/"><small>Last Calc</small></a></p>
+</td>
+</tr>
+
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://michaelbluejay.com/electricity/"><small>Saving Electricity</small></a></p>
+</td>
+</tr>
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.convert-me.com/en/"><small>Convert Me Conversion Calculators</small></a></p>
+</td>
+</tr>
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.computesoup.com"><small>ComputeSoup</small></a></p>
+</td>
+</tr>
+
+<!-- see savedwebpagesmozilla -->
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="byteconverter.htm"><small>Byte Converter</small></a></p>
+</td>
+</tr>
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.convertunit.com/"><small>http://www.convertunit.com/</small></a></p>
+</td>
+</tr>
+
+<!--
+Jun-05-2014 not found
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.ficml.org/jemimap/style/color/wheel.html"><small>Color Wheel</small></a></p>
+</td>
+</tr>
+-->
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://www.workwithcolor.com/hsl-color-schemer-01.htm"><small>note hsl hls diff</small></a></p>
+</td>
+</tr>
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="ColorSlider.html"><small>Color Slider</small></a></p>
+</td>
+</tr>
+
+<tr>
+<td class="d">
+<p><a class="AFour" target="_blank"  href="http://westciv.com/tools/"><small>http://westciv.com/tools/</small></a></p>
+</td>
+</tr>
+</table>
+
+
+<div class="Announce noMobile" style="width:28em; margin:0 auto; padding: 1em;">
+  <hr class='announce'>
+  <p class="smallboldspaced" style='text-align:center;'>
+  The Timers do not work with Internet Exploder before version 7<br><br>
+  As of May 2015 these pages work with Internet Explorer,<br> Firefox, and Chrome<br><br>
+<small>External Widgets start with Google Gudie</small></p>
+  <hr class='announce'>
+</div>
+
+
+</div>
+</body>
+</html>
+
+

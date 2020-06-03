@@ -1,0 +1,592 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Gary G. Johnson">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Personal Test">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+<title>GaryTestDropBox.HTML</title>
+
+<style type="text/css">
+
+.readtxt { font-family: Arial, sans-serif; line-height: 18px; font-size: 12px;}
+
+hr.alt
+{
+  color:blue;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+a.AFour:link
+{
+  font-weight: bold;
+  font-size: 12pt;
+  color: blue;
+  text-decoration: none;
+}
+a.AFour:visited
+{
+  font-weight: normal;
+  font-size: 12pt;
+  color: purple;
+  text-decoration: none;
+}
+a.AFour:hover
+{
+  font-weight: bold;
+  font-size: 12pt;
+  color: black;
+  text-decoration: none;
+}
+
+p.pos_fixed
+{
+position:fixed;
+bottom:0px;
+right:5px;
+}
+
+textarea.buttonNgrey, select.buttonNgrey, input.buttonNgrey
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+}
+
+textarea.buttonNgrey:hover, select.buttonNgrey:hover, input.buttonNgrey:hover
+{
+  font-weight:bold;
+  font-size:10.0pt;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #B0C4DE;
+}
+
+p { margin: 0; padding: 0 }
+p.fl:first-letter{font-size:xx-large;font-weight:bolder; color:red;}
+p.fl:first-line
+{
+font-variant:small-caps;
+}
+
+/* show extenal links differently */
+
+a[href ^= 'http']:not([href *= 'garyjohnsoninfo.']) {
+  background: transparent url("GraphicWidgets/external.png") no-repeat center right;
+  padding-right: 16px;
+}
+
+/*
+make the document head visible
+head {
+  display: block;
+  border-bottom: 5px solid red;
+}
+script, style, link {
+  display: block;
+  white-space: pre;
+  font-family: monospace;
+}
+
+*/
+
+img {margin:0;padding:0;}
+
+
+.hshr
+{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right:0;
+    margin-left:0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.0px;
+    font-weight: bold;
+    text-align:right;
+    background-color: #eeeeff;
+}
+
+
+.cssanim
+{
+text-shadow: 2px 5px 1px black;
+-moz-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+-webkit-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+position: relative;
+}
+
+.cssanim:hover
+{
+text-shadow: none;
+}
+
+.tooltip
+{
+cursor: help; text-decoration: none;
+position: relative;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+
+</style>
+<script>
+
+function comboInit(thelist,theinput)
+{
+  theinput = document.getElementById(theinput);
+  var idx = thelist.selectedIndex;
+  var content = thelist.options[idx].innerHTML;
+  if(theinput.value == "")
+    theinput.value = content;
+}
+
+function combo(thelist, theinput)
+{
+  theinput = document.getElementById(theinput);
+  var idx = thelist.selectedIndex;
+  var content = thelist.options[idx].innerHTML;
+  theinput.value = content;
+}
+
+</script>
+</head>
+
+<body onload="Startup();">
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/nav1.1.min.js"></script>
+<script type="text/javascript" src="js/ULMenu4.js"></script>
+
+<p class="fl" style="padding-top:30px;color:blue;">Browser stuff<br><span id='example'>&nbsp;</span></p>
+
+<p class="accent">
+<!--[if IE]>
+According to the conditional comment this is IE<br />
+<![endif]-->
+<!--[if IE 6]>
+According to the conditional comment this is IE 6<br />
+<![endif]-->
+<!--[if IE 7]>
+According to the conditional comment this is IE 7<br />
+<![endif]-->
+<!--[if IE 8]>
+According to the conditional comment this is IE 8<br />
+<![endif]-->
+<!--[if IE 9]>
+According to the conditional comment this is IE 9<br />
+<![endif]-->
+<!--[if gte IE 8]>
+According to the conditional comment this is IE 8 or higher<br />
+<![endif]-->
+<!--[if lt IE 9]>
+According to the conditional comment this is IE lower than 9<br />
+<![endif]-->
+<!--[if lte IE 7]>
+According to the conditional comment this is IE lower or equal to 7<br />
+<![endif]-->
+<!--[if gt IE 6]>
+According to the conditional comment this is IE greater than 6<br />
+<![endif]-->
+<!--[if !IE]> -->
+not IE
+<!-- <![endif]-->
+</p>
+
+<p>
+<!--[if IE 6]>
+This website is intended to viewed in a modern browser.  This is Internet Exlorer 6 or
+<![endif]-->
+<!--[if lte IE 6]>
+ or earlier.
+<![endif]-->
+</p>
+
+<hr>
+
+
+<div style="text-align:center">
+
+<img  title="" width="16" height="12" alt="" src="GraphicWidgets\pushpinopen.png">
+<img  title="" width="16" height="12" alt="" src="GraphicWidgets\pushpinclose.png">
+<img  title="" width="16" height="12" alt="" src="GraphicWidgets\pushpinx.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image001.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image003.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image004.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image005.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image006.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image007.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image008.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image009.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image010.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image011.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image012.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image013.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image014.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image015.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image016.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image017.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image018.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image019.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image020.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image021.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image022.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image027.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image028.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image004.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image003.png">
+<img  title="" width="19" height="19" alt="" src="../../gjHR/image001.png">
+</div>
+
+
+<!--
+?
+<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.2/dropbox.min.js">
+</script>
+
+
+
+DropBox Chooser App stuff
+
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="sjebgswwn19brfu"></script>
+-->
+
+<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="sjebgswwn19brfu"></script>
+
+
+<form>
+<input type="file" size="15" name="fileupload1" id="fileupload1"/>
+<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;"/>
+<input type="submit" name="submit1" id="submit1"/>
+</form>
+
+
+<!--
+<a class="AFour"  href="../XXSoftwareTools/">Filelist of XXsoftwareTools</a><br>
+-->
+
+<p  style="padding-top:10px;color:blue;"><span id='closure'>&nbsp;</span></p>
+
+<p>make font size 12, 24 or 48 </p>
+ <a href="#" id="size-12">12</a>
+ <a href="#" id="size-24">24</a>
+ <a href="#" id="size-48">48</a>
+
+<hr>
+  <p class="td1p">Minutes<input type="text" id="Minutes" name="Minutes" class="buttonNgrey" size="3"/>
+  <select class="buttonNgrey" name="SMinutes" id="sMinutes" size="1" onChange="combo(this, 'Minutes')" onMouseOut="comboInit(this, 'Minutes')">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+   </select>
+  </p>
+<p style="clear:both">&nbsp;</p>
+<p class="hshr"></p>
+
+<hr>
+<pre>
+This Calls testError(with the value in the input box) and testError does and eval in my standard try catch block
+
+Note: use quotes around function arguments f('arg')
+
+ids "E"
+
+Give it a function name, like:
+
+    setTopEM(id,y)
+
+
+    doMessage('hi gary')
+    dumpIt(obj, objname)  ex dumpIt(window.sidebar, "Sidebar")
+    showScrSize()
+    checkPosNumber('2') checkPosNumber('-1')
+    changeBorder('id', 0)
+    showMousePosition()
+    dumpAll()
+    doGJBrowserMSG()
+    and if the function has a return value, you might see it in an alert box (else You see undefined)
+
+Enter some crap to see if gjonerror is working:  "'' your are ASOL
+
+Any valid javascript expression : if its a debug build of Mozilla  dumpTree()
+
+</pre>
+<form name="testErrorF">
+<FIELDSET class="b" style='width:25%'>
+<LEGEND class="a">Please enter a term to evaluate</LEGEND>
+<input type="text" class="buttonNgrey" size = 50 tabindex="0" id="query_text" value="dumpAll()">
+<input type="button" id="testErrorb" name="Runit" value="Runit" onclick="testError(event, this.form.query_text.value);">
+</FIELDSET>
+</form>
+
+
+
+<!-- Facebook Badge START -->
+<a href="https://www.facebook.com/profile.php?id=1219343666" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Gary Johnson">Gary Johnson</a><span style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; line-height: 16px; font-variant: normal; font-style: normal; font-weight: normal; color: #555555; text-decoration: none;">&nbsp;|&nbsp;</span><a href="https://www.facebook.com/badges/" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Make your own badge!">Create Your Badge</a><br/><a href="https://www.facebook.com/profile.php?id=1219343666" target="_TOP" title="Gary Johnson"><img src="https://badge.facebook.com/badge/1219343666.3707.1954741712.png" style="border: 0px;" /></a><!-- Facebook Badge END -->
+
+<hr>
+
+<hr>
+<div itemscope itemtype="http://data-vocabulary.org/Person">
+  My name is <span itemprop="name">Gary Johnson</span>,
+  and I am a <span itemprop="title">hacker</span> for
+  <a href="http://garyjohnsoninfo.info" itemprop="affliation">various projects</a>.
+  I live in
+  <span itemprop="address" itemscope
+    itemtype="http://data-vocabulary.org/Address">
+    <span itemprop="locality">Boston</span>,
+    <span itemprop="region">MA</span>
+  </span>
+</div>
+<hr>
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript" src="js/gjonline.min.js"></script>
+<script type="text/javascript" src="js/gjqt.min.js"></script>
+<script type="text/javascript" src="js/CanvasBorder.min.js"></script>
+<script type="text/javascript">
+
+
+function testError(eventin, myCode)
+{
+  try
+  {
+    alert(eval(myCode));
+  }
+  catch (err)
+  {
+    gjonerror( err, " testError ");
+  }
+}
+
+/* body onload */
+
+
+function Startup()
+{
+
+/* =====================
+    on load code
+*/
+
+
+    if (screen.width<800)
+    {
+      //window.location="Mobile page name"
+    }
+    else
+    {
+      //window.location="Main page name"
+    }
+}
+
+
+var BrowserDetect = {
+  init: function () {
+    this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+    this.version = this.searchVersion(navigator.userAgent)
+      || this.searchVersion(navigator.appVersion)
+      || "an unknown version";
+    this.OS = this.searchString(this.dataOS) || "an unknown OS";
+  },
+  searchString: function (data) {
+    for (var i=0;i<data.length;i++) {
+      var dataString = data[i].string;
+      var dataProp = data[i].prop;
+      this.versionSearchString = data[i].versionSearch || data[i].identity;
+      if (dataString) {
+        if (dataString.indexOf(data[i].subString) != -1)
+          return data[i].identity;
+      }
+      else if (dataProp)
+        return data[i].identity;
+    }
+  },
+  searchVersion: function (dataString) {
+    var index = dataString.indexOf(this.versionSearchString);
+    if (index == -1) return;
+    return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+  },
+  dataBrowser: [
+    {
+      string: navigator.userAgent,
+      subString: "Chrome",
+      identity: "Chrome"
+    },
+    {   string: navigator.userAgent,
+      subString: "OmniWeb",
+      versionSearch: "OmniWeb/",
+      identity: "OmniWeb"
+    },
+    {
+      string: navigator.vendor,
+      subString: "Apple",
+      identity: "Safari",
+      versionSearch: "Version"
+    },
+    {
+      prop: window.opera,
+      identity: "Opera",
+      versionSearch: "Version"
+    },
+    {
+      string: navigator.vendor,
+      subString: "iCab",
+      identity: "iCab"
+    },
+    {
+      string: navigator.vendor,
+      subString: "KDE",
+      identity: "Konqueror"
+    },
+    {
+      string: navigator.userAgent,
+      subString: "Firefox",
+      identity: "Firefox"
+    },
+    {
+      string: navigator.vendor,
+      subString: "Camino",
+      identity: "Camino"
+    },
+    {   // for newer Netscapes (6+)
+      string: navigator.userAgent,
+      subString: "Netscape",
+      identity: "Netscape"
+    },
+    {
+      string: navigator.userAgent,
+      subString: "MSIE",
+      identity: "Explorer",
+      versionSearch: "MSIE"
+    },
+    {
+      string: navigator.userAgent,
+      subString: "Gecko",
+      identity: "Mozilla",
+      versionSearch: "rv"
+    },
+    {     // for older Netscapes (4-)
+      string: navigator.userAgent,
+      subString: "Mozilla",
+      identity: "Netscape",
+      versionSearch: "Mozilla"
+    }
+  ],
+  dataOS : [
+    {
+      string: navigator.platform,
+      subString: "Win",
+      identity: "Windows"
+    },
+    {
+      string: navigator.platform,
+      subString: "Mac",
+      identity: "Mac"
+    },
+    {
+         string: navigator.userAgent,
+         subString: "iPhone",
+         identity: "iPhone/iPod"
+      },
+    {
+      string: navigator.platform,
+      subString: "Linux",
+      identity: "Linux"
+    }
+  ]
+
+};
+BrowserDetect.init();
+
+
+/*  platform is Browser, not OS */
+
+var txt = "Browser CodeName: " + navigator.appCodeName + "<br>";
+txt+= " navigator.appName: " + navigator.appName + "<br>";
+txt+= "Browser Version: " + navigator.appVersion + "<br>";
+txt+= "Cookies Enabled: " + navigator.cookieEnabled + "<br>";
+txt+= "Platform: " + navigator.platform + "<br>";
+txt+= "User-agent header: " + navigator.userAgent + "<br>";
+if( navigator.cpuClass)
+txt+= "cpuClass: " + navigator.cpuClass + "<br>";
+if (navigator.userAgent.indexOf("WOW64") != -1 ||
+    navigator.userAgent.indexOf("Win64") != -1 )
+{
+//txt+= "WOW64 or WIN64 in userAgent: 64bit Windows " + "<br>";
+txt+= "64bit Windows " + "<br>";
+}
+
+txt+= BrowserDetect.browser + " " + BrowserDetect.version + " on " + BrowserDetect.OS + "<br>" + "<hr>";
+//
+txt+="getCW " + getCW() + " getCH " + getCH() + " screen.width "  + screen.width + " screen.height " + screen.height + "<br>";
+txt+="window.innerWidth " + window.innerWidth;
+
+if(document.documentElement && document.documentElement.clientWidth)
+txt+= " document.documentElement.clientWidth " + document.documentElement.clientWidth;
+if(document.body && document.body.clientWidth)
+txt+= "  document.body.clientWidth  " + document.body.clientWidth;
+txt+="<br>";
+
+
+txt +=" getXoffset() " +  getXoffset() + " getYoffset() " +  getYoffset();
+txt+="<br>";
+
+document.getElementById("example").innerHTML=txt;
+
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };}
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+
+var txt2 = "add5: " + add5(2) + " add10: " +  add10(2) + "<BR>";
+document.getElementById("closure").innerHTML=txt2;
+
+function makeSizer(size) {
+  return function() {
+    document.body.style.fontSize = size + 'px';
+  };
+}
+
+var size12 = makeSizer(12);
+var size24 = makeSizer(24);
+var size48 = makeSizer(48);
+
+document.getElementById('size-12').onclick = size12;
+document.getElementById('size-24').onclick = size24;
+document.getElementById('size-48').onclick = size48;
+
+
+</script>
+</body>
+</html>
+
+
+

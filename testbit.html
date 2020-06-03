@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+<title>Conversion Calulators</title>
+  <meta name="author" content="Gary Johnson">
+
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/calc2.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjqt.min.js"></script>
+
+
+<script type="text/javascript">
+
+//<!-- 1 kilobyte equiivalents  -->
+var bitEquiv = new Array(.001, 125 , 1, 1000, 10000, 100000)
+
+function bits(form)
+{
+
+  var fromNumber = Trim(form.amount.value);
+
+  if (form.input_units.options[form.input_units.selectedIndex].value != "" && checkPosNumber(fromNumber))
+  {
+    var mybits = fromNumber * bitEquiv[form.input_units.selectedIndex];
+    changeInnerHTML("bits", mybits);
+    //form.number6.value = frmtNumberFraction(result,4);
+  }
+
+}
+
+
+</script>
+
+<!-- inspired by http://www.matisse.net -->
+<H1>Computer Storage Calculator - Convert between bits to gigabytes</H1>
+
+<p> IEEE standard &#147;kilo&#148; is 1000</p>
+
+<form>
+
+<input type="text" name="amount" size="10" value="1">
+
+Units:
+<select name="input_units">
+<OPTION VALUE="bits" >bits
+<OPTION VALUE="bytes" >bytes
+<OPTION VALUE="kilobytes" SELECTED>kilobytes
+<OPTION VALUE="megabytes" >megabytes
+<OPTION VALUE="gigabytes" >gigabytes
+<OPTION VALUE="terabytes" >terabytes
+<OPTION VALUE="petabytes" >petabytes
+</select>
+
+      <input type="button" id="parse1button" title="" class="buttonNgrey" value="Go"
+        onClick="bits(this.form );"
+        onmouseover="toggleHighLight('m', this.id); "
+        onmouseout="toggleHighLight('o', this.id); ">
+
+
+</select>
+
+</form>
+<hr>
+
+
+<table border="1">
+<tr>
+<td align="right">bits</td>
+<td id="bits" align="right"></td>
+</tr>
+<tr>
+<td align="right">bytes</td>
+<td id="bytes" align="right"></td>
+</tr>
+<td align="right">kilobytes</td>
+<td id="kilobytes" align="right"></td>
+</tr>
+<tr>
+<td align="right">megabytes</td>
+<td id="megabytes" align="right"></td>
+</tr>
+<tr>
+<td align="right">gigabytes</td>
+<td id="gigabytes" align="right"></td>
+</tr>
+<tr>
+<td align="right">terabytes</td>
+<td id="terrabytes" align="right"></td>
+</tr>
+<tr>
+<td align="right">petabytes</td>
+<td id="petabytes" align="right"></td>
+</tr>
+</table>
+
+</body>
+</html>
+<!--
+
+
+-->

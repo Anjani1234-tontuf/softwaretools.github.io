@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjAppcore.js"></script>
+<script type="text/javascript" src="js/gjutil1.js"></script>
+<script type="text/javascript" src="js/gjmove.js"></script>
+<script type="text/javascript" src="js/gjmsg.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.js"></script>
+<script type="text/javascript">
+
+var Msg   = "Fi on Your PopUp Blocker";
+
+function CSGSNext()
+{
+  var it;
+}
+
+CSGSNext.prototype.doNext = function()
+{
+  changeInnerHTML('E',"<p style='text-shadow: 0.2em 0.5em 0.1em #600,-0.3em 0.1em 0.1em #060,0.4em -0.3em 0.1em #006'>&nbsp;Hit &quot;Reload&quot; to see it again&nbsp;</p>")
+}
+
+
+function CWrapper(msg)
+{
+  this.msg = msg;
+}
+
+
+//Warning: Error in parsing value for 'left'.  Declaration dropped.
+//Source File: file:///C:/ma/Personal/XXSoftwareTools/Moves.html
+
+
+CWrapper.prototype.doIt = function(title)
+{
+
+  var theNextCall = new CSGSNext();
+
+  var headerChg = new CSGS();
+
+    headerChg.addElement('newheader1');
+  headerChg.setMI('newheader1', 15);
+  headerChg.addMove('newheader1','lr','lr', 'l','t','diag');
+
+
+  headerChg.addElement('newheader2');
+  headerChg.setMI('newheader2', 15);
+  headerChg.addMove('newheader2','ll','ll', 'r', 't','diag');
+
+/*
+  headerChg.addElement('newheader3');
+  headerChg.setMI('newheader3', 15);
+  if(isIE()) headerChg.addMove('newheader3','tr','tr', 400, 600,'diag');
+        else headerChg.addMove('newheader3','tr','tr', 'l', 'b','diag');
+
+  headerChg.addElement('newheader4');
+  headerChg.setMI('newheader4', 15);
+  if(isIE()) headerChg.addMove('newheader4','tl','tl', 800, 600,'diag');
+        else headerChg.addMove('newheader4','tl','tl', 'r', 'b','diag');
+*/
+
+  headerChg.setIntervalSpeed(60);
+  headerChg.doIt();
+  headerChg.synchFunc(theNextCall,'doNext');
+  delete headerChg;
+
+
+//  changeInnerHTML('E','<p>&nbsp;Thank You&nbsp;</p>')
+
+};
+
+function doDelay()
+{
+  var wrapper = new CWrapper(Msg);
+  //var callwrapper = new CCallWrapper(wrapper, 3000, 'doIt', 'Null');
+  var callwrapper = new CCallWrapper(wrapper, 1000, 'doIt', 'Null');
+  CCallWrapper.asyncExecute(callwrapper);
+
+  delete wrapper;
+  delete callwrapper;
+}
+
+
+
+
+</script>
+<title>TstMoves</title>
+
+</head>
+<!--
+
+this quite a few restrictions on what I can do
+I try and set top on this and I get no properties.
+I need to go through and check and make sure the CSS stuff is okay with the
+DOM
+
+Not only do I need more of computed style,
+but I have to check and see what I can do
+
+margin is part of it
+check for scrollbar calc - still may be off
+
+don't forge the IE influence
+IE does not like margin and width auto
+
+
+
+
+-->
+<body style="margin:0; overflow:hidden" onload=doDelay();>
+<div id='theheader' class="myheader" style="position:relative;">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+<div id="E" style="position:absolute; width:auto; height:auto; top:300px; left:10px; z-index:1;clip:rect(0 480 150 0);">
+<p style='text-indent:1.5in;text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive;background-color:NAVY;color:white;'>&nbsp;Javascript DOM animation &nbsp;</p>
+</div>
+
+
+<div id="divgetit" style="visibility:hidden;position:absolute;width:200px;height:100px;top:110px;left:240px;clip:rect(0 200 100 0);overflow:hidden; z-index:2;background-color:teal;">
+<p style='text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive; color:white;'><br>Imagine<br></p>
+</div>
+
+
+<div id="clipDiv2" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:green;text-align:center;z-index:2;">
+</div>
+<div id="clipDiv3" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:yellow;text-align:center;z-index:3;">
+</div>
+
+<div id="clipDiv4" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:red;text-align:center;z-index:1;">
+</div>
+
+<div id="clipDiv" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:blue;text-align:center;z-index:4;">
+<div style='border:20pt outset red;width:8em;text-align:center; margin-left:auto; margin-right:auto;'>
+<p style='font-weight:bold; font-size:16.0pt; color:black;  font-family: Courier, sans-serif;  text-align:center;   padding-right:7.5pt;  padding-left:7.5pt; padding-top:2.5pt;  padding-bottom:2.5pt;'>
+Hello
+</p>
+</div>
+</div>
+
+<img id="Banner" style="position:absolute; visibility:hidden; top:325px; left:700; height:186px;width:102px;clip:rect(0 102 186 0);z-index:1" alt="" src="GraphicWidgets/LikeKandinsky2.png">
+
+<img id="Chef" style="position:absolute; visibility:hidden; top:225px; left:-100; height:211px;width:182px;clip:rect(0 182 211 0);z-index:2" alt="" src="GraphicWidgets/Kitchen1.png">
+
+<img id="nose" style="position:absolute; visibility:hidden; top:225px; left:-100; height:110px;width:98px;clip:rect(0 98 110 0);z-index:3" alt="" src="GraphicWidgets/noseeysemouth.gif">
+
+<img id="ChefSmiley" style="position:absolute; visibility:hidden; top:225px; left:-120; height:64px;width:64px;clip:rect(0 64 64 0);z-index:4" alt="" src="GraphicWidgets/Fingers.png">
+
+<!--
+IE likes this
+<div id ='newheader2' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;
+height:50px;width:210px;'>
+change for FF to
+height:auto;width:auto;
+-->
+
+<div id ='newheader1' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader2' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader3' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader4' style='position:absolute;visibility:hidden;top:325px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+
+</body>
+</html>
+
+
+

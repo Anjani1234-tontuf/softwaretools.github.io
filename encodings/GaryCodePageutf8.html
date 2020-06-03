@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>GaryCodePageutf8.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.mppad {
+  margin: 2em;
+}
+
+.aliceblue {
+background-color:aliceblue;
+}
+
+.lightgray {
+background-color:lightgrey;
+}
+
+.lightskyblue {
+background-color:lightskyblue;
+}
+body {
+margin:0 1em;
+font-family:monospace;
+font-size:12pt;  /* matches the spacing of the image */
+}
+
+table { border-collapse: separate;}
+
+table td, table th {
+padding: 8px;
+border:none;
+vertical-align:top;}
+
+td p, th p,td h4, td pre, td img {
+margin-top:0;
+margin-right:7px;
+margin-left:7px;
+margin-bottom:1px;
+padding: 4px 7px;
+}
+pre, code, img {margin:0;padding:0}
+
+table.pt {
+background-color: white;
+color: black;
+vertical-align:top;
+text-align:right;
+border-collapse: collapse ;
+padding: 2px;
+border: 1px solid black;}
+
+
+table.pt tr td  {
+padding: 3px 3px;
+font-weight:bold;
+border: 1px dotted black;
+color:blue;}
+
+pre.ben {
+margin-left:64px;
+}
+
+</style>
+
+<!--
+1) save with as correct code page encoding
+
+2) use corect Content Type<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+3) use a font that corresponds to the encoding
+
+<p>see <a target="_blank" href="http://www.htmlhelp.com/reference/html40/entities/">http://www.htmlhelp.com/reference/html40/entities/</a> for special characters </p>
+
+-->
+
+
+</head>
+
+<body id='testbod' >
+
+<a target="_blank" href="GaryCodePage1252.html">GaryCodePage1252.html</a>
+<a target="_blank" href="GaryCodePage.html">GaryCodePage.html</a>
+<a target="_blank" href="index.php">Run Sample Conversions</a>
+
+<p><b>&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</b> <br>
+Be careful with fonts, when it comes to Unicode or utf-8, no font covers the complete Plane 0 (of 16 planes),
+the Basic Multilingual Plane of 60,000 + characters </p>
+<pre>This page uses your browsers default monospaced utf-8 font.
+Before you try editing or displaying UTF-8 characters, make sure you are using a font that has decent utf-8 coverage.
+Go here and download the Deja font family, its got decent coverage of utf-8.
+<a target="_blank" href="http://dejavu-fonts.org/wiki/Download">http://dejavu-fonts.org/wiki/Download</a>
+
+Install it by selecting all the *.ttf files and click install
+</pre>
+
+<h1>Comparison of non ASCII characters common to the most common encoding schemes</h1>
+
+<p><b>The common characters that exist in single byte iso-8859-1 and Windows-1252 with code points above 128<br>
+in double byte utf-8</b></p>
+<table class='pt'>
+<tr>
+<td>
+<pre><code id='utf'>
+¡¢£¤¥¦§¨©ª«¬­®¯
+°±²³´µ¶·¸¹º»¼½¾¿
+ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
+ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+àáâãäåæçèéêëìíîï
+ðñòóôõö÷øùúûüýþÿ
+</code></pre>
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>hex of utf-8</td>
+<td>hex of 8859-1</td>
+</tr>
+<tr>
+<td><br><img height='556' width='769' src="commonhexutf8.PNG"></td>
+<td><br><img height='258' width='1015' src="commonhex8859.PNG"></td>
+</tr>
+</table>
+
+
+<h1>This section has examples and explanations of encoding problems</h1>
+<pre>
+Click on these links for a sample of what happens when you display utf-8 characters:
+
+ <a target="_blank" href="utf8asutf8.xml">utf8 displayed as utf8</a>
+
+ <a target="_blank" href="utf8as1252.xml">utf8 displayed as Windows 1252</a>
+
+ <a target="_blank" href="utf8asdefault.txt">utf8 displayed in application default</a>
+
+Save  <a target="_blank" href="utf-8.txt">utf-8.txt</a>
+
+an open it with windows notepad or a similar simple text only editor.
+
+It will not display correctly with windows notepad.  In order to display utf-8.txt accurately,
+download it and set you editor to open it as utf-8.  Please note, some editors and applications
+have auto detect of code pages. Some detect UTF with the BOM (Byte Order Mark, the first 3 bytes of the file) correctly.
+You can refer to these applications as multi-byte aware.
+
+A utf (multi byte, without a BOM) file that contains:
+   no multi byte characters in the first 1000 bytes
+   and is mostly code points below 128
+   with a few multi byte characters, where the first of the multi bytes are C2 or C3
+   (the bytes we show in the images above)
+   and do not contain a code page directive like HTML or xml files
+   (example &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;)
+   are the most error prone.
+
+Database systems are prone to misrepresenting the common characters noted above.
+
+For the code points between 0 and 256, Some applications will display
+Windows 1252 characters when they are set for ISO 8859-1 or utf-8.
+
+If you are using a windows browser, and you just click on the link, the chances are you will see utf-8.txt as being encoded in windows 1252.
+Here is an example of a code point that is displayed incorrectly:
+
+search the file utf-8.txt for 233 and find the line that looks like this
+[Ã©]  U+00E9    &#233;  LATIN SMALL LETTER E WITH ACUTE
+
+The multi byte eacute can show as Ã© (hex C3 A9) in a Windows 1252 application.
+
+What should be displayed like this:
+
+[é]  U+00E9    &#233;  LATIN SMALL LETTER E WITH ACUTE
+
+An application that is multi byte aware may display these code points correctly
+
+U+0100	Ā	c4 80	LATIN CAPITAL LETTER A WITH MACRON
+U+0101	ā	c4 81	LATIN SMALL LETTER A WITH MACRON
+U+0102	Ă	c4 82	LATIN CAPITAL LETTER A WITH BREVE
+U+0103	ă	c4 83	LATIN SMALL LETTER A WITH BREVE
+
+An application that is not multi-byte aware will not.
+
+A file that contains the above characters:
+<a target="_blank" href="utf-8multibyteexample.txt">utf-8multibyeexample.txt</a>
+
+The Winwnws 1252 only as utf-8
+<a target="_blank" href="Latin11252onlyinUtf8.txt">Latin11252onlyinUtf8.txt</a>
+
+
+Lets look at some of the encodings and representations of the EURO - €:
+ 0x80 in Windows 1252 and as &amp;x80; &#x80;
+ 0xA4 in ISO-8859-15 (Latin-9)
+ 0xe2 0x82 0xac in hex in utf-8, in block U+20A0 .. U+20CF: Currency Symbols
+ does not exist in ISO-8859-1
+ Unicode code point U+20AC
+
+ abbreviated as EUR
+ and can be encoded in HTML as
+ the HTML entity: &ampeuro; -  &euro;	the decimal NCR reference: &amp;&num;8364; -  &#8364;	 the hexadecimal NCR reference:  &amp;&num;20AC; -  &#x20AC;
+ NCR is numerical character reference
+
+For more on the Euro, go here:
+<a target="_blank" href="https://www.cs.tut.fi/~jkorpela/html/euro.html">https://www.cs.tut.fi/~jkorpela/html/euro.html</a>
+
+I have yet to find out how this  &#x20A0; the EURO Currency Sign is used
+You have lots of options to encode the EUR.
+Also, lots of ways it can be used in a program, a HTML page, an xml file, a word or pdf or libre office document
+
+If the Euro sign is used in a utf-8 encoded document,
+What does your application search for to find it?
+
+for further analysis of common encoding problems try these links:
+
+<a target="_blank" href="http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html">http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html</a>
+<a target="_blank" href="http://www.i18nqa.com/debug/utf8-debug.html">http://www.i18nqa.com/debug/utf8-debug.html</a>
+
+</pre>
+
+
+
+<h1>Example names with accented characters in utf-8</h1>
+<pre>
+Gérard Depardieu
+Camille Saint-Saëns
+Jean Réno
+Jürgen Klinsmann
+Björk Guðmundsdóttir
+Sinéad O’Connor
+Andrés Iniesta
+Cesc Fàbregas
+Raúl Albiol
+Iñigo Martínez
+Álvaro Arbeloa
+Juan Gómez
+Daniel Lindström
+
+A problem city : Lindström
+</pre>
+
+<h1>More exploration of utf-8 </h1>
+<pre>
+Let us go to this page to explore more about code points and Unicode blocks, planes etc
+<a target="_blank" href="http://www.utf8-chartable.de/unicode-utf8-table.pl">http://www.utf8-chartable.de/unicode-utf8-table.pl</a>
+
+and experiment with the display options at the top
+
+Start with
+
+Page format       : Standard
+Language          : German, or if you do not speak german, try English
+Go to other block : There are lots of blocks, Basic Latin, Latin 1 Extended A, ..  Supplemental Arrows-A
+Code Positions    : There are lots of codes, try 1024
+Display Format    : I like hex (0x), its what you see in a hex editor
+                  : for Perl string literals - not sure if this is right
+Unicode names     : might as well
+Links for adding  : wtf
+Numerical HTML    : Do not confuse this with either the code point or the hex editor display
+
+For example select block Latin-1 Supplement, we are going to look at this character (&#xF6;)
+Searching for U+00F6 using Perl regular expressions
+The code point is U+00F6, what you see in a hex editor is 0xc3 0xb6
+</pre>
+<pre class="ben">
+* Thanks to Ben at IDM Computer Solutions (Ultraedit, UE Studio) for making me aware of this
+&quot;There is a difference between a Unicode character's code point and hex value.
+
+The code point of a Unicode character is the same across all Unicode formats (UTF-8, UTF-16, UTF-32, etc.).
+\xF6 will match the same character across all formats.
+
+The hex value of a Unicode character varies from encoding to encoding.
+"C3 B6" is the unique hex value of UTF-8's encoding of the ö character.&quot;
+
+When you search with Perl regex via "\x", you're searching for its code point, not its hex value.
+Perl was deliberately designed this way.
+
+</pre>
+<pre>
+
+Other ways of encoding the bytes 0xc3 0xb6
+switch the numerical HTML encoding of the Unicode character from hex to dec
+dec is &amp;&num;246  hex is &amp;&num;F6
+
+</pre>
+<h1>A deeper dive into utf-8 </h1>
+<pre>
+Go to the following page and download BabelMap.exe
+
+<a target="_blank" href="http://www.babelstone.co.uk/Software/BabelMap.html">http://www.babelstone.co.uk/Software/BabelMap.html</a>
+
+This program has a lot of features for exploring Unicode.
+For example, Try Fonts from the top menu, select Overview all fonts
+Select Verdana, a widely used font,
+
+Click on the Information and Analysis button
+
+go here and download the Deja font family, its got extensive coverage of utf-8.
+<a target="_blank" href="https://dejavu-fonts.github.io/">https://dejavu-fonts.github.io/</a>
+
+Install it by selecting all the *.ttf files and click install
+
+Click on the Information and Analysis button
+
+Next do the same for the Cambria font
+
+It does not take to much clicking to see that, at this time, no font covers everything.
+
+
+More useful links
+<a target="_blank" href="http://www.ltg.ed.ac.uk/~richard/utf-8.cgi">Lookup single bytes !http://www.ltg.ed.ac.uk/~richard/utf-8.cgi</a>
+
+<a target="_blank" href="http://www.fileformat.info/info/charset/UTF-8/list.htm">http://www.fileformat.info/info/charset/UTF-8/list.htm</a>
+<a target="_blank" href="http://en.wikipedia.org/wiki/Help:Entering_special_characters">http://en.wikipedia.org/wiki/Help:Entering_special_characters</a>
+<a target="_blank" href="http://www.columbia.edu/~fdc/utf8/">http://www.columbia.edu/~fdc/utf8/</a>
+<a target="_blank" href="http://www.columbia.edu/kermit/csettables.html">http://www.columbia.edu/kermit/csettables.html</a>
+<a target="_blank" href="http://www.columbia.edu/kermit/latin1.html">http://www.columbia.edu/kermit/latin1.html</a>
+<a target="_blank" href="http://www.columbia.edu/kermit/utf8-t1.html">http://www.columbia.edu/kermit/utf8-t1.html</a>
+
+<a target="_blank" href="http://www.phpwact.org/php/i18n/charsets">http://www.phpwact.org/php/i18n/charsets PHP and character sets</a></pre>
+
+<!--
+I can eat glass in:
+Spanish: Puedo comer vidrio, no me hace daño.
+French: Je peux manger du verre, ça ne me fait pas mal.
+Navajo: Tsésǫʼ yishą́ągo bííníshghah dóó doo shił neezgai da.
+Cherokee (and Cree, Chickasaw, Cree, Micmac, Ojibwa, Lakota, Náhuatl, Quechua, Aymara, and other American languages)
+-->
+
+<!--hex edit
+E6 B0 97-->
+
+
+<h1>How to enter an accented character into an application?  Try this?</h1>
+<pre style='margin-left:2em'>
+
+Example: How to type lowercase e with acute accent é  aka eacute
+
+On Windows:
+Hold down the ALT key and type 0233 on the KEYPAD
+(Under Windows, the Alt key is pressed and held down while a decimal character code is entered on the numeric keypad; the Alt key is then released and the character appears. )
+
+<b><a target="_blank" href="http://www.utf8-chartable.de/unicode-utf8-table.pl?number=1024&utf8=0x&unicodeinhtml=dec">Link for code points in decimal </a></b>
+
+Option 2
+
+Start /All Programs/ Accessores / System Tools / Character Map
+Find the unicode input box and enter the hex code E9 or browse to the character you want
+select the char and copy it to the clipboard and paste it into the application
+
+On Mac OS:
+Hold down the Option key and press e. Release, then press e
+
+For linux, consult
+<a target="_blank" href="https://en.wikipedia.org/wiki/Unicode_input">https://en.wikipedia.org/wiki/Unicode_input</a>
+
+
+In HTML:
+&amp;eacute; or &amp;#233;
+
+utf-8        double byte 0xc3 0xA9    U+00E9
+windows 1252 single byte 0xE9         (233)
+
+</pre>
+
+<pre>
+Here is a test case for an unambigous utf-8 code point.  The Roman numeral &#8544; not to be confused with the I.
+Hold down the ALT key and type 08544 on the KEYPAD.  Release the alt and your should see the &#8544;
+</pre>
+<table>
+<tr>
+<td>Unicode<br>code point<br>(hex)</td>
+<td>bytes</td>
+<td>numerical<br>hex</td>
+<td>numerical<br>decimal</td>
+<td>name</td>
+</tr>
+<tr>
+<td>U+2160</td>
+<td>0xe2 0x85 0xa0</td>
+<td>&amp;#x2160;</td>
+<td>&amp;#8544;</td>
+<td>Ⅰ  ROMAN NUMERAL ONE</td>
+</tr>
+</table>
+
+
+<h1>Examing the bits of Utf-8 codes</h1>
+<pre>
+In utf-8, bytes with a numeric value greater than 127 are part of a multibyte sequence.
+
+    110xxxxx One more byte follows
+    1110xxxx Two more bytes follow
+    11110xxx Three more bytes follow
+
+Finally, the bytes that follow those start codes all look like this:
+
+    ASCII characters of one byte always start with a 0 bit.
+    The first byte of a size two character always starts with bits 110.
+    The first byte of a size three characters always starts with the bits 1110.
+    The first byte of a size four characters always starts with the bits 11110.
+    A follow up byte of a multi byte character always starts with 10.
+    This makes it impossible for a follow up character to look like a carriage return or a quote.
+
+dec hex oct binary
+000 00  000 00000000
+127 7f  177 01111111
+128 80  200 10000000
+192 C0  300 11000000
+194 C2  302 11000010
+195 C3  303 11000011
+224 E0  340 11100000
+255 ff  377 11111111
+
+
+Binary    Hex          Comments
+0xxxxxxx  0x00..0x7F   Only byte of a 1-byte character encoding
+10xxxxxx  0x80..0xBF   Continuation characters (1-3 continuation characters)
+110xxxxx  0xC0..0xDF   First byte of a 2-byte character encoding
+1110xxxx  0xE0..0xEF   First byte of a 3-byte character encoding
+11110xxx  0xF0..0xF4   First byte of a 4-byte character encoding
+
+xFF and 0xFE are not permitted in valid UTF-8
+The octet values C0, C1, F5 to FF never appear.
+</pre>
+
+
+<pre>
+On my Windows 7 machine , viewing this data as utf-8
+
+These fonts
+Deja Vu Sans  - Condensed
+Linux Libertine Display
+Lucidia Sans Unicode
+Segoe UI
+
+display the Roman Numerals ( Ⅰ to  Ⅻ or 1 to 12) from the Basic Multilingual Plane - Number Forms (in hex) 2150 - 218f
+
+</pre>
+<table>
+<tr><td>
+Roman Numeral 1   </td><td>2160</td><td>Ⅰ</td></tr>
+<tr><td>
+Roman Numeral 2   </td><td>2161  </td><td>Ⅱ</td></tr>
+<tr><td>
+Roman Numeral 3   </td><td>2162  </td><td>Ⅲ</td></tr>
+<tr><td>
+Roman Numeral 4   </td><td>2163  </td><td>Ⅳ </td></tr>
+<tr><td>
+Roman Numeral 5   </td><td>2164  </td><td>Ⅴ </td></tr>
+<tr><td>
+Roman Numeral 6   </td><td>2165  </td><td>Ⅵ </td></tr>
+<tr><td>
+Roman Numeral 7   </td><td>2166  </td><td>Ⅶ </td></tr>
+<tr><td>
+Roman Numeral 8   </td><td>2167  </td><td>Ⅷ </td></tr>
+<tr><td>
+Roman Numeral 9   </td><td>2168  </td><td>Ⅸ </td></tr>
+<tr><td>
+Roman Numeral 10 </td><td>2169  </td><td>Ⅹ </td></tr>
+<tr><td>
+Roman Numeral 11 </td><td>216a  </td><td>Ⅺ </td></tr>
+<tr><td>
+Roman Numeral 12 </td><td>216b  </td><td>Ⅻ </td></tr>
+</table>
+
+<!--
+On a Windows system with code page 1252, eacute is the single code point E9
+On a MAC or LINUX system with the UTF-8 character set and font, eacute, is the multi byte c3 a9
+-->
+<pre style='font-size:24px;font-weight:bold;color:blue;'>
+気
+</pre>
+</body>
+</html>
+
+
+
+
+
+
+
+

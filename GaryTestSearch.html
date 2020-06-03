@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+.mppad
+{
+  margin: 1em;
+}
+.aliceblue
+{
+background-color:aliceblue;
+}
+.lightgray
+{
+background-color:lightgrey;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+<title>See also GaryTestRegExpression.html</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="js/gjre.min.js"></script>
+
+
+</head>
+
+<body id='testbod' >
+<!--
+<input type="text" size = 110 id="thisin" value=" "
+
+
+does not like displaying ../
+
+<b class="HTM">../TermsDictionaryGlossary/S/Shellfish.html</b>
+<b class="PIC">../TermsDictionaryGlossary/A/abalone.jpg</b>
+<b class="VID">../TermsDictionaryGlossary/A/abalone.avi</b>
+<b class="PRO">../Sounds/A/Abalone.wav</b>
+-->
+
+
+
+<HR>
+
+
+
+<pre class="lightskyblue">
+<pre class="mppad">
+
+Chipotle chile
+chiplote chile (also pepper) not in sqlite
+
+For Capitalization problem
+appenzeller cheese Appenzeller cheese.txt
+
+Pont l'Évêque cheese
+
+</pre>
+</pre>
+
+
+
+<pre class="lightskyblue">
+<pre class="mppad">
+Dictionary Search Destuctive Testing
+  ketchup - missing tags , abalone - complete , apple - empty tags
+  salt -  &lt;hr&gt; EOT but no other tags
+  lobster - no tags ,  scallions - no tags  - not in sqlite
+
+ascetic acid no , acetic acid  yes
+Aerate  no
+aerate  finds lower case version - does it distinguish between upper and lower case
+avocado has a shp file
+Mexican green tomato ,Green Tomato ,Grape Tomato ,GrapeTomato
+
+a la King , Angling ,apple dumpling,  dumpling , aseptic packaging
+
+Acesulfame-K
+
+Alaska king crab
+Alfredo sauce
+Al Dente
+
+Future
+RockLobster
+bananas
+mangoslices
+lobster
+
+For stemword in porter
+sauce goes to sauc verifed in example results on the porter pages
+octopus goes to octupu
+cheese goes to chees  - verified in example results on the porter page
+</pre>
+</pre>
+
+
+<pre class="lightskyblue">
+<pre class="mppad">
+ Pick any page
+  Use your mouse to highlight a term
+    right click and search FastTrack
+
+Any of these are invalid
+* ' / : ; ? \ | < >
+commas, are not okay
+
+a few bad examples to test GetSelected word or searching form the context menu
+it trims some of the usual stuff from the begginging and end of line
+
+"it removes "
+'it removes'
+[rjrj}
+</pre>
+</pre>
+
+
+</body>
+</html>
+
+
+<!--
+<pre id='it'>
+is a shellfish that resembles a large scallop when out of its shell. &nbsp;Abalone is considered a delicacy and has been compared to calamari with a more subtle flavour.&nbsp; Farmed abalone is sold commercially.&nbsp; It is illegal to sell wild abalone in the United States, however, you can dig your own in mid to Northern California.
+
+<hr>
+<b class="SHO">Specialty Fish Markets</b>
+
+<b class="STO">Eat as quickly as possible</b>
+
+<b class="PRE">Take out of the shell</b>
+
+<b class="YIE">Yields and Equivalents</b>
+
+<b class="SUB">No Substitutions</b>
+
+<b class="SEE">See : For additional information you could try researching farm raised seafood</b>
+
+<b class="LOO">15156</b>
+
+</pre>
+
+
+Find %*//*^t  works on the string on the next line,  "an inline comment with a tab somewhere in the comment string"
+ // this has a tab    or two following
+
+
+
+Tagged Expressions:
+^(...^) Brackets or tags an expression to use in the replace command. A regular expression may have up to 9 tagged expressions,
+
+
+^(%*//*^)^(^t^)
+
+And you would use the following in the Replace field:
+
+^1 Q
+
+
+
+
+
+ABC1
+ABC3
+ABC3
+
+Find: 3^p^(*^)3$
+Replace: 2^p^13
+
+
+to this:
+ABC1
+ABC2
+ABC3
+
+Tagged Expressions:
+^(...^) Brackets or tags an expression to use in the replace command. A regular expression may have up to 9 tagged expressions, numbered according to their order in the regular expression.
+
+The corresponding replacement expression is ^x, for x in the range 1-9. Example: If ^(h*o^) ^(f*s^) matches "hello folks", ^2 ^1 would replace it with "folks hello".
+
+For our date example we are going to use the following expression:
+
+Find What: ^([0-9]+^)/^([0-9]+^)/^([0-9][0-9][0-9][0-9]^)
+Replace With: ^2-^1-^3
+-->
+
+
+
+
+

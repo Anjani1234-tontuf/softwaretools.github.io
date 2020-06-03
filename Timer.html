@@ -1,0 +1,886 @@
+<!DOCTYPE HTML>
+<!--
+Content Notes
+
+from here
+http://www.mredkj.com/javascript/pacecalcs.html
+I am working on this
+PaceCalc.html
+Author: Keith Jenci
+
+-->
+
+<!--
+
+Technical Notes
+
+-->
+
+
+<!--
+
+Changelog
+
+gjTimeGUI.min.js in section  if(myOptions.m_bShowStartupWarning)
+displayDivMessage2 not working bug in FF
+
+and
+commented out
+
+  if(!isIE())
+  {
+    var check = checkPluginWav();
+...
+  because it was not working
+
+-->
+<html>
+<head>
+<style type="text/css">
+td p, th p
+{
+  margin-top:0in;
+  margin-right:7.5pt;
+  margin-left:7.5pt;
+  margin-bottom:.0001pt;
+  font-size:10.0pt;
+  font-family: "Courier New", Courier,monospace;
+}
+
+.mw
+{
+  background-color: black;
+  color: white;
+  display:block;
+  width:100%;
+  Height:100%;
+  margin:0;
+}
+
+.mw2
+{
+  background-color: black;
+  color: white;
+  display:none;
+}
+
+.pad6
+{
+  padding:6pt 6pt 6pt 6pt !important;
+}
+
+
+
+input { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+select { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+
+table
+{
+  border-collapse: collapse; /* 'cellspacing' equivalent */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table td, table th
+{
+    padding: 1px; /* 'cellpadding' equivalent */
+    border:none;
+    vertical-align:top;
+}
+
+
+#block_land{
+position:absolute;
+top:0;
+left:0;
+text-align:center;
+background:white;
+width:100%;
+height:100%;
+display:none;}
+
+</style>
+<title>The Timers</title>
+<!-- tyring to make work as a web page that is not in an Addon -->
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CookBook Timers">
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<link rel="icon" href="GraphicWidgets/sliverclock.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="">
+
+
+<script defer="defer" src="js/gjcore.min.js"></script>
+<script defer="defer" src="js/gjutil1.min.js"></script>
+
+<script defer="defer" src="js/gjqt.min.js"></script>
+<script defer="defer" src="js/gjmsg.min.js"></script>
+<script defer="defer" src="js/gjmove.min.js"></script>
+<script defer="defer" src="js/gjcalc1.min.js"></script>
+<script defer="defer" src="js/gjtime.min.js"></script>
+<script defer="defer" src="js/gjtimeGUI.min.js"></script>
+<script defer="defer" src="js/gjtrack.js"></script>
+
+<script>
+
+if(navigator.userAgent.toLowerCase().indexOf("msie") > -1)
+{
+  var IE5 = (navigator.userAgent.indexOf('MSIE 5') > 0);
+  var IE6 = (navigator.userAgent.indexOf('MSIE 6') > 0);
+  var IE7 = (navigator.userAgent.indexOf('MSIE 7') > 0);
+  var IE8 = (navigator.userAgent.indexOf('MSIE 8') > 0);
+  var IE9 = (navigator.userAgent.indexOf('MSIE 9') > 0);
+  if(IE5 || IE6 || IE7)
+  {
+    alert('I do not work with IE 5 or 6 and I have not tested this with Internet Explorer 7')
+  }
+  else
+  {
+    alert("Internet Explorer needs extra time for this page to run\nGive it a few seconds and then click okay to proceed");
+  }
+}
+
+</script>
+
+</head>
+<BODY onload="realsetUP();" onBeforeUnload="return really();">
+
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+
+<div id="mymain" class="mw2" > <!-- Div to use for blanking the screen -->
+
+
+<table>
+<tr>
+<td style='vertical-align:middle; color:black;width:50em;'>
+<blockquote id="myblockq" style='color:black;width:50em;margin-right:auto;margin-left:auto' class='fancy smallboldspaced center'>
+
+  This is the Timers Automatic Screen Saver
+  <br>
+  Every 5 Minute, for the first 3 seconds,  we blank the screen
+  <br>
+  We will be right Back
+
+</blockquote>
+</td>
+</tr>
+</table>
+
+</div>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<div id="mymain2" class="myinline" style="max-width:64em;margin-left: auto;margin-right: auto;"> <!-- main width setting div -->
+
+<!--
+setDisplayV toogle
+<div id="TimerWarning" style='color:blue;width:50em;margin-right:auto;margin-left:auto;display:none'>
+<input style="float:right; position:relative; z-index:2;" class="closeit" type="button" id="close01" value="-" onClick="toggleDisplayButton('TimerWarning','close01' );">
+
+<blockquote id="myblockq">
+Please familiarize yourself with the Options and Help before you uses these Timers.
+<br>
+Hit the Display Help Button and read the Help Section that becomes visible.  Hit the Hide Help Button.
+<br>
+Hit the Display Options Button.   See the Cancel All Timers?
+<br>
+Hit the "Check Alarm Play" Button.
+<br>
+If you don't hear the sound play, adjust the volume of your speakers.
+<br>
+If you do not see a Help or Options or timer information become visible, enable popups for this page.
+<br>
+If you still having problems see the SOUND section in <br><a class="AOne" href="TroubleShooting.html">Trouble Shooting</a>
+</blockquote>
+</div>
+-->
+<div id='TimeDiv' style="text-align:center;position:relative">
+<p class='LT'><span id='myTime' class='a'>:</span>&nbsp;<span id='myTime2' class='a'>:</span>&nbsp;<span id='myTime3' class='a'>:</span></p>
+</div>
+
+<form name ="CountDownT" id="CountDownT">
+
+<table>
+<tbody>
+<tr class="HCCT">
+<td colspan="7"><p>Set Count Down Timers</p></td>
+</tr>
+<tr>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Hours<br>
+  <select class="buttonNgrey" name="CHours" id="CHours" size="1">
+  <option value="0" selected>0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11&nbsp; &nbsp; &nbsp;</option>
+  <option value="12">12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+  </select>
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Minutes<br>
+  <select class="buttonNgrey" name="CMinutes" id="CMinutes" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+  </p>
+  </td>
+  <td id='tdCSeconds' class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Seconds<br>
+  <select class="buttonNgrey" name="CSeconds" id="CSeconds" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+</p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Sound<br>
+  <select class="buttonNgrey" name="ringCDAlarm" id="ringCDAlarm" size="1">
+  <option value="Sounds/alarm_beep.wav" selected>Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White</option>
+  <option value="Sounds/MyAlarm1.wav">My Alarm1</option>
+  <option value="Sounds/MyAlarm2.wav">My Alarm2</option>
+  </select>
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Repeat Opts<br>
+  <select class="buttonNgrey" name="ARepeater" id="ARepeater" size="1">
+  <option value="-1">Continuous</option>
+  <option value="1" selected>1 time</option>
+  <option value="2">2 times</option>
+  <option value="3">3 times</option>
+  <option value="4">4 times</option>
+  <option value="5">5 times</option>
+  <option value="6">6 times</option>
+  <option value="7">7 times</option>
+  <option value="8">8 times</option>
+  <option value="9">9 times</option>
+  <option value="10">10 times</option>
+  <option value="11">11 times</option>
+  </select>
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class="td1p">Alarm Name<br>
+  <input name="AlarmName1" type="text" class="text" value="My Alarm" SIZE="8" >
+  </p>
+  </td>
+  <td class="a" style=' vertical-align:bottom'>
+  <input type="button" id="SCDT" class="buttonNgrey" value="Set Alarm"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="setCountDownAlarm(this.form);"
+  onmouseout="toggleHighLight('o', this.id);">
+  </td>
+  </tr>
+</tbody>
+</table>
+
+</form>
+
+<BR class="clearall">
+<div id="CountDownTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+<BR class="clearall">
+
+<form name ="AlarmTimeT" id="AlarmTimeT">
+<table>
+<tbody>
+<tr class="HCCT">
+<td colspan="5"><p>Set Time Alarms</p></td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class="td1p">Hour<br>
+<select class="buttonNgrey" name="AHours" id="AHours" size="1">
+  <option value="0">Midnight &nbsp;&nbsp;00:00 </option>
+  <option value="1">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 1 AM 01:00</option>
+  <option value="2">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2 AM 02:00</option>
+  <option value="3">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 3 AM 03:00</option>
+  <option value="4">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 4 AM 04:00</option>
+  <option value="5">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 5 AM 05:00</option>
+  <option value="6">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 6 AM 06:00</option>
+  <option value="7">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 7 AM 07:00</option>
+  <option value="8">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 8 AM 08:00</option>
+  <option value="9">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 9 AM 09:00</option>
+  <option value="10">&nbsp;&nbsp; &nbsp; &nbsp;10 AM 10:00</option>
+  <option value="11" selected>&nbsp;&nbsp; &nbsp; &nbsp;11 AM 11:00</option>
+  <option value="12" >Noon &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 12:00</option>
+  <option value="13">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 1 PM 13:00</option>
+  <option value="14">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 2 PM 14:00</option>
+  <option value="15">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 3 PM 15:00</option>
+  <option value="16">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 4 PM 16:00</option>
+  <option value="17">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 5 PM 17:00</option>
+  <option value="18">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 6 PM 18:00</option>
+  <option value="19">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 7 PM 19:00</option>
+  <option value="20">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 8 PM 20:00</option>
+  <option value="21">&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 9 PM 21:00</option>
+  <option value="22">&nbsp;&nbsp; &nbsp; &nbsp;10 PM 22:00</option>
+  <option value="23">&nbsp;&nbsp; &nbsp; &nbsp;11 PM 23:00</option>
+  </select>
+</p>
+</td>
+<td class="a" style=' vertical-align:bottom'>
+<p class="td1p">Minutes<br>
+  <select class="buttonNgrey" name="AMinutes" id="AMinutes" size="1">
+  <option value="00" selected>00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+  <option value="45">45</option>
+  <option value="46">46</option>
+  <option value="47">47</option>
+  <option value="48">48</option>
+  <option value="49">49</option>
+  <option value="50">50</option>
+  <option value="51">51</option>
+  <option value="52">52</option>
+  <option value="53">53</option>
+  <option value="54">54</option>
+  <option value="55">55</option>
+  <option value="56">56</option>
+  <option value="57">57</option>
+  <option value="58">58</option>
+  <option value="59">59</option>
+  <option value="60">60</option>
+  </select>
+ </p>
+ </td>
+
+ <td class="a" style=' vertical-align:bottom'>
+ <p class="td1p">Alarm Sound<br>
+   <select class="buttonNgrey" name="ringTimeAlarm" id="ringTimeAlarm" size="1">
+  <option value="Sounds/alarm_beep.wav" selected>Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav">Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White</option>
+  <option value="Sounds/MyAlarm1.wav">My Alarm1</option>
+  <option value="Sounds/MyAlarm2.wav">My Alarm2</option>
+  </select>
+ </td>
+ <td class="a" style=' vertical-align:bottom'>
+    <input type="button" id="SATT" class="buttonNgrey" value="Set Alarm"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="setTimeAlarm(this.form);"
+    onmouseout="toggleHighLight('o', this.id);">
+ </td>
+ </tr>
+</tbody>
+</table>
+</form>
+<BR class="clearall">
+<div id="AlarmTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+<BR class="clearall">
+
+<form name ="StopWatchT" id="StopWatchT">
+<table>
+<tbody>
+ <tr class="HCCT">
+ <td colspan="1"><p>Stopwatches</p></td>
+ <td colspan="3"><p>Test Alarm</p></td>
+ <td colspan="2"><p>Information and Options</p></td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+    <input type="button" id="STARTS" class="buttonNgrey" value="Start Stopwatches"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="setStopWatch(this.form);"
+    onmouseout="toggleHighLight('o', this.id);">
+</td>
+<td class="a" style=' vertical-align:bottom'>
+&nbsp;
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <select class="buttonNgrey" name="testringAlarm" id="testringAlarm" size="1">
+  <option value="Sounds/alarm_beep.wav">Short Beep</option>
+  <option value="Sounds/woosh.wav">Whoosh</option>
+  <option value="Sounds/buzzer_x.wav">Buzzer</option>
+  <option value="Sounds/hit_with_frying_pan_x.wav">Frying Pan Hit</option>
+  <option value="Sounds/kinison.wav">Oh Oh</option>
+  <option value="Sounds/fanfare_x.wav">Fan Fare</option>
+  <option value="Sounds/gunshots2_x.wav">Gun Shots</option>
+  <option value="Sounds/Attention.wav">Attention</option>
+  <option value="Sounds/Chimes.wav" selected>Chimes</option>
+  <option value="Sounds/PlayFunkMusicWhiteBoy.wav">Funky White Boy</option>
+  <option value="Sounds/MyAlarm1.wav">My Alarm1</option>
+  <option value="Sounds/MyAlarm2.wav">My Alarm2</option>
+  </select>
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <input type="button" id="doTestAlarm" title="Run a 4 Second Count Down Timer" class="buttonNgrey" value="Check Alarm Play"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="testAlarm(3,testringAlarm.options[testringAlarm.selectedIndex].value, 'Test1');"
+  onmouseout="toggleHighLight('o', this.id);">
+</td>
+<td class="a" style=' vertical-align:bottom'>
+
+  <input type="button" id="doOptions" class="buttonNgrey" value="Display Options"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="showItT('TimeOptsinfo',480, 600,'doOptions','Options');"
+  onmouseout="toggleHighLight('o', this.id);">
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <input type="button" id="doHelp" class="buttonNgrey" value="Display Help"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="showItT('TimerHelp',480, 600,'doHelp','Help');"
+  onmouseout="toggleHighLight('o', this.id);">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+<BR class="clearall">
+<div id="StopWatchTime" style='visibility:hidden'>
+<table><tbody><tr><td>*</td></tr></tbody></table>
+</div>
+<BR class="clearall">
+
+
+<div id="TimeOptsinfo" style="visibility:hidden; position:absolute; width:25em; height:600px; background-color:white; border-left: 5pt solid #000; padding-left:5pt; padding-right:5pt; z-index:2">
+<br>
+<input type="button" id="doCancel" class="buttonNgrey" value="Cancel All Timers"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="alarmObject.cancel()"
+  onmouseout="toggleHighLight('o', this.id);">
+<br>
+
+<form name ="OptionsTime" id="OptionsTime">
+
+<table>
+<tbody>
+<tr class="HCCT">
+<td colspan="5"><p>Options</p></td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class ='td1p'>Display Time</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fbShowTime' onclick="(this.checked) ? setTD('TDT:-1'): setTD('TDT:0');" type="checkbox">
+</td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class ='td1p'>Display Date</p>
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fbShowDate' onclick="(this.checked) ? setTD('TDD:-1'): setTD('TDD:0');" type="checkbox">
+</td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class ='td1p'>Display Julian Date</p>
+</td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fbShowJulian' onclick="(this.checked) ? setTD('TDJ:-1'): setTD('TDJ:0');" type="checkbox">
+</td>
+</tr>
+<tr>
+<td rowspan='2' class="a" style=' vertical-align:middle'>
+<p class ='td1p' >Time Format</p>
+</td>
+<!-- begin spanned rows -->
+<td class="a" style=' vertical-align:bottom'>
+  <input type="radio" value="HMS" name="TimeDisplay" checked="checked" onclick="setTD('TDF:HMS');"> Hours:Minutes:Seconds
+  <br>
+  <input type="radio" value="SMH" name="TimeDisplay" disabled='disabled' onclick="setTD('TDF:SMH');"> Seconds:Minutes:Hours
+  </td>
+</tr>
+<tr>
+  <td class="a" style=' vertical-align:bottom'>
+  <input id='fb24HourClock' onclick="(this.checked) ? setTD('TDH:-1'): setTD('TDH:0');" type="checkbox"> 24 Hour Clock
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  </td>
+</tr>
+<!-- keep disabled here note check ID-->
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class='td1p'>Display Seconds</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fb24DisplaySeconds' onclick="(this.checked) ? setTD('TDS:-1'): setTD('TDS:0');" type="checkbox">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class='td1p'>Notice Interval</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input disabled='disabled' onchange="javascript:myint = 'TDN' + this.value; setTDi(myint)" size="4">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class='td1p'>Update Interval</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fiUpdateInterval' onchange="setTDi(this.value,this.id,'TDI:')" size="4">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class='td1p'>Window is Top Most</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input onclick="(this.checked) ? setTD('TDTop:-1'): setTD('TDTop:0');" disabled='disabled' type="checkbox">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class ='td1p'>Alarms Active</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input onclick="(this.checked) ? setTD('TDA:-1'): setTD('TDA:0');" disabled='disabled' type="checkbox">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class= 'td1p'>Speak Clock</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input onclick="(this.checked) ? setTD('TDsc:-1'): setTD('TDsc:0');" disabled='disabled' type="checkbox">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class= 'td1p'>Speak Clock Intervals</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input disabled='disabled' value=1 onchange="javascript:myint = 'TDSI' + this.value; setTDi(myint)" size="4">
+  </td>
+</tr>
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class= 'td1p'>Display Minimal</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input onclick="(this.checked) ? setTD('TDM:-1'): setTD('TDM:0');" disabled='disabled' type="checkbox">
+  </td>
+</tr>
+<!--enabled -->
+<tr>
+<td class="a" style=' vertical-align:bottom'>
+<p class= 'td1p'>Display Startup Warning Dialog</p>
+  </td>
+<td class="a" style=' vertical-align:bottom'>
+  <input id='fbShowStartupWarning' onclick="(this.checked) ? setTD('TDW:1'): setTD('TDW:0');" type="checkbox">
+  </td>
+</tr>
+</tbody>
+</table>
+
+<input type="button" id="ApplyOptions" class="buttonNgrey" value="Apply"
+  onmouseover="toggleHighLight('m', this.id);"
+  onClick="checkValid();"
+  onmouseout="toggleHighLight('o', this.id);">
+</form>
+</div>
+<!--
+Mozilla length of the two divs here not right, can't make help white for its real length
+see store result in gjtime
+-->
+
+
+<div id="TimerHelp" style="visibility:hidden; position:absolute; left:300; width:30em; height:600px; background-color:white; border-left: 5pt solid #000; padding-right:15pt; z-index:3; text-align:left">
+<br>
+<p class='td1p b pad6'>These timers were created to help you run events and activities where there are multiple actions that need to be watched and performed.</p>
+<br>
+<p class='td1p b pad6'>You have to hit the apply button to save your options</p>
+<p class='td1p b pad6'>They will become active the next time you start the Timers</p>
+<p class='td1p b pad6'></p>
+<br>
+<p class='td1p b pad6'>You may currently set up to 6 timers for each type: Count Down, Alarm Time and Stopwatch.</p>
+<p class='td1p b pad6'>For example, set the options for a Count Down Timer (Hour:Minutes:Seconds, Alarm Sound etc) and Hit Set Alarm</p>
+<p class='td1p b pad6'>What we call an "Active Timer Display" appears below the Count Down Timer Options.</p>
+<p class='td1p b pad6'>Make another set of selections and hit Set Alarm and you will see another Active Timer Display</p>
+<p></p>
+<br>
+<p class='td1p b pad6'>Alarms are numbered sequentially.</p>
+<p class='td1p b pad6'>Repeating Alarms are given a new number for each repetion.</p>
+<p class='td1p b pad6'>The display of alarms shifts around as new alarms are added and old ones become inactive</p>
+<br>
+<p></p>
+<p class='td1p b pad6'>You can type in a short descriptive name for each of the Count Down Timers</p>
+<p class='td1p b pad6'></p>
+<p></p>
+<br>
+<p class='td1p b pad6'>The timers are accurate to +- 3 seconds plus the Update Interval.</p>
+<p class='td1p b pad6'>The Update Interval defaults to 1.</p>
+<p class='td1p b pad6'>The higher the Update Interval, the more time your computer has to do other tasks;however, it also effects how long it takes for the displays to get updated.So if the update interval is 10 seconds, you can wait up to ten seconds after clicking on one of the 'Set Alarm' buttons to see your 'Active Timer Display'</p>
+<p class='td1p b pad6'>We use an update interval of 3 seconds in our cooking </p>
+<p></p>
+<p class='td1p b pad6'>If you close the screen, the timers are no longer active.</p>
+<p class='td1p b pad6'>If you turn down the sound on your computer, it will be very hard to hear the alarms.</p>
+<p class='td1p b pad6'>Use the Check Alarm Play button to make sure you can hear the ALARMS!</p>
+<br>
+<p class='td1p b pad6'>If your computer goes into hibernation or standy, you will not hear your timers.</p>
+<p class='td1p b pad6'>On most windows systems from your Desktop, right click on a empty area. Navigate to Properties - Screen Saver - Power.We set our computers so that the hard disks are always on it never goes into Standby or Hibernation when we use the timers.</p>
+<p></p>
+
+<p class='td1p b pad6'>You can open a new tab in FireFox or a new window in Internet Exploder to continue working and your timers will remain active.</p>
+<p></p>
+<br>
+<p class='scenter b'>The Options</p>
+<br>
+<p class='td1p b pad6'>Display Time - When checked - shows the current time at the top of the Timer Window</p>
+<p class='td1p b pad6'>Display Date - When checked - shows the current date at the top of the Timer Window</p>
+<p class='td1p b pad6'>Display Julian Date - When checked - shows the Julian (day of the year) at the top of the Timer Window</p>
+<p class='td1p b pad6'>Time Format 'Hours:Minutes:Seconds' - is currently the only order for the time elements</p>
+<p class='td1p b pad6'>Time Format '24 Hour Clock' - When checked display time in military or 24 hour format</p>
+<p class='td1p b pad6'>Display Seconds - When checked - shows the seconds in the displayed Time and in the Count Down Timer Selection<br>
+Seconds are always displayed in the "Active Timer Displays"</p>
+<p class='td1p b pad6'>Notice Interval - Does not work at this time.In the future, if you have active timers, this option will give you an option to be reminded at specific times</p>
+<p class='td1p b pad6'>Update Interval - the number of seconds between Timer Window updates and displays</p>
+<p class='td1p b pad6'>Window is Top Most - Does not work at this time.</p>
+<p class='td1p b pad6'>Speak Clock - Does not work at this time</p>
+<p class='td1p b pad6'>Speak Clock Intervals - Does not work at this time</p>
+<p class='td1p b pad6'>Display Minimal - Does not work at this time</p>
+<p class='td1p b pad6'>Display Startup Warning - uncheck and you will not get the warning dialog when you open the Timers</p>
+<br>
+
+<p class='scenter b'>If you are unable to hear the test alarm.</p>
+<br>
+<p class='td1p b pad6'>Our Alarms are wav files.</p>
+<p class='td1p b pad6'>Make sure your hardware volume control is not down or off</p>
+<p class='td1p b pad6'>On Windows use Control Panel to check you sound settings for your sound card and your media players </p>
+<p class='td1p b pad6'>On Linux Gnome systems (Ubuntu variants) check System - Preferences - Sound</p>
+<p class='td1p b pad6'>On Max systems check Apple - System - Preferences - Sound</p>
+
+<p class='td1p b pad6'>Example</p>
+<p class='td1p b pad6'>Go to "Start -&gt; Control Panel</p>
+<p class='td1p b pad6'>-&gt;Sounds and Audio Devices -&gt; make sure mute is off.</p>
+<p class='td1p b pad6'>If you still having problems see the SOUND section in <a class="AOne" href="TroubleShooting.html">Trouble Shooting</a></p>
+
+<p class='td1p b pad6'>Other multimedia playback programs on your computer may interfere with your Player file types settings!</p>
+<br>
+<p class='scenter b'>The Next Release</p>
+<br>
+<p class='td1p b pad6'>Some of the disabled options will be available in the next release.</p>
+<p class='td1p b pad6'>You will be able to add more timers in each category.</p>
+<p class='td1p b pad6'>There will be integration with meal and dinner party planning.</p>
+<br>
+
+<p class='td1p b pad6'>An option for Hourly Alarms will be added.</p>
+<p class='td1p b pad6'>An option for Daily Alarms will be added.</p>
+<p class='td1p b pad6'>You will be able to add your own sounds.</p>
+<p class='td1p b pad6'>You will be able to cancel individual timers.</p>
+<br>
+<p class='td1p b pad6'>You will be able to set additional warning alarms.</p>
+</div>
+
+
+<div id="place" style=" margin-left: auto; margin-right: auto;visibility:hidden; height:300px;width:480px; overflow:auto;overflow-x:hidden;overflow-y:scroll;padding-left:4pt;">
+<table id='myresult' style="width:50%;border:none; padding-bottom:5pt;">
+<tbody>
+</tbody>
+</table>
+</div>
+
+</div> <!-- main width setting div -->
+<div id="Thefooter" style="position:relative">
+<iframe id="iffooter1" class="myfooter" src="GaryDefaultFooter.html"></iframe>
+</div>
+</div> <!-- maybe bug in html validator, more likley 2 mymain screws them up -->
+<div id="block_land">Turn your device to landscape mode and hit reload.</div>
+</body>
+</html>
+

@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+IE does not do Paintshop pro png graphics with transparent backgound correctly
+
+-->
+
+<!--
+
+Changelog  as of Jan 01 2006
+To    Transitional
+Used  CGSS
+
+
+-->
+
+<head>
+
+
+<title>Why?</title>
+
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="StyleSheet" href="css/Printit.css" type="text/css"media="print">
+<link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CookBook">
+<meta name="keywords" content="">
+<link rel="Copyright" href="Copyright.html">
+<link rel="Copyright" href="Copyright.html">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+
+
+<script type="text/javascript">
+
+function CSGSNext()
+{
+
+}
+
+CSGSNext.prototype.doIt = function()
+{
+  setTop('theheader',0);
+  setLeft('theheader',0);
+  setVisible('theheader');
+}
+
+function StartGlide()
+{
+
+
+// I should look at geting rid of any synchFunc in the global unload CSGS code
+
+var headerChg = new CSGS();
+var testit = new CSGSNext;
+
+
+  headerChg.synchFunc(testit,'doIt');
+
+  headerChg.addElement('theheader');
+  headerChg.setMI('theheader', 20);
+  headerChg.setMIE('theheader', 25);
+  headerChg.addEffect('theheader', 'mySWipe');
+  headerChg.addMove('theheader',0,0,-400,-10);
+
+
+  headerChg.addElement('Banner');
+  headerChg.addEffect('Banner','myClip')
+  headerChg.setMI('Banner', 15);
+  headerChg.addMove('Banner',1000,325, 0, 325);
+
+
+  headerChg.setIntervalSpeed(60);
+  headerChg.doIt();
+  delete headerChg;
+  delete testit;
+}
+
+
+
+</script>
+</head>
+
+<body onload="StartGlide();">
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<img id="Banner" style="position:absolute; visibility:hidden; top:325px; left:0; z-index:1" alt="" src="GraphicWidgets/LikeKandinsky2.png">
+
+<div class="myheader" id='theheader' style="position:relative;z-index:0;">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<div style="position:relative;z-index:0;">
+
+<p><span class="DropCap" style='font-style:italic;font-weight:bold;font-family:"Lucida Calligraphy", Vivaldi, cursive'>W&nbsp;</span>hy&nbsp;did I develop
+this?&nbsp;&nbsp;I was an out of work software engineer with a
+working wife.&nbsp;&nbsp;Being a dutiful husband, I made
+dinner.&nbsp;&nbsp;A lot of dinners.&nbsp;&nbsp;After a couple of
+months of my existing repertoire of salads, steaks, chops, chicken
+and pasta, it was time for a change.</p>
+
+<br>
+<hr class="announce">
+<!--
+<img style="float:right; padding-left:1em;" alt="" src="GraphicWidgets/LikeKandinsky1.gif">
+-->
+
+<img id='clipme' style="float:right; padding-left:1em; " alt="" src="GraphicWidgets/amdjgaryyellowblack.png">
+
+<p class='indent'>I started simple.&nbsp;&nbsp;It did not take long to realize a
+recipe does not teach you how to cook.&nbsp;&nbsp;So I found myself
+digging through cookbooks.&nbsp;&nbsp;Digging and
+digging.&nbsp;&nbsp;I made up the lists for what to shop for and
+went off to the store.&nbsp;&nbsp;Oops, what kind of ham was
+that?&nbsp;&nbsp;Okay, looks like I have to make sure I really know
+how to select it.&nbsp;&nbsp;Okay, it&rsquo;s time to start.&nbsp;
+What&rsquo;s the difference between dice, mince and
+chop?&nbsp;&nbsp;What&rsquo;s medium high?&nbsp;&nbsp;How do tell when the meat is really
+"browned" and on and on.&nbsp;&nbsp;Long ago I worked with a
+software product called <em>RAMIS</em>.&nbsp;&nbsp;It was also
+known as "<em>R</em><span class="mythinsp">&nbsp;</span>ead <em>A</em><span class="mythinsp">&nbsp;</span>ll <em>M</em><span class="mythinsp">&nbsp;</span>anuals,
+<em>I</em><span class="mythinsp">&nbsp;</span>t&rsquo;s <em>S</em><span class="mythinsp">&nbsp;</span>omeplace".&nbsp;&nbsp;That&rsquo;s
+how I was starting to feel about cooking.&nbsp;&nbsp; I can&rsquo;t
+find out where the following came from, but at this point in my
+cooking career, when I read it, well, I didn&rsquo;t know whether
+to laugh or cry:</p>
+
+
+<br>
+<p align="center" ><em>I read recipes the same way I read
+science fiction.</em></p>
+
+<p align="center" ><em>I get to the end and think, "Well,
+that&rsquo;s not going to happen."</em></p>
+
+<br>
+<hr class="announce">
+<p class='indents'>There are LOTS of resources on Cooking.&nbsp;&nbsp;There are
+Cooking Shows galore.&nbsp;&nbsp;Websites &mdash; hundreds. Cookbooks &mdash;
+thousands &mdash; maybe millions.</p>
+
+<br class="clearall">
+
+<p><em>I remember:</em></p>
+<p class="mythinsp">&nbsp;</p>
+
+<ul class='cb'>
+  <li class='anp'><p>Searching cooking websites for a simple Tomato Pasta Sauce.&nbsp; Oops, that&rsquo;s an enormous amount to wade through.<br>
+Click, Click, Click, Click, Click, Click, Click, Click, Click,Click, Click&nbsp; "Whats all this, Where is the RECIPE?", Click, Click, Click, Click, Click, Click, Click ...
+    </p></li>
+  <li class='bnp'><p>seeing a site with video instructions on how to prepare a leg of lamb.&nbsp; Bought the leg.&nbsp; Got home, getting ready &mdash; the page was gone.
+    </p></li>
+  <li class='anp'><p>watching a show and taking notes.&nbsp; Oops, how did I miss that?&nbsp; What were all those ingredients?&nbsp; Why doesn&rsquo;t mine look or taste like theirs?&nbsp; What gives?
+    </p></li>
+</ul>
+
+
+
+<br>
+
+<!--
+<img style='vertical-align:middle; float:left; padding-right:1em;' alt="" src="GraphicWidgets/Kitchen1.png">
+-->
+<img style='float:left; margin-right:1em;' alt="" src="GraphicWidgets/Kitchen1.png">
+<hr class="announce">
+<p class='indent'>Some cookbooks are pretty good, but way too often, they try and
+shoehorn the content into what fits on a page.&nbsp;&nbsp; My
+favorite is the <i>Joy of Cooking</i>.&nbsp;&nbsp;But too often, it
+reminds me of <em>RAMIS</em>.&nbsp;&nbsp;The Frugal Gourmet has
+lots of great ideas, recipes and tips; however, when I am planning
+and cooking, its hard to watch TV.&nbsp;&nbsp;The Galloping
+Gourmet, both past and present versions are fun to
+watch.&nbsp;&nbsp; There are a few websites that will give,
+for free, some of the basic information you need to learn to
+cook.&nbsp;&nbsp; But they are not integrated, the searches are
+often primitive and more often than not, you will do a lot of
+clicking (and spend a lot of time) getting what you are looking
+for.</p>
+
+
+
+<br>
+<p class='indent'>But what I wanted was a decent tool, book, website or class that
+was geared towards the beginning cook.&nbsp;&nbsp;Something that
+imparts the basics, shows you how to actually cook.</p>
+
+<hr class="announce">
+<br>
+<p class='indent'>I&rsquo;m a big fan of books; I think they&rsquo;re
+FANTASTIC.&nbsp;&nbsp;It&rsquo;s great that all that information is
+available on all those websites.&nbsp;&nbsp;It&rsquo;s nice that
+they have all those television shows on cooking.&nbsp;&nbsp;But
+its a lot of information to wade through.&nbsp;&nbsp;Lots of blind
+alleys, too.&nbsp;&nbsp; I am not a big fan of PDF files or the
+other "Electronic Book" formats.&nbsp;&nbsp;I would rather have the
+book.&nbsp;&nbsp;If you are reading it on your computer, there is
+certainly a lot more you can do to make the reader more productive,
+make the presentation more interesting and make looking things up
+<em>A LOT EASIER</em>.&nbsp;&nbsp;In no small part, my motivation
+is to provide more and better content, for less.&nbsp;&nbsp;I knew
+I could do a better job.&nbsp;&nbsp;I hope you agree.&nbsp;&nbsp;
+If you want better vehicles for education, order up a copy of the
+<acronym title="Shameless, I know, but look what I am up against">CD.</acronym></p>
+
+</div>
+<br>
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+
+
+
+
+</body>
+</html>
+

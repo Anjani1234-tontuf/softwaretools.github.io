@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<!-- force latest render in IE -->
+<meta charset="utf-8">
+<TITLE>doodle3</TITLE>
+<!--
+Does not run
+<script type="text/javascript" src="js/doodle-0.1.1.js"></script>
+
+I use doodle so i use doodle.d.js
+u8-unix doodle-0.1.1.js
+ -->
+<script  type="application/javascript" src="js/doodle.d.js"></script>
+</head>
+<!--init() is called when the canvas is ready for us.-->
+<body onload="javascript:init();">
+<script type="application/javascript">
+function init()
+{
+(function(oo) {
+  oo.canvas('#my_canvas');
+  oo.rect({x:25, y:25, width:50, height:50}).draw();
+})(doodle);};
+</script>
+<canvas id="my_canvas" width="600" height="400">
+      <p>Fallback: Canvas element is not supported in this browser!</p>
+    </canvas>
+</body>
+</html>

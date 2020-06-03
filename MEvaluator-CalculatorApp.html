@@ -1,0 +1,610 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Cache-control" content="private">
+  <meta http-equiv="content-language" content="en-US">
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="Math expression evaluation for Small screens">
+  <meta name="keywords" content="Calculator, Math, Expression, History">
+  <link rel="icon" href="GraphicWidgets/formula16x16.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="styleSheet" href="css/GaryDefaultApp.css" type="text/css">
+
+<title>Evaluator - Calculator</title>
+<!--
+# gjManifestVersion Nov 26 2015 version "1.00.28"
+-->
+<style type="text/css">
+
+
+table#theHelp1 , table#theHelp2 , table#theHelp3  {
+margin: 0 auto;
+border-spacing: 0 2px;
+vertical-align:top;
+border-collapse:collapse;
+}
+
+
+td p,th p{
+margin:0 1px .01px 1px;
+font-size:14.0px;
+font-family: "Courier New", Courier,monospace;
+padding: 1px;}
+
+
+#gjcalc table td,
+#gjcalc table td.a,
+#gjcalc table td.b,
+#gjcalc table td.c,
+#gjcalc table td.e,
+#gjcalc table th {
+padding: 4px;}
+
+
+.spacer {
+  background-color: #eeeeff;
+  color: black;
+  height:2px;
+  margin:0;
+  padding:0;
+  line-height:1.0;
+  width:100%;}
+
+.bh1 {
+  background-color: #eeeeff;
+  color: black;
+  padding:1px 1px 1px 1px;
+  width:65%;}
+
+.bh2 {
+  background-color: #eeeeff;
+  color: black;
+  padding:1px 1px 1px 1px;
+  width:35%;}
+
+.spanpbuttonNgrey {
+  font-weight:bold;
+  font-size:10.0px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  border: 2px solid #000;
+  background-color: #D5D5D4;
+  line-height:1.5em;}
+
+body{width:100%;}
+
+.key {width:auto;}
+
+
+</style>
+</head>
+
+<body onload="Startup();">
+
+<div id="container" style="margin: 0 auto;">
+
+<h2 id='goaway'><span class="FL">M</span>ath Expression Evaluator<span id='pmyStatus'></span></h2>
+
+<form name="formMIN" id="formMIN" onsubmit="calc2(formMIN); return false;">
+<table id="gjcalc">
+<tr><td>
+<input type="text" class="gjtext" name="expr" style='width:100%;line-height:1.5em;' value='Hit CE - your Equation here!'>
+</td></tr>
+
+<tr><td class="e" style='text-align:left;'>
+
+<input type="button" id="myEvalit" class="buttonNgrey" value="Evaluate"
+onclick="calc2(this.form);">
+&nbsp;&nbsp;&nbsp;
+<input type="button" id="hSS3" class="buttonNgold" value="Help"
+onclick="gotoHelp();">
+&nbsp;&nbsp;&nbsp;
+<input type="button" id="FN" class="buttonNgrey" value="Fn"
+onclick="spformatOP();">
+</td></tr>
+
+<!--  fix iPhone 4 bug padding-right -->
+<tr><td class="e" style='text-align:left;padding-right:0;'>
+
+<input type="button" id="CF" class="buttonNgrey" value="Convert to Fraction"
+onclick="calcDisplayFracHere(this.form);">
+&nbsp;
+<input type="button" id="RTE" class="buttonNgrey" value="RtE"
+onclick="moveResult(this.form,'myresult');">
+&nbsp;
+<input type="button" id="CLEAR" class="buttonNgrey" value="CE"
+onclick="clearEntry(this.form,'myresult');">
+</td></tr>
+</table>
+
+<p id="myresult" class="myresult" style='display:none;'></p>
+</form>
+
+<a name="myPname" id="myPname"></a>
+
+<form name="keypad" id='keypad' style='margin:0 auto;'>
+<p>&nbsp;</p>
+<table>
+<tr><td>
+<input name="btnseven" type="button" class="buttonNgrey key" value="7" onclick="numpressed(7)">
+</td>
+<td>
+<input name="btneight" type="button" class="buttonNgrey key" value="8" onclick="numpressed(8)">
+</td>
+<td>
+<input name="btnnine" type="button" class="buttonNgrey key" value="9" onclick="numpressed(9)">
+</td>
+<td>
+
+</td>
+<td>
+<input name="btnneg" type="button" class="buttonNgrey key" value="(" onclick="numpressed('(')">
+</td>
+<td>
+<input name="btnpercent" type="button" class="buttonNgrey key" value=")" onclick="numpressed(')')">
+</td>
+</tr>
+
+<tr><td>
+<input name="btnfour" type="button" class="buttonNgrey key" value="4" onclick="numpressed(4)">
+</td>
+<td>
+<input name="btnfive" type="button" class="buttonNgrey key" value="5" onclick="numpressed(5)">
+</td>
+<td>
+<input name="btnsix" type="button" class="buttonNgrey key" value="6" onclick="numpressed(6)">
+</td>
+<td>
+</td>
+<td>
+<input name="btnplus" type="button" class="buttonNgrey key" value="+" onclick="numpressed('+')">
+</td>
+<td>
+<input name="btnminus" type="button" class="buttonNgrey key" value="-" onclick="numpressed('-')">
+</td></tr>
+
+<tr><td>
+<input name="btnone" type="button" class="buttonNgrey key" value="1" onclick="numpressed(1)">
+</td>
+<td>
+<input name="btntwo" type="button" class="buttonNgrey key" value="2" onclick="numpressed(2)">
+</td>
+<td>
+<input name="btnthree" type="button" class="buttonNgrey key" value="3" onclick="numpressed(3)">
+</td>
+<td>
+</td>
+<td>
+<input name="btnmultiply" type="button" title='Multiply' class="buttonNgrey key" value="*" onclick="numpressed('*')">
+</td>
+<td>
+<input name="btndivide" type="button" class="buttonNgrey key" value="/" onclick="numpressed('/')">
+</td></tr>
+
+<tr id='scrollto'><td>
+<input name="btnzero" type="button" class="buttonNgrey key" value="0" onclick="numpressed(0)">
+</td>
+<td>
+<input name="btndecimal" type="button" class="buttonNgrey key" value="." onclick="numpressed('.')">
+</td>
+<td colspan="4">
+<select class="buttonNgrey" name="Mop" id="Mop" size="1" onchange='selpressed();'>
+<option value=" ">Functions</option>
+<option value="%">%</option>
+<option value=",">,</option>
+<option value=" = ">=</option>
+<option value="&amp; ">&amp;</option>
+<option value="^">^</option>
+<option value="|">|</option>
+<option value="?:">?:</option>
+<option value="!">!</option>
+<option value="&lt;">&lt;</option>
+<option value="&le;">&le;</option>
+<option value="&gt;">&gt;</option>
+<option value="&ge;">&ge;</option>
+<option value="~">~</option>
+<option value="Math.abs(">abs(</option>
+<option value="Math.acos(">acos(</option>
+<option value="Math.asin(">asin(</option>
+<option value="Math.atan(">atan(</option>
+<option value="Math.atan2(">atan2(</option>
+<option value="Math.ceil(">ceil(</option>
+<option value="Math.cos(">cos(</option>
+<option value="Math.E">E</option>
+<option value="Math.exp(">exp(</option>
+<option value="Math.floor(">floor(</option>
+<option value="Math.log(">log(</option>
+<option value="Math.max(">max(</option>
+<option value="Math.min(">min(</option>
+<option value="Math.pow(">pow(</option>
+<option value="Math.random()">random()</option>
+<option value="Math.round(">round(</option>
+<option value="Math.sin(">sin(</option>
+<option value="Math.sqrt(">sqrt(</option>
+<option value="Math.tan(">tan(</option>
+<option value="parseInt(">parseInt(</option>
+<option value="DecToOctal(">DecToOct(</option>
+<option value="DecToHex(">DecToHex(</option>
+<option value="DecToBin(">DecToBin(</option>
+</select>
+</td>
+<td>
+<input name="btnclr" type="button" class="buttonNgrey key" value="BS" onclick="deleteone()">
+</td></tr>
+</table>
+<p>&nbsp;</p>
+</form>
+<!--
+<img style='height:16px;width:48px;' src='GraphicWidgets/backspace.png'>
+overflow-x:scroll;overflow-y:scroll;
+-->
+<div id="place" style="margin:0 5px;visibility:hidden; min-height:20%;overflow:auto;">
+<table class="LTB" style="padding-bottom:5px;">
+<tbody>
+</tbody>
+<tr><td id="pplace"></td></tr>
+</table>
+</div>
+
+<div id="myError" style="width:100%;display:none;overflow:auto;">
+<p id="pmyError">  </p>
+<p id="pmyError2">  </p>
+<input type="button" id="myClearMe" class="buttonNgrey" value="Hide and Clear Me"
+onclick="hideError('myError');">
+</div>
+
+
+<!--
+use a special class with border bottom instead of class spacer
+this stuff is not easy to cut and paste
+-->
+
+<div id="hhinfo1" style="display:none; margin:0 5px; z-index:2;">
+
+<p class="td1p">&nbsp;Enter a math expression, hit evaluate!</p>
+<p class="td1p">&nbsp;Your results are shown below.</p>
+<br>
+<p class="italicblue GreyPattern">Examples</p>
+<table id='theHelp1'>
+<tr><td colspan="3" class="a"><p>A 15% tip for a $75 Bill </p></td></tr>
+<tr><td class="a"><p>75 * .15</p></td><td class="c"><p> = </p></td><td class="a"><p>11.25</p></td></tr>
+<tr><td colspan="3" class="spacer"></td></tr>
+
+<tr><td colspan="3" class="a"><p>Sales tax of 4.5% for a $65 item </p></td></tr>
+<tr><td class="a"><p>65 * .045</p></td><td class="c"><p> = </p></td><td class="a"><p>2.92</p></td></tr>
+<tr><td colspan="3" class="spacer"></td></tr>
+
+
+<tr><td class="a"><p>(7 / 2) * 3</p></td><td class="c"><p> = </p></td><td class="a"><p>10.5</p></td></tr>
+<tr><td class="a"><p>12 % 5</p></td><td class="c"><p> = </p></td><td class="a"><p>2</p></td></tr>
+<tr><td class="a"><p>Math.sqrt(16)</p></td><td class="c"><p> = </p></td><td class="a"><p>4</p></td></tr>
+<tr><td class="a"><p>15 &amp; 9</p></td><td class="c"><p> = </p></td><td class="a"><p>9 (1111 &amp; 1001 = 1001)</p></td></tr>
+<tr><td class="a"><p>15 | 9</p></td><td class="c"><p> = </p></td><td class="a"><p>15 (1111 | 1001 = 1111)</p></td></tr>
+<tr><td class="a"><p> 15 ^ 9</p></td><td class="c"><p> = </p></td><td class="a"><p>6 (1111 ^ 1001 = 0110)</p></td></tr>
+<tr><td class="a"><p>status=(20 &gt;= 18) ? "adult":"minor"</p></td><td class="c"><p> = </p></td><td class="a"><p>adult</p></td></tr>
+<tr><td colspan="3" class="a"><p>BMI for weight 195 height 69 inches = 28.8 <br> Math.round((195 * 703) / (69 * 69) * 10) / 10 </p></td></tr>
+</table>
+
+
+<p><span style="background-color:blue;line-height:1.5em; color:white"> Multiply is &nbsp;*&nbsp;</span></p>
+<p>The comma <span class="FL">,</span> is an operator. Numbers are stripped of commas!</p>
+<br>
+<a class="AOne" href="GaryJohnsonDisclaimer.html#Disclaimer1" target="_top">See Disclaimer on Prescision and Accuracy</a><br>
+<br>
+<p>The <span class="spanpbuttonNgrey">Fn</span> button adds commas to the output</p>
+<p>The <span class="spanpbuttonNgrey">RtE</span> button to move the results to input</p>
+<p><span class="spanpbuttonNgrey">Convert to Fractions</span> turns decimals into fractions</p>
+<p><span class="spanpbuttonNgrey">CE</span> clears the current entry</p>
+<p><span class="spanpbuttonNgrey">BS</span> deletes the left most character</p>
+
+<br>
+<p class="italicblue GreyPattern">Functions</p>
+<table id='theHelp2'>
+<tr><td class="a"><p>Math.abs(x)</p></td><td class="c"><p>absolute value</p></td></tr>
+<tr><td class="b"><p>Math.acos(x)</p></td><td class="c"><p>arccosine (in radians)</p></td></tr>
+<tr><td class="a"><p>Math.asin(x)</p></td><td class="c"><p>arcsine (in radians)</p></td></tr>
+<tr><td class="b"><p>Math.atan(x)</p></td><td class="c"><p>arctangent (in radians)</p></td></tr>
+<tr><td class="a"><p>Math.atan2(x,y)</p></td><td class="c"><p>arctangent of the quotient of its arguments.</p></td></tr>
+<tr><td class="b"><p>Math.ceil(x)</p></td><td class="c"><p>Rounds up (Math.ceil(-9.01) = -9.0 :  counts up - towards zero).</p></td></tr>
+<tr><td class="a"><p>Math.cos(x)</p></td><td class="c"><p>cosine</p></td></tr>
+<tr><td class="b"><p>Math.E </p></td><td class="c"><p>Returns Euler's constant - the base of the natural logarithms.</p></td></tr>
+<tr><td class="a"><p>Math.exp(x)</p></td><td class="c"><p>Calculates e (the base of natural logarithms) raised to a power.</p></td></tr>
+<tr><td class="b"><p>Math.floor(x)</p></td><td class="c"><p>Rounds down (Math.floor(-9.01) = -10.0 : counts down - away from zero).</p></td></tr>
+<tr><td class="a"><p>Math.log(x)</p></td><td class="c"><p>natural logarithm (base E)</p></td></tr>
+<tr><td class="b"><p>Math.max(x,y)</p></td><td class="c"><p>greater of two numbers.</p></td></tr>
+<tr><td class="a"><p>Math.min(x,y)</p></td><td class="c"><p>lesser of two numbers.</p></td></tr>
+<tr><td class="b"><p>Math.pow(base,ep)</p></td><td class="c"><p>Calculates base to the ep (exponent power).</p></td></tr>
+<tr><td class="a"><p>Math.random()</p></td><td class="c"><p>Calculates a pseudo-random number between 0 and 1.</p></td></tr>
+<tr><td class="b"><p>Math.round(x)</p></td><td class="c"><p>Rounds up if the decimal is greater than or equal to .5, else it will round down.</p></td></tr>
+<tr><td class="a"><p>Math.sin(x)</p></td><td class="c"><p>sine</p></td></tr>
+<tr><td class="b"><p>Math.sqrt(x)</p></td><td class="c"><p>square root</p></td></tr>
+<tr><td class="a"><p>Math.tan(x)</p></td><td class="c"><p>tangent</p></td></tr>
+<tr><td class="b"><p>parseInt(string,[radix])</p></td><td class="c"><p>attempts to return integer of the specified base.</p></td></tr>
+<tr><td class="a"><p>For Hex To Dec </p></td><td class="c"><p>parseInt("E", 16) { parseInt("0xE", 16) } = 14</p></td></tr>
+<tr><td class="b"><p>For Octal To Dec</p></td><td class="c"><p>parseInt("16", 8) { parseInt("016", 8)  } = 14 </p></td></tr>
+<tr><td class="a"><p>DecToOctal</p></td><td class="c"><p>DecToOctal(224) = 0340</p></td></tr>
+<tr><td class="b"><p>DecToHex  </p></td><td class="c"><p>DecToHex(224) = 0xE0</p></td></tr>
+<tr><td class="a"><p>DecToBin  </p></td><td class="c"><p>DecToBin(8) = 100</p></td></tr>
+<tr><td class="b"><p>&nbsp;</p></td><td class="c"><p>&nbsp; </p></td></tr>
+</table>
+<p class="italicblue GreyPattern">Operators</p>
+
+<table id='theHelp3'>
+<tr>
+<td class="a"><p>addition/subtraction</p></td>
+<td class="b"><p> + - </p></td></tr>
+<tr>
+<td class="a"><p>multiply/divide/modulus</p></td>
+<td class="b"><p> * / %</p></td></tr>
+<tr><td class="a" colspan="2"><p>% modulus - Returns the integer remainder of dividing the two operands</p></td></tr>
+
+<tr>
+<td class="a"><p>comma</p></td>
+<td class="b"><p> ,</p></td></tr>
+<tr>
+<td class="a"><p>assignment</p></td>
+<td class="b"><p>= += -= *= /= %= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |=</p></td></tr>
+<!-- <td class="b"><p> = += -= *= /= %= <<= >>= >>>= &= ^= |=</p></td></tr> -->
+<tr>
+<td class="a"><p>conditional</p></td>
+<td class="b"><p> ?:</p></td></tr>
+<tr>
+<td class="a"><p>logical-or</p></td>
+<td class="b"><p> ||</p></td></tr>
+<tr>
+<td class="a"><p>logical-and</p></td>
+<!-- <td class="b"><p> &&</p></td></tr> -->
+<td class="b"><p> &amp;&amp;</p></td></tr>
+<tr>
+<td class="a"><p>bitwise-or</p></td>
+<td class="b"><p> |</p></td></tr>
+<tr>
+<td class="a"><p>bitwise-xor</p></td>
+<td class="b"><p> ^</p></td></tr>
+<tr>
+<td class="a"><p>bitwise-and</p></td>
+<!-- <td class="b"><p> &</p></td></tr> -->
+<td class="b"><p> &amp;</p></td></tr>
+<tr>
+<td class="a"><p>equality</p></td>
+<td class="b"><p> == !=</p></td></tr>
+<tr>
+<td class="a"><p>relational</p></td>
+<!-- <td class="b"><p> < <= > >=</p></td></tr> -->
+<td class="b"><p> &lt; &lt;= &gt; &gt;=</p></td></tr>
+<tr>
+
+<td class="a"><p>bitwise shift</p></td>
+<!-- <td class="b"><p> << >> >>></p></td></tr> -->
+<td class="b"><p>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</p></td></tr>
+<tr>
+<td class="a"><p>negation/increment</p></td>
+<td class="b"><p> ! ~ - + ++ -- typeof void delete</p></td></tr>
+</table>
+
+<p>
+Cutting and pasting equations can fail due to character code incompatibilities
+If you think the equation is correct, often times typing over the operator characters,
+especially what looks like a minus sign can solve your problem.
+<br><br>
+Examples:<br>
+&#8722; 	Minus Sign<br>
+&ndash; 	en dash<br>
+&mdash; 	em dash<br>
+<br>
+<a class="AOne" href="http://www.mathopenref.com">Math Open Reference</a><br>
+<a class="AOne" href="http://dlmf.nist.gov/">Digital Library of Mathematical Functions</a><br>
+<a class="AOne" href="http://tycho.usno.navy.mil/what.html">Universal Time</a><br>
+<a class="AOne" href="http://en.wikipedia.org/wiki/Algebra">Algebra</a><br>
+<a class="AOne" href="http://joshua.smcvt.edu/linearalgebra">Linear Alegrbra</a><br>
+<a class="AOne" href="http://www.blc.edu/fac/rbuelow/common/glossarya-m.htm">Math Glossary</a><br>
+<a class="AOne" href="http://www.geom.uiuc.edu/">Geometry Center</a><br>
+<a class="AOne" href="http://en.wikipedia.org/wiki/Trigonometry">Trigonometry</a><br>
+<a class="AOne" href="http://www-stat.stanford.edu/~susan/surprise/">Probability by Suprise</a><br>
+<a class="AOne" href="http://www.falstad.com/mathphysics.html">Math and Physics Applets</a><br>
+<a class="AOne" href="http://people.usd.edu/~bwjames/tut/excel/">Excel Tutorial</a><br>
+<a class="AOne" href="http://en.wikipedia.org/wiki/Orders_of_magnitude_(data)">Orders of Magnitude</a><br>
+<a class="AOne" href="http://wiki.mcs.anl.gov/NEOS/index.php/NEOS_Wiki">Numerical Optimization</a><br>
+<br>
+</p>
+<p>
+<small>
+<a class="ATwo" href="Copyright.html" target="_top">Copyright &copy; 2000-20013 Gary Johnson</a>
+<br><a class="ATwo" href="http://www.iconarchive.com/show/tulliana-2-icons-by-umut-pulat.html" target="_top">Icon(s) by Umut Pulat</a></small></p>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<!--
+// Hexdump.js 0.1.1
+// (c) 2011 Dustin Willis Webber
+// Hexdump is freely distributable under the MIT license.
+// For all details and documentation:
+// http://github.com/mephux/hexdump.js
+-->
+<script type="text/javascript" src="js/hexdump.min.js"></script>
+<script type="text/javascript">
+
+var FKeyPad = document.formMIN.expr;
+
+function eloff(e)
+{
+  appendInnerHTML("pmyStatus", " Offline" + "<BR>");
+}
+function elon(e)
+{
+  appendInnerHTML("pmyStatus"," Online" + "<BR>");
+}
+
+window.addEventListener("offline", function(e) {eloff(e)});
+window.addEventListener("online", function(e) {elon(e)});
+
+
+function Startup()
+{
+  //updateMozilla();
+  //setTimeout('EnableClick()', 2000); // let the browser have some time to do the asynch call
+  //dumpMozInstall();
+  //dumphtml5Cache();
+}
+
+
+function gotoHelp() {
+    var el = document.getElementById('scrollto');
+    el.scrollIntoView(true);
+    toggleDIVDisplay('hhinfo1','hSS3','Help' )
+}
+
+
+function calcDisplayFracHere(form) {
+  try
+    {
+      if(checkit(form)) {
+        var temp = eval(form.expr.value);
+        var mynresult = frmtNumberFractionHere(temp, 3);
+      } else {
+        return;
+      }
+    }
+    catch (error)
+    {
+      checkError(form);
+      return;
+    }
+   form.expr.value = mynresult;
+}
+
+function frmtNumberFractionHere(expression,NumDigitsAfterDecimal) {
+  try
+  {
+    // see orginal frmtNumberFraction
+    var strNum = new String(expression);
+    var re = ".";
+    var intDec = strNum.indexOf(re);
+    var whole = strNum.substring(0, intDec);
+    if (whole == '0') {whole = "";}
+    var frac =  strNum.substring((intDec + 1), (intDec + 5));
+
+
+    if(intDec > 0) {
+      intDec = (parseInt(intDec)+(NumDigitsAfterDecimal+1));
+      strNum = strNum.substr(0,intDec);
+      var fracln  =   Math.pow(10,frac.length);
+      var temp = (frac / fracln) *16;
+
+      strNum += " (" + whole + " " + temp + "/16)";
+
+      return strNum;
+    } else {
+      return strNum;
+    }
+  }
+  catch (error)
+  {
+    gjonerror( error, " frmtNumberFractionHere ");
+  }
+return 0;
+}
+
+function moveResult(form, idin)
+{
+
+    try
+    {
+    form.expr.value = returnInnerHTML(idin);
+    }
+    catch (error)
+    {
+    gjonerror( error, "Calculator - moveResult Error ");
+    }
+}
+
+function clearEntry(form, idin) {
+
+    try  {
+      form.expr.value = "";
+      document.keypad.Mop.selectedIndex=0;
+    } catch (error) {
+    gjonerror( error, "Calculator - clearEntry Error ");
+    }
+}
+
+
+function calc2(form)
+{
+  try
+    {
+      if(checkit(form))       {
+        var mynresult = eval(Trim(form.expr.value));
+      } else {
+        return;
+      }
+    }
+    catch (error)
+    {
+      checkError(form, error);
+      return;
+  }
+
+    setDisplayH('goaway');
+    changeInnerHTML('myresult',mynresult);
+
+    //window.moveTo(0,300);  scrollTo
+    //location.hash = "#" + hash;
+    //var el = document.getElementById('scrollto');
+    //el.scrollIntoView(true);
+
+    setVisible('place');
+    appendInnerHTML('pplace', form.expr.value + "<span class='DividerDot'> = </span>" + mynresult + "<br>");
+
+}
+
+function numpressed (Num) {
+  FKeyPad.value += Num;
+}
+
+/* a work in progress */
+function selpressed() {
+  if(document.keypad.Mop.selectedIndex == 0) {
+  return;
+  }
+
+  FKeyPad.value += document.keypad.Mop.options[document.keypad.Mop.selectedIndex].value;
+}
+
+function deleteone() {
+//knock of the last char in  FKeyPad.value
+
+var len = FKeyPad.value.length;
+FKeyPad.value = FKeyPad.value.substring(0,len - 1);
+}
+
+function spformatOP() {
+  var tape = document.getElementById('pplace').innerHTML;
+
+  var re4 = /([\d\.]+)/;
+  var newExpr = new String(tape);
+  var opStr = "";
+  RegExp.lastIndex=0;
+  var a;
+  while(a=re4.exec(newExpr))  //a is null if no match
+  {
+    newExpr = RegExp.rightContext;
+    opStr = opStr + RegExp.leftContext + addCommas(RegExp.lastMatch);
+  }
+
+  changeInnerHTML('pplace', opStr+newExpr);
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<!-- force latest render in IE -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="Author" content="Gary G. Johnson">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Monitor Display and Printer Color Correctness for Primary Colors">
+<meta name="KeyWords" content="WYSIWYG, ink levels,printer diagnotstic,save ink">
+
+<style type="text/css">
+@media screen,print {
+
+#block_land{
+position:absolute;
+top:0;
+left:0;
+text-align:center;
+background:white;
+width:100%;
+height:100%;
+display:none;}
+
+body {
+margin:0 auto;
+width:100%;
+max-width:1000px;
+-webkit-print-color-adjust:exact;}
+
+.s {height:10px;}
+
+.s2 {
+height:10px;
+color:white;}
+
+.borderBlack {border:1px solid #000000;}
+.borderCyan {border:1px solid #00FFFF;}
+.borderMagenta {border:1px solid #FF00FF;}
+.borderYellow {border:1px solid #FFFF00;}
+.borderNone {border:0;}
+
+.sizeDiv {
+margin-top:0;
+margin-bottom:0;
+margin-right:1px;
+margin-left:1px;
+padding-top:0;
+padding-bottom:0;
+padding-right:0;
+padding-left:0;
+width:4px;
+height:720px;
+font-size:1pt;
+float:left;
+position:relative;
+z-index:1;}
+
+.sizeDiv2 {
+margin-top:0;
+margin-bottom:0;
+margin-right:1px;
+margin-left:1px;
+padding-top:0;
+padding-bottom:0;
+padding-right:0;
+padding-left:0;
+width:4px;
+height:720px;
+font-size:1pt;
+float:right;
+position:relative;
+z-index:1;}
+
+.sizeDiv3 {
+margin-top:0;
+margin-bottom:0;
+margin-right:0;
+margin-left:0;
+padding-top:0;
+padding-bottom:0;
+padding-right:0;
+padding-left:0;
+width:100%;
+height:5px;
+font-size:1pt;
+float:right;
+position:relative;
+z-index:1;}
+
+.ffmycenter {
+position:absolute;
+margin:auto;
+left:0;
+right:0;
+top:0;
+bottom:0;}
+
+.myFixedSmall {
+margin-top:0in;
+font-family:"Courier New",Courier,monospace;
+font-weight:bold;
+font-size:10px;
+font-variant:normal;}
+
+em {
+font-variant:small-caps;
+font-weight:bold;}
+
+.tb{
+border-spacing:10px;
+width:100%;
+max-width:1000px;}
+
+
+} /* end */
+
+
+/* smartphones */
+@media only screen and (max-width:768px) {
+.container {width:100%; padding:0 10px;}
+.noMobile {display:none;}
+
+.sizeDiv {
+display:none;}
+
+.sizeDiv2 {
+display:none;}
+
+p {
+white-space:normal;
+margin:0 auto;
+hyphens:auto}
+
+.myFixedSmall {
+margin-top:0in;
+font-family:"Courier New",Courier,monospace;
+font-weight:bold;
+font-size:8px;
+font-variant:normal;
+white-space:normal;
+hyphens:auto}
+
+.tb{
+border-spacing:2px;
+max-width:100%;
+border-collapse:collapse;}
+
+
+} /* end */
+
+
+</style>
+
+<title>16 Colors Printer Test</title>
+<body onload="testOrientation();">
+<div id="block_land">Turn your device to landscape mode.</div>
+<table class="tb">
+<tr><td colspan="8" style="text-align:center">The WYSIWYG chart for checking ink levels and print quality without wasting ink -- the 16 primary HTML-named colors in HEX, RGB, HSL and CMY!</td></tr>
+
+<tr>
+<td class="s"  style="background-color:#00ffff"><b>C </b>yan *</td>
+<td class="s2" style="background-color:#000000">black </td>
+<td class="s2" style="background-color:#0000ff"><em>b </em>lue ~</td>
+<td class="s" style="background-color:#ff00ff"><b>M </b>agenta *</td>
+<td class="s2" style="background-color:#808080">gray</td>
+<td class="s3" style="background-color:#008000">green</td>
+<td class="s" style="background-color:#00ff00"><em>*l </em>ime ~</td>
+<td class="s2" style="background-color:#800000">maroon</td>
+</tr>
+<tr>
+<td class="s"><p class='myFixedSmall'>#00FFFF<br>rgb(0,255,255)<br>hsl(180,100%,50%)<br>cmy(100,0,0)</p></td>
+<td class="s"><p class='myFixedSmall'>#000000<br>rgb(0,0,0)<br>hsl(0,0%,0%)<br>cmy(100,100,100)</p></td>
+<td class="s"><p class='myFixedSmall'>#0000FF<br>rgb(0,0,255)<br>hsl(240,100%,50%)<br>cmy(100,100,0)</p></td>
+<td class="s"><p class='myFixedSmall'>#FF00FF<br>rgb(255,0,255)<br>hsl(300,100%,50%)<br>cmy(0,100,0)</p></td>
+<td class="s"><p class='myFixedSmall'>#808080<br>rgb(128,128,128)<br>hsl(0,0%,50%)<br>cmy(50,50,50)</p></td>
+<td class="s"><p class='myFixedSmall'>#008000<br>rgb(0,128,0)<br>hsl(120,100%,25%)<br>cmy(100,50,50)</p></td>
+<td class="s"><p class='myFixedSmall'>#00FF00<br>rgb(0,255,0)<br>hsl(120,100%,50%)<br>cmy(100,0,100)</p></td>
+<td class="s"><p class='myFixedSmall'>#800000<br>rgb(128,0,0)<br>hsl(0,100%,25%)<br>cmy(50,100,100)</p></td>
+</tr>
+
+<tr>
+<td colspan="8" class="s2"></td>
+</tr>
+
+
+<tr>
+<td class="s2" style="background-color:#000080">navy</td>
+<td class="s2" style="background-color:#808000">olive</td>
+<td class="s2" style="background-color:#800080">purple</td>
+<td class="s" style="background-color:#ff0000"><em>r </em>ed ~</td>
+<td class="s" style="background-color:#c0c0c0">silver</td>
+<td class="s2" style="background-color:#008080">teal</td>
+<td class="s" style="background-color:#ffffff">white</td>
+<td class="s" style="background-color:#ffff00"><b>Y </b>ellow *</td>
+</tr>
+
+
+<tr>
+<td class="s"><p class='myFixedSmall'>#000080<br>rgb(0,0,128)<br>hsl(240,100%,25%)<br>cmy(100,100,50)</p></td>
+<td class="s"><p class='myFixedSmall'>#808000<br>rgb(128,128,0)<br>hsl(60,100%,25%)<br>cmy(50,50,100)</p></td>
+<td class="s"><p class='myFixedSmall'>#800080<br>rgb(128,0,128)<br>hsl(300,100%,25%)<br>cmy(50,100,50)</p></td>
+<td class="s"><p class='myFixedSmall'>#FF0000<br>rgb(255,0,0)<br>hsl(0,100%,50%)<br>cmy(0,100,100)</p></td>
+<td class="s"><p class='myFixedSmall'>#C0C0C0<br>rgb(192,192,192)<br>hsl(0,0%,75%)<br>cmy(25,25,25)</p></td>
+<td class="s"><p class='myFixedSmall'>#008080<br>rgb(0,128,128)<br>hsl(180,100%,25%)<br>cmy(100,50,50)</p></td>
+<td class="s"><p class='myFixedSmall'>#FFFFFF<br>rgb(255,255,255)<br>hsl(0,0%,100%)<br>cmy(0,0,0)</p></td>
+<td class="s"><p class='myFixedSmall'>#FFFF00<br>rgb(255,255,0)<br>hsl(60,100%,50%)<br>cmy(0,0,100)</p></td>
+</tr>
+
+</table>
+
+<div style="margin-right:10px; margin-left:10px;">
+<p style="text-align:center;font-size:12pt; font-family:'Courier New',Courier,monospace;">abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>Monospace</p>
+
+<p style="text-align:center;">
+Adjust your monitor for color correctness and print this page and see if your colors match!<br>
+
+<b>CMY * </b> colors are Cyan, Magenta and Yellow and are the inks mixed by printers to create all the other colors.<br>
+<em>rgb ~ </em> colors are Red, Green and Blue and are colors mixed by computer displays to create all the other colors.
+<br>{The named color lime represented by #00ff000 is the green in RGB}
+<br><b>Firefox</b> : Print in Portrait, Shrink to Fit, Print Background Colors.
+<br><b>IE</b> : Print in Portrait, Enable Shrink to Fit, Print Background Colors, Page Preview , 60&#37;
+<br><b>Chrome</b> : Save and Print the pdf with the <b>Page Sizing set to Fit</b>
+<br><b>Safari</b> : I have not found out how to make this work in Safari<br>
+<!--  webkit browsers have problems with printing background colors -->
+<a class="noMobile" href="ColorChart16Named.html">Version with larger Color Blocks</a> <br>
+<input class="closeit noMobile" id="close02" value="Hide &darr;" onclick="toggleDisplayButton('CMKLINES','close02' );" type="button"><br>
+
+</p>
+</div>
+
+<div id="CMKLINES" class="buttondiv noMobile" style="margin-right:10px; margin-left:10px; position: relative; z-index: 1;">
+
+<div class="borderBlack sizeDiv"></div>
+<div class="borderCyan sizeDiv"></div>
+<div class="borderMagenta sizeDiv"></div>
+<div class="borderYellow sizeDiv"></div>
+
+<div class="borderNone sizeDiv" style="width:20%"></div>
+
+<div class="borderBlack sizeDiv"></div>
+<div class="borderCyan sizeDiv"></div>
+<div class="borderMagenta sizeDiv"></div>
+<div class="borderYellow sizeDiv"></div>
+
+
+<div class="borderBlack sizeDiv2"></div>
+<div class="borderCyan sizeDiv2"></div>
+<div class="borderMagenta sizeDiv2"></div>
+<div class="borderYellow sizeDiv2"></div>
+
+<div class="borderNone sizeDiv2" style="width:20%"></div>
+
+<div class="borderBlack sizeDiv2"></div>
+<div class="borderCyan sizeDiv2"></div>
+<div class="borderMagenta sizeDiv2"></div>
+<div class="borderYellow sizeDiv2"></div>
+
+<table class="noMobile" style="margin-left:auto; margin-right:auto;">
+<tr>
+<td class="s" style="background-color:#00ffff">
+</td>
+<td class="s2" style="background-color:#000000">
+</td>
+<td class="s" style="background-color:#ff00ff">
+</td>
+<td class="s" style="background-color:#ffff00">
+</td>
+<td style="width:10em;"><pre>     </pre></td>
+<td class="s"  style="background-color:#00ffff">
+</td>
+<td class="s2" style="background-color:#000000">
+</td>
+<td class="s" style="background-color:#ff00ff">
+</td>
+<td class="s" style="background-color:#ffff00">
+</td>
+<td style="width:10em;"><pre>     </pre></td>
+<td class="s"  style="background-color:#00ffff">
+</td>
+<td class="s2" style="background-color:#000000">
+</td>
+<td class="s" style="background-color:#ff00ff">
+</td>
+<td class="s" style="background-color:#ffff00">
+</td>
+</tr>
+</table>
+
+<div class="borderBlack sizeDiv3"></div>
+<div class="borderCyan sizeDiv3"></div>
+<div class="borderMagenta sizeDiv3"></div>
+<div class="borderYellow sizeDiv3"></div>
+
+</div>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+
+<script type="text/javascript" src="js/gjtrack.js"></script>
+
+<script type="text/javascript">
+
+window.addEventListener("orientationchange", testOrientation);
+
+//screen.onorientationchange=testOrientation;
+
+function testOrientation() {
+  document.getElementById('block_land').style.display = (screen.width>screen.height) ? 'none' : 'block';
+}
+
+function toggleDisplayButton(idin,buttonid)
+{
+  try
+  {
+    var aDiv = document.getElementById(idin);
+
+    if(aDiv.style.display == 'none')
+    {
+      aDiv.style.display = 'block';
+      document.getElementById(buttonid).value="Hide";
+    }
+    else
+    {
+      aDiv.style.display = 'none';
+      document.getElementById(buttonid).value="Show";
+    }
+  }
+  catch (error)
+  {
+
+  }
+}
+</script>
+</body>
+</html>
+
+<!--  magenta same as fuchsia aqua same as cyan -->
+

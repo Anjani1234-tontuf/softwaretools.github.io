@@ -1,0 +1,105 @@
+
+<!--
+Content Notes
+
+added ascii table
+add convert to charset
+
+http://www.math.com for formulas
+
+Jogging and walking MPH
+
+(60 / min) * miles = mph
+(60 / 40) * 6.9 = 10.350
+
+
+
+-->
+<!--
+Technical Notes
+
+do something to disable the copy or selecting of hidden divs on printer friendly tape
+
+take last 4 postions to the right of the decimal
+divide by 1000
+&#247;  obelus (pl. "obeli") a line with dots above and below, - division operation
+multiply by 16
+
+code for this type of thing in frmtNumberFraction
+
+The move functions depend on the following HTML attributes
+
+  Put the DIV to be moved at the bottom or top (around 500)
+
+    reguired : start visibility:hidden, position absolute, top set left set
+
+  inline style
+
+removed IE not liking some netscape specfic extenions, these are
+not need here
+<script type="text/javascript" src="js/gj53runSearchHTML.min.js"></script>
+<script type="text/javascript" src="js/gjqt.min.js"></script>
+
+add options
+
+1) degrees precision radio button 1,2,3,4
+2) show nearest 1/8 -(especially good for metric to english
+3) turn off fractions
+
+
+enter and tab work in mozilla for this
+<input type="text" size = 50 id="inputida" value="" onchange="StoreUserName(this.value);">
+
+need the research on IE on how to do it
+style='width:80%;margin-right:10%;margin-left:10%;'
+
+
+-->
+<!--
+Changelog
+ Mar 31 2006
+ remove dyndom as background - it was screwing up font color in black
+ Jul 26 2007
+ added global variables c, c1 ... for dom html elements
+
+ removed maxlength
+ <input type="text" class="text" name=expr maxlength=50 style='width:100%;'>
+
+
+-->
+
+<
+
+
+<!--
+Having a problem with IE, it you run twice in a row this is a problem
+
+divgetit.getit.inputida.value is null or not an object
+
+
+Note removing onblur seems to make the problem go away
+since I am making the element go away, the onblur can't execute
+
+test matrix are the exmaples
+
+(7 / 2) * 3
+
+12 % 5
+
+Math.sqrt(16)
+
+15 & 9
+
+15 | 9
+
+15 ^ 9
+
+status=(20 >= 18) ? "adult":"minor"
+
+BMI for weight 195 height 69 inches
+Math.round((195 * 703) / (69 * 69) * 10) / 10
+
+
+
+
+-->

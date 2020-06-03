@@ -1,0 +1,371 @@
+
+Fix scroll bar on McalcMenuSmall -
+If src (eval, convertter, date conversion) gjiFrame overflow, what
+
+
+.gjInline
+{
+  border-style : none;
+  width:100%;
+  margin:0;
+  padding:0;
+  height:3000px;
+  overflow:auto;
+  overflow-x:scroll;
+  overflow-y:scroll;
+}
+
+
+.gjInline2
+{
+  border-style : none;
+  width:100%;
+  margin:0;
+  padding:0;
+  height:3000px;
+  overflow:hidden;
+}
+
+
+
+<iframe id="gjFrame" class ="gjInline" src="MEvaluator-CalculatorApp.html"></iframe>
+
+
+function toggleHighLight(myEvent, myId)
+{
+  try
+  {
+    var myClass = document.getElementById(myId).className;
+
+    var temp = myClass.substr(7, 10);
+
+    if(myEvent == "m")
+    {
+      document.getElementById(myId).className = 'buttonH' + temp;
+    }
+    else if(myEvent == "o")
+    {
+      document.getElementById(myId).className = 'buttonN' + temp;
+    }
+
+
+============
+Description of App
+
+
+Conversion
+Recipe & Cooking Measurements: teaspoons, Tablespoons, cups, pints quarts, gallons, liters, milliliters
+Weights: ounces, pounds to grams and kilos
+Lengths: Metric and English: inches, feet, yards, meters, centimeters and millimeters
+Feet and Inches: to Metric
+Microwave :Ounces to tenths convert cooking times for different wattage
+Celsius to Fahrenheit
+
+Date: Days between Days, number of days from a date
+
+Formula + Equation Evaluator Calculator
+If you do a lot of calculations, you probably keep a spreadsheet open. In my case, I rarely use spreadsheets, so every time I want to test a formula or do some calculations, it takes me 10 minutes to figure out how to do something. The calculators provided by your OS are great for precise operations on long numbers; however, they don't easily show you what you have worked on. So I did this little webpage. It lets you put in mathematical equations. It keeps track of what you enter. If you're doing woodworking, it can take your decimal calculations and return a whole number and a fraction for easy measuring.
+
+
+Precision and Accuracy
+This application uses the Javascript Eval function and floating-point artihmetic.  Calculations done with this application will have floating point calculation errors.
+
+For a more detailed understanding search for &quot; what every scientist should Know about floating-point artihmetic&quot;
+or somthing like precision and accuracy in Excel&reg.
+
+The short story is humans are decimal and our world is infinite while computers are binary and most computer applications squeeze thier numbers into a 32, 64 or 128 bit word.
+
+Example Good: 1,999,888,777,666 * .00175 equals 3,499,805,360.9155
+
+Example Not so Good: Numbers like 0.1, 1.3, and most other decimal fractions do not have exact representations as a binary floating-point numbers.
+If we add 1 + 0.1 + 0.1 + 0.1 it equals 1.3
+Paste it into the Equation box and you will see somthing like  1.3000000000000003
+which is extremely close to 1.3 but not exact.  In practice, most of the time we just ignore the .0000000000000003
+difference.  I usually work to a precsion of 1/16 (0.0625) an inch or 1.905 centimeters.  If hundreths of an inch or milimters concern you, find another calculator.
+
+===============
+The date calculator started out as a Julian date calculator for an IBM mainframe database company I once worked for.  Then I added some things to help me mange when to refill prescription medications.  I once worked for the Lotus Organizer( personal calendar) and the vendor of CaLANdar (group scheduling) and neither of these products had what I wanted, so I built this.  The evaluator is the JavaScript Eval function with a few restrictions and interpretations.  Some people built calculators with Eval.  Other folks built some pretty interesting applications.  The evaluator exposes the powerful built in calculation capabilities of JavaScript and Eval.  The conversion calculators were built for a Learn to Cook CBT program that I have abandoned.
+===============
+I am interested in expanding the date calculation capabilities.  For example, when I broke my collarbone, I added a 10 week from date calculator.  My therapist started me on different exercises depending on the number of weeks from my surgery date.    Let me know if you an idea for this app.
+==============
+
+
+How to correct rounding errors in floating-point arithmetic
+
+Hexdump.js 0.1.1 (c) 2011 Dustin Willis Webber
+Hexdump is freely distributable under the MIT license.
+http://github.com/mephux/hexdump.js
+https://github.com/mephux/hexdump.js/blob/master/LICENSE  - the MIT license
+
+"C:\ma\Personal\XXSoftwareTools\images\formula16x16.png"
+Yes the code is crap.  Some of this stuff was started in 1997 and I have just added to it, if it worked, I kept it.
+Maybe one of these days I will clean it up.  Also, I am legally blind in my left eye.
+
+for replace in files use this
+MEvaluator-CalculatorApp.appcache;MEvaluator-CalculatorApp.html;MEvaluator-CalculatorApp.webapp
+Roll version numbers in .webapp, appcache and html (dumphtml5Cache)
+
+===========
+Hello Gary,
+
+Yes you are right, that is an icon from Tulliana 2.0 icon set which is designed by me...
+Feel free to use it in any non-commercial project for the whole icon set is in under General Public License...
+http://www.iconarchive.com/show/tulliana-2-icons-by-umut-pulat.html
+umutpulat@gmail.com
+
+
+is there  an alternate way of specifying manifest so I can program around it
+
+var elem = document.getElementById("myGame");
+if (elem.requestFullScreen) {
+    elem.requestFullScreen();
+} else if (elem.mozRequestFullScreen) {
+    elem.mozRequestFullScreen();
+} else if (elem.webkitRequestFullScreen) {
+    elem.webkitRequestFullScreen();
+}
+http://www.alistapart.com/articles/responsive-web-design/
+
+Droid X 	4.3" 	854×480 	228  PPI
+iPhone			960X640		326  ppi
+
+The startup screen needs to be 320px x 460px and should also be in PNG or JPG fo
+
+Iphone you have a strip at the bottom and top for phone controls
+A quick note when designing your application: When you are in app mode, you have a screen size of 320px x 460px. When you are in web mode, it has a screen size of 320px x 356px. This can affect the user interface of your offline HTML5 app.
+
+http://stackoverflow.com/questions/5027906/apache-how-to-enable-browser-cache-for-test-json-that-has-rewrite-is-generated
+
+add to an htacess file
+
+Delete old .htaccess - don't overwrite.
+Upload new .htaccess in ascii mode and chmod 777
+
+AddType text/cache-manifest .appcache  for FF and others
+AddType text/cache-manifest .manifest  for apple
+
+Browser bug: Firefox caches the manifest file itself and will not update it even if the manifest has changed on the server. With some server config wizardry, you can tell browsers that the cache of the manifest file is instantly invalidated and should be requested from the server every time it’s referenced. Add this to your .htaccess to put Firefox in its place:
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/cache-manifest "access plus 0 seconds"
+</IfModule>
+
+IRC channel: #openwebapps on irc.mozilla.org
+
+drop down menu as button to for Timers to go to any page
+
+How do I remove a single website from my history?
+History menu -Show All History - Search for the website you want to remove
+in the search results, right-click on the site you want to remove, and select Forget About This Site.
+All browsing,download history, cookies, cache, active logins, passwords, saved form data, exceptions for cookies, images, pop-ups
+
+
+html5 cache for Firefox
+https://developer.mozilla.org/En/Offline_resources_in_Firefox
+C:\Users\US\AppData\Local\Mozilla\Firefox\Profiles\y8uyfo0k.default\OfflineCache
+C:\Users\US\AppData\Local\Mozilla\Firefox\Profiles\<salt>.<profile name>\OfflineCache
+
+CACHE MANIFEST #required
+
+CACHE: #optional, files to be cached for offline usage
+/images/foo.png
+/js/bar.js
+/css/baz.css
+
+NETWORK: #optional, files that should not be cached; references to these files will bypass the cache
+/foo/bar.html
+
+FALLBACK: #optional, files to be used in place of ‘online’ files when the web application is offline; online and offline fallback should be on the same line
+/foo.php /offline.html
+
+
+It works the same on your app-phone - on iPhone or Android (or others maybe), load the site,
+switch to airport mode, go back to the browser and reload ...
+the site's still there. Where it gets really fun is making it into a regular app:
+
+On iPhone, bookmark the site with the Safari "+" button, choose "Add to Home Screen",
+and the app will be sitting alongside all your other apps on the home screen.
+On Android, bookmark the app in the browser.
+Hold your finger down somewhere empty on the home screen, choose add "Shortcuts" | "Bookmark", and choose the bookmark you've made.
+
+Practical Tips and Troubleshooting
+Purging the Cache
+
+In practical terms, you are quickly going to come up the no. 1 problem of developing against a cache.
+How do you purge it whenever you update your code?
+
+
+>>> localStorage.clear()
+>>> localStorage.setItem('foo', 'bar')
+>>> localStorage.getItem('foo')
+"bar"
+>>> localStorage.key(0)
+"foo"
+>>> localStorage.removeItem('foo')
+>>> localStorage.length
+0
+
+/*   commas in the strings examples
+
+http://en.wikipedia.org/wiki/Comma_operator
+http://regexlib.com
+
+var x, y, z
+x = (y=1, z=4);
+x; //4
+y; //1
+z; //4
+
+
+Test Strings
+
+Math.round((195 * 703) / (69 * 69) * 10) / 10
+16+2
+16 + 2
+1,000 * 2
+1,000*2
+21,000*2
+312,000*2
+4,312,000*2
+4,312,000+1,000
+4,312,000.+1,000.00000009
+312,000+1,000
+Math.pow(10, power)
+1,235,789
+((10000 / 2) * (5 * 2123))
+x = (y=1, z=4)
+Need tests for Unary + .
+
+
+-->
+
+How to correct rounding errors in floating-point arithmetic
+
+
+Article ID: 214118 - Last Review: September 18, 2011 - Revision: 9.0
+How to correct rounding errors in floating-point arithmetic
+View products that this article applies to.
+This article was previously published under Q214118
+
+To address the assertion that you can't represent some numbers "exactly,"
+this is partially true. You can use doubles for calculation, but you can't
+just use printf( "%f"); to display the value. You need to play some
+tricks. with floor(), ceil(), and round().
+
+Calculating an amortization of a mortgage over 30 years for a financial
+institution is different than you would calculate in a spread sheet. With
+a spread sheet, precision is carried across periods, in a financial
+institution, the accounts are "settled" each period and there is no
+precision carried to the next period. Financial math makes sure that every
+penny is counted and there is very little fractional ambiguity.
+
+
+To be efficient I would possibly implement it in
+integers because integer math is usually much faster.
+
+
+Remember:
+
+0.999999999999999 for all intent and purposes is the same a one. And a 0
+with an infinite number of 9s after the decimal point equals one.
+
+
+
+However, double precision floating point has a precision up to 15
+decimal digits, BUT the data is stored in binary (assuming IEEE) with 1
+sign bit, 11 exponent bits, 52 bits (actually 53 since there is a hidden
+bit in normalized numbers) for the mantissa. One issue is that some
+decimal numbers cannot be stored exactly. Mainframes used to have BCD
+hardware. BCD is interesting in that the programmer defines the
+precision of the number, and the digits are stored either as nybbles or
+bytes. One issue we used to run into is that IBM stores packed decimal
+always with a sign nybble. Burroughs hardware could operate on either
+packed or external decimal, with or without a sign. Made conversions
+interesting. COBOL and PL/1 had the tools for dealing with these numbers.
+
+In the case of using both 64-bit ints (longs on Linux and Unix, and long
+longs on Windows) AND BCD is that you have to scale your numbers. Not a
+big deal, you can write a C++ or Java class for those. You also have to
+think in terms of rounding. For personal use, using 64-bit ints are
+probably the better alternative in terms of the amount of coding, but
+your can check the Internet and easily find BCD classes to work with.
+
+Actually, most spreadsheets use doubles.
+
+
+True. I complained about this back when I was at Cadmus. Essentially,
+IEEE double precision is only accurate up to 15 decimal digits, and as
+both of us presented, the conversion of a decimal number to a binary
+number (mantissa/exponent) yields some inaccuracies. even with BCD you
+can have rounding errors. I worked on a general ledger system that
+actually kept track of rounding errors and posted that in the balance
+sheet. But, for personal finance (IMHO) floats or doubles should be
+perfectly alright if you know the limitations. Some systems convert
+floats to decimal for storage. And I won't go into endian issues.
+
+So, while the OP could certainly use canned BCD libraries or integers,
+using floats and doubles should work fine for most personal stuff.
+
+Also, I prefer using doubles rather than floats (32-bits) because most
+chips have 64-bit floating point hardware.
+
+
+
+
+packed decimal, or integers only
+
+
+
+toFixed and toPrecision are subject to floating-point errors.
+
+Here is a test where the starting number is 162.295. The following should show the JavaScript results:
+
+162.29 // toFixed(2)
+162.29 // toPrecision(5)
+
+Do they show up correctly as 162.30 in your browser? Most JavaScript implementations will display it as 162.29
+
+Here is basically what happens when rounding 162.295 to two decimal places
+
+num = 162.295
+num *= 100 // 16229.499999999998
+num = Math.round(num) // 16229
+num /= 100 // 162.29
+
+
+http://en.wikipedia.org/wiki/Numeric_precision_in_Microsoft_Excel
+
+
+http://www.basic-mathematics.com/basic-math-formulas.html
+
+Rounded numbers are only approximates; they never give exact answer
+
+
+<p>Click
+<input type="button" id="hSS4" title="Toggle the Display of Install Status" class="buttonNgold" value="Status" disabled="disabled"
+onClick="toggleDIVDisplay('myStatus','hSS4','Status' );">
+to see offline status and check for the latest offerings</p>
+<div id="myStatus" style="width:100%;display:none; min-height:50%;overflow:visible;overflow-x:scroll;">
+<p id="pmyStatus">  </p>
+
+<!--
+Check Amount /  Tip%  / Split #Ways
+
+Total   Tip amount / total per person
+
+AppZilla Size:     35M  Price:  $0.99
+
+
+Thesarus
+Spell Check
+Language Translator
+Reverse Dictionary
+Price Calculator
+Unit Converter
+
+http://www.mathopenref.com/index.html
+http://www.mathopenref.com/area.html  Area of common shapes
+http://www.mathopenref.com/surface-area.html surface area of solids
+
+-->

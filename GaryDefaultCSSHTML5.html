@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="html5 test">
+<meta name="keywords" content="">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjrecipe.min.js"></script>
+<script type="text/javascript" src="js/gjqt.min.js"></script>
+<title>GaryDefaultCSSHTML5.html</title>
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<!-- global stylesheets first -->
+<style type="text/css">
+/* put a border around html and body for testing
+html
+{
+margin: 0;
+border: 1px solid red;
+}
+*/
+.garytest {   border-right: 1px solid red; }
+</style>
+<!-- media specfic over rides after global stylesheets -->
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<style media="print" type="text/css">
+.gartest {border-right: none; }
+</style>
+</head>
+<body>
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader" id="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+
+<h1 class="heading"><span class="HC">New HTML Features</span></h1>
+
+<div>
+<style scoped="scoped">
+ul.li-del-demo li.complete, ul.li-del-demo li del {
+   text-decoration: line-through;
+}
+ul.li-del-demo li {
+   list-style-type: circle;
+}
+ul.li-del-demo li.complete {
+   list-style-type: disc;
+}
+ul.li-del-demo li del {
+   display: inherit;
+}
+</style>
+<style scoped="scoped" title="Show deleted items">
+ul.li-del-demo li.deleted {
+   display: list-item;
+}
+</style>
+<style scoped="scoped" title="Hide deleted items">
+ul.li-del-demo li.deleted {
+   display: none;
+}
+</style>
+<ul class="li-del-demo">
+<li class="deleted"><del>This item was deleted</del></li>
+<li class="complete">This item was completed</li>
+<li>This item will be done later</li>
+</ul>
+</div>
+
+
+<div style="width: 30%; margin: 0.5em auto; text-align: center">
+<style scoped="scoped">
+   ul.star-shaped-bullet { margin: 0; list-style: none; text-align: left }
+   ul.star-shaped-bullet li:before { content: "\27a4\a0" }
+</style>
+<ul class="star-shaped-bullet">
+   <li>Tina Fey</li>
+   <li>Jane Lynch</li>
+   <li>Kyra Sedgwick</li>
+   <li>Andie MacDowell</li>
+   <li>Laura San Giacomo</li>
+   <li>Clare MacIntyre-Ross</li>
+   <li>Kimberly Williams-Paisley</li>
+</ul>
+</div>
+
+<pre>
+nav tag
+</pre>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Previous</a>
+<a href="#">Next</a>
+</nav>
+
+<pre>
+select tag
+</pre>
+
+<select>
+  <option value ="volvo">Volvo</option>
+  <option value ="saab">Saab</option>
+  <option value ="opel">Opel</option>
+  <option value ="audi">Audi</option>
+</select>
+
+<pre>
+progress tag
+</pre>
+
+The object's downloading progress:
+<progress><span id="objprogress">100</span>%</progress>
+
+
+<pre>
+menu
+</pre>
+
+<menu>
+<li><input type="checkbox" />Red</li>
+<li><input type="checkbox" />blue</li>
+</menu>
+
+
+<pre>
+</pre>
+
+<A HREF=../CanvasTest1.html>CanvasTest1.html</A>
+
+<pre>
+aside tag
+</pre>
+
+<aside>
+Stand-alone content, but related to an article.
+</aside>
+
+<pre>
+dialog
+</pre>
+
+<dialog>
+<dt>Teacher</dt>
+<dd>What is 2+2</dd>
+<dt>Student</dt>
+<dd>4</dd>
+<dt>Teacher</dt>
+<dd>Correct!</dd>
+</dialog>
+
+
+<pre> audio tag example </pre>
+<audio controls>
+<source src="Sounds/audiosprite.wav" type="audio/wav">
+   Your browser does not support the audio element.
+</audio>
+
+<pre>
+============================
+The nest tag defines a nestingpoint in a datatemplate for child elements. Used together with the elements datatemplate and rule.
+
+datagrid
+Is anyone implementing these?
+Are there any good examples?
+=============================
+</pre>
+
+
+<pre>
+
+HTML 5 improves interoperability and reduces development costs by making precise rules on how to handle all HTML elements, and how to recover from errors.
+
+Some of the new features in HTML 5 are functions for embedding audio, video, graphics, client-side data storage, and interactive documents. HTML 5 also contains new elements like nav, header, footer, and figure.
+
+The HTML 5 working group includes AOL, Apple, Google, IBM, Microsoft, Mozilla, Nokia, Opera, and many hundred other vendors.
+</pre>
+
+<pre>
+Core Attributes
+
+The new standard attributes in HTML 5 are: contenteditable, contextmenu, draggable, irrelevant, ref, registrationmark, and template.
+
+The HTML 4.01 attribute which is no longer supported: accesskey.
+</pre>
+
+<pre>
+Event Attributes
+
+The new event attributes in HTML 5 are: onabort, onbeforeunload, oncontextmenu, ondrag, ondragend, ondragenter, ondragleave, ondragover, ondragstart, ondrop, onerror, onmessage, onmousewheel, onresize, onscroll, and onunload.
+
+The HTML 4.01 event attribute which is no longer supported: onreset.
+</pre>
+
+<h1 class="heading"><span class="HC">Dropped by HTML5 </span></h1>
+
+<pre>
+acronym
+applet
+basefont
+big
+center
+dir
+frame
+frameset
+isindex
+noframes
+s
+strike
+tt
+u
+xmp
+
+</pre>
+
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+</body>
+</html>

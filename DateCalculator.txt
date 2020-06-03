@@ -1,0 +1,38 @@
+
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+if you hit enter, it clears the fields and does nothing
+
+trap enters here
+
+instead of
+button" id="sFCD" title="Set dates to current date"
+
+I could do something like
+
+a) attach an event to scroll or something else like keyclick or mousemove
+b) doOnce = 1;
+
+function setInitalvalues()
+    if doOnce
+    {
+        doOnce=0;
+        setdatestocurrentdates
+ <meta name="description" content="CookBook">  - gets set to description in bookmarks
+
+
+-->
+<!--
+Changelog
+ Dec 18 2008
+
+top menu- wrap around
+<div class="myinline" style="max-width:50em;  margin-left: auto;  margin-right: auto;">
+to 55em
+
+-->

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Reading a Binary Large Object (blob)</title>
+  <script type="text/javascript">
+// ---------------------------------------------------------------------------
+
+    var globals =
+        {
+          selectedFile: null,
+          fileSize: 0
+        };
+// ---------------------------------------------------------------------------
+
+    window.addEventListener('load', init, false);
+// ---------------------------------------------------------------------------
+
+    function fileApiSupportCheck() {
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // All the File APIs are supported.
+      }
+      else {
+        document.getElementById('alert').innerHTML = '<h2>FILE APIs NOT FULLY SUPPORTED - UPDATE YOUR BROWSER</h2>';
+      }
+    }
+// ---------------------------------------------------------------------------
+
+    function init() {
+      fileApiSupportCheck();
+      document.getElementById('fileInput').addEventListener('change', fileInputHandler, false);
+      document.getElementById('byteRangeButton').addEventListener('click', byteRangeButtonHandler, false);
+    }
+// ---------------------------------------------------------------------------
+
+    function fileInputHandler(evt) {
+      var f = evt.target.files[0]; // The solo file selected by the user.
+
+      if (!f.size) {
+        document.getElementById('alert').innerHTML = 'Please select a file (that contains some content).';
+        return;
+      }
+
+      globals.selectedFile = f;
+      globals.fileSize = f.size;
+
+      document.getElementById('byteCount').innerHTML = '<li><strong>' + f.name + '</strong> (' + (f.type || 'n/a') + ') = <strong>' + f.size + ' bytes</strong></li>';
+      document.getElementById('hidder').style.visibility = "visible"; // We've selected a valid file and can now safely show the byte range input markup.
+    }
+// ---------------------------------------------------------------------------
+
+    function byteRangeButtonHandler() {
+      var start = Number(document.getElementById('byteStart').value);
+      var end = Number(document.getElementById('byteEnd').value);
+
+      if (start < 0 || start >= globals.fileSize) {
+        start = 0;
+        document.getElementById('alert').innerHTML = 'Bad starting byte value, using ' + start + ' instead.';
+      }
+
+      if (end <= start || end > globals.fileSize) {
+        end = globals.fileSize;
+        document.getElementById('alert').innerHTML = 'Bad ending byte value, using ' + end + ' instead.';
+      }
+
+      readBlob(start, end);
+    }
+// ---------------------------------------------------------------------------
+
+    function readBlob(startByte, endByte) {
+      var file = globals.selectedFile;
+      var blob = file.slice(startByte, endByte); // Grab a blob of file data starting from startByte up to but not including endByte.
+
+      var reader = new FileReader();
+      reader.onloadend = onloadendHandler;
+      reader.onerror = errorHandler;
+      reader.readAsText(blob); // Read the file asynchronously and use callbacks to handle necessary actions.
+    }
+// ---------------------------------------------------------------------------
+
+    function onloadendHandler(evt) {
+      if (evt.target.readyState == FileReader.DONE) {
+        document.getElementById('fileOutputHeader').textContent = "File bytes in text format:";
+        document.getElementById('byteRangeFileContent').textContent = evt.target.result;
+      }
+    }
+// ---------------------------------------------------------------------------
+
+    function errorHandler(evt) {
+      if (evt.target.error.name == "NotReadableError") {
+        document.getElementById('alert').innerHTML = 'The file could not be read.';
+      }
+      else {
+        document.getElementById('alert').innerHTML = 'File error.';
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Reading a Binary Large Object (blob)</h1>
+  <p>Displays file data between a starting byte value and ending byte value.</p>
+  <h3>Select a file:</h3>
+  <p><input type="file" id="fileInput" /></p>
+  <div id="hidder" style="visibility: hidden;">
+    <ul id="byteCount"></ul>
+    <h3>Enter byte range:</h3>
+    <p><input type="number" id="byteStart" /> Start byte (counting from the 0<sup>th</sup> byte).</p>
+    <p><input type="number" id="byteEnd" /> End byte (counting from the 0<sup>th</sup> byte).</p>
+    <p><button id="byteRangeButton">Show File Content for Byte Range</button></p>
+    <h3 id="fileOutputHeader"></h3>
+    <p id="byteRangeFileContent"></p>
+  </div>
+  <div id="alert" style="color: red;"><!-- Fills the roll of console.log(). --></div>
+</body>
+
+</html>

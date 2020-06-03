@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta HTTP-EQUIV="Refresh" content="7;URL=ScreenSaverMoz.html">
+<!--
+
+IE does not do border top
+example class HC
+
+its not just the doctype
+
+-->
+
+<style type="text/css">
+
+.linesp
+{
+margin-top:2px;
+margin-bottom:2px;
+}
+
+
+</style>
+
+  <title>Marquee Testing</title>
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<!--[if gte IE 5]>
+  <link rel="StyleSheet" href="css/GarySpecial.css" type="text/css">
+<![endif]-->
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/Dining.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="CookBook">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+  <script type="text/javascript" src="js/gjcore.min.js"></script>
+  <script type="text/javascript" src="js/gjutil1.min.js"></script>
+  <script type="text/javascript" src="js/gjmove.min.js"></script>
+  <script type="text/javascript" src="js/gjmsg.min.js"></script>
+  <script type="text/javascript" src="js/gjmenu.min.js"></script>
+  <script type="text/javascript">
+
+  var theMenuID = -1;
+  var ns4 = (navigator.appName == 'Netscape' && parseInt(navigator.appVersion) == 4);
+  var IE5 = (navigator.userAgent.indexOf('MSIE 5') > 0);
+  var IE6 = (navigator.userAgent.indexOf('MSIE 6') > 0);
+
+  var MOZ = isGecko();
+  if(ns4)
+  {
+    MOZ = !ns4;
+  }
+
+  if(IE5 || IE6 || MOZ)
+  ;
+  else
+  {
+    alert('I only work with IE 5 or 6 and the newer release of Netscape and Mozilla')
+  }
+
+
+</script>
+<!--
+
+Auto Generate This
+
+  Need new Categories
+
+  TroubleShooting
+    Testers
+
+  Contact Us
+
+  Legal and Administrative
+
+  Widgets
+
+  Help
+
+
+
+This has hard coded dependencies functions in gjmenu.js
+and styles in the default stylesheet
+
+All menu DIVs and Menu h2 style buttons are named with this convention
+
+the controlling h2 IDs are numbered consecutively dm1, dm2 , dm3 ...
+the associated DIV IDs are numbered consecutively m1, m2, m3 ....
+
+
+
+-->
+</head>
+<body>
+<DIV style="WIDTH: 640px; HEIGHT:57px">
+<MARQUEE id='Marquee1' scrollDelay=20 direction=down behavior=slide loop=1 stopAt=10 border=2>
+<h1>Watch the birdy!</h1>
+</MARQUEE>
+
+<MARQUEE id='Marquee2' scrollAmount=2 scrollDelay=3 behavior=slide loop=1 border=0>
+<h2>Linking, Searching, Sorting and Integration Technology for Something you do all the time</h2>
+</MARQUEE>
+
+<MARQUEE id='Marquee3' scrollAmount=5 scrollDelay=3 direction=right behavior=alternate loop=2 border=0>
+<p>Try it, you like it!</p>
+</MARQUEE>
+
+<MARQUEE id='Marquee4' scrollAmount=4 scrollDelay=5 direction=right behavior=alternate loop=2 border=0>
+<h3><A href="mailto:Gary_Johnson_53@hotmail.com">FastTrack to Learning how to Cook</A><h3>
+</MARQUEE>
+
+<MARQUEE id='Marquee5' scrollAmount=1 scrollDelay=20 direction=up behavior=slide loop=1 border=0>
+<p><A href="http://cookdotcom.com/">http://cookdotcom.com</A></p>
+</MARQUEE>
+</DIV>
+
+<!--
+<MARQUEE id='Marquee5' trueSpeed scrollAmount=1 scrollDelay=20 direction=up = behavior=slide loop=1 border=0>
+<A=href="http://cookdotcom.com/">http://cookdotcom.com</A>
+</MARQUEE>
+</DIV>
+
+
+partial support under Mozilla
+
+
+
+scroll  Default. Marquee scrolls in the direction specified by the direction property. The text scrolls off the end and starts over.
+alternate Marquee scroll direction reverses when its content reaches the edge of the container.
+slide Marquee scrolls in the direction specified by the direction property. The text scrolls to the end and stops.
+
+-->
+
+</body>
+</html>

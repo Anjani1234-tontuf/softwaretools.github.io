@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+
+-->
+
+
+<html>
+<head>
+
+<title>Open Timer.html</title>
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="CookBook Timers">
+  <link rel="Copyright" href="Copyright.html">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+<!--
+
+<script type="application/x-javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+
+<script type="application/x-javascript" src="js/gjtime.min.js"></script>
+<script type="application/x-javascript" src="js/gjutil1.min.js"></script>
+<script type="application/x-javascript" src="js/gjcore.min.js"></script>
+<script type="application/x-javascript" src="js/gjmsg.min.js"></script>
+<script type="application/x-javascript" src="js/gjmove.min.js"></script>
+<script type="application/x-javascript" src="js/gjqt.min.js"></script>
+
+-->
+<!--
+/*
+    check to see if someone else has tried to set an alarm
+    Superkulge does not work with this
+    See C:\CookBook\XXSoftwareTools\GaryTestCSSDOM.html
+    its not there yet
+    always opens a new timer.html instead of checking to see if there is an active one
+    only allows my preset wav files
+
+  var sExternalAlarm;
+
+  sExternalAlarm = getCookie("ExternalAlarm");
+
+  if(sExternalAlarm == undefined || sExternalAlarm == "" )
+  {
+
+  }
+
+function openSite()
+{
+ location.href = "http://www.angelfire.com/ma/garygjohnson";
+}
+function checkpswd(str)
+{
+  if (str.length == 0)
+    {
+    return false;
+  }
+  if (parseInt(str) != 9)
+    {
+    return false;
+    }
+
+fileDir = "/ma/garygjohnson/";
+open(fileDir+"test2.html","frameWindow","toolbar=yes,menubar=yes");
+parent.location.href="/ma/garygjohnson/private.html"
+return true;
+}
+</SCRIPT>
+<FORM NAME="F1" onSubmit="return checkpswd(F1.PSWD.value)">
+<INPUT MAXLENGTH=10 TYPE="PASSWORD" NAME="PSWD">
+</FORM>
+
+*/
+-->
+
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjtime.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjqt.min.js"></script>
+
+
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjutil1.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjcore.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmsg.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmove.min.js"></script>
+
+
+<script type="text/javascript">
+
+        var newwin = window.open("Timer.html", "CBTimer");
+        if(newwin)
+        {
+            newwin.focus();
+            alert("1");
+        }
+        else
+        {
+            newwin = window.open("Timer.html", "CBTimer");
+            if(newwin)
+            {
+                newwin.focus();
+                alert("2");
+            }
+        }
+
+//Message can't close a window that was not opened by script
+//But, I want to close this window, automagically
+window.close();
+</script>
+</head>
+<BODY>
+loading
+</body>
+</html>
+

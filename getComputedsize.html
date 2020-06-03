@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/gjcore.js"></script>
+<script type="text/javascript" src="js/gjutil1.js"></script>
+<script type="text/javascript" src="js/gjmsg.js"></script>
+<style type="text/css">
+html, body {
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+a.sitenavSite1:link, a.sitenavSite1:visited {
+text-align:right;
+text-decoration:none;
+color: #000;
+font-family: 'Open Sans Condensed', sans-serif;
+padding:0;
+font-size:15px;}
+
+a.sitenavSite1:hover {
+color:lightsteelblue;
+text-decoration:none;}
+
+
+a.sitenavSite2:link, a.sitenavSite2:visited {
+text-align:right;
+text-decoration:none;
+color: #000;
+font-family: Verdana, Geneva, sans-serif;
+padding:0;
+font-size:15px;
+font-style:italic;
+font-weight:bold}
+
+a.sitenavSite2:hover {
+color:lightsteelblue;
+text-decoration:none;}
+
+.container {
+width:80%;
+margin:16px auto;}
+
+
+/*
+  This media query is for most responsive / smartphones and small tablets
+  if portrait == all smarphones and tablets
+  * can add if pixel ratio  gt 1.3 == newer smartphones and tablets in landscape
+  it should exclude normal  full size and hig density screens with this != max-width:999px
+*/
+
+@media only screen and (orientation:portrait) ,
+only screen and (orientation:landscape) and (max-width:999px) {
+
+body {
+width:100%;
+line-height:1.5;}
+.container {margin:16px auto;}
+.noMobile { display:none; }
+} /*  */
+
+</style>
+<title>gcs</title>
+
+	<script type="text/javascript">
+function dumpAllps() {
+var txt = dumpAllp();
+appendInnerHTML("pmyOP",txt);
+
+}
+
+
+	$(document).ready(function(){
+
+    function one (){
+    	  var w1 = $('a.sitenavSite1').width();
+          $( "#text1" ).text( " width " +  w1);
+
+    	  var w2 = $('a.sitenavSite2').width();
+          $( "#text2" ).text( " width " +  w2);
+    }
+
+      var tst1 =
+      ["Tri-StateClinicofChiropracticBlog.com",  //37
+      "FirstChoiceFamilyChiropracticBlog.com",
+      "ChesterCountyChiropracticandWellness",
+      "CristChiropracticandWellnessBlog.com",
+      "StillwaterFamilyChiropracticBlog.com",
+      "HerescoChiropracticandAssociatesBlog",
+      "MonroeChiropracticandMassageBlog.com",
+      "DrKatrinaThompsonBowdryBlog.com", //	30
+      "ParamusMedicalAndSportsBlog.com",
+      "BradyChiropracticGroupBlog.com",
+      "DrChristopherWellwoodBlog.com", //	29
+      "PerformanceCareOnlineBlog.com",
+      "WoodridgeChiropracticBlog.com",
+      "TotalCareChiropracticBlog.com",
+      "RosemountChiropracticBlog.com",
+      "AberdeenChiropracticBlog.com",	// 28
+      "PinnacleChiropracticBlog.com",
+      "TheJointMedicalGroupBlog.com",
+      "SpineAndInjuryCenterBlog.com"
+      ];
+
+
+  var cnt=0;
+  $("#showr").click(function () {
+  	  $('a.sitenavSite1').text(tst1[cnt]);
+  	  $('a.sitenavSite2').text(tst1[cnt++]);
+      one();
+  });
+
+  one();
+
+
+	});
+
+	</script>
+
+
+
+</head>
+
+<body>
+<div class="container">
+
+<div id="siteinfo1"><a class="sitenavSite1" href="#">ChesterCountyChiropracticandWellness</a><div>
+
+<p id='text1'> placeholder </p>
+
+<div id="siteinfo2"><a class="sitenavSite2" href="#">ChesterCountyChiropracticandWellness</a><div>
+
+<p id='text2'> placeholder </p>
+
+<hr>
+<button id="showr">Next</button>
+
+</div>
+<p>
+Click on dumpAllps.  Either do a Ctrl-A or longpress and select all, and copy and paste the output this into a doc or a mail
+message and send that to me</p>
+</p>
+
+<input type="button" id="dumpallp" name="dumpallps" value="dumpAllps" onclick="dumpAllps();"><br>
+
+<p id="pmyOP"></p>
+
+</body>
+
+
+</html>
+

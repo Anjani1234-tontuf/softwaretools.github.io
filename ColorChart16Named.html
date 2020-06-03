@@ -1,0 +1,74 @@
+<html>
+<head>
+<style type="text/css">
+
+.s
+{
+height: 50px;
+}
+
+.s2
+{
+height: 50px;
+}
+
+
+
+</style>
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<title>16 Colors Print Test</title>
+<table cellspacing="10" width="100%">
+<tbody>
+<th colspan="16">Color Chart 16 Named Colors in HEX, RGB and HSL</th></tr>
+<tr>
+<!--
+aqua #00ffff
+aqua rgb(0,255,255)
+aqua hsl(180,100%,50%)  HSL (Hue, Saturation, Light)
+-->
+
+<td class="s" bgcolor="#00ffff">cyan *<br><tt>#00FFFF<br>rgb(0,255,255)<br>hsl(180,100%,50%)</tt></td>
+<td class="s" bgcolor="#000000"><font color="white">black *<br><tt>#000000<br>rgb(0,0,0)<br>hsl(0,0%,0%)</tt></font></td>
+<td class="s" bgcolor="#0000ff"><font color="white">blue ~<br><tt>#0000FF<br>rgb(0,0,255)<br>hsl(240,100%,50%)</tt></td>
+<td class="s" bgcolor="#ff00ff">magenta *<br><tt>#FF00FF<br>rgb(255,0,255)<br>hsl(300,100%,50%)</tt></td>
+<td class="s" bgcolor="#808080"><font color="white">gray<br><tt>#808080<br>rgb(128,128,128)<br>hsl(0,0%,50%)</tt></font></td>
+<td class="s" bgcolor="#008000"><font color="white">green<br><tt>#008000<br>rgb(0,128,0)<br>hsl(120,100%,25%)</tt></font></td>
+<td class="s" bgcolor="#00ff00">lime ~<br><tt>#00FF00<br>rgb(0,255,0)<br>hsl(120,100%,50%)</tt></td>
+<td class="s" bgcolor="#800000"><font color="white">maroon<br><tt>#800000<br>rgb(128,0,0)<br>hsl(0,100%,25%)</tt></font></td>
+</tr>
+<tr>
+
+<td class="s2"></td>
+</tr>
+
+
+<tr>
+<td class="s" bgcolor="#000080"><font color="white">navy<br><tt>#000080<br>rgb(0,0,128)<br>hsl(240,100%,25%)</tt></font></td>
+<td class="s" bgcolor="#808000"><font color="white">olive<br><tt>#808000<br>rgb(128,128,0)<br>hsl(60,100%,25%)</tt></font></td>
+<td class="s" bgcolor="#800080"><font color="white">purple<br><tt>#800080<br>rgb(128,0,128)<br>hsl(300,100%,25%)</tt></font></td>
+<td class="s" bgcolor="#ff0000">red ~<br><tt>#FF0000<br>rgb(255,0,0)<br>hsl(0,100%,50%)</tt></td>
+<td class="s" bgcolor="#c0c0c0">silver<br><tt>#C0C0C0<br>rgb(192,192,192)<br>hsl(0,0%,75%)</tt></td>
+<td class="s" bgcolor="#008080"><font color="white">teal<br><tt>#008080<br>rgb(0,128,128)<br>hsl(180,100%,25%)</tt></font></td>
+<td class="s" bgcolor="#ffffff">white<br><tt>#FFFFFF<br>rgb(255,255,255)<br>hsl(0,0%,100%)</tt></td>
+<td class="s" bgcolor="#ffff00">yellow *<br><tt>#FFFF00<br>rgb(255,255,0)<br>hsl(60,100%,50%)</tt></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<a href="ColorChart16NamedSmall.html">Version with smaller Color Blocks</a>
+<br>
+<a href="ColorChart16Named4by6.html">4 x 6 Version</a>
+<br>
+<a href="ColorChartVisibone.html">Visibone Version</a>
+
+<p><input name='thecolor' onchange='setBackGroundColor("theptochange", this.value);' size="9" value=''>
+Change the blue to ? example FF0000 Red</p>
+<p id='theptochange' style='background-color:#0000FF;'>&nbsp;&nbsp;</p>
+
+</body>
+</html>
+
+<!--  magenta same as fuchsia aqua same as cyan -->
+

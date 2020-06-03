@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+Rewrote Jul 2009 to move into chrome.
+added set and getCookieXUL to read cookies from chrome
+and wrote out a basehref to find the css and other html files
+I live in XXsoftwaretools for now, but makeinstall copies me to the chrome
+dir just like mysidebar
+
+-->
+<!--
+Changelog
+ Mar 19 2006
+ added color to the radio button lines
+ removed border and background on fieldset
+
+Jul 24 2009
+ Moving to chrome
+ added js to write basehref
+ see above
+
+-->
+
+<style type="text/css">
+
+/* white  */
+.PlainWhiteBlack
+{
+  color:black;
+  background-color:white;
+}
+.PaleBlue
+{
+  background-color:#eeeeff
+}
+
+/* grey */
+.LightGreyDarkBlue
+{
+  background-color:#F5F5F5;
+  color: #191970;
+}
+.MediumBlue
+{
+  background-color:#639ACE;
+}
+/* greypale */
+
+.PaleBlue
+{
+  background-color:#ccccff;
+}
+/* black */
+.PlainBlackWhite
+{
+  color:white;
+  background-color:black;
+}
+.BlueAccents
+{
+  background-color:steelblue;
+}
+/* green*/
+
+.GreenAccents
+{
+  background-color:#00DD00;
+}
+
+</style>
+<script type="application/x-javascript" src="chrome://gj53run/content/gj53runSearchXUL.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/gjswitchtheme.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmsg.min.js"></script>
+<script type="application/x-javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjutil1.min.js"></script>
+<!--
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+-->
+<script type="text/javascript">
+
+var myBasestr = '<base href="file:///';
+    myBasestr += gj53runGetPrefString('URL1');
+    myBasestr += '/XXSoftwareTools/">';
+
+document.writeln(myBasestr );
+
+</script>
+<title>Switch Theme</title>
+  <meta name="author" content="Gary Johnson">
+  <meta name="description" content="CookBook">
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="keywords" content="">
+</head>
+<body>
+
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<h1 class="heading"><span class="HC">Change Your Display Theme</span></h1>
+
+<BR>
+<hr>
+<div class="myinline">
+<form name="RadioTheme" id="RadioTheme" >
+<FIELDSET class="c" style="border:none">
+<LEGEND class="a" ><strong>Select a Theme</strong></LEGEND>
+<p style='font-family:"Courier New",Courier,monospace; '><b>
+<input type="radio" name="loc" VALUE="WHITE"  onClick="SelectTheme('WHITE');"   > <span class="PlainWhiteBlack">Plain <em>WHITE</em> Background - Black Text  &nbsp;&nbsp;&nbsp;  </span> - <span class="PaleBlue">Pale Blue Accents</span><br>
+<input type="radio" name="loc" VALUE="GREY"   onClick="SelectTheme('GREY');"    > <span class="LightGreyDarkBlue">Light <em>GREY</em>&nbsp;  Background - Dark Blue Text </span>- <span class="MediumBlue">Medium Blue Accents</span><br>
+<input type="radio" name="loc" VALUE="GREYPALE" onClick="SelectTheme('GREYPALE');"  > <span class="LightGreyDarkBlue">Light <em>GREY</em>&nbsp;  Background - Dark Blue Text</span> - <span class="PaleBlue"><em>PALE</em> Blue Accents</span><br>
+<input type="radio" name="loc" VALUE="BLACK"  onClick="SelectTheme('BLACK');"   > <span class="PlainBlackWhite">Plain <em>BLACK</em> Background - White Text  &nbsp;&nbsp;&nbsp;  </span> - <span class="BlueAccents">Blue Accents</span><br>
+<input type="radio" name="loc" VALUE="GREEN"  onClick="SelectTheme('GREEN');"   > <span class="PlainWhiteBlack">Plain White Background - Black Text &nbsp;&nbsp;&nbsp;  </span>  - <span class="GreenAccents"><em>GREEN</em> Accents</span><br>
+<input type="radio" name="loc" VALUE="MY"   onClick="SelectTheme('MY');"    > Your own theme<br>
+</b></p>
+</FIELDSET>
+</form>
+</div>
+
+<em id="which">Your Current Theme Selection is:</em>
+
+<hr>
+<IFRAME id=fm1 border=1 width="100%" height=250 src="GaryDefaultCSS.html"></IFRAME>
+<IFRAME id=iffooter1 class="myfooter" scrolling="no" src="GaryDefaultFooter.html"></IFRAME>
+<script type="text/javascript">
+
+function CheckThemeNew()
+{
+  var vtheme;
+  var msg1 = "Your Current Theme Selection is: ";
+
+  if(!(vtheme = getCookieXUL("THEME")))
+  {
+    vtheme = "UNKNOWN";
+  }
+  document.getElementById('which').firstChild.nodeValue = msg1 + vtheme;
+
+  //order is white grey greypale black green my
+
+  if( vtheme == 'WHITE')
+  {
+    document.getElementById("RadioTheme").loc[0].checked = true;
+  }
+  else
+  if( vtheme == 'GREY')
+  {
+    document.getElementById("RadioTheme").loc[1].checked = true;
+  }
+  else
+  if( vtheme == 'GREYPALE')
+  {
+    document.getElementById("RadioTheme").loc[2].checked = true;
+  }
+  else
+  if( vtheme == 'BLACK')
+  {
+    document.getElementById("RadioTheme").loc[3].checked = true;
+  }
+  else
+  if( vtheme == 'GREEN')
+  {
+    document.getElementById("RadioTheme").loc[4].checked = true;
+  }
+  else
+  if( vtheme == 'MY')
+  {
+    document.getElementById("RadioTheme").loc[5].checked = true;
+  }
+}
+
+onload=CheckThemeNew();
+</script>
+</body>
+</html>
+

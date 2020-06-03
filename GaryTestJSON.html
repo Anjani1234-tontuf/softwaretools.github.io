@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<!--
+where
+-->
+<head>
+<style type="text/css">
+
+.mppad
+{
+  margin: 2em;
+}
+
+.aliceblue
+{
+background-color:aliceblue;
+}
+
+.lightgray
+{
+background-color:lightgrey;
+}
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+<title>GaryTestJSON.html</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  <meta name="keywords" content="">
+<!--
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/gj53runOptions.min.js"></script>
+
+-->
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+
+
+<script type="text/javascript">
+
+function gjOnload()
+{
+      var firstInput =document.getElementsByTagName('input')[0];
+      firstInput.focus();
+}
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+
+// code for objDataClass
+
+function objDataClass()
+{
+  this.matchCount = 0;
+  this.searchString = "";
+  this.values = new Array();
+  this.comments = new Array();
+}
+
+objDataClass.prototype =
+{
+
+  RESULT_IGNORED: 1,
+  RESULT_FAILURE: 2,
+  RESULT_NOMATCH: 3,
+  RESULT_SUCCESS: 4,
+
+  getValueAt : function getValueAt(index)
+  {
+  return this.values[index];
+  },
+
+  getCommentAt : function getCommentAt(index)
+  {
+  return this.comments[index];
+  },
+
+  appendMatch : function appendMatch(aValue, aComment)
+  {
+  this.values.push(aValue);
+  this.comments.push(aComment);
+  this.matchCount++;
+  }
+}
+
+//code for jsonTest
+//myJSONObject.bindings = [object Object],[object Object],[object Object]
+
+/*
+In this example, an object is created containing a single member "bindings", which contains an array containing three objects,
+each containing "ircEvent", "method", and "regex" members.
+Members can be retrieved using dot or subscript operators.
+*/
+
+
+var myJSONObject =
+{"bindings":
+  [
+    {"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},
+    {"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},
+    {"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}
+  ]
+};
+
+
+// code for records
+// records.data = [object Object],[object Object],[object Object]
+
+
+var records =
+{
+  "data" :
+  [
+    {
+      "FirstName" : "Bob",
+      "LastName" : "Smith",
+      "Email" : "bsmith@someurl.com",
+      "Phone" : "(555) 555-1212",
+    },
+    {
+      "FirstName" : "Jan",
+      "LastName" : "Smith",
+      "Email" : "jsmith@someurl.com",
+      "Phone" : "(555) 555-3434",
+    },
+    {
+      "FirstName" : "Sue",
+      "LastName" : "Smith",
+      "Email" : "ssmith@someurl.com",
+      "Phone" : "(555) 555-5656",
+    }
+  ]
+};
+
+var complesOBJ =
+{
+  // string
+  a : 'sampleValue',
+  // array
+  b : ['obj1','obj2','three',4,'obj5'],
+  // function
+  c : function()
+  {
+    var bang = this.a;
+  }
+}
+
+
+// getters and setters
+function Customer()
+{
+  this._phoneNumber = "000-000-0000";
+}
+
+Customer.prototype.__defineSetter__
+("phoneNumber",
+function(phoneNumber)
+{
+  if (!/^\d\d\d-\d\d\d-\d\d\d\d$/.test(phoneNumber))
+    throw new Error("invalid phone number provided for customer: " + phoneNumber);
+  return this._phoneNumber = phoneNumber;
+}
+);
+
+
+
+
+function runTests()
+{
+
+  //run objDataClass
+
+  var objStorageSystem = new objDataClass();
+
+  objStorageSystem.appendMatch("value1","comment1");
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + objStorageSystem.getValueAt(0) + " " + objStorageSystem.getCommentAt(0));
+
+  //code for jsonTest
+
+  for(var i=0;i < myJSONObject.bindings.length; i++)
+  {
+    changeInnerHTML("theop", returnInnerHTML("theop") + "<br> " + i + " .bindings[i].regex: " + myJSONObject.bindings[i].regex + " .bindings[i].method: " + myJSONObject.bindings[i].method);
+  }
+  //dumpIt(myJSONObject.bindings[0],'myJSONObject.bindings[0]');
+
+  //myJSONObject.bindings[0] : is an object
+  //showProperties: myJSONObject.bindings[0].ircEvent = PRIVMSG
+  //myJSONObject.bindings[0].method = newURI
+  //myJSONObject.bindings[0].regex = ^http://.*
+
+  //run records
+
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>.data[0].Email: " + records.data[0].Email );
+
+   //dumpIt(records.data[0],'records');
+
+  //records : is an object
+  //showProperties:
+  //records.FirstName = Bob
+  //records.LastName = Smith
+  //records.Email = bsmith@someurl.com
+  //records.Phone = (555) 555-1212
+
+  var c = new Customer();
+  c.phoneNumber = "555-555-2368";
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + " c._phoneNumber is " + c._phoneNumber );
+
+}
+
+</script>
+
+</head>
+
+<body id='testbod' onload="gjOnload();">
+
+<pre WIDTH=90EM; class="aliceblue">
+
+<input type="button" value="runTests" onClick="runTests();" >
+
+<input type="button" id="ib5" title="" class="buttonNgrey" value="Clear" onClick="clearOP();">
+
+</pre>
+
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

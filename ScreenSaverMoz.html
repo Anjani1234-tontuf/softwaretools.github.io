@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+body { border:0;}
+</style>
+<title>ScreenSaver</title>
+<link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+<meta name="author" content="Gary Johnson">
+<meta name="keywords" content="">
+<link rel="Copyright" href="Copyright.html">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"> </script>
+</head>
+
+<body onload="StartGlide();" onunload="myUnload();">
+<img id="Banner" style="position:absolute; visibility:visible; top:0; left:0; width:1600px; height:1200px; z-index:1" alt="" src="GraphicWidgets/TestScreen.jpg">
+<script type="text/javascript">
+
+function myOnload()
+{
+  self.menubar.visible=false;
+  self.toolbar.visible=false;
+  self.locationbar.visible=false;
+  self.personalbar.visible=false;
+  self.scrollbars.visible=false;
+  self.statusbar.visible=false;
+}
+
+function myUnload()
+{
+  self.menubar.visible=true;
+  self.toolbar.visible=true;
+  self.locationbar.visible=true;
+  self.personalbar.visible=true;
+  self.scrollbars.visible=true;
+  self.statusbar.visible=true;
+}
+
+function myToggle()
+{
+
+  ((self.menubar.visible) ?   self.menubar.visible=false    : self.menubar.visible=true);
+  ((self.toolbar.visible) ?   self.toolbar.visible=false    : self.toolbar.visible=true);
+  ((self.personalbar.visible) ? self.personalbar.visible=false  :   self.personalbar.visible=true);
+  ((self.locationbar.visible) ? self.locationbar.visible=false  :   self.locationbar.visible=true);
+  ((self.scrollbars.visible) ?  self.scrollbars.visible=false :   self.scrollbars.visible=true);
+  ((self.statusbar.visible) ?   self.statusbar.visible=false  :   self.statusbar.visible=true);
+
+}
+
+var id;
+var mywidth;
+var availableWidth;
+var availableHeight;
+var imageWidth;
+var imageHeigth;
+var direction=1;
+var szwidth = "";
+
+
+
+function reloadResizeImage()
+{
+var imageHeight=0;
+var image1="";
+
+availableWidth=innerWidth;
+availableHeight=innerHeight;
+
+//  availableHeight =   availableHeight - 99;  // size of the menus etc.  If have to get this programatically
+
+  var img = new Image();
+  img.src = "GraphicWidgets/TestScreen.jpg";
+
+  var aspectRatio = img.naturalWidth / img.naturalHeight;  //not currently used
+
+    imageHeight = availableHeight;
+    imageWidth  = img.naturalWidth * (availableHeight / imageHeight);
+    document.getElementById("Banner").style.width = imageWidth + "px";
+    document.getElementById("Banner").style.height = imageHeight + "px";
+//    image1 =  '<img id="Banner" WIDTH="' + imageWidth + '" HEIGHT="' + imageHeight + '" alt="" style="position:absolute; visibility:visible; top:0px; left:0; z-index:1" src="GraphicWidgets\TestScreen.jpg" onclick="myToggle();">';
+//    document.getElementById("div_1").innerHTML = image1;
+
+}
+
+
+function StartGlide()
+{
+  myOnload();
+  reloadResizeImage();
+
+//  var message = 'MOZ mywidth=document.body.offsetWidth = ' + mywidth + ' ScrW = ' + availableWidth;
+//  alert(message);
+  var mywidth=0;
+    document.getElementById("Banner").style.left= mywidth + "px";
+    document.getElementById("Banner").style.visibility = "visible";
+
+    id=window.setInterval("Glide()",50);
+}
+
+function Glide()
+{
+var width = parseInt(document.getElementById("Banner").style.left);
+
+/*
+image 1600 x 1200
+tl turn left
+*/
+
+//var tl = availableWidth - 1600;
+var tl = 200;
+
+  if (direction) {
+  width +=1;
+  szwidth = width + "px";
+  if (width > tl) direction=0;
+  } else {
+  width -=1;
+  szwidth = width + "px";
+  if(width == 1) direction=1;
+  }
+
+  document.getElementById("Banner").style.left = szwidth;
+}
+</script>
+</body>
+</html>

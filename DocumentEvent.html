@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<!--
+
+-->
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+mouse event no longer works as of
+ May 06 2006
+
+Error: [Exception... "'Permission denied to set property XULElement.selectedIndex' when calling method: [nsIAutoCompletePopup::selectedIndex]"  nsresult: "0x8057001e (NS_ERROR_XPC_JS_THREW_STRING)"  location: "JS frame :: file:///C:/CookBook/XXSoftwareTools/DocumentEvent.html :: gj1 :: line 128"  data: no]
+Source File: file:///C:/CookBook/XXSoftwareTools/DocumentEvent.html
+Line: 128
+
+added in a doctype and netscape permission reguest and still no likey
+
+
+-->
+<!--
+Changelog
+
+-->
+<head>
+
+    <title>Document Events 1</title>
+    <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+    <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+    <meta name="author" content="Gary Johnson">
+    <meta name="description" content="CookBook">
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+
+<script type="text/javascript">
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+function test()
+{
+
+alert('test');
+}
+
+
+</script>
+
+
+</head>
+<body onload="init()">
+
+
+<div id='theheader' class="myheader" style="position:relative;">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR id theheader</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<div id='theBody'>
+<blockquote class='fancy'>
+Click on me for Mouse Events
+</blockquote>
+
+
+<form name ="SimpleSearch" id="SimpleSearch" onSubmit="test(); return false;">
+<FIELDSET class="b">
+<LEGEND class="a"><strong>Hit a key in the box below for a key event:</strong></LEGEND>
+<br>
+<input  type="text" size =30 tabindex="1" id="query_text" value="">
+<input  type="button" id="CC" title="Search" class="buttonNgrey"
+    value="Search"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="test();"
+    onmouseout="toggleHighLight('o', this.id);">
+</FIELDSET>
+</form>
+
+
+</div>
+
+<script type="text/javascript">
+
+
+function registerEvent(elementID, event, functionin, opt)
+{
+var myopt;
+
+  if(opt)
+  {
+    myopt = opt;
+  }
+  else
+  {
+    myopt = TRUE;
+  }
+
+  if(elementID)
+  {
+    var myID = document.getElementById(elementID);
+  }
+  else
+  {
+    alert('we are hosed in registerEvent no elementID');
+  }
+
+
+  if(isGecko())
+  {
+      myID.addEventListener("keypress", gj1, myopt);
+  }
+  else if(isIE())
+  {
+    // IE 5+ Event Model
+    // IE Event model - handlers are triggered only if the event bubbles up to them
+    // Watch for prior functions that
+    // handle the events and stop them from bubbling.
+      myID.attachEvent(event, functionin);
+  }
+  else
+  {
+    alert('we are hosed in registerEvent');
+  }
+
+}
+
+
+function gj1(ev)
+{
+ if (ev.which == 13)
+    alert('got an enter ' + ev.which);
+  else
+    alert('some other event');
+}
+
+
+function init()
+{
+var opt='TRUE';
+
+  if(isGecko())
+  {
+    registerEvent( 'theBody', 'keypress', gj1, opt);
+  }
+  else if(isIE())
+  {
+    registerEvent( 'theBody', 'onkeypress', gj1, opt);
+  }
+
+
+}
+
+
+
+
+</script>
+</body>
+</html>
+
+<!--
+INPUT TYPE=submit ONMOUSEOVER='window.status="Did you fill in all required fields?";' ONMOUSEOUT='window.status="";'>
+
+When an event attribute is used, a default scripting language must be specified for the document by setting the Content-Script-Type HTTP header to the media type of the scripting language. The previous example could use the following META element in the document's HEAD:
+
+<META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+
+Script For tags
+
+
+<form>
+<input  type="text" size =30 tabindex="1" id="query_text" value="">
+<input  type="button" id="CC2" title="Search" class="buttonNgrey"
+    value="Search"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="test();"
+    onmouseout="toggleHighLight('o', this.id);">
+
+<script type="text/javascript">
+//document.forms[1].query_text.onkeydown=gjkeybd2;
+document.forms[1].query_text.onkeydown=gjkeybd2;
+</script>
+</form>
+
+//not quite, it gets rid of the results
+
+
+function gjkeybd(mye)
+{
+  (window.event)    ? myevent=window.event  : myevent=mye;
+
+  if(myevent)
+  {
+    code  = myevent.keyCode;
+  }
+
+  if(code==13)
+  {
+    (myevent.target)    ? myelement=myevent.target: myelement=myevent.srcElement;
+    id    = myelement.id;
+
+    //my convention all input ids where this CR is needed beginr with q
+    var myI=id.substr(0, 1);
+
+    if(myI == "q")
+    {
+      //    alert(' ' + code + ' id ' + id );
+      //  var field = document.getElementById(id).value;
+      //  alert('field ' + field + ' field.length ' + field.length);
+      //  dumpIt(id,"id");
+      if(id == 'query_text')
+      {
+        RunSqlite();
+//        setTimeout(RunSqlite,1);
+        return false;
+      }
+    }
+  }
+return true;
+}
+
+//document.onkeydown=gjkeybd;
+
+function gjkeybd2(event)
+{
+  myevent = event;
+
+  if(myevent)
+  {
+    code  = myevent.keyCode;
+  }
+
+  if(code==13)
+  {
+        document.getElementById('CC').focus();
+        document.getElementById('CC').click();
+        //RunSqlite();
+        //document.forms.myForm.submit()
+  }
+
+}
+
+
+
+<script type="text/javascript">
+document.forms[1].query_text.onkeydown=gjkeybd2;
+</script>
+
+
+
+-->

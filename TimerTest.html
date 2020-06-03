@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--
+=====================================
+pref("dom.disable_open_during_load",              true);
+
+dom.disable_window_open_feature.close
+
+-->
+
+<html>
+<head>
+<title>SET Timeout Tester </title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+<script type="text/javascript">
+
+var iContinue=1;
+var m_iUpdateInterval = 10;
+
+  function format24HourTime(hour, min, sec)
+  {
+
+    if (min <= 9)
+    {
+      min = "0" + min;
+    }
+
+    if (sec <= 9)
+    {
+      sec = "0" + sec;
+    }
+
+    if(hour <= 9)
+    {
+      hour =  "0" + hour
+    }
+
+    var msg1 = hour;
+    msg1 += ':' + min;
+    msg1 += ':' + sec + ' ';
+
+    return msg1;
+  }
+
+  function document.getElementById(idin)
+  {
+    if(document.all)
+    {
+      return document.all[idin];
+    }
+    else
+      {
+        return document.getElementById(idin);
+      }
+    }
+
+    function changeInnerHTML(idin, myHTML)
+    {
+      var myE= document.getElementById(idin);
+      myE.innerHTML = myHTML;
+    }
+
+    function  gjonerror( err, strin)
+    {
+      alert( err, strin);
+    }
+
+    function setUP()
+    {
+      currentTime();
+    }
+
+    function getDayName(iDay)
+    {
+      dname = new Array(  "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "bad" );
+      return (dname[iDay]);
+    }
+
+    function getMonthName(iMonth)
+    {
+      mname = new Array (   "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+      "bad" );
+
+      return (mname[iMonth]);
+    }
+
+/*
+    function setUpdateInterval(numin)
+    {
+
+      if(numin >= 0 && numin < 99)
+      {
+        m_iUpdateInterval = numin;
+        currentTime();
+      }
+      else
+      {
+        alert(numin + " is not between 0 and 99");
+      }
+    }
+*/
+    function we_are_done()
+    {
+      iContinue=0;
+    }
+
+    function currentTime()
+    {
+      var now   = new Date();
+      var hour  = now.getHours();
+      var min   = now.getMinutes();
+      var sec   = now.getSeconds();
+      var timerID;
+
+
+      var msg1 = format24HourTime(hour, min, sec);
+      var msg2 = ' ';
+
+      msg2 += '  ' + getDayName(now.getDay()) + ', ' + getMonthName(now.getMonth()) + ' ' + now.getDate() + ', ' + now.getFullYear();
+
+      document.getElementById('myTime').firstChild.nodeValue = msg1;
+      document.getElementById('myTime2').firstChild.nodeValue = msg2;
+      document.getElementById('UpdateInterval').firstChild.nodeValue = m_iUpdateInterval;
+
+      if(iContinue)
+      {
+        timerID = setTimeout("currentTime()", (m_iUpdateInterval * 1000));
+      }
+      else
+      {
+        document.getElementById('UpdateInterval').firstChild.nodeValue = "Nothing -> We Are Done";
+        document.getElementById('EndTime').firstChild.nodeValue = GetaTime();
+        clearTimeout(timerID);
+      }
+    }
+
+      function GetaTime()
+      {
+      var now   = new Date();
+      var hour  = now.getHours();
+      var min   = now.getMinutes();
+      var sec   = now.getSeconds();
+
+
+      var msg1 = format24HourTime(hour, min, sec);
+      return msg1
+      }
+
+    window.onload = currentTime;
+
+  </script>
+</head>
+<BODY style='margin:2em;'>
+<h1>Test of setTimeout and its time interval</h1>
+<pre>
+
+ Expected Results:  If you use any valid value for setTimeout, that this page will display the correct time,
+                    for an elapsed time constrained by hiberante and stand by settings.  It should continue to work
+                    if a screen saver is active.  It should contineu to work if the FF is minimized and restored
+
+ To change the time interval edit this file and change the variable m_iUpdateInterval to your desired value.
+
+ Low values like 1, 2 or 3 work very well.
+ Higher values above 10 seem to stop working.
+ Watch the display, the time value should be incremented every m_iUpdateInterval seconds.
+
+ This code is a very small subset of the code I use to run a bunch of different timers.
+ The only need to be accurate to m_iUpdateInterval +- 3 seconds.
+
+
+ Actual Results:
+                  m_iUpdateInterval   10  Total elapsed time before I notice clock not updating: 10 minutes
+                  m_iUpdateInterval    1  Total elapsed time before I notice clock not updating: Never
+
+
+ Test machines
+ 1) Powerspec Intel® Pentium® 4 Processor 524 with HT Technology
+    FF 2.0.3
+    FF 3.0 alpah debug builds
+
+ 2) Toshiba Satellite P35 - Mobile Intel Pentium 4 3.20 GHZ
+    FF 2.0.3
+
+I do not know what developers should expect of some of these api's that were initially envisioned and used
+for "light duty".
+
+</pre>
+<center>
+
+<!--
+<form name ="OptionsTime" id="OptionsTime">
+
+<table border=0 cellspacing=2 cellpadding=2 summary="Options for the timers">
+<tbody>
+
+<tr>
+  <td class="a" style=' vertical-align:bottom'>
+  <p class='td1p'>Enter an Integer between 0 and 99 for your Update Interval and hit the Enter Key</p>
+    </td>
+  <td class="a" style=' vertical-align:bottom'>
+    <input id='fiUpdateInterval' onchange="setUpdateInterval(this.value)" size="4">
+    </td>
+</tr>
+</table>
+</form>
+-->
+
+<div id='TimeDiv' style="position:relative">
+<p style="font-family: monospace; font-size:20pt; font-weight:bold;color:red;" ><span id='myTime' class='a'>:</span>&nbsp;<span style="font-size:20pt; font-weight:bold;color:blue;" id='myTime2' class='a'>:</span></p>
+<p style="font-size:20pt; font-weight:bold;" >Your Update Interval is <span id='UpdateInterval' class='a'>:</span></p>
+</div>
+
+<br clear=all>
+<input tabindex="1" id="CC" title="Quit" class="buttonNgrey" value=" Quit " onclick="we_are_done();" type="button">
+<br>
+</center>
+
+<p style="font-family: monospace; font-size:12pt; font-weight:bold;color:green;"  >Your Start Time <span id='StartTime' class='a'>&nbsp;</span>&nbsp;</p>
+<p style="font-family: monospace; font-size:12pt; font-weight:bold;color:purple;" >Your End Time   <span id='EndTime' class='a'>&nbsp;</span>&nbsp;</p>
+
+<script type="text/javascript">
+      document.getElementById('StartTime').firstChild.nodeValue = GetaTime();
+</script>
+
+</body>
+</html>
+
+<!--
+
+Syntax setTimeout(expression, msec)
+setTimeout(function, msec[, arg1[, ..., argN]])
+Parameters
+Description The setTimeout method evaluates an expression or calls a function after a
+specified amount of time. It does not act repeatedly. For example, if a
+setTimeout method specifies five seconds, the expression is evaluated or the
+function is called after five seconds, not every five seconds. For repetitive
+timeouts, use the setInterval method.
+setTimeout does not stall the script. The script continues immediately (not
+waiting for the timeout to expire). The call simply schedules a future event.
+
+
+Examples Example 1. The following example displays an alert message five seconds
+(5,000 milliseconds) after the user clicks a button. If the user clicks the second
+button before the alert message is displayed, the timeout is canceled and the
+alert does not display.
+<SCRIPT LANGUAGE="JavaScript">
+function displayAlert() {
+alert("5 seconds have elapsed since the button was clicked.")
+}
+</SCRIPT>
+<BODY>
+<FORM>
+Click the button on the left for a reminder in 5 seconds;
+click the button on the right to cancel the reminder before
+it is displayed.
+<P>
+<INPUT TYPE="button" VALUE="5-second reminder"
+NAME="remind_button"
+onClick="timerID=setTimeout('displayAlert()',5000)">
+<INPUT TYPE="button" VALUE="Clear the 5-second reminder"
+NAME="remind_disable_button"
+onClick="clearTimeout(timerID)">
+</FORM>
+</BODY>
+-->

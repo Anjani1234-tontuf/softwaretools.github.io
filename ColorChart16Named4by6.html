@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+
+//@media still has shaky support as of feb 2008
+
+
+@media print
+{
+  h1            { page-break-before: always; }
+  h1, h2, h3, h4, h5, h6    { page-break-after: avoid; }
+  ul, ol, dl    { page-break-before: avoid; }
+
+.s
+{
+height: 197px;
+width:297px;
+}
+
+@page
+{
+    size: landscape;
+    size: 6in 4in;
+}
+
+
+
+}
+
+@media screen
+{
+.s
+{
+height: 197px;
+width:297px;
+}
+
+}
+
+</style>
+<title>16 Colors at arround 1200 x 800 1.5 Aspect ratio Test</title>
+<body style='border:2em;'>
+<table cellspacing="4" width="1200px">
+<tbody>
+
+<tr>
+
+<!--
+cyan or acqua, Magenta or Fuscia, Yellow, Black
+grey, green, marroon, purple
+navy, olive, sliver, teal
+red , lime (rgb green), blue, white
+-->
+
+<td class="s" bgcolor="#00ffff"></td>
+<td class="s" bgcolor="#ff00ff"></td>
+<td class="s" bgcolor="#ffff00"></td>
+<td class="s" bgcolor="#000000"></td>
+</tr>
+
+<tr>
+<td class="s" bgcolor="#808080"></td>
+<td class="s" bgcolor="#008000"></td>
+<td class="s" bgcolor="#800000"></td>
+<td class="s" bgcolor="#800080"></td>
+
+</tr>
+
+<tr>
+<td class="s" bgcolor="#000080"></td>
+<td class="s" bgcolor="#808000"></td>
+<td class="s" bgcolor="#c0c0c0"></td>
+<td class="s" bgcolor="#008080"></td>
+</tr>
+<tr>
+
+<td class="s" bgcolor="#ff0000"></td>
+<td class="s" bgcolor="#00ff00"></td>
+<td class="s" bgcolor="#0000ff"></td>
+<td class="s" bgcolor="#ffffff"></td>
+
+
+</tr>
+
+
+</tbody>
+</table>
+
+</body>
+</html>
+
+

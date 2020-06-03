@@ -1,0 +1,1139 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>MySQL Cheat Sheet</title>
+<link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+
+<style type="text/css">
+
+body {
+font-family: "Courier New","Courier", fixed;
+font-size: 16px;
+font-weight: 500;
+line-height: 1.2;
+color: black;
+text-rendering: optimizelegibility;
+margin:1em; }
+
+table {padding:1em; margin:0 auto; border-collapse: separate;}
+
+table td, table th {
+line-height: 1.0;
+padding: 5px 5px;
+border:none;
+vertical-align:top;
+font-family: "Courier New","Courier",fixed;
+margin-top:0;
+margin-right:5px;
+margin-left:5px;
+margin-bottom:5px; }
+
+b, thead, thead td {background-color:blue!important;color:white!important;padding:0 3px;}
+
+table tr:nth-of-type(odd) {background-color:azure;}
+
+.readtxt { font-family: Arial, sans-serif; line-height: 18px; font-size: 12px;}
+
+hr.alt {
+  color:blue;
+  margin-top: .5em;
+  margin-bottom: .5em;}
+
+a[href ^= 'http']:not([href *= 'garyjohnsoninfo.']) {
+background: transparent url("GraphicWidgets/external.png") no-repeat center right;
+margin:0px 10px;padding-left: 16px;}
+
+
+a.AFour:link {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+  padding:3px 20px 3px 5px;
+  margin:0;
+  background-color:#6699ff;
+  border-radius: 6px;}
+
+a.AFour:visited {
+  font-weight: normal;
+  font-size: 16px;
+  color: purple;
+  text-decoration: line-through;}
+
+a.AFour:hover {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  text-decoration: underline;}
+
+/* no margin on float; should be margin:0 in RTB and LTB  */
+.RTB { float: right; }
+
+.LTB { float: left;}
+
+.clearall { clear:both;}
+
+/* my bolder normal is 400 bold is 700*/
+.ber {font-weight: 700;}
+
+pre {
+padding: 5px 0 5px 1em;
+font-family: "Courier New","Courier", fixed;
+font-weight: 500; }
+
+.smaller { line-height: 1.0}
+
+h1 {
+font-weight:bold;
+font-size:12.0pt;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+text-align:center;
+}
+
+H2 {
+font-size:16px;
+color: blue;
+font-weight: bolder;
+text-align: left;
+font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+margin:0 0 10px 0;
+padding-left:1em;
+}
+
+
+ul.none {
+border:0 none;
+list-style:none;
+list-style-type:none;
+margin:0;
+padding:0;}
+
+ul.none li, ol li {
+border:0 none;
+text-align:left;
+font-size:19px;
+margin:0;
+padding:0 0 5px 0;}
+
+</style>
+</head>
+<body>
+<h1>(My)SQL Cheat Sheet</h1>
+
+<div style='width:100%'>
+
+<table class="LTB smaller">
+<tbody><tr><td colspan="3" align="center">
+<b>MySQL Mathematical Functions</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+</tr><tr><td>Count rows per group</td>
+  <td>COUNT(<i>column</i> | *)</td></tr>
+<tr><td>Average value of group</td>
+  <td>AVG(<i>column</i>)</td></tr>
+<tr><td>Minumum value of group</td>
+  <td>MIN(<i>column</i>)</td></tr>
+<tr><td>Maximum value of group</td>
+  <td>MAX(<i>column</i>)</td></tr>
+<tr><td>Sum values in a group</td>
+  <td>SUM(<i>column</i>)</td></tr>
+<tr><td>Absolute value</td>
+  <td>abs(<i>number</i>)</td></tr>
+<tr><td>Rounding numbers</td>
+  <td>round(<i>number</i>)</td></tr>
+<tr><td>Largest integer not greater</td>
+  <td>floor(<i>number</i>)</td></tr>
+<tr><td>Smallest integer not smaller</td>
+  <td>ceiling(<i>number</i>)</td></tr>
+<tr><td>Square root</td>
+  <td>sqrt(<i>number</i>)</td></tr>
+<tr><td><i>n</i>th power</td>
+  <td>pow(<i>base</i>,<i>exponent</i>)</td></tr>
+<tr><td>random number <i>n</i>, 0&lt;<i>n</i> &lt; 1</td>
+  <td>rand()</td></tr>
+<tr><td>sin (similar cos, etc.)</td>
+  <td>sin(<i>number</i>)</td></tr>
+<tr><td>
+<a  class='AFour' target ='_blank' href="http://www.w3schools.com/sql/sql_where.asp">Where & Operators</a>
+</td>
+<td>
+<a  class='AFour' target ='_blank' href="https://dev.mysql.com/doc/refman/5.0/en/comparison-operators.html">Comparison Operators</a>
+</td></tr>
+
+<tr><td>
+<a class='AFour' target="_blank" href="http://dev.mysql.com/doc/refman/5.7/en/mathematical-functions.html">Mathematical functions</a>
+</td>
+<td>
+<a class='AFour' target="_blank" href="http://dev.mysql.com/doc/refman/5.1/en/functions.html">Functions and Operators</a>
+</td></tr>
+</tbody></table>
+
+<table class="RTB smaller">
+<tbody><tr><td colspan="3" align="center">
+<b>MySQL String Functions</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+</tr><tr><td>Compare strings</td>
+  <td>strcmp(<i>string1</i>,<i>string2</i>)</td></tr>
+<tr><td>Convert to lower case</td>
+  <td>lower(<i>string</i>)</td></tr>
+<tr><td>Convert to upper case</td>
+  <td>upper(<i>string</i>)</td></tr>
+<tr><td>Left-trim whitespace (similar right)</td>
+  <td>ltrim(<i>string</i>)</td></tr>
+<tr><td>Substring of string</td>
+  <td>substring(<i>string</i>,<i>index1</i>,<i>index2</i>)
+  </td></tr>
+<tr><td>Encrypt password</td>
+  <td>password(<i>string</i>)</td></tr>
+<tr><td>Encode string</td>
+  <td>encode(<i>string</i>,<i>key</i>)</td></tr>
+<tr><td>Decode string</td>
+  <td>decode(<i>string</i>,<i>key</i>)</td></tr>
+<tr><td>Get date</td>
+  <td>curdate()</td></tr>
+<tr><td>Get time</td>
+  <td>curtime()</td></tr>
+<tr><td>Extract day name from date string</td>
+  <td>dayname(<i>string</i>)</td></tr>
+<tr><td>Extract day number from date string</td>
+  <td>dayofweek(<i>string</i>)</td></tr>
+<tr><td>Extract month from date string</td>
+  <td>monthname(<i>string</i>)</td></tr>
+<tr><td>
+<a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html">String Functions</a>
+</td>
+<td>
+<a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.1/en/regexp.html">Reg Exp</a>
+</td></tr>
+<tr><td>
+<a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html">Date and Time Functions</a>
+</td>
+<td>
+</td></tr>
+
+</tbody>
+</table>
+
+
+<table class="clearall smaller">
+<tbody><tr>
+<td colspan="3" align="center"><b>SQL Commands: Modifying</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+  <td><b>Example(s)</b></td></tr>
+<tr><td>Create table</td>
+  <td>CREATE TABLE <i>table</i> ( <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column1</i> <i>type</i> [[NOT] NULL] <br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  [AUTO_INCREMENT],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column2</i> <i>type</i> [[NOT] NULL] <br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  [AUTO_INCREMENT],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        ...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        <i>other options</i>,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  PRIMARY KEY (<i>column(s)</i>)&nbsp; &nbsp; ); </td>
+  <td>CREATE TABLE Students (<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    LastName varchar(30) NOT NULL,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    FirstName varchar(30) NOT NULL,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    StudentID int  NOT NULL,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    Major varchar(20),<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    Dorm varchar(20),<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    PRIMARY KEY (StudentID) &nbsp; &nbsp; );</td></tr>
+<tr><td>Insert data </td>
+  <td>INSERT INTO <i>table</i> VALUES <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  (<i>list of values</i>);<br>
+  INSERT INTO <i>table</i> SET<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column1</i>=<i>value1</i>,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column2</i>=<i>value2</i>,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        ...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>columnk</i>=<i>valuek</i>;<br>
+  INSERT INTO <i>table</i> (<i>column1</i>,<i>column2</i>,...)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  VALUES (<i>value1</i>,<i>value2</i>...);
+  </td>
+  <td>INSERT INTO Students VALUES<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  ('Smith','John',123456789,'Math','Selleck');<br>
+  INSERT INTO Students SET<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FirstName='John',<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  LastName='Smith',<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  StudentID=123456789,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  Major='Math';<br>
+  INSERT INTO Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  (StudentID,FirstName,LastName)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  VALUES (123456789,'John','Smith');
+  </td></tr>
+<tr><td>Insert/Select </td>
+  <td>
+  INSERT INTO <i>table</i> (<i>column1</i>,<i>column2</i>,...)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>SELECT statement</i>;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  (See below)
+  </td>
+  <td>
+  INSERT INTO Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  (StudentID,FirstName,LastName)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  SELECT StudentID,FirstName,LastName <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM OtherStudentTable;<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE LastName like '%son';
+  </td></tr>
+<tr><td>Delete data</td>
+  <td>DELETE FROM <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+   [WHERE <i>condition(s)</i>];<br><br><br><br>
+        (Omit <b>WHERE</b> to delete all data)
+  </td>
+  <td>
+        DELETE FROM Students <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE LastName='Smith';<br>
+        DELETE FROM Students <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE LastName like '%Smith%';<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  AND FirstName='John';<br>
+  DELETE FROM Students;
+        </td></tr>
+<tr><td>Updating Data</td>
+  <td>UPDATE <i>table</i> SET<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column1</i>=<i>value1</i>,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column2</i>=<i>value2</i>,<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        ...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>columnk</i>=<i>valuek</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        [WHERE <i>condition(s)</i>];
+        </td>
+  <td>UPDATE Students SET <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  LastName='Jones' WHERE<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  StudentID=987654321;<br>
+  UPDATE Students SET <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  LastName='Jones', Major='Theatre' <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE StudentID=987654321 OR<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        (MAJOR='Art' AND FirstName='Pete');
+  </td></tr>
+<tr><td>Insert column</td>
+  <td>ALTER TABLE <i>table</i> ADD COLUMN <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column</i> <i>type</i> <i>options</i>;</td>
+  <td>ALTER TABLE Students ADD COLUMN <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  Hometown varchar(20);
+  </td></tr>
+<tr><td>Delete column</td>
+  <td>ALTER TABLE <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  DROP COLUMN <i>column</i>;</td>
+  <td>ALTER TABLE Students <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  DROP COLUMN Dorm;
+  </td></tr>
+<tr><td>Empty Table</td>
+  <td>TRUNCATE TABLE <tablename></td>
+  <td>TRUNCATE TABLE Animals</td></tr>
+</tbody></table>
+
+<table>
+<tr><td>Delete table (<i>Careful!</i>)</td>
+  <td>DROP TABLE [IF EXISTS] <i>table</i>;</td>
+  <td>DROP TABLE Animals;</td></tr>
+</tbody></table>
+
+
+
+<table class="smaller">
+<tbody><tr>
+<td colspan="3" align="center"><b>SQL Commands: Querying</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+  <td><b>Example(s)</b></td></tr>
+<tr><td class="ber">Everything</td>
+  <td>SELECT [DISTINCT] <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column1</i> [AS <i>alias1</i>],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column2</i> [AS <i>alias2</i>], ...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table1</i> [<i>alias1</i>],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>table2</i> [<i>alias2</i>],...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [WHERE <i>condition(s)</i>]<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [GROUP BY <i>column(s)</i>]<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [HAVING <i>condition(s)</i>]<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [ORDER BY <i>column(s)</i> [DESC]];
+  </td>
+  <td>
+  SELECT Points, COUNT(*) AS Cnt<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students S,Assignments A <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE S.StudentID=A.StudentID AND <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  A.AssignmentID=12<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        GROUP BY Points<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  HAVING Points &gt; 10<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        ORDER BY Cnt, Points DESC;
+  </td>
+  </tr>
+<tr><td>All columns</td>
+  <td>SELECT * FROM <i>table</i>;</td>
+  <td>SELECT * FROM Students;</td></tr>
+<tr><td>Some columns</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...
+  FROM <i>table</i>;</td>
+  <td>
+        SELECT LastName, FirstName FROM Students;
+  </td></tr>
+<tr><td>Some rows/<br>columns</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [WHERE <i>condition(s)</i>];</td>
+  <td>SELECT LastName,FirstName<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE StudentID LIKE '%123%';</td>
+  </tr>
+<tr><td>No Repeats</td>
+  <td>SELECT [DISTINCT] <i>column(s)</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table</i>;<br></td>
+  <td>SELECT DISTINCT LastName<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students;
+  </td>
+  </tr>
+<tr><td>Ordering </td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [ORDER BY <i>column(s)</i> [DESC]];
+  </td>
+  <td>SELECT LastName,FirstName<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        ORDER BY LastName, FirstName DESC;
+  </td></tr>
+<tr><td>Column<br>Aliases</td>
+  <td>SELECT <i>column1</i> [AS <i>alias1</i>],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>column2</i> [AS <i>alias2</i>], ...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table1</i>;
+  </td><td>
+  SELECT LastName,FirstName AS First<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students;
+  </td>
+  </tr>
+<tr><td>Grouping</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [GROUP BY <i>column(s)</i>];
+  </td>
+  <td>SELECT LastName,COUNT(*)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        GROUP BY LastName;
+  </td>
+  </tr>
+<tr><td>Group Filtering</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table</i><br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [GROUP BY <i>column(s)</i>]<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [HAVING <i>condition(s)</i>];
+  </td>
+  <td>SELECT LastName,COUNT(*)<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        GROUP BY LastName<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+        HAVING LastName like '%son';
+  </td>
+  </tr>
+<tr><td>Joins</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table1</i>,<i>table2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [WHERE <i>condition(s)</i>];</td>
+  <td>
+  SELECT LastName,Points<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students,Assignments <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE AssignmentID=12 AND<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  Students.StudentID=Assignments.StudentID;
+        </td>
+  </tr>
+<tr><td>Table <br>Aliases</td>
+  <td>SELECT <i>column1</i>,<i>column2</i>,...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM <i>table1</i> [<i>alias1</i>],<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <i>table2</i> [<i>alias2</i>],...<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  [WHERE <i>condition(s)</i>];</td>
+  <td>
+  SELECT LastName,Points<br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  FROM Students S,Assignments A <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  WHERE S.StudentID=A.StudentID AND <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  A.AssignmentID=12;</td>
+  </tr>
+</tbody>
+</table>
+
+
+<table class="smaller">
+<tbody><tr><td colspan="3" align="center"><b>Basic MySQL Commands</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+  <td><b>Example(s)</b></td></tr>
+<tr><td>List all databases</td>
+  <td>SHOW DATABASES;</td>
+  <td>SHOW DATABASES;</td></tr>
+<tr><td>Create database</td>
+  <td>CREATE DATABASE <i>database</i>;</td>
+  <td>CREATE DATABASE PhoneDB;</td></tr>
+<tr><td>Use a database</td>
+  <td>USE <i>database</i>;</td>
+  <td>USE PhonDB;</td></tr>
+<tr><td>List tables in the database</td>
+  <td>SHOW TABLES;</td>
+  <td>SHOW TABLES;</td></tr>
+<tr><td>Show the structure of a table</td>
+  <td>DESCRIBE <i>table</i>;<br>
+  SHOW COLUMNS FROM <i>table</i>;</td>
+  <td>DESCRIBE Animals;<br>
+  SHOW COLUMNS FROM Animals;</td>
+  </tr>
+<tr><td>Delete a database (<i>Careful!</i>)</td>
+  <td>DROP DATABASE <i>database</i>;</td>
+  <td>DROP DATABASE PhoneDB;</td></tr>
+</tbody></table>
+
+
+<table class="smaller">
+<tbody><tr><td colspan="3" align="center"><b>MySQL Command-Line</b></td></tr>
+<tr><td><b>What</b></td>
+  <td><b>How</b></td>
+  <td><b>Example(s)</b></td></tr>
+<tr><td>Running MySQL</td>
+  <td>mysql -u<i>username</i> -p<i>password</i></td>
+  <td>mysql -ucusack2RO -pegbdf5s</td></tr>
+<tr><td>Importing</td>
+  <td>mysql -u<i>username</i> -p<i>password</i> &lt; <i>filename</i></td>
+  <td>mysql -usomeDB -pblah &lt; myNewDB.sql</td></tr>
+<tr><td>Dumping<br> (Saving) </td>
+  <td>mysqldump -u<i>username</i> -p<i>password</i>
+    <i>database</i> [<i>tables</i>] &gt; <i>filename</i></td>
+  <td>mysqldump -ume -pblah myDB &gt; My.sql<br>
+  mysqldump -ume -pblah myDB table1 <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  table2 &gt; my.sql<br>
+    </td></tr>
+</tbody></table>
+
+<table class="smaller">
+<tbody><tr><td colspan="3" align="center"><b>Common MySQL Column Types
+</b></td></tr>
+<tr>
+  <td><b>Purpose</b></td>
+  <td><b>Data Type</b></td>
+  <td><b>Example</b></td></tr>
+<tr>
+  <td>Integers</td>
+  <td>int(<i>M</i>)</td>
+  <td>int(5)</td></tr>
+<tr>
+  <td>Floating-point (real) numbers </td>
+  <td>float(<i>M</i>,<i>D</i>)</td>
+  <td>float(12,3)</td></tr>
+<tr>
+  <td>Double-precision floating-point</td>
+  <td>double(<i>M</i>,<i>D</i>)</td>
+  <td>double(20,3)</td></tr>
+<tr>
+  <td>Dates and times</td>
+  <td>timestamp(<i>M</i>)</td>
+  <td>timestamp(8) (for YYYYMMDD)<br>
+  timestamp(12) (for YYYYMMDDHHMMSS)</td></tr>
+<tr><td>Fixed-length strings</td>
+  <td>char(<i>M</i>)</td>
+  <td>char(10)</td></tr>
+<tr><td>Variable-length strings</td>
+  <td>varchar(<i>M</i>)</td>
+  <td>varchar(20)</td></tr>
+<tr><td>A large amount of text</td>
+  <td>blob</td>
+  <td>blob</td></tr>
+<tr><td>Values chosen from a list</td>
+  <td>enum('value1',value2',...)</td>
+  <td>enum('apples','oranges','bananas')</td></tr>
+<tr><td colspan="3"><hr></td></tr>
+<tr><td colspan="3">
+  <i>M</i> is maximum to display, and <i>D</i> is
+  precision to the right of the decimal.
+</td></tr>
+</tbody></table>
+
+</div>
+<div style="margin:0 25%">
+<ul class='none'>
+<li><a  class='AFour' target ='_blank' href="http://en.wikibooks.org/wiki/MySQL/CheatSheet">http://en.wikibooks.org/wiki/MySQL/CheatSheet</a></li>
+<li><a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.6/en/">mysql 5.5 reference manual</a></li>
+<li><a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.6/en/sql-syntax.html">Stmt Syntax</a></li>
+<li><a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.6/en/functions.html">Functions</a></li>
+<li><a  class='AFour' target ='_blank' href="file:///C:/Users/US/Downloads/!PDFKeep/mysql-stored-procedures.pdf">file:///C:/Users/US/Downloads/!PDFKeep/mysql-stored-procedures.pdf</a></li>
+<li><a  class='AFour' target ='_blank' href="http://dev.mysql.com/doc/refman/5.6/en/stored-programs-views.html">Stored Programs and Views</a></li>
+</ul>
+</div>
+<h1>Notes and Examples</h1>
+
+<h2>Miscellaneous</h2>
+<hr>
+
+<xmp>
+
+<meta charset="Windows-1252">
+
+function gjconnect() {
+    global $gjsdbc;
+
+// Connect
+$gjsdbc = mysqli_connect ('localhost', 'username','password', 'db');
+    //$gjsdbc = mysqli_connect($server, $username, $password, $database);
+    if (mysqli_connect_errno($gjsdbc)) {
+    error_log( "Failed to connect to mysqli: " . mysqli_connect_error());
+	  trigger_error("No connection to DB",E_USER_ERROR);
+    exit("-> GoodBye ->\n");
+    }
+
+    return $gjsdbc;
+} // End of gjconnect() function.
+
+
+function doquery($gjsdbc, $q1) {
+	if (!$result = $gjsdbc->multi_query($q1)) {
+	    // Oh no! The query failed.
+
+	    // to get the error information
+	    echo "Error: query failed  : ";
+	    echo "Query: " . $q1 . "<br>";
+	    echo "Errno: " . $gjsdbc->errno . "<br>";
+	    echo "Error: " . $gjsdbc->error . "<br>";
+	    exit;
+	}
+}
+
+function doreportgeneric2($gjsdbc, $q1, $h1) {
+	if (!$result = $gjsdbc->query($q1)) {
+	    // Oh no! The query failed.
+
+	    // to get the error information
+	    echo "Error: query failed  : ";
+	    echo "Query: " . $q1 . "<br>";
+	    echo "Errno: " . $gjsdbc->errno . "<br>";
+	    echo "Error: " . $gjsdbc->error . "<br>";
+	    exit;
+	}
+
+	// succeeded, but do we have a result?
+	if ($result->num_rows === 0) {
+	    echo "<h1>" . 'no rows for ' . $q1 . "</h1>";
+	    return;
+	}
+	echo "<h1>" . $q1 ."</h1>" . PHP_EOL;
+	echo "<h1>" . $h1 ."</h1>" . PHP_EOL;
+
+    echo "<table>" . PHP_EOL;
+
+  	echo "<tr>" . PHP_EOL;
+       while ($finfo = $result->fetch_field()) {
+            echo "<th>&nbsp;{$finfo->name}</th>" . PHP_EOL;
+        }
+  	echo "<tr>" . PHP_EOL;
+
+        while ($row = $result->fetch_row()) {
+            echo "<tr>" . PHP_EOL;
+            foreach ($row as $cell) {
+                echo "<td>{$cell}</td>" . PHP_EOL;
+            }
+            echo "</tr>". PHP_EOL;
+        }
+
+  echo "</table>" . PHP_EOL;
+	echo "Number of rows " . $result->num_rows . PHP_EOL;
+	echo "<HR CLASS='breakhere'>" . PHP_EOL;
+}
+
+	try {
+		//this exits on failure
+		gjconnect(); //	$gjsdbc;
+
+		if(!mysqli_set_charset ( $gjsdbc , 'latin1' )) {
+  			error_log( "cannot set charset" );
+			trigger_error("Incorrect charset",E_USER_ERROR);
+    		exit(" -> GoodBye ".PHP_EOL);
+		}
+
+
+		$q0 ="Select * FROM SCEHTicTack WHERE R = 'N'";
+		$h0 ="People Not Registered at MemberClicks But on other lists";
+		doreportgeneric2($gjsdbc,$q0, $h0);
+
+</xmp>
+<pre>
+
+Look at ma personal gjtest for the MH stuff
+Example
+
+INSERT INTO ym
+(
+MemberTypeCode,
+PrimaryGroupCode,
+ConstituentID,
+Registrationdate,
+DateMembershipExpires,
+EmployerName,
+EmployerAddressLines,
+EmployerCity,
+EmployerLocation,
+EmployerPostalCode,
+EmployerPhoneAreaCode,
+EmployerPhone,
+EmployerFaxAreaCode,
+EmployerFax,
+Membership,
+LastName,
+FirstName,
+Nickname,
+ProfessionalTitle,
+EmailAddress,
+Username,
+Password,
+awarde
+)
+SELECT
+ymdistinct.MemberTypeCode,
+ymdistinct.PrimaryGroupCode,
+ymdistinct.ConstituentID,
+ymdistinct.Registrationdate,
+ymdistinct.DateMembershipExpires,
+ymdistinct.EmployerName,
+ymdistinct.EmployerAddressLines,
+ymdistinct.EmployerCity,
+ymdistinct.EmployerLocation,
+ymdistinct.EmployerPostalCode,
+ymdistinct.EmployerPhoneAreaCode,
+ymdistinct.EmployerPhone,
+ymdistinct.EmployerFaxAreaCode,
+ymdistinct.EmployerFax,
+ymdistinct.Membership,
+award2013.`LNAME1`,
+award2013.`FNAME1`,
+award2013.`FNAME1` as NickName,
+award2013.`TITLE1`,
+award2013.`E-MAIL`,
+getUserName(ymdistinct.ConstituentID, FNAME1, LNAME1) AS USERNAME,
+getUserPasswrd(ymdistinct.ConstituentID, FNAME1, LNAME1) AS PASSWORD,
+'1'  as AWARDE
+FROM award2013
+JOIN YMDistinct
+on award2013.shortcode = YMDistinct.ConstituentID
+and ORGNAME is not null
+ON DUPLICATE KEY UPDATE AWARDE='1';
+
+
+Personal\gjtest\ym\reportYM.sql !!
+Personal\gjtest\ChkDupUsernameinYM.sql
+Personal\gjtest\getAreaCode.sql
+Personal\gjtest\YM.real.sql
+Personal\gjtest\YMDistinct.sql
+Personal\gjtest\award2013\doAward2013Load.sql
+Personal\gjtest\jic\defineSource.sql
+Personal\gjtest\jic\getAltMemberCode.orig.sql
+Personal\gjtest\jic\getUpper.1.sql
+Personal\gjtest\members\doYMDistinctLoad.sql
+Personal\gjtest\AnnualE12\KeyContacts.sql
+Personal\gjtest\AnnualE12\report2AnnualE2012.sql
+Personal\gjtest\AnnualE12\updateDistinct.sql
+Personal\gjtest\AnnualE12\updateEN.sql
+
+table_id INT PRIMARY KEY AUTO_INCREMENT
+do not supply a value for that column when inserting rows.
+or specify NULL
+
+/mysql/my.cnf
+lower_case_table_names=1
+
+Personal sql
+TOAD Change Connection by user
+
+The ` is lowercase on the ~ tilde key
+NOW() is current Timestamp exmaple :'2003-12-31 01:02:03'
+
+On shared hosts : create the database and user in CP-> mysql databases before you do anyhting in phpMYadmin
+
+With some savvy using APC cache, memcached, and MySQL query-caching,
+you can easily hit 100,000 queries per second on a single back-end server
+
+Table Documentation
+SELECT table_name, column_name, column_comment FROM information_schema.columns where length(column_comment) > 0 ORDER BY table_name;
+
+SHOW CREATE TABLE t\G
+
+repair mysqlcheck --all-databases
+
+mysqlshow
+mysqlshow database
+
+The following example accesses the author table from the db1 database and the editor table from the db2 database:
+
+USE db1;
+SELECT author_name,editor_name FROM author,db2.editor
+WHERE author.editor_id = db2.editor.editor_id;
+
+<a class='AFour' target="_blank" href="https://dev.mysql.com/doc/refman/5.1/en/mysqlshow.html">https://dev.mysql.com/doc/refman/5.1/en/mysqlshow.html</a>
+
+Use a formatter to follow coding conventions:
+ <a class=AFour target="_blank" href="http://www.dpriver.com/pp/sqlformat.htm">http://www.dpriver.com/pp/sqlformat.htm</a>
+
+SQL Formatter plugin for UltraEdit
+</code>
+
+
+<h2>Command line Control Functions</h2>
+<hr>
+<pre>
+set @cutofftime = (SELECT (CASE
+WHEN EXTRACT(HOUR FROM NOW()) < 13 THEN DATE_SUB(NOW(), INTERVAL 20 HOUR)
+ELSE DATE_SUB(NOW(), INTERVAL 3 HOUR)
+END));
+
+select @cutofftime as 'cutofftime', NOW() as 'curtimestamp';
+
+ternary operator
+(SELECT if (EXTRACT(HOUR FROM NOW()) < 13, DATE_SUB(NOW(), INTERVAL 20 #HOUR), DATE_SUB(NOW(), INTERVAL 3 HOUR)));
+
+set @ope_id = (select max(id) from operation where ope = 'Next');
+
+CASE case_value
+    WHEN when_value THEN statement_list
+    [WHEN when_value THEN statement_list] ...
+    [ELSE statement_list]
+END CASE
+Or:
+
+CASE
+    WHEN search_condition THEN statement_list
+    [WHEN search_condition THEN statement_list] ...
+    [ELSE statement_list]
+END CASE
+</pre>
+
+<h2>Select</h2>
+<hr>
+<pre>
+SELECT * FROM table
+SELECT * FROM table1, table2, ...
+SELECT field1, field2, ... FROM table1, table2, ...
+SELECT ... FROM ... WHERE condition
+SELECT ... FROM ... WHERE condition GROUP BY field
+SELECT ... FROM ... WHERE condition GROUP BY field HAVING condition2
+SELECT ... FROM ... WHERE condition ORDER BY field1, field2
+SELECT ... FROM ... WHERE condition ORDER BY field1, field2 DESC
+SELECT ... FROM ... WHERE condition LIMIT 10
+SELECT DISTINCT field1 FROM ...
+SELECT DISTINCT field1, field2 FROM ...
+
+Conditionals
+field1 = value1
+field1 <> value1
+field1 LIKE 'value _ %'
+field1 IS NULL
+field1 IS NOT NULL
+field1 IN (value1, value2)
+field1 NOT IN (value1, value2)
+condition1 AND condition2
+condition1 OR condition2
+
+SELECT Username,FirstName, EmployerName, ConstituentID from YM
+where username in ( SELECT Username FROM YM GROUP BY Username HAVING ( COUNT(Username) > 1 ));
+
+select count(*) from YM
+
+SELECT ConstituentID,  EmployerName,
+COUNT(ConstituentID)
+FROM YM
+GROUP BY ConstituentID
+HAVING ( COUNT(ConstituentID) > 1 )
+
+SELECT ShortCode,  orgname,
+COUNT(ShortCode)
+FROM award2013
+GROUP BY ShortCode
+HAVING ( COUNT(ShortCode) > 1 )
+
+SELECT ShortCode,  orgname from award2013
+where ShortCode in ( SELECT ShortCode FROM award2013 GROUP BY ShortCode HAVING ( COUNT(ShortCode) > 1 )  AND orgname is not null);
+
+SELECT award2013.`ORGNAME`,ym.EmployerName,  award2013.shortcode,ym.ConstituentID,
+Award2013.LNAME1, award2013.FNAME1,
+Ym.lastname, ym.firstname
+FROM award2013
+JOIN YM
+ON award2013.LNAME1 = YM.LASTNAME
+-- where award2013.FNAME1 != YM.FirstNAME
+-- or
+Where award2013.shortcode != YM.ConstituentID
+
+
+In ('AMGEN', 'AIM','HCFA','BCIL','COPS','MDMH','DVSA','MCOH','MDA','LCHC','HCFA','JJ");
+
+select id, title, slug, body,  FROM_UNIXTIME(created_on,'%Y-%m-%d %h:%i:%s'),  FROM_UNIXTIME (updated_on,'%Y-%m-%d %h:%i:%s'), status
+into outfile 'f:/report.csv'
+fields terminated by ',' ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+from jl_posts
+limit 0, 30
+
+SELECT SUBSTRING_INDEX('bbb/bbbbbb/bbbbbbbbb/bbbb', '/', -1);
+SELECT SUBSTRING_INDEX(fn, '@', -1);
+
+SELECT email FROM table WHERE email NOT LIKE '%_@_%._%' AND email NOT LIKE '%list of invalid char%'
+</pre>
+
+<h2>Options</h2>
+<hr>
+<pre>
+select * from dms\G  gives me one line per record instead of ";"
+
+One line comment in command line   select 'This is a comment' AS ' ';
+
+select concat ("Updated ", row_count(), " rows") as '';
+
+mysql>
+\s  - status
+system env  - system (OS command)
+
+help show;
+show global status;
+show global variables;
+
+Linux
+pager less -SFX
+</pre>
+
+
+<!--
+SELECT e.name, d.floor
+ FROM employee e, department d
+WHERE e.dname = d.dname and e.name = 'joe';
+
+http://web.mit.edu/11.521/www/sqlnotes/sqlhelp.html"-->
+
+<h2>Priveleges and related commands</h2>
+<hr>
+<pre>
+DROP TABLE zip_codes;
+DROP DATABSE zips;
+CREATE DATABASE zips;
+FLUSH TABLES ym.btest
+TRUNCATE TABLE `ym`.`members`;
+
+DROP USER 'garyjohn_MUUOMP'@'%';
+CREATE USER 'garyjohn_MUUOMP'@'%' IDENTIFIED BY '***';
+CREATE USER 'garyjohn_MUUOMP'@'localhost' IDENTIFIED BY PASSWORD '';
+
+REVOKE ALL PRIVILEGES ON * . * FROM 'garyjohn_SSEUAWL'@'localhost';
+REVOKE GRANT OPTION ON * . * FROM 'garyjohn_SSEUAWL'@'localhost';
+
+GRANT SELECT (Host, Db, User, Table_name, Table_priv, Column_priv) ON mysql.tables_priv TO 'gjpma'@'localhost';
+
+GRANT ALL PRIVILEGES ON *.* TO 'garyjohn_SSEUAWL'@'%' IDENTIFIED BY PASSWORD '' WITH GRANT OPTION;
+GRANT DELETE, CREATE, DROP, ALTER, CREATE VIEW, SHOW VIEW, TRIGGER ON `gmcontacts`.`gmcontacts` TO 'garyjohn_SSEUAWL'@'%' WITH GRANT OPTION;
+
+GRANT USAGE ON mysql.* TO 'gjpma'@'localhost' IDENTIFIED BY 'shit';
+GRANT SELECT (
+    Host, User, Select_priv, Insert_priv, Update_priv, Delete_priv,
+    Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv,
+    File_priv, Grant_priv, References_priv, Index_priv, Alter_priv,
+    Show_db_priv, Super_priv, Create_tmp_table_priv, Lock_tables_priv,
+    Execute_priv, Repl_slave_priv, Repl_client_priv
+    ) ON mysql.user TO 'gjpma'@'localhost';
+
+GRANT SELECT ON mysql.host TO 'gjpma'@'localhost';
+</pre>
+
+<h2>DDL</h2>
+<hr>
+<pre>
+NULL means you do not have to provide a value for the field...
+NOT NULL means you must provide a value for the fields.
+pswd (NOT NULL),  optional spouse_name (NULL)
+
+INSERT INTO tbl_name [(col_name,...)]
+    SELECT ...
+    [ ON DUPLICATE KEY UPDATE col_name=expr, ... ]
+
+<a class='AFour' target="_blank" href="http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html">insert-on-duplicate.html</a>
+
+delete
+FROM award2013
+WHERE (((award2013.ID)>138));
+
+ALTER TABLE `award2013` ADD `ShortCode` VARCHAR( 4 ) NOT NULL
+
+UPDATE award2013 SET ShortCode = getUpper(ORGNAME) where ORGNAME IS NOT NULL;
+UPDATE jl_test set Created = FROM_UNIXTIME(created_on);
+
+delete *
+FROM award2013
+WHERE (((award2013.ID)>138));
+
+DYNAMIC SQL Generation for the UpdateCommand is not supported against a SelectCommand the does return any key column
+
+CREATE VIEW `invalid_emails` AS
+select `table_with_email_column`.`email` AS `invalidemail`
+from `table_with_email_column`
+where ((locate(_latin1'', ltrim(rtrim(`table_with_email_column`.`email`))) <> 0)
+  or (left(ltrim(`table_with_email_column`.`email`), 1) = _latin1'@')
+  or (right(rtrim(`table_with_email_column`.`email`), 1) = _latin1'.')
+  or ((locate(_latin1'.', `table_with_email_column`.`email`,locate(_latin1'@', `table_with_email_column`.`email`)) -  locate(_latin1'@', `table_with_email_column`.`email`)) <= 1)
+  or ((length(ltrim(rtrim(`table_with_email_column`.`email`))) -  length(replace(ltrim(rtrim(`table_with_email_column`.`email`)), _latin1'@', _latin1''))) <> 1)
+  or (locate(_latin1'.', reverse(ltrim(rtrim(`table_with_email_column`.`email`)))) < 3)
+  or (locate(_latin1'.@', `table_with_email_column`.`email`) <> 0)
+  or (locate(_latin1'..', `table_with_email_column`.`email`) <> 0));
+
+
+UPDATE tablename SET comment_timestamp = UNIX_TIMESTAMP(comment_date);
+
+UPDATE jl_test set Created = FROM_UNIXTIME(created_on);
+
+dateUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+dateAdded TIMESTAMP NOT NULL,
+
+</pre>
+
+
+<h2>Joins</h2>
+<hr>
+<a class=AFour target="_blank" href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/">http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/</a>
+
+<pre>
+SELECT ... FROM t1 JOIN t2 ON t1.id1 = t2.id2 WHERE condition
+SELECT ... FROM t1 LEFT JOIN t2 ON t1.id1 = t2.id2 WHERE condition
+SELECT ... FROM t1 JOIN (t2 JOIN t3 ON ...) ON ...
+SELECT ... FROM t1 JOIN t2 USING(id) WHERE condition
+
+SELECT CONCAT(customer.last_name, ', ', customer.first_name) AS customer, address.phone, film.title
+FROM rental INNER JOIN customer ON rental.customer_id = customer.customer_id
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
+INNER JOIN film ON inventory.film_id = film.film_id
+WHERE rental.return_date IS NULL
+AND rental_date + INTERVAL film.rental_duration DAY < CURRENT_DATE()
+LIMIT 5;
+
+Above in pretty format from <a class=AFour target="_blank" href="http://www.dpriver.com/pp/sqlformat.htm">http://www.dpriver.com/pp/sqlformat.htm</a>
+
+SELECT Concat(customer.last_name, ', ', customer.first_name) AS customer,
+       address.phone,
+       film.title
+FROM   rental
+       INNER JOIN customer
+               ON rental.customer_id = customer.customer_id
+       INNER JOIN address
+               ON customer.address_id = address.address_id
+       INNER JOIN inventory
+               ON rental.inventory_id = inventory.inventory_id
+       INNER JOIN film
+               ON inventory.film_id = film.film_id
+WHERE  rental.return_date IS NULL
+       AND rental_date
+           + INTERVAL film.rental_duration day < CURRENT_DATE()
+LIMIT  5;
+
+
+The basic SELECT statement to query one or more tables:
+
+SELECT [DISTINCT] column_name1[, column_name2, ...]
+FROM table_name1[, table_name2, ...]
+WHERE search_condition1
+[AND search_condition2 ...]
+[OR search_condition3...]
+[GROUP BY column_names]
+[ORDER BY column_names];
+
+Nested queries:
+
+SELECT [..same as above..]
+FROM table_name
+WHERE column_name IN (SELECT ...);
+
+</pre>
+<hr>
+</div>
+</body>
+</html>

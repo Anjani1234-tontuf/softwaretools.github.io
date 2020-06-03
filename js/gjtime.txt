@@ -1,0 +1,95 @@
+
+/*
+Time Format
+
+The following characters are recognized in the format string:
+%a - abbreviated weekday name
+%A - full weekday name
+%b - abbreviated month name
+%B - full month name
+%d - day of the month (01 to 31)
+%D - same as %m/%d/%y
+%e - day of the month (1 to 31)
+%H - hour using a 24-hour clock (range 00 to 23)
+%I - hour using a 12-hour clock (range 01 to 12)
+%m - month as a number (01 to 12)
+%M - minute as a number
+%p - either "am" or "pm" according to the given time
+%R - time in 24 hour notation
+%S - second as a decimal number
+%T - current time, equal to %H:%M:%S
+%y - 2 digit year (00 to 99)
+%Y - 4 digit year
+%Z - time zone or name or abbreviation
+%% - a literal '%' character
+
+for short date no seconds
+var ampm = (h >= 12)?"PM":"AM";    // Is it am or pm?
+if (h > 12) h -= 12;         // Convert 24-hour format to 12-hour.
+if (h == 0) h = 12;          // Convert 0 o'clock to midnight.
+if (m < 10) m = "0" + m;       // Convert 0 minutes to 00 minutes, etc.
+var t = h + ':' + m + ' ' + ampm;  // Put it all together.
+
+Change Log
+
+11/05 added m_bShowStartupWarning
+? do not see TDF done like the others
+Mar 18 2006
+changed createDisplayTable to be CTB
+
+
+Apr 25 2006
+CTimerOptions  getit rewrite to remove the eval function
+tabs to spaces
+add some editing to fields in Timer.html example checkPosNumber() etc
+have to watch reading values from cookies , they are always alpha and some of my tests do not force conversion
+make sure to change chrome to regular for testing
+if the Timers get hosed during changing, you sometimes have to close FF and restart
+
+May 02 2006
+added var to the i
+
+search for dump routines for debugging
+
+CP - Date and Time - Internet Time - turn off
+
+Mar 2009
+Added code for interval alarms for sprints
+Removed Alarm Number from display of active alarms
+
+Interval alarms are a special type of countdown alarm, think doing windsprints,
+sprint for 30 seconds, recover for 30 seconds, repeat 30 times
+if you wanted interval alarms for periods longer than an hour you would set specfic time alarms
+hour and sec do not apply
+
+I am getting concerned about the size of the javascript so instead of adding new fields for interval times
+I am reusing hour and min for other things
+iIntervalWarning does not have anything to do with interval timers.  iIntervalWarning was invesioned as
+a half way there or soemthing like divide the time in x increments and give a message every increment
+
+*/
+
+ //  (m_bWindowIsTopmost)    TDTop 'TDTop:1' 'TDTop:0'
+  //  (m_bClock24Hour)      TDH   'TDH:1'   'TDH:0' '
+  //  (m_bDisplayClockSecond)   TDS   'TDS:1'   'TDS:0'
+  //  (m_bAlarmActive)      TDA   'TDA:1'   'TDA:0'
+  //  (m_bSpeakClock)       TDsc  'TDsc:1'  'TDsc:0'
+  //  (m_iSpeakIntervals)     TDsi  'TDsi'    + this.value
+  //  (m_iUpdateInterval)     TDI   'TDI'   + this.value
+  //  (m_iNoticeInterval)     TDN   'TDN'   + this.value
+  //  (m_bShowTime)       TDT   'TDT:1'   'TDT:0'
+  //  (m_bShowDate)       TDD   'TDD:1'   'TDD:0'
+  //  (m_bShowJulian)       TDJ   'TDJ:1'   'TDJ:0'
+  //  (m_bShowBigScr)       TDM   'TDM:1'   'TDM:0'
+  //  m_TimeFormat        TDF   'TDF:HMS' 'TDF:SMH'
+  //  (m_bShowStartupWarning)   TDW   'TDW:1'   'TDW:0'
+  //                HMS   'TDF
+  //                SMH
+
+Oct 2009
+
+changed playFileWav in gjqt.js to use html5 audio in the browser
+it was 10 seconds faster than loading quicktime plugin
+creating my libraries takes no time at all
+comment out TimerWarning
+changed setUP back to my stuff again.

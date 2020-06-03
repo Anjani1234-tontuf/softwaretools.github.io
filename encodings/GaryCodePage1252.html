@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>GaryCodePage1252.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+<style type="text/css">
+.mppad {
+  margin: 2em;
+}
+
+.aliceblue {
+background-color:aliceblue;
+}
+
+.lightgray {
+background-color:lightgrey;
+}
+
+.lightskyblue {
+background-color:lightskyblue;
+}
+body {
+margin:0 0 0 1em;
+font-family:'Courier New',Courier,monospace;
+font-size:16px;  /* matches the spacing of the image */
+}
+
+table { border-collapse: separate;}
+
+table td, table th {
+padding: 8px;
+border:none;
+vertical-align:top;
+font-size:24px;
+font-family:'Courier New',Courier,monospace;}
+
+td p, th p,td h4, td pre, td img {
+margin-top:0;
+margin-right:7px;
+margin-left:7px;
+margin-bottom:1px;
+padding: 4px 7px;
+}
+pre, code, img {
+font-family:'Courier New',Courier,monospace;
+margin:0;padding:0}
+
+</style>
+
+<!--
+1) save with as correct code page encoding
+
+2) use corect Content Type<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+3) use a font that corresponds to the encoding
+
+<p>see <a target="_blank" href="http://www.htmlhelp.com/reference/html40/entities/">http://www.htmlhelp.com/reference/html40/entities/</a> for special characters </p>
+
+
+no euro, carons , curved quotes CE or ce or TM,
+
+iconv crashes trying to convert them so I am removing them
+
+
+<p id='theop' style="font-size:12.0pt;  font-family:'Courier New',Courier,monospace;"> </p>  this always gives you what they have for
+Courier New
+
+http://en.wikipedia.org/wiki/Cp1252
+
+http://www.htmlhelp.com/cgi-bin/search.cgi?q=charset
+
+http://www.cs.tut.fi/~jkorpela/chars.html
+
+In ISO 8859-1, code positions 128 - 159 are explicitly reserved for control purposes;
+they "correspond to bit combinations that do not represent graphic characters".
+The so-called Windows character set (WinLatin1, or Windows code page 1252, to be exact) uses some of
+those positions for printable characters. Thus, the Windows character set is not identical with
+ISO 8859-1.
+
+The Windows character set exists in different variations, or "code pages" (CP), which generally differ from the
+corresponding ISO 8859 standard so that it contains same characters in positions 128 - 159 as code page 1252. (However, there are some
+more differences between ISO 8859-7 and win-1253 (WinGreek).) See Code page &Co. by Roman Czyborra and Windows codepages by Microsoft.
+See also CP to Unicode mappings. What we have discussed here is the most usual one, resembling ISO 8859-1. Its status in the officially
+IANA registry was unclear; an encoding had been registered under the name ISO-8859-1-Windows-3.1-Latin-1 by Hewlett-Packard (!),
+assumably intending to refer to WinLatin1, but in 1999-12 Microsoft finally registered it under the name windows-1252.
+That name has in fact been widely used for it. (The name cp-1252 has been used too, but it isn't officially registered even as
+an alias name.)
+
+http://webtools.live2support.com/misc_htmlcharset.php
+
+-->
+
+<script type="text/javascript">
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+
+</script>
+
+</head>
+
+<body id='testbod' >
+
+<a target="_blank" href="GaryCodePage.html">GaryCodePage.html</a>
+<a target="_blank" href="GaryCodePageutf8.html">GaryCodePageutf8.html</a>
+<a target="_blank" href="index.php">Run Sample Conversions</a>
+
+<p><b>Content Type Windows-1252 Encoding windows 1252</b> </p>
+
+<p>Be careful with fonts, Some fonts do not support all the scpects of characters of a code page</p>
+
+<table>
+<tr>
+<td>Printable Code Points 32 to 255</td>
+<td>&nbsp; Image of <br>&nbsp; Codepage 1252<br></td>
+</tr>
+<tr>
+<td>
+<pre><code>
+!"#$%&'()*+,-./
+0123456789:;<=>?
+@ABCDEFGHIJKLMNO
+PQRSTUVWXYZ[\]^_
+`abcdefghijklmno
+pqrstuvwxyz{|}~
+€‚‚ƒ„…†‡ˆ‰Š‹Œ   
+ ‘’“”•–—˜™š›©ª«¬
+ ¡¢£¤¥¦§¨©ª«¬­®¯
+°±²³´µ¶·¸¹º»¼½¾¿
+ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
+ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+àáâãäåæçèéêëìíîï
+ðñòóôõö÷øùúûüýþÿ
+</code></pre>
+</td>
+<td><br><img height='382' width='217' src="Windows-1252.png"></td>
+</tr>
+</table>
+
+<DIV>
+<b>Windows 1252 only chars values  > 127 and < 160<br>
+€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ.</b>
+
+In utf-8 and the above values are in the block Latin-1 Supplement, Category	Other, Control Codes
+They are not displayable characters
+
+</div>
+
+<pre>
+
+Non printing codes (or unavailable)
+127 x7F delete can not display
+
+129 x81 unasigned 8859 and 1252
+141 x8D unasigned 8859 and 1252
+143 x8F unasigned 8859 and 1252
+144 x90 unasigned 8859 and 1252
+157 x9D unasigned 8859 and 1252
+
+173 xAD soft hyphen - display problem
+
+If you try and print the soft hyphen, AKA the discretionary hyphen, for example,
+like I try and do here between the greater than and less than &gt;&shy;&lt;,
+it can screw up the display, mainly because its at the browsers discretion to display it.
+
+A table, <a target="_blank" href="1252.txt">1252.txt</a> one line per character, 256 lines, Unix or linefeed endings.
+if you know how to view it in an editor without converting or changing it
+(!Set encoding to Windows 1252, don't cut and paste from other encodings)
+the line numbers correspond to the code points (non printing and unavailable are spaces)
+
+This is a carriage return line feed version for viewing in Windows notepad,
+<a target="_blank" href="1252crlf.txt">1252crlf.txt</a>
+
+<hr>
+Different ways of defining, describing and encoding the 1252 special characters
+example the &dagger;
+
+The Unicode code point U+2020
+HTML Entity (decimal) &amp;&#35;8224 &#8224;
+HTML Entity (hex) &amp;&#35;2020 &#x2020;
+HTML Entity (named)	&amp;dagger &dagger;
+As decimal &amp;&#35;134 &#134;
+In (hex)	0xE2 0x80 0xA0 (e280a0)
+
+On Windows:
+Hold down the ALT key and type 0134 on the KEYPAD
+When the Alt key is then released the character appears
+
+<hr>
+The right and left quotes are in the Unicode General Punctutation block
+
+Unicode character U+2018: LEFT SINGLE QUOTATION MARK   as 1252 decimal &#145;  HTML Entity (decimal) &amp;&#35;8216 &#8216;
+Unicode character U+2019: RIGHT SINGLE QUOTATION MARK  as 1252 decimal &#146;  HTML Entity (decimal) &amp;&#35;8217 &#8217;
+Unicode character U+201C: LEFT DOUBLE QUOTATION MARK   as 1252 decimal &#147;  HTML Entity (decimal) &amp;&#35;8220 &#8220;
+Unicode character U+201D: RIGHT DOUBLE QUOTATION MARK  as 1252 decimal &#148;  HTML Entity (decimal) &amp;&#35;8221 &#8221;
+Unicode character U+201E: DOUBLE LOW-9 QUOTATION MARK  as 1252 decimal &#130;  HTML Entity (decimal) &amp;&#35;8218 &#8218;
+
+There are HTML entity names for the above as well
+
+<hr>
+
+<a target="_blank" href="http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html">http://www.i18nqa.com/debug/table-iso8859-1-vs-windows-1252.html</a>
+<a target="_blank" href="http://www.ascii.cl/htmlcodes.htm">http://www.ascii.cl/htmlcodes.htm</a>
+<a target="_blank" href="http://www.idautomation.com/product-support/ascii-chart-char-set.html">http://www.idautomation.com/product-support/ascii-chart-char-set.html</a>
+
+</pre>
+
+
+<h1>Example names with accented characters in Latin1 </h1>
+<pre>
+Gérard Depardieu
+Camille Saint-Saëns
+Jean Réno
+Jürgen Klinsmann
+Björk Guðmundsdóttir
+Sinéad O’Connor
+Andrés Iniesta
+Cesc Fàbregas
+Raúl Albiol
+Iñigo Martínez
+Álvaro Arbeloa
+Juan Gómez
+Daniel Lindström
+
+A problem city : Lindström
+</pre>
+
+<h1>Windows 1252 - only > 127 < 160</h1>
+
+<table class='pt'>
+<tr><td>80=> '&euro;' </td>    <td>euro currency symbol   128</td></tr>
+<tr><td colspan="2"># no 81</td></tr>
+<tr><td>82=> '&sbquo;' </td>   <td>Single Low-9 Quotation Mark  130</td></tr>
+<tr><td>83=> '&fnof;' </td>   <td>Latin Small Letter F With Hook</td></tr>
+<tr><td>84=> '&bdquo;' </td>   <td>Double Low-9 Quotation Mark</td></tr>
+<tr><td>85=> '&hellip;' </td>   <td>Horizontal Ellipsis</td></tr>
+<tr><td>86=> '&dagger;' </td>   <td>Dagger</td></tr>
+<tr><td>87=> '&Dagger;' </td>   <td>Double Dagger</td></tr>
+<tr><td>88=> '&circ;' </td>   <td>Modifier Letter Circumflex Accent</td></tr>
+<tr><td>89=> '&permil;' </td>   <td>Per Mille Sign</td></tr>
+<tr><td>8A=> '&Scaron;' </td>  <td>Latin Capital Letter S With Caron</td></tr>
+<tr><td>8B=> '&lsaquo;' </td>   <td>Single Left-Pointing Angle Quotation Mark</td></tr>
+<tr><td>8C=> '&OElig;' </td>   <td>Latin Capital Ligature OE</td></tr>
+<tr><td colspan="2"># no 8d</td></tr>
+<tr><td>8E=> '&x17D;' </td> <td>Latin Captial Z With Caron</td></tr>
+<tr><td colspan="2"># no 8f</td></tr>
+<tr><td colspan="2"># no 90</td></tr>
+<tr><td>91=> '&lsquo;' </td>  <td>Left Single Quotation Mark</td></tr>
+<tr><td>92=> '&rsquo;' </td>   <td>Right Single Quotation Mark</td></tr>
+<tr><td>93=> '&ldquo;' </td>   <td>Left Double Quotation Mark</td></tr>
+<tr><td>94=> '&rdquo;' </td>   <td>Right Double Quotation Mark</td></tr>
+<tr><td>95=> '&bull;' </td>   <td>Bullet</td></tr>
+<tr><td>96=> '&ndash;' </td>   <td>En Dash</td></tr>
+<tr><td>97=> '&mdash;' </td>   <td>Em Dash</td></tr>
+<tr><td>98=> '&tilde;' </td>   <td>Small Tilde</td></tr>
+<tr><td>99=> '&trade;' </td>   <td>Trade Mark Sign</td></tr>
+<tr><td>9A=> '&scaron;' </td>   <td>Latin Small Letter S With Caron</td></tr>
+<tr><td>9B=> '&rsaquo;' </td>   <td>Single Right-Pointing Angle Quotation Mark</td></tr>
+<tr><td>9C=> '&oelig;' </td>   <td>Latin Small Ligature OE</td></tr>
+<tr><td colspan="2"># no 9d</td></tr>
+<tr><td>9E=> '&#x17E;' </td>  <td>Latin Small Letter Z With Caron</td></tr>
+<tr><td>9F=> '&Yuml;' </td>   <td>Latin Capital Letter Y With Diaeresis 159</td></tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

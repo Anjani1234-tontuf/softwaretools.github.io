@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html manifest="MCalcMenuAppBig.appcache">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  <link rel="icon" href="GraphicWidgets/formula16x16.ico" type="image/x-icon">
+  <link rel="Copyright" href="Copyright.html">
+  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 600px)" href="css/GaryDefaultApp.css">
+  <link rel="styleSheet" href="css/musings.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <meta name="author" content="Gary GMGJ Johnson">
+  <meta name="description" content="Calculator Converter Date Time">
+  <meta name="keywords" content="Calculator, Math, Expression, History">
+  <meta http-equiv="Cache-control" content="private">
+  <meta http-equiv="content-language" content="en-US">
+<!--
+# gjManifestVersion Feb 25 2016 version "1.00.30"
+-->
+<title>Calc Converter Menu</title>
+<style type="text/css">
+.menuNgrey {
+  font-weight:bold;
+  font-size:16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #000;
+  background-color: #CCCCFF;
+  padding:4px 7px;
+  text-align:center;
+  line-height:2em;  /*Safari */
+  border:1px solid #336699;}
+
+ .menuNgrey:hover{
+  border: 0;
+  background-color: #B0C4DE;}
+
+.gjInline {
+  border-style : none;
+  width:100%;
+  display:block;
+  margin:0 auto;
+  padding:0;
+  height:3500px;
+  overflow:auto;
+  overflow-x:scroll;
+  overflow-y:scroll;}
+
+.gjsupp {  display:block;}
+</style>
+</head>
+
+<!--
+<body onload=doDelay();>
+-->
+<body>
+<p id="E" style="text-align:center;"><span>
+<select class="menuNgrey" name="myWhich1" id="myWhich1" size="1" onChange="goThere(this)" >
+<option value="DateCalculator.html">&nbsp; Date Calculator&nbsp;</option>
+<option value="TheCalculator.html" selected>&nbsp;Evaluator - Calculator&nbsp;</option>
+<option value="ConversionCalculator.html">Conversion Calculator</option>
+</select></span></p>
+
+<!--
+microwavewattage
+Temperature
+Terse
+WConvCalulator
+metrictoenglish
+feetinces
+-->
+
+<iframe id="gjFrame" class ="gjInline" src="TheCalculator.html"></iframe>
+
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjcalc1.min.js"></script>
+<script type="text/javascript" src="js/gjAppmsg.min.js"></script>
+<script type="text/javascript" src="js/gjtrack.js"></script>
+
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+var Msg   = "Fi on Your PopUp Blocker";
+
+function CSGSNext()
+{
+  var it;
+}
+
+CSGSNext.prototype.doNext = function()
+{
+  changeInnerHTML('E',"<p style='text-shadow: 0.2em 0.5em 0.1em #600,-0.3em 0.1em 0.1em #060,0.4em -0.3em 0.1em #006'>&nbsp;Hit &quot;Reload&quot; to see it again&nbsp;</p>")
+}
+
+
+function CWrapper(msg)
+{
+  this.msg = msg;
+}
+
+CWrapper.prototype.doIt = function(title)
+{
+
+  var theNextCall = new CSGSNext();
+
+  var headerChg = new CSGS();
+
+  headerChg.addElement('divone');
+  headerChg.addEffect('divone','myClip','WRL')
+  headerChg.setMI('divone', 8);
+  headerChg.setMIE('divone', 4);
+  headerChg.addMove('divone','ll','t', 'c', 10);
+
+  headerChg.addElement('divtwo');
+  headerChg.addEffect('divtwo','myClip','WRL')
+  headerChg.setMI('divtwo', 12);
+  headerChg.setMIE('divtwo', 4);
+  headerChg.addMove('divtwo','lr','t', 'c', 10);
+
+  headerChg.addElement('divthree');
+  headerChg.addEffect('divthree','myClip','WRL')
+  headerChg.setMI('divthree', 5);
+  headerChg.setMIE('divthree', 3);
+  headerChg.addMove('divthree','cl','t', 'c', 't');
+
+
+
+  headerChg.setIntervalSpeed(60);
+  headerChg.doIt();
+//  headerChg.synchFunc(theNextCall,'doNext');
+  delete headerChg;
+
+
+};
+
+function doDelay()
+{
+  var wrapper = new CWrapper(Msg);
+  //var callwrapper = new CCallWrapper(wrapper, 3000, 'doIt', 'Null');
+  var callwrapper = new CCallWrapper(wrapper, 1000, 'doIt', 'Null');
+  CCallWrapper.asyncExecute(callwrapper);
+
+  delete wrapper;
+  delete callwrapper;
+}
+
+
+function goThere(inthis) {
+  theinput = document.getElementById(inthis);
+  var idx = inthis.selectedIndex;
+  var content = inthis.options[idx].value;
+  document.getElementById("gjFrame").src=content;
+}
+</script>
+
+
+<div id="divone" style="visibility:hidden;position:absolute;width:250px;height:31px;top:110px;left:240px;clip:rect(0px, 250px, 31px, 0px);overflow:hidden; z-index:2;background-color:teal;">
+<p class="menuNgrey gjsupp">Conversion Calculator</p>
+</div>
+
+
+<div id="divtwo" style="visibility:hidden;position:absolute;width:250px;height:31px;top:110px;left:240px;clip:rect(0px, 250px, 31px, 0px);overflow:hidden; z-index:2;background-color:teal;">
+<p class="menuNgrey gjsupp">Date Calculator</p>
+</div>
+
+
+<div id="divthree" style="visibility:hidden;position:absolute;width:250px;height:31px;top:110px;left:240px;clip:rect(0px, 250px, 31px, 0px);overflow:hidden; z-index:2;background-color:teal;">
+<p class="menuNgrey gjsupp">Evaluator</p>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Gary Test DOM </title>
+<script type="text/javascript">
+function setIt(form)
+{
+  var cdHours   = form.CHours.selectedIndex;
+
+    setGJCookie(cdHours );
+
+//      need to only have one instance of RunIt.html open
+
+        var newwin = window.open("RunIt.html", "RunIt");
+        if(newwin)
+        {
+            newwin.focus();
+        }
+
+}
+
+function setGJCookie(cdHours )
+{
+  //write to cookie
+
+  var cv = "";
+
+  cv += 'm_cdHours='            + cdHours;
+
+  var expdate = new Date();
+
+  expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+  setCookie("AGJCookie", cv, expdate, "/", null, false);
+}
+
+function setCookie(cname, cvalue, cexpires, cpath, cdomain, csecure)
+{
+  var curCookie = cname + "=" + escape(cvalue) +
+    ((cexpires) ? "; expires=" + cexpires.toGMTString() : "") +
+    ((cpath) ? "; path=" + cpath : "") +
+    ((cdomain) ? "; cdomain=" + cdomain : "") +
+    ((csecure) ? "; csecure" : "");
+  document.cookie = curCookie;
+}
+
+</script>
+</head>
+<body>
+
+<br>
+
+<form name ="CountDownT" id="CountDownT">
+
+<table border=0 cellspacing=2 cellpadding=2 summary="Set A timer">
+<tr>
+<td><p>Use the drop down and hit the button</p></td>
+</tr>
+<tr>
+      <td>
+      <p>Hours<br>
+    <select name="CHours" id="CHours" size="1">
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      </select>
+    </p>
+    </td>
+
+  <td>
+    <input type="button" id="SCDT"  class="buttonNgrey" value="SetIt"
+      onClick="setIt(this.form);">
+  </td>
+</tr>
+</table>
+
+</form>
+<br>
+
+
+<br>
+
+<iframe id="iftimer" class="myfooter" frameborder="0" scrolling="no" src="CDtimeOptions.htm"></iframe>
+<br>
+
+<br>
+</body>
+</html>
+
+
+

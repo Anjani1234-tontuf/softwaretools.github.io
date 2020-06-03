@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Test Show Output</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+appendInnerHTML = function (idin, myHTML) {
+  var myE= document.getElementById(idin);
+  myE.innerHTML  = myE.innerHTML + myHTML;
+}
+
+
+function myShowSomeOutput() {
+appendInnerHTML("myOP",'<BR>' + 'I am a sentence');
+}
+</script>
+</head>
+
+<body>
+<pre>Never Underestimate the debugging power of a print statement</pre>
+<button title='ShowSomeOutput' onclick='myShowSomeOutput()'>myShowSomeOutput </button>
+<p id="myOP"> </p>
+
+</body>
+</html>

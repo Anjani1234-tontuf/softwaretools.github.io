@@ -1,0 +1,23 @@
+{
+  "version": "1.00.01",
+  "name": "Timers",
+  "description": "At a Time, CountDown,CountUp, StopWatch Timers, Kitchen, Event, To Do Timers ",
+  "launch_path": "/XXSoftwareTools/MTimerApp.html",
+  "icons": {
+    "16": "images/x-clock-icon16x16.png",
+    "48": "images/x-clock-icon48x48.png",
+    "128": "images/x-clock-icon128x128.png"
+  },
+  "widget": {
+    "path": "MTimerApp.html",
+    "width": 320,
+    "height": 356
+  },
+  "developer": {
+    "name": "Gary Johnson",
+    "url": "http://GaryJohnsonInfo.info/"
+  },
+  "installs_allowed_from": [
+    "https://apps-preview.mozilla.org"
+  ]
+}

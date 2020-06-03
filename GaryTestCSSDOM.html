@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta name="Author" content="Gary G. Johnson">
+<meta name='robots' content='noindex, nofollow'>
+<meta name="Description" content="Personal Test">
+<link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+<!-- Bootsrap causes the space between the list items  before and after? -->
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+
+
+<!-- ensure that the page automatically reloads from the server every five minutes -->
+<meta http-equiv="Refresh" content="300">
+<script type="text/javascript" src="js/gjAppcore.min.js"></script>
+
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+
+<title>GaryTestCSSDOM.HTML</title>
+<style type="text/css">
+
+
+.gjdbg1 {outline: 1px solid red;}
+.gjdbg2 {outline: 1px solid darkgreen;}
+.gjdbg3 {outline: 1px solid blue;}
+.gjdbg4 {outline: 1px solid orange;}
+.gjdbg5 {outline: 1px solid azure;}
+
+.rtest{color:green;}
+
+.readtxt { font-family: Arial, sans-serif; line-height: 18px; font-size: 12px;}
+
+hr.alt {
+  color:blue;
+  margin-top: .5em;
+  margin-bottom: .5em;}
+
+p.pos_fixed {
+position:fixed;
+bottom:0px;
+right:5px;}
+
+
+/* this does not work
+top:-15px;
+right:-18px;
+*/
+#testImg {
+background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAdCAYAAABfeMd1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA8xJREFUeNqclktIVFEYx+fO+GjUGqw0S/IRGtTKENtkqJTkooUwC0EQNNpEEiJYoISbKAhcCYogagvBlbRQW/kAIdAkbRGIi3RiNIfJR+qk4zxO/2/4zu3cOw+tA7+5c8/j+5/vfN8592hCCMspSy4o4acXLIHVU40kkQTkglfgm4hd3KAb3PxfESf4KU5XAuBRPA0tznINgCa1Yn193bK0tBR5ZmVlWUpKSiyFhYXmcfPgiaZpn0/yZEKd4vLysqioqKCZRAEhMTc3Z/bqy0nL9Uzt3dXVJex2e0wBic1mEx0dHcLv96tDX8cTyVN7tbW1JTRupr6+3uzR7Vgib2Tr5ORklJHa2lrDe0FBgVhcXDTUDw8PqyIfY4m4ZGt5ebnB4OrqaqS+srJSj8XOzk6kbnBwUO9XVFQkgsGgKmTTRQ4PD/NlrcvlivKis7Mz0kZiJBRLQDI7O/s3rwOBu7oI1B/KhrGxsaiBtDTSsCyxBIj+/n69D+w+Jg0r/YTD4Wy5fF6vNyoD19bWLENDQ4b3pqammBtPHQ+diF0rNo4GxT3Z4HA4ogbSxmtsbNTf4ZnhXS1Ief1/KBQ6og0f2fXIkuJ4MVGDLBOACtVRW6KYuN3ue7oISIc3btmoDp6enjYYbWlp0Y3Qf1UAx40hu0pLSx0yJPRz1uPxvJONo6OjhswiAZm+BBlX3yU9PT26gM/no/PrHLDpIr29vQ/U7GloaDBk10k7vrq62uDF+Pg4ZYbDIAKuzc/PD8hOdBbRUXGaI6Wmpkbs7+/rAltbW19RX2wWSQd54A6WzaV6REcFjvSYxikGtESqBwcHB7vt7e30bSngyVtl4M+AHHCrubn5+cbGxqb5tFtYWBB9fX2iu7s78pyZmYn6ciF2e62trS9hpwxcAWlqdqWA8+A6uA+ejoyMfBL/UFZWVjbr6ureYmwNuAEugtSIff4y0rpl8CWhFDjBC6fT+R4BdB8dHYXiGZ+amvJgY35A/3ZQB+iIv8pLlaR/frHpad2S2b1McJk75vPzUlVVVV5ZWdmF5ORkGw6+EL6YvyYmJlyIxyba3eA7swG2gQ8E6NSSIhoHKIWTgISyWSyH/2fyJMjrMPgNdvl6REI/gAfsgANwTCcLJYh+kWAhGwulcfplcqwyeWPZuQ8NpnNpn41uM3vsAQkEOQuNtxWTUCp7lcHPNK6zsifH7I2PZ+5j4QBPIhz3SqQsXRLHKZVFU/hd4xkGWcjPT7k8IelBwnsXC0kxK3tn4/9SJKwYDTPCLJDocmcWlPtJUy86isGERv4IMACaz3RmXeGcqwAAAABJRU5ErkJggg==") no-repeat;
+width:25px;
+height:29px;
+z-index:3200;
+position:absolute;
+cursor:pointer;}
+
+
+p { margin: 0; padding: 0 }
+
+p.fl:first-letter{font-size:xx-large;font-weight:bolder; color:red;}
+
+p.fl:first-line {
+font-variant:small-caps;}
+
+a.nobk {
+background: none!important;
+padding-right:0!important;}
+
+
+img {margin:0;padding:0;}
+
+#gjinvert img{
+border:1px solid black;
+-webkit-filter : invert(100%);
+filter : invert(100%);
+}
+
+.cssanim {
+text-shadow: 2px 5px 1px black;
+-webkit-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+position: relative;}
+
+.cssanim:hover {
+text-shadow: none;}
+
+body {
+color: rgb(51, 51, 51);
+text-rendering: optimizelegibility;}
+
+div.profile-head {
+float: left;
+padding: 0px 20px;
+width: auto;
+min-width: 240px;
+max-width: 840px;
+background-color: transparent;
+color:rgb(51,51,51);}
+
+pre.one { /* make the box translucent (50% opaque) */
+/* border: solid red; */
+background-color: transparent;
+opacity: 0.5;
+-ms-filter: alpha(opacity=50);  /* IE8 and lower */
+-webkit-filter: opacity(50%);
+filter: opacity(50%);
+zoom: 1;
+}
+
+.testbody {
+margin : 0 auto;
+padding : 0;
+font : 100%/1.4 'lucida sans unicode', 'lucida grande', 'Trebuchet MS', verdana, arial, helvetica, helve, sans-serif;
+color : #000;
+background-color:azure;
+text-align: center;}
+
+.framewrapper {
+width:100%;
+}
+
+.frameCaption {
+position: relative;
+z-index: 1;
+margin-top: -40px;
+margin-left: 100px;
+margin-right: 100px;
+padding-top: 0px;
+padding-left: 25px;
+padding-right: 25px;
+border-top: 22px solid white;
+background: none repeat scroll 0% 0% white;
+text-align:center;}
+
+.toggler { max-width: 671px; height: auto; padding:0;}
+#effect { max-width: 671px; height: auto; margin:0 auto; }
+
+/* max widht 60px */
+
+.editIt {
+font-size:16px;
+font-family: "Courier New",Courier,monospace;
+line-height:18px;
+width:150px;
+}
+
+/*
+12345678901234567890123456789012345678901234567890123456789
+*/
+
+#gjmainCatEdit {
+background-color:azure;
+}
+
+a.AFour:link {
+font-weight: bold;
+color: black;
+text-decoration: none;}
+
+a.AFour:visited {
+font-weight: bold;
+color: lightslategrey;
+text-decoration: none;}
+
+a.AFour:hover {
+font-weight: bold;
+color: #f05b35;
+text-decoration: none;}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Yep! */
+  -webkit-transform: translate(-50%, -50%); /* Yep! */
+  width: 48%;
+  height: 59%;
+}
+
+
+.closeit {
+cursor:pointer;
+text-align:center;
+width:5em;
+z-index:2;
+font-size:16px;
+font-weight:900}
+
+.yellowgradient{
+/* IE10+ */
+background-image: -ms-linear-gradient(top, rgb(255,253,186) 0%, rgb(255,255,15) 100%);
+/* Mozilla Firefox */
+background-image: -moz-linear-gradient(top, rgb(255,253,186) 0%, rgb(255,255,15) 100%);
+/* Opera */
+background-image: -o-linear-gradient(top, rgb(255,253,186) 0%, rgb(255,255,15) 100%);
+/* Webkit (Safari/Chrome 10) */
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(255,253,186)), color-stop(100, rgb(255,255,15)));
+/* Webkit (Chrome 11+) */
+background-image: -webkit-linear-gradient(top, rgb(255,253,186) 0%, rgb(255,255,15) 100%);
+/* W3C Markup */
+background-image: linear-gradient(to bottom, rgb(255,253,186) 0%, rgb(255,255,15) 100%);}
+
+.btn {
+background: #a7c6d9;
+background-image: -webkit-linear-gradient(top, #a7c6d9, #73a5c4);
+background-image: -moz-linear-gradient(top, #a7c6d9, #73a5c4);
+background-image: -ms-linear-gradient(top, #a7c6d9, #73a5c4);
+background-image: -o-linear-gradient(top, #a7c6d9, #73a5c4);
+background-image: linear-gradient(to bottom, #a7c6d9, #73a5c4);
+border-radius: 58px;
+font-family: Arial,serif;
+color: #ffffff;
+font-size: 20px;
+padding: 10px 20px 10px 20px;
+border: solid #10405e 2px;
+text-decoration: none;}
+
+.btn:hover {
+background: #3cb0fd;
+background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+text-decoration: none;}
+
+/*
+a nested media query,  is the max-device (le iphone 6 s)
+show Ut in red else show in blue
+is it in portait mode
+*/
+
+/* ----------------------------- */
+
+@media only screen and (max-device-width: 736px) {
+.noMobile { display:none; }
+.rtest{color:red;}
+
+@media only screen  and (orientation: portrait) {
+.rtest{color:blue;}
+}
+
+/*
+ body has class="regMargin yellowgradient" a background image
+*/
+
+body {
+width:100%;
+margin: 10px;
+/* color:white;
+background-color:black; */
+line-height: 1.5;
+font-size:16px;}
+
+a.AFour:link {
+font-weight: bold;
+text-decoration: none;
+color:lightcyan;
+background-color:black;
+line-height: 2.0;
+font-size:16px;}
+
+a.AFour:visited {
+font-weight: bold;
+color: silver;
+text-decoration: none;}
+
+a.AFour:hover {
+font-weight: bold;
+color: cyan;
+text-decoration: none;}
+
+pre {white-space:normal}
+
+.hrc {margin: 10px 0 10px 0;}
+
+p.pos_fixed { position:relative;}
+
+.gj3 {
+content:"\201C";
+color:black;}
+
+.circle {
+border-radius: 50%;
+display: inline-block;
+margin-right: 20px;}
+
+
+hr {
+background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAF0lEQVQIHWNgYGBY9v//fwYYhjOIFwAA1l0teiSFyaMAAAAASUVORK5CYII%3D") repeat center top;
+background-size: 4px 4px;
+border: 0;
+height: 1px;
+margin: 0 0 24px;
+}
+
+} /* 767 ----------------------------- */
+
+@media screen and (min-device-width: 412px) , screen and (max-device-width: 736px) {
+.rtest{color:purple;}
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+// use $(document).width() $(window).height()
+
+$(document).ready(function(){
+var op = ' CW ' + getCW() + 'CH ' + getCH() + ' diff  dw ' + $(document).width() + ' wh ' + $(window).height();
+console.log(op);
+});
+
+
+function walkSelect() {
+//get div place
+ // var tape = document.getElementById('place');
+  var theSelect = document.getElementsByTagName('SELECT')[0];
+  //var op = "theSelect.id " + theSelect.id + " length " + theSelect.length + " type " + theSelect.type + " value " + theSelect.value + " children " + theSelect.children + " childElementCount " + theSelect.childElementCount ;
+  var op = "theSelect.id " + theSelect.id + " length " + theSelect.length + " type " + theSelect.type + " value " + theSelect.value + " selectedIndex " + theSelect.selectedIndex;
+  alert(op);
+
+//
+  var op2 = "";
+  for (var i=0; i < theSelect.length ; i++)
+  {
+    op2 += " index " + theSelect.options[i].index + " label " + theSelect.options[i].label + " value " + theSelect.options[i].value + "\n";
+  }
+  alert(op2);
+}
+
+
+function comboInit(thelist,theinput) {
+  theinput = document.getElementById(theinput);
+  var idx = thelist.selectedIndex;
+  var content = thelist.options[idx].innerHTML;
+  if(theinput.value == "")
+    theinput.value = content;
+}
+
+function combo(thelist, theinput) {
+  theinput = document.getElementById(theinput);
+  var idx = thelist.selectedIndex;
+  var content = thelist.options[idx].innerHTML;
+  theinput.value = content;
+}
+
+
+function crashIt() {
+var big = 999999999.99;
+var bignew;
+
+for (i=1; i > .000000001; i / 10) {
+bignew = big / i;
+big = bignew;
+}
+}
+
+</script>
+</head>
+<body onload="Startup();" class="regMargin yellowgradient">
+<script src="js/nav1.1.min.js">
+</script>
+<script type="text/javascript" src="js/ULMenu4.js">
+</script>
+<div class="container">
+
+
+<div style='background-color:white'>
+
+<p
+style='color:green;margin:0;padding:2px 0 2px 7px;font-family:"Lucida Calligraphy",Vivaldi,cursive;font-weight:bold;font-size:56px;text-align:center;line-height:1.2;text-shadow:1px 1px 1px teal;'>
+<span
+style='font-family:"Lucida Calligraphy",Vivaldi,cursive;font-size: 32px; font-weight:bold;vertical-align: middle;text-shadow: 1px 1px 1px teal;'>
+First
+</span> Second<img id="Banner" width="110" height="77" title="click me" src="../images/noseandeyes.gif">
+Third</p>
+<hr>
+
+<p
+style='color:green;margin:0;padding:2px 0 2px 7px;font-family:"Lucida Calligraphy",Vivaldi,cursive;font-weight:bold;font-size:56px;text-align:center;line-height:1.2;text-shadow:3px 2px 2px teal;'>
+The Text
+</p>
+
+</div>
+
+
+<table style='width:30%;float:left;padding:0 20px;'>
+<tbody>
+<tr>
+<td><img src="../images/h100w20.jpg" alt="click me" width="20" height="100"></td>
+<td style="vertical-align:middle">
+<p>display:table-cell; vertical-align:middle</p>
+</td>
+</tr>
+</tbody>
+</table>
+<img src='../images/FinallyA.jpg' style='float:left'> <img src="GraphicWidgets/bug.svg" alt="bug" style="padding:0 20px;width:200px; height:200px;float:right" class="noMobile">
+
+<img src="GraphicWidgets/gjcircle.png" title='boo'>
+
+
+
+<div style="clear:both;"></div>
+<form>
+<input class="closeit" type="button" id="close02" value="More.." onclick="gjshow('more','close01' );">
+<a href="#stuff">Goto to Stuff</a><br>
+</form>
+<p><br><b><a class='AFour' target="_blank" href="GaryTestLinks.html">GaryTestLinks.html</a></b><br></p>
+<!--http://garyjohnsoninfo.info/XXSoftwareTools/WHY.html
+http://garyjohnsoninfo.info/XXSoftwareTools/IsitRightforYou.html
+
+
+Also, I do widgets
+http://garyjohnsoninfo.info/ToolsChartsTables/CookingMeasurementEquivalents.html
+-->
+<!--
+<div class="ts-fab-avatar">
+
+<div class="ts-fab-social-links">
+<a class="nobk" href="http://twitter.com/Bradsknutson" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://twitter.com']);" title="Twitter">
+<img src="http://bradsknutson.com/wp-content/plugins/fancier-author-box/images/twitter.png" alt="My Twitter profile" height="24" width="24"></a>
+<a class="nobk" href="http://facebook.com/brad.s.knutson" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://facebook.com']);" title="Facebook">
+<img src="http://bradsknutson.com/wp-content/plugins/fancier-author-box/images/facebook.png" alt="My Facebook profile" height="24" width="24"></a>
+<a class="nobk" href="http://plus.google.com/+BradKnutson?rel=author" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://plus.google.com']);" title="Google+">
+<img src="http://bradsknutson.com/wp-content/plugins/fancier-author-box/images/googleplus.png" alt="My Google+ profile" height="24" width="24"></a>
+</div>
+</div>
+-->
+<h1 class="rtest" title="Do unto others as they do unto you Ut faciant vobis homines et vos facite">check file for refresh and no-cache</h1>
+
+<div class="left">
+<table style='float:right;width:50%;margin:0 25%'>
+<tr>
+<td>
+<blockquote style=' padding:10px; border-radius:50%; width:50px; height:50px; font-size:16px; background-color:blue;color:white; text-align:center; display:block'>
+<div style='padding-top:0px;'>hacker whacker</div>
+</blockquote>
+</td>
+</tr>
+</table>
+
+<hr>
+<a class="AFour" target="_blank" href="DisplayJavaEnv.html">Java</a><br>
+<form><input type="button" id="testprint" name="printit" value="print this side" onclick="printMe();">
+<script type="text/javascript">
+// <![CDATA[
+
+function printMe() {
+
+var printPop=window.open('','','width=500,height=500');
+
+printPop.document.open("text/html");
+
+printPop.document.write(document.getElementById('printArea').innerHTML);
+
+printPop.document.close();
+
+printPop.print();
+
+}
+
+// ]]>
+</script>
+</form>
+<div id="printArea">
+<p>Closures add5(2) = 7 add10(2) = 12</p>
+<p style="padding-top:10px;color:blue;"><span id='closure'>&nbsp;</span></p>
+<p>make font size 12, 24 or 48</p>
+<a href="#" id="size-12">12</a> <a href="#" id="size-24">24</a> <a href="#" id="size-48">48</a>
+<hr>
+<a name="stuff" id="stuff">Stuff</a><br>
+<pre>
+This Calls testError(with the value in the input box) and testError does and eval in my standard try catch block
+
+Note: use quotes around function arguments f('arg')
+
+ids "E"
+
+Give it a function name, like:
+
+    setTopEM(id,y)
+
+
+    doMessage('hi gary')
+    dumpIt(obj, objname)  ex dumpIt(window.sidebar, "Sidebar")
+    showScrSize()
+    checkPosNumber('2') checkPosNumber('-1')
+    changeBorder('id', 0)
+    showMousePosition()
+    dumpAll()
+    doGJBrowserMSG()
+    and if the function has a return value, you might see it in an alert box (else You see undefined)
+
+Enter some crap to see if gjonerror is working:  "'' your are ASOL
+
+Any valid javascript expression : if its a debug build of Mozilla  dumpTree()
+
+</pre>
+<a name="runit" id="runit"></a>
+<form name="testErrorF" id="testErrorF">
+<fieldset class="b" style='width:25%'><legend class="a">Please enter a term to evaluate</legend> <input type="text" class="buttonNgrey" size="50" tabindex="0" id="query_text" value="dumpAll()"> <input type="button" id="testErrorb" name="Runit" value="Runit" onclick="testError(event, this.form.query_text.value);"></fieldset>
+</form>
+<input type="button" id="dumpall" name="dumpall" value="dumpAll" onclick="dumpAll();"><br>
+<p><a class="AFour" target="_blank" href="GaryTestSound.html">GaryTestSound.htm Test Sound</a><br></p>
+
+
+<p class="fl" style="padding-top:30px;">Browser stuff<br>
+<span id='example'>&nbsp;</span></p>
+<p class="accent"><!-- conditional comments dropped in IE10 -->
+ <!--[if IE]>
+According to the conditional comment this is IE<br />
+<![endif]-->
+<!--[if IE 6]>
+According to the conditional comment this is IE 6<br />
+<![endif]-->
+<!--[if IE 7]>
+According to the conditional comment this is IE 7<br />
+<![endif]-->
+<!--[if IE 8]>
+According to the conditional comment this is IE 8<br />
+<![endif]-->
+<!--[if IE 9]>
+According to the conditional comment this is IE 9<br />
+<![endif]-->
+<!--[if gte IE 8]>
+According to the conditional comment this is IE 8 or higher<br />
+<![endif]-->
+<!--[if lt IE 9]>
+According to the conditional comment this is IE lower than 9<br />
+<![endif]-->
+<!--[if lte IE 7]>
+According to the conditional comment this is IE lower or equal to 7<br />
+<![endif]-->
+<!--[if gt IE 6]>
+According to the conditional comment this is IE greater than 6<br />
+<![endif]-->
+<!--[if !IE]> -->
+not IE <!-- <![endif]--></p>
+<p><!--[if IE 6]>
+This website is intended to viewed in a modern browser.  This is Internet Exlorer 6 or
+<![endif]-->
+<!--[if lte IE 6]>
+ or earlier.
+<![endif]--></p>
+<p class="gj3"></p>
+<p id="pmyOP2"></p>
+<p id="pmyOP"></p>
+</div>
+<!-- printArea -->
+<!--
+
+-->
+
+
+<pre style="padding:15px 0 0 15px;font-size:20px;font-weight: bold;">
+
+this is text
+</pre>
+
+<a name="runit2" id="runit2"></a>
+<form name="string1" id="string1">
+<fieldset class="c" style='width:25%'>
+<legend >Please enter a string to evaluate</legend>
+<input type="text" class="buttonNgrey" size="50" tabindex="0" id="query_text2" value="">
+<input type="button" id="checkstring" name="Go" value="Go" onclick="testString(this.form.query_text2.value);">
+</fieldset>
+</form>
+
+<br>
+<div id='newheader1' style='position:absolute;top:20px;left:700px;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;to happiness</span></h1>
+</div>
+<a href="#" onclick="window.scroll(0,0); return false">Go to top</a>
+<p class="pos_fixed">Peace on Earth, Good Will Towards Men</p>
+
+<p id="pmyOP3">Stringop</p>
+
+
+</div> <!-- .col-lg-6 -->
+
+</div><!-- /.row -->
+</div><!-- /.container -->
+
+<script type="text/javascript" src="js/gjcore.min.js">
+</script>
+<script type="text/javascript" src="js/gjutil1.min.js">
+</script>
+<script type="text/javascript" src="js/gjmsg.min.js">
+</script>
+<script type="text/javascript" src="js/gjmove.min.js">
+</script>
+<script type="text/javascript" src="js/gjtest.min.js">
+</script>
+<script type="text/javascript" src="js/gjonline.min.js">
+</script>
+<script type="text/javascript" src="js/gjqt.min.js">
+</script>
+<script type="text/javascript" src="js/CanvasBorder.min.js">
+</script>
+
+<script type="text/javascript">
+
+function gjshow() {
+var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion);
+var isDroid = /Android/.test(navigator.appVersion);
+
+alert('Click on More Mobile: ' + mobile + ' isDroid: ' + isDroid);
+}
+
+function testError(eventin, myCode)
+{
+  try
+  {
+    alert(eval(myCode));
+  }
+  catch (err)
+  {
+    gjonerror( err, " testError ");
+  }
+}
+
+/* body onload */
+
+function garyshit(tmp) {
+   setTimeout( appendInnerHTML, 100, "pmyOP","<br> function <br>");
+}
+
+var tst;
+
+function garyparse(tmp) {
+  tmp = '{"url": "http://db.tt/vXuLroB5", "expires": "Tue, 01 Jan 2030 00:00:00 +0000"}';
+
+Array = tmp.split('"');
+tst = Array;
+var url = Array[3];
+alert(url);
+}
+
+function getSafeURL(listin) {
+var test2;
+for (_i = 0; _i < listin.length; _i++) {
+
+   test2 = client.makeUrl(listin[_i] ,function(error,test4) {
+   if (error) {
+       return showError(error);
+    }
+      doneU = (function() {
+      appendInnerHTML("pmyOP","<br> function <br>");
+      var test3 = garyparse(test2.responseText);
+      });
+  doneU();
+    }); //end function
+  }
+}
+function Startup()
+{
+
+    if (screen.width<800)
+    {
+      //window.location="Mobile page name"
+    }
+    else
+    {
+      //window.location="Main page name"
+    }
+}
+
+/* =====================
+    on load code
+*/
+
+$(document).ready(function(){
+
+BrowserDetect.init();
+
+/*  platform is Browser, not OS */
+
+var txt = "Browser CodeName: " + navigator.appCodeName + "<br>";
+txt+= " navigator.appName: " + navigator.appName + "<br>";
+txt+= "Browser Version: " + navigator.appVersion + "<br>";
+txt+= "Cookies Enabled: " + navigator.cookieEnabled + "<br>";
+txt+= "Platform: " + navigator.platform + "<br>";
+txt+= "User-agent header: " + navigator.userAgent + "<br>";
+if( navigator.cpuClass)
+txt+= "cpuClass: " + navigator.cpuClass + "<br>";
+if (navigator.userAgent.indexOf("WOW64") != -1 ||
+    navigator.userAgent.indexOf("Win64") != -1 )
+{
+//txt+= "WOW64 or WIN64 in userAgent: 64bit Windows " + "<br>";
+txt+= "64bit Windows " + "<br>";
+}
+
+txt+= BrowserDetect.browser + " " + BrowserDetect.version + " on " + BrowserDetect.OS + "<br>" + "<hr>";
+//
+txt+="getCW " + getCW() + " getCH " + getCH() + " screen.width "  + screen.width + " screen.height " + screen.height + "<br>";
+txt+="window.innerWidth " + window.innerWidth;
+
+if(document.documentElement && document.documentElement.clientWidth)
+txt+= " document.documentElement.clientWidth " + document.documentElement.clientWidth;
+if(document.body && document.body.clientWidth)
+txt+= "  document.body.clientWidth  " + document.body.clientWidth;
+txt+="<br>";
+
+txt+= " window.devicePixelRatio :" +  window.devicePixelRatio;
+txt+="<br>";
+
+var rsw = new Array(320, 360,375, 412, 416, 480, 560, 640, 667, 690, 736);
+
+var txt2='';
+
+var rswtst0 = "screen and (orientation: portrait)";
+
+var mql0 = window.matchMedia(rswtst0);
+
+if (mql0.matches) {
+  	txt2+=  rswtst0 + "<br>";
+} else {
+  	txt2+=  "orientation: landscape <br>";
+}
+
+txt2+="min-width <br><br>This did not work in chrome, its experimental  <br>";
+
+/*
+max-device width, max-width do not work in the following
+I do not know why
+
+*/
+
+
+//min
+var rswi = new Array(320, 375, 412, 480, 667);
+//mmax
+var rswa = new Array(360, 411, 479, 640, 736);
+
+
+for (var i=0; i< rswa.length; i++) {
+  var rswtsta = "screen and (min-width: "+rswi[i]+"px) and (max-width: "+rswa[i]+"px)";
+//@media only screen and (min-width:320px) and (max-width:360px)
+  var mqla = window.matchMedia(rswtsta);
+
+  if (mqla.matches) {
+  	txt2+=  rswtsta + "<br>";
+  }
+}
+
+
+for (var i=0; i< rsw.length; i++) {
+
+  var rswtst1 = "(max-width: "+rsw[i]+"px)";
+  var rswtst2 = "(min-width: "+rsw[i]+"px)";
+  var rswtst3 = "(width: "+rsw[i]+"px)";
+  var rswtst4 = "(min-width: "+rsw[i]+"px) and (max-width: "+rsw[rsw.length - i]+"px)"
+//  var rswtst5 = "screen and (orientation: portrait) and (max-device-width: "+rsw[i]+"px)";
+
+
+  var mql1 = window.matchMedia(rswtst1);
+
+  if (mql1.matches) {
+  	txt2+=  rswtst1 + "<br>";
+  }
+
+  var mql2 = window.matchMedia(rswtst2);
+
+  if (mql2.matches) {
+  	txt2+=  rswtst2 + "<br>";
+  }
+
+  var mql3 = window.matchMedia(rswtst3);
+
+  if (mql3.matches) {
+  	txt2+=  rswtst3 + "<br>";
+  }
+
+  var mql4 = window.matchMedia(rswtst4);
+
+  if (mql4.matches) {
+  	txt2+=  rswtst4 + "<br>";
+  }
+
+//  var mql5 = window.matchMedia(rswtst5);
+//
+//  if (mql5.matches) {
+//  	txt2+=  rswtst5 + "<br>";
+//  }
+
+
+}
+
+txt+=txt2 + "<br>";
+
+
+/*
+getCW 1280 getCH 874 screen.width 1280 screen.height 1024
+window.innerWidth 1280 document.documentElement.clientWidth 1263 document.body.clientWidth 1247
+getXoffset() 0 getYoffset() 0 top 325 left 8 width 96 height 33
+*/
+txt +=" getXoffset() " +  getXoffset() + " getYoffset() " +  getYoffset();
+txt += " top " + mygetTop('newheader1') + " left " + mygetLeft('newheader1') + " width " + mygetWidth('newheader1') + " height " +mygetHeight('newheader1') + "<br>";
+
+//txt+= " document.baseURI:" document.baseURI + "<BR">;
+
+var gjwhere=true;
+if (document.baseURI) {
+    gjwhere = document.baseURI;
+  } else if (document.location) {
+    gjwhere = document.location.href;
+  } else {
+    gjwhere = false;
+  }
+
+if (gjwhere) {
+    var tst1 = gjwhere.substring( 0, 8);
+    if ( tst1 == "file:///") {
+      txt+= " File protocol :" + tst1 + "<BR>";
+    } else {
+      var tst2 = gjwhere.substring(7,10);
+      if ( tst2 == "127") {
+        txt+= "127 local: Good for php 127.0.0.1:" + tst2 + "<BR>";
+      } else if (tst2 == "loc") {
+        txt+= "local: Good for mysql locahost" + tst2 + "<BR>";
+      } else {
+        txt+= "hosted: " + gjwhere +  "<BR>";
+      }
+    }
+} else {
+txt+="unable to get baseURI or location<br>";
+}
+/*
+
+
+
+tabIndex
+
+document.URL  IE
+document.location IE
+
+if(top.location.host == "127.0.0.1") {
+  txt =+ "top.location.host is 127.0.0.1";
+} else {
+  txt =+ "top.location.host: " + top.location.host + "<br>";
+}
+*/
+
+  if(mygetTop('newheader1') ==-1) alert("mygetTop");
+  if(mygetLeft('newheader1') == -1) alert("mygetLeft");
+  if(mygetWidth('newheader1') == -1) alert("mygetWidth");
+  if(mygetHeight('newheader1') ==-1) alert("mygetHeight");
+txt+="<br>";
+
+document.getElementById("example").innerHTML=txt;
+
+var tmp1 = document.getElementById('mydivFB');
+
+/*
+This works just fine try running the code to see what happens. This is an example of functional scoping: in JavaScript, the scope of a variable is defined by its location within the source code, and nested functions have access to variables declared in their outer scope.
+
+
+function init() {
+  var name = "Mozilla";
+  function displayName() {
+    alert(name);
+  }
+  displayName();
+}
+init();
+*/
+/*
+https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Closures
+A closure is a secial kind of object that combines two things:
+a function, and the environment in which that function was created.
+The environment consists of any local variables that were in-scope at the time that the closure was created.
+
+In this example, we have defined a function makeAdder(x) which takes a single argument x and returns a new function.
+The function it returns takes a single argument y, and returns the sum of x and y.
+In essence, makeAdder is a function factory it creates functions which can add a specific value to their argument.
+In the above example we use our function factory to create two new functions
+one that adds 5 to its argument, and one that adds 10.
+*/
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };}
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+
+var txt2 = "add5: " + add5(2) + " add10: " +  add10(2) + "<BR>";
+document.getElementById("closure").innerHTML=txt2;
+
+function makeSizer(size) {
+  return function() {
+    document.body.style.fontSize = size + 'px';
+  };}
+
+var size12 = makeSizer(12);
+var size24 = makeSizer(24);
+var size48 = makeSizer(48);
+
+document.getElementById('size-12').onclick = size12;
+document.getElementById('size-24').onclick = size24;
+document.getElementById('size-48').onclick = size48;
+/*
+Emulating private methods with closures
+*/
+
+
+/*
+<img  title= "a" width="16" height="12" alt="" src="GraphicWidgets\pushpinopen.png">
+<img  title= "a" width="16" height="12" alt="" src="GraphicWidgets\pushpinclose.png">
+<img  title= "a" width="16" height="12" alt="" src="GraphicWidgets\pushpinx.png">
+*/
+
+
+var msg3='';
+
+//this is a string, not an Array
+var json = '{"result":true,"count":1}',
+//var  obj = JSON && JSON.parse(json) || $.parseJSON(json);
+
+obj = JSON.parse(json);
+
+msg3 += " obj.result: " + obj.result;
+msg3 += " | ";
+msg3 += ' obj.count: ' + obj.count;
+
+var strJSON = '{"result":true,"count":1}';
+var objJSON = eval("(function(){return " + strJSON + ";})()");
+msg3 += " | ";
+msg3 += "objJSON "+ objJSON.result;
+msg3 += " | ";
+msg3 += "strJSON "+ strJSON;
+
+//alert(objJSON.result);
+//alert(objJSON.count);
+
+appendInnerHTML("pmyOP2",msg3);
+
+/* end document ready*/
+});
+
+function testString(str1) {
+var str=str1;
+var uniql="";
+//input string length
+//output string lenght
+
+
+  for (var x=0;x < str.length;x++)  {
+
+    if(uniql.indexOf(str.charAt(x))==-1)   {
+      uniql += str[x];
+    } else {
+      //not unigue
+    }
+  }
+document.getElementById("pmyOP3").innerHTML=uniql;
+return uniql;
+}
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+Mar 02 2006
+added date time template to ultraedit
+
+search
+http://www.boost.org/libs/filesystem/doc/index.htm
+
+// http://www.kevinroth.com/rte/demo.htm
+
+
+-->
+<!--
+Changelog
+
+-->
+<head>
+<style type="text/css">
+.fancy2
+{
+  border-top: solid 1px rgb(100,100,100);
+  border-bottom: solid 1px rgb(100,100,100);
+  padding: 8px;
+  background-color: #F5FBF5;
+}
+
+</style>
+<title>Advanced Seach</title>
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<link rel="icon" href="GraphicWidgets/questionmark.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CookBook">
+<meta name="keywords" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjmsg.min.js"></script>
+<script type="text/javascript" src="chrome://gj53run/content/CookBook/XXSoftwareTools/js/gjqt.min.js"></script>
+
+
+</head>
+<body>
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+<div class="MyButton" title="">
+<a tabindex="5" href="DictionarySearchHelp.html">Search Tips
+  </a>
+  </div>
+
+<div class='dynDom'  style="max-width:90em;" >
+
+<em>Coming Soon <em>
+
+<ul class='cb'>
+<li class='anp'><p>Add Search Table of Contents Titles
+</p></li>
+<li class='anp'><p>Add Search Index Entries (generate concordance)
+</p></li>
+<li class='anp'><p>Add perform a full text search of the FastTrack system
+</p></li>
+<li class='anp'><p>Add List recipes with these ingredients
+</p></li>
+<li class='anp'><p>Add option to ignore diacrtics
+</p></li>
+<li class='anp'><p>Add option to do case insensitive
+</p></li>
+<li class='anp'><p>Add option for wildcard full text search
+</p></li>
+<li class='anp'><p>Add option - Sounds like phonetic type search
+</p></li>
+<li class='anp'><p>Add option - Realted Words type search
+</p></li>
+<li class='anp'><p>Add USDA Nutrient Database lookup
+</p></li>
+</ul>
+
+
+<pre WIDTH=90EM;>
+Full Text Search Examples
+
+        healthy eating
+        tubers
+        buds
+
+
+</pre>
+
+<pre>
+
+Ingredient search examples
+
+    rosemary
+    pork loin
+
+
+no salt
+no pepper
+
+</pre>
+
+
+<pre WIDTH=90EM;>
+Related Words type Search
+
+        Butter pasta
+        words relating to pasta fettuccine vermicelli noodles spaghettis macaroni
+        words related to butter or sauce
+        buds
+        butter margarine
+
+
+      refrigerator  fridge defrost defrosting thaw thawing food storage
+
+
+Categories of things to relate words too
+
+anything that one is a substitue for the other
+
+pasta
+sauce
+vegetables
+fruits
+spreads
+oils
+butter
+desserts
+all food groups categories and families
+
+
+Cut  to knvies, food processor, graters
+containers - pots pans baking dishes
+  storage - plastic, wraps, glass
+
+tools - spoons, forks, tongs, thermometer
+
+pork - apples
+lamb - mint jelly
+bacon eggs
+ham cheese
+burgers fries
+fish chips
+soup sandwich
+</pre>
+
+
+
+<pre WIDTH=90EM;>
+
+The Double Metaphone algorithm, developed by Lawrence Phillips and published in the June 2000 issue of C/C++ Users Journal, is part of a class of algorithms known as "phonetic matching" or "phonetic encoding" algorithms. These algorithms attempt to detect phonetic ("sounds-like") relationships between words. For example, a phonetic matching algorithm should detect a strong phonetic relationship between "Nelson" and "Nilsen", and no phonetic relationship between "Adam" and "Nelson."
+
+Double Metaphone works by producing one or possibly two phonetic keys, given a word. These keys represent the "sound" of the word. A typical Double Metaphone key is four characters long, as this tends to produce the ideal balance between specificity and generality of results.
+
+The first, or primary, Double Metaphone key represents the American pronunciation of the source word. All words have a primary Double Metaphone key.
+
+The second, or alternate, Double Metaphone key represents an alternate, national pronunciation. For example, many Polish surnames are "Americanized", yielding two possible pronunciations, the original Polish, and the American. For this reason, Double Metaphone computes alternate keys for some words. Note that the vast majority (very roughly, 90%) of words will not yield an alternate key, but when an alternate is computed, it can be pivotal in matching the word.
+
+To compare two words for phonetic similarity, one computes their respective Double Metaphone keys, and then compares each combination:
+
+    * Word 1 Primary - Word 2 Primary
+    * Word 1 Primary - Word 2 Alternate
+    * Word 1 Alternate - Word 2 Primary
+    * Word 1 Alternate - Word 2 Alternate
+
+Obviously if the keys in any of these comparisons are not produced for the given words, the comparisons involving those keys are not performed.
+
+Depending upon which of the above comparisons match, a match strength is computed. If the first comparison matches, the two words have a strong phonetic similarity. If the second or third comparison matches, the two words have a medium phonetic similarity. If the fourth comparison matches, the two words have a minimal phonetic similarity. Depending upon the particular application requirements, one or more match levels may be excluded from match results.
+
+</pre>
+
+<pre WIDTH=90EM;>
+
+Concordance AKA index
+The concordance needs to be able to classify word forms (plurals, capitals and the like into the same reference?
+
+Look up doing a concordance for the entire site and skip the obvious words
+
+The most common approach to full text search is to generate a complete index or concordance for all of the searchable documents. For each word (excepting stop words which are too common to be useful) an entry is made which lists the exact position of every occurrence of it within the database of documents. From such a list it is relatively simple to retrieve all the documents that match a query, without having to scan each document. Although for very small document collections full-text searching can be done by serial scanning, indexing is the preferred method for almost all full-text searching
+
+Jakarta Lucene is a full-featured text search engine written entirely in Java, and it is an open source project available for free download from Apache ...
+http://www.namazu.org/
+http://openfts.sourceforge.net/
+http://www.w3.org/TR/xquery-full-text-requirements/
+http://en.wikipedia.org/wiki/Full_text_search
+
+
+
+
+</pre>
+
+<!--
+
+
+  search all - this would be the stuff in edit files
+  see porter.js for word stemming
+
+Step 0: +
+
+    Search for the longest among the suffixes,
+
+    '
+    's
+    's'
+        and remove if found.
+
+Step 1a:
+
+    Search for the longest among the following suffixes, and perform the action indicated.
+
+    sses
+        replace by ss
+
+    ied+   ies*
+        replace by i if preceded by more than one letter, otherwise by ie (so ties -> tie, cries -> cri)
+
+    s
+        delete if the preceding word part contains a vowel not immediately before the s (so gas and this retain the s, gaps and kiwis lose it)
+
+    us+   ss
+        do nothing
+
+Step 1b:
+
+    Search for the longest among the following suffixes, and perform the action indicated.
+
+    eed   eedly+
+        replace by ee if in R1
+
+    ed   edly+   ing   ingly+
+        delete if the preceding word part contains a vowel, and then
+        if the word ends at, bl or iz add e (so luxuriat -> luxuriate), or
+        if the word ends with a double remove the last letter (so hopp -> hop), or
+        if the word is short, add e (so hop -> hope)
+
+
+Steming
+
+Stem certain special words as follows,
+
+    skis      ->      ski
+    skies       ->      sky
+    dying
+    lying
+    tying     ->    die
+    lie
+    tie
+    idly
+    gently
+    ugly
+    early
+    only
+    singly    ->    idl
+    gentl
+    ugli
+    earli
+    onli
+    singl
+
+
+And indeed the  exception1  routine for the English stemmer has just that shape:
+
+    define exception1 as (
+
+         [substring] atlimit among(
+
+            /* special changes: */
+
+            'skis'      (<-'ski')
+            'skies'     (<-'sky')
+            'dying'     (<-'die')
+            'lying'     (<-'lie')
+            'tying'     (<-'tie')
+
+            /* special -LY cases */
+
+            'idly'      (<-'idl')
+            'gently'    (<-'gentl')
+            'ugly'      (<-'ugli')
+            'early'     (<-'earli')
+            'only'      (<-'onli')
+            'singly'    (<-'singl')
+
+            // ... extensions possible here ...
+
+            /* invariant forms: */
+
+            'sky'
+            'news'
+            'howe'
+
+            'atlas' 'cosmos' 'bias' 'andes' // not plural forms
+
+            // ... extensions possible here ...
+        )
+    )
+
+  SimpleSearch fails because of crtdebug stuff ?
+
+  Cilantro, Coriander and Coriander Leaves should all refer back to Coriander
+
+  name is the french spelling
+  aïoli
+
+  synonyms  Aioli, aiòli
+
+  Aioli
+  Aioli — aïoli (French spelling) or aiòli (Modern Provençal spelling) from the Provençal aiet ("garlic") and oli ("oil"),  is a cold sauce made of garlic, egg, acid (lemon juice or vinegar), and olive oil, basically a garlic-flavoured       mayonnaise.
+
+  In Provence, aioli also designates a complete dish consisting of boiled vegetables (carrots, potatoes..., green beans), boiled fish (normally, desalted cod), and boiled eggs served with the aioli sauce.
+
+  CookBook\TermsDictionaryGlossary\A\aioli.txt
+
+-->
+
+</div>
+
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+
+</body>
+</html>
+
+
+

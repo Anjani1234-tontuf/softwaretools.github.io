@@ -1,0 +1,172 @@
+<html>
+  <head>
+<script>
+var count = 0;
+var k = 1024;
+var m = k * k;
+var maxFileSizeMB = 25;
+var width = 200;
+
+function updateBytes(evt)
+{
+return 0;
+}
+
+function updateSpeed(target)
+{
+
+}
+
+function updateProgress(evt)
+{
+
+}
+
+function loadError(evt)
+{
+  evt.target.log.setAttribute("status", "error");
+  evt.target.log.parentNode.parentNode.previousSibling.previousSibling.textContent = "error";
+  clearTarget(evt.target);
+}
+
+function loaded(evt)
+{
+  updateBytes(evt);
+  //evt.target.log.style.width = width + "px";
+  evt.target.log.setAttribute("status", "loaded");
+  evt.target.log.parentNode.parentNode.previousSibling.previousSibling.textContent = "";
+  clearTarget(evt.target);
+}
+
+function clearTarget(target)
+{
+  clearInterval(target.interval);
+  target.onprogress = null;
+  target.onload = null;
+  target.onerror = null;
+}
+
+function initXHREventTarget(target, container)
+{
+  var speed = document.createElement("td");
+  speed.className = "speed";
+  container.appendChild(speed);
+
+  var info = document.createElement("td");
+  info.className = "info";
+  container.appendChild(info);
+
+  var progressContainerTd = document.createElement("td");
+  container.appendChild(progressContainerTd);
+
+  var progressContainer = document.createElement("div");
+  progressContainer.className = "progressBarContainer";
+  progressContainerTd.appendChild(progressContainer);
+
+  var progress = document.createElement("div");
+  progressContainer.appendChild(progress);
+  progress.className = "progressBar";
+
+  target.log = progress;
+  target.interval = setInterval(updateSpeed, 1000, target);
+  target.curLoad = 0;
+  target.prevLoad = 0;
+  target.onprogress = updateProgress;
+  target.onload = loaded;
+  target.onerror = loadError;
+}
+
+function start(strin)
+{
+
+  var container = document.createElement("tr");
+
+  var line = document.createElement("td");
+  container.appendChild(line);
+  line.textContent = count + ".";
+
+  var filename = document.createElement("td");
+  container.appendChild(filename);
+  filename.textContent = strin;
+  filename.className = "filename";
+
+  initXHREventTarget(strin, container);
+
+
+  var tbody = document.getElementById('tbody');
+  tbody.appendChild(container);
+  tbody.style.display = "";
+
+}
+
+function startProgress()
+{
+      start("input");
+
+}
+
+</script>
+<style>
+.progressBar
+{
+  height: 10px;
+  width: 0px;
+  background: blue;
+  -moz-box-shadow: inset 1px 1px 5px #0000AA;
+  -moz-border-radius: 5px;
+}
+.progressBar[status="loaded"]
+{
+  background: green;
+  -moz-box-shadow: inset 1px 1px 5px #00AA00;
+}
+.progressBar[status="error"]
+{
+  background: red;
+  -moz-box-shadow: inset 1px 1px 5px #AA0000;
+}
+fieldset, legend
+{
+  border: 1px inset;
+}
+.info
+{
+  font-size: 10px;
+  width: 100px;
+  text-align: right;
+}
+.speed
+{
+  font-size: 10px;
+  width: 60px;
+  text-align: right;
+}
+.progressBarContainer
+{
+  width: 200px;
+  -moz-box-shadow: inset 1px 1px 5px #CCCCCC;
+  -moz-border-radius: 5px;
+}
+.filename
+{
+  white-space: nowrap;
+}
+</style>
+  </head>
+  <body>
+    <h3>A test for progress events</h3>
+
+      <input type="button"
+             onclick="startProgress();"
+             value="">
+      <table>
+        <tbody id="tbody" style="display: none;">
+          <tr>
+            <td style="text-align: center;" colspan="2">Filename</td>
+            <td style="width: 370px; text-align: center;" colspan="3">Upload progress</td>
+
+          </tr>
+        </tbody>
+      </table>
+  </body>
+</html>

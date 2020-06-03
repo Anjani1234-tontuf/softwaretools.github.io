@@ -1,0 +1,290 @@
+<html>
+<!--
+Content Notes
+
+-->
+<!--
+Technical Notes
+
+pixels to ems
+
+300 / 16  18.75
+10 / 16 0.625
+480 / 16  30
+150 / 16  9.375
+200 / 16  12.5
+100 / 16  6.25
+110 / 16  6.875
+240 / 16  15
+200 / 16  12.5
+320 / 16  20
+211 / 16  13.1875
+325 / 16  20.3125
+225 / 16  14.0625
+64 / 16 4
+700 / 16  43.75
+50 / 16 3.125
+
+
+-->
+<!--
+Changelog
+Mar 31 2006
+created
+
+-->
+<head>
+<style type="text/css">
+
+</style>
+    <title>Startup</title>
+    <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+    <link rel="icon" href="GraphicWidgets/favicon.ico" type="image/x-icon">
+    <link rel="Copyright" href="Copyright.html">
+    <meta name="author" content="Gary Johnson">
+    <meta name="description" content="CookBook">
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.min.js"></script>
+<script type="text/javascript">
+
+var Msg   = "Fi on Your PopUp Blocker";
+//create function object
+
+function CSGSNext()
+{
+  var it;
+}
+
+CSGSNext.prototype.doNext = function()
+{
+  changeInnerHTML('E','<p>&nbsp;Thank You&nbsp;</p>')
+  setDisplayH("nose");
+  setTop("theheader", 52);
+  setLeft("theheader",0);
+  setVisible("theheader");
+  setDisplayV("newheader5");
+}
+
+
+function CWrapper(msg)
+{
+  this.msg = msg;
+}
+
+CWrapper.prototype.doIt = function(title)
+{
+
+  var theNextCall = new CSGSNext();
+
+  var headerChg = new CSGS();
+  headerChg.synchFunc(theNextCall,'doNext');
+
+  headerChg.addElement('theheader');
+  headerChg.setMI('theheader', 15);
+  headerChg.setMIE('theheader', 20);
+  headerChg.addEffect('theheader', 'mySWipe');
+  headerChg.addMove('theheader','tl','tl', 0, 200);
+
+  headerChg.addElement('newheader1');
+  headerChg.setMI('newheader1', 15);
+  headerChg.addMove('newheader1','lr','lr', 'l','t','diag');
+
+  headerChg.addElement('newheader2');
+  headerChg.setMI('newheader2', 15);
+  headerChg.addMove('newheader2','ll','ll', 'r', 't','diag');
+
+  headerChg.addElement('newheader3');
+  headerChg.setMI('newheader3', 15);
+  headerChg.addMove('newheader3','tr','tr', 'l', 'b','diag');
+
+  headerChg.addElement('newheader4');
+  headerChg.setMI('newheader4', 15);
+  headerChg.addMove('newheader4','tl','tl', 'r', 'b','diag');
+
+  headerChg.addElement('clipDiv');
+  headerChg.addEffect('clipDiv','myClip','WTB')
+  headerChg.setMIE('clipDiv', 3);
+  headerChg.setMI('clipDiv', 13);
+  headerChg.addMove('clipDiv',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv2');
+  headerChg.addEffect('clipDiv2','myClip','WBT')
+  headerChg.setMIE('clipDiv2', 3);
+  headerChg.setMI('clipDiv2', 15);
+  headerChg.addMove('clipDiv2',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv3');
+  headerChg.addEffect('clipDiv3','myClip','WLR')
+  headerChg.setMIE('clipDiv3', 3);
+  headerChg.setMI('clipDiv3', 17);
+  headerChg.addMove('clipDiv3',0,0, 'c', 'c');
+
+  headerChg.addElement('clipDiv4');
+  headerChg.addEffect('clipDiv4','myClip','WRL')
+  headerChg.setMIE('clipDiv4', 3);
+  headerChg.setMI('clipDiv4', 17);
+  headerChg.addMove('clipDiv4',0,0, 'c', 'c');
+
+
+  headerChg.addElement('Banner');
+  headerChg.addEffect('Banner','myClip')
+  headerChg.setMI('Banner', 15);
+  headerChg.addMove('Banner',1000,325, 0, 325);
+
+  headerChg.addElement('Chef');
+  headerChg.addEffect('Chef','myClip')
+  headerChg.setMI('Chef', 16);
+  headerChg.addMove('Chef','cl','cl', 700, 225);
+
+  headerChg.addElement('nose');
+  headerChg.setMI('nose', 7);
+  headerChg.addMove('nose',250,550, 'c', 'c');
+
+  headerChg.addElement('ChefSmiley');
+  headerChg.setMI('ChefSmiley', 7);
+  headerChg.addMove('ChefSmiley',220,550, 'c', 0);
+
+  headerChg.addElement('divgetit');
+  headerChg.addEffect('divgetit','myClip','WRL')
+  headerChg.setMI('divgetit', 12);
+  headerChg.setMIE('divgetit', 4);
+  headerChg.addMove('divgetit','tl','ll', 100, 500);
+
+  headerChg.setIntervalSpeed(60);
+
+  headerChg.doIt();
+
+  delete headerChg;
+
+};
+
+function doDelay()
+{
+  var wrapper = new CWrapper(Msg);
+  var callwrapper = new CCallWrapper(wrapper, 1000, 'doIt', 'Null');
+  CCallWrapper.asyncExecute(callwrapper);
+
+  delete wrapper;
+  delete callwrapper;
+
+}
+
+</script>
+</head>
+<!--
+
+this quite a few restrictions on what I can do
+I try and set top on this and I get no properties.
+I need to go through and check and make sure the CSS stuff is okay with the
+DOM
+
+Not only do I need more of computed style,
+but I have to check and see what I can do
+
+
+-->
+<body style="margin:0; overflow:hidden" onload=doDelay();>
+<div id='theheader' class="myheader" style="position:relative;">
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+<p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+<p class="hshc">and Cooking Reference</p>
+<p class="hshr">Also Known As FTLtCaCR</p>
+<p class="HeaderSpacer">&nbsp;</p>
+</div>
+
+<div id="E" style="position:absolute; width:auto; height:auto; top:300px; left:10px; z-index:1;clip:rect(0 480 150 0);">
+<p style='text-indent:.5in;text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive;background-color:NAVY;color:white;'>&nbsp;Halt! Starting in a second! &nbsp;</p>
+<p style='text-indent:.5in;text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive;background-color:NAVY;color:white;'>&nbsp;You have set the content directory!&nbsp;</p>
+<p style='text-indent:.5in;text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive;background-color:NAVY;color:white;'>&nbsp;But, please give me a chance to Finish! &nbsp;</p>
+</div>
+
+
+<div id="divgetit" style="visibility:hidden;position:absolute;width:200px;height:100px;top:110px;left:240px;clip:rect(0 200 100 0);overflow:hidden; z-index:2;background-color:teal;">
+<p style='text-align:center;font-size:12pt;font-family:"Lucida Calligraphy", Vivaldi, cursive; color:white;'><br>Imagine<br></p>
+</div>
+
+
+<div id="clipDiv2" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:green;text-align:center;z-index:2;">
+</div>
+<div id="clipDiv3" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:yellow;text-align:center;z-index:3;">
+</div>
+
+<div id="clipDiv4" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:red;text-align:center;z-index:1;">
+</div>
+
+<div id="clipDiv" style="visibility:hidden;position:absolute;width:320px;height:211px;top:110px;left:240px;clip:rect(0 320 0 0);background-color:blue;text-align:center;z-index:4;">
+<div style='border:20pt outset red;width:8em;text-align:center; margin-left:auto; margin-right:auto;'>
+<p style='font-weight:bold; font-size:16.0pt; color:black;  font-family: Courier, sans-serif;  text-align:center;   padding-right:7.5pt;  padding-left:7.5pt; padding-top:2.5pt;  padding-bottom:2.5pt;'>
+Hello
+</p>
+</div>
+</div>
+
+<img id="Banner" style="position:absolute; visibility:hidden; top:325px; left:700; height:186px;width:102px;clip:rect(0 102 186 0);z-index:1" alt="" src="GraphicWidgets/LikeKandinsky2.png">
+
+<img id="Chef" style="position:absolute; visibility:hidden; top:225px; left:-100; height:211px;width:182px;clip:rect(0 182 211 0);z-index:2" alt="" src="GraphicWidgets/Kitchen1.png">
+
+<img id="nose" style="position:absolute; visibility:hidden; top:225px; left:-100; height:110px;width:98px;clip:rect(0 98 110 0);z-index:3" alt="" src="GraphicWidgets/noseeysemouth.gif">
+
+<img id="ChefSmiley" style="position:absolute; visibility:hidden; top:225px; left:-120; height:64px;width:64px;clip:rect(0 64 64 0);z-index:4" alt="" src="GraphicWidgets/Fingers.png">
+
+
+
+<div id ='newheader1' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader2' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader3' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader4' style='position:absolute;visibility:hidden;top:325px;left:700;white-space:nowrap;height:auto;width:auto;'>
+<h1 style='font-size:13px; text-align:left'><span class="HC">FastTrack</span><span class="HC">&nbsp;Moves</span></h1>
+</div>
+
+<div id ='newheader5' style='position:relative;display:none;width:auto; height:auto; top:100px'>
+
+<div class="Announce">
+
+<p style="text-align: center; font-size: 20.0pt; color:white;">Startup Test</p>
+<hr class="announce">
+<p class="smallboldspaced" style="text-align: center;">
+Welcome, first, please, vist the &quot;How to Navigate&quot; and &quot;Test Drive&quot;Links&quot; below</p>
+<p class="smallboldspaced" style="text-align: center;">
+The &quot;Switch Display Theme&quot; lets you customize the the display theme.</p>
+<hr class="announce">
+
+
+<p>
+<!-- Announcments to Here -->
+</p>
+</div>
+<center>
+<div id="nodisplay" class="buttondiv" style="position: relative; z-index: 1;">
+
+<ul id="CMEB2">
+<li> <a href="GaryDefaultNavigation.html">How to Navigate </a></li>
+<!-- li> <a href="chrome://gj53run/content/CookBook/XXSoftwareTools/SwitchTheme.html">Switch Display Theme</a></li> -->
+<li> <a href="TestDrive.html">Take the Test Drive</a></li>
+</ul>
+</div>
+
+</div>
+
+
+</body>
+</html>
+
+
+

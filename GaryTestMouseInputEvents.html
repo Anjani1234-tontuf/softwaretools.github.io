@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+.mppad
+{
+  margin: 2em;
+}
+
+.aliceblue
+{
+background-color:aliceblue;
+}
+
+.lightgray
+{
+background-color:lightgrey;
+}
+
+.lightskyblue
+{
+background-color:lightskyblue;
+}
+</style>
+
+<title>GaryTestMouseInputEvents.html</title>
+
+  <link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+  <link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+  <link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/porter.min.js"></script>
+<script type="text/javascript" src="js/gjevent.min.js"></script>
+<script type="text/javascript" src="js/gjtest.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+function gjOnload()
+{
+      var firstInput =document.getElementsByTagName('input')[0];
+      firstInput.focus();
+}
+
+function logit(evt)
+{
+  changeInnerHTML("theop", returnInnerHTML("theop") + "<br>" + evt );
+}
+
+
+function clearOP()
+{
+  changeInnerHTML("theop", "");
+}
+
+
+</script>
+
+</head>
+
+<body id='testbod' onload="gjOnload();">
+
+<pre WIDTH=90EM; class="aliceblue">
+
+<form name ="testEvents" id="tE">
+    <input  type="button" tabindex="2" id="xzCC" title="Show Events" class="buttonNgrey"
+    value="Show Events"
+    onmouseover="logit('over');"
+    onfocus="logit('focus');"
+    onblur="logit('blur');"
+    onClick="logit('click');"
+    onmouseout="logit('out');">
+<p>&nbsp;</p>
+<p class="td1p" >Activity Level</p>
+<p class="td1p">
+<select style="width:65%;" class="buttonNgrey" name="al1" id="al1" size="1"
+    onmouseover="logit('over');"
+    onfocus="logit('focus');"
+    onblur="logit('blur');"
+    onClick="logit('click');"
+    onmouseout="logit('out');">
+<option value="1">Sedentary: &nbsp;couch potato</option>
+<option value="2" selected>Light: &nbsp;&nbsp;&nbsp;light exercise 1-3 days a week</option>
+<option value="3">Moderate: &nbsp;exercise 3-5 days a week </option>
+<option value="4">Very: &nbsp;&nbsp;&nbsp;hard exercise or sports 6-7 days a week </option>
+<option value="5">Extra: &nbsp;&nbsp;&nbsp;hard exercise &gt; 3 hours a day</option>
+</select>
+</p>
+ </form>
+
+</pre>
+
+
+<input type="button" id="ib5" title="" class="buttonNgrey" value="Clear"
+onClick="clearOP();">
+
+
+
+
+<div id="testplace" style="height:20em; overflow:auto;overflow-x:scroll;overflow-y:scroll;">
+<p id='theop'> </p>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="Author" content="Gary G. Johnson">
+<meta name="ROBOTS" content="INDEX">
+<meta name="Description" content="Personal Test">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="StyleSheet" href="css/nmenu.css" type="text/css">
+<title>GaryTestClosure.HTML</title>
+
+<style type="text/css">
+p.pos_fixed
+{
+position:fixed;
+bottom:0px;
+right:5px;
+}
+
+/*
+p { margin: 0; padding: 0 }
+
+p.fl:first-letter{font-size:xx-large;font-weight:bolder; color:red;}
+
+p.fl:first-line
+{
+font-variant:small-caps;
+}
+
+*/
+
+img {margin:0;padding:0;}
+
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+</style>
+
+</head>
+
+<body >
+<script src="js/jquery-1.7.min.js"></script>
+<script src="js/nav1.1.min.js"></script>
+<script type="text/javascript" src="js/ULMenu4.js"></script>
+
+<p style="padding-top:40px;">Closures  add5(2) =  7 add10(2) = 12 </p>
+<p ><span id='closure'>&nbsp;</span></p>
+
+<p>make font size grow from 12 to 24 or 48 </p>
+ <a href="#" id="size-12">12</a>
+ <a href="#" id="size-24">24</a>
+ <a href="#" id="size-48">48</a>
+
+
+<script type="text/javascript">
+/*
+This works just fine — try running the code to see what happens. This is an example of functional scoping: in JavaScript, the scope of a variable is defined by its location within the source code, and nested functions have access to variables declared in their outer scope.
+
+
+function init() {
+  var name = "Mozilla";
+  function displayName() {
+    alert(name);
+  }
+  displayName();
+}
+init();
+*/
+/*
+
+
+Closure
+A "closure" is an expression (typically a function) that can have free variables together with an environment that binds,  those variables (that "closes" the expression).
+
+
+https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Closures
+A closure is a special kind of object that combines two things:
+a function, and the environment in which that function was created.
+The environment consists of any local variables that were in-scope at the time that the closure was created.
+
+In this example, we have defined a function makeAdder(x) which takes a single argument x and returns a new function.
+The function it returns takes a single argument y, and returns the sum of x and y.
+In essence, makeAdder is a function factory — it creates functions which can add a specific value to their argument.
+In the above example we use our function factory to create two new functions
+— one that adds 5 to its argument, and one that adds 10.
+*/
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };}
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+
+var txt2 = "add5: " + add5(2) + " add10: " +  add10(2) + "<BR>";
+document.getElementById("closure").innerHTML=txt2;
+
+function makeSizer(size) {
+  return function() {
+    document.body.style.fontSize = size + 'px';
+  };
+}
+
+var size12 = makeSizer(12);
+var size24 = makeSizer(24);
+var size48 = makeSizer(48);
+
+document.getElementById('size-12').onclick = size12;
+document.getElementById('size-24').onclick = size24;
+document.getElementById('size-48').onclick = size48;
+/*
+Emulating private methods with closures
+*/
+
+</script>
+</body>
+</html>
+
+
+

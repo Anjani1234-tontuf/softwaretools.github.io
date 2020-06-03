@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, World!</title>
+    <script src="js/doodle.d.js"></script>
+<!--
+uses doodle.d.js which has doodle but not $doodle
+needs doctype above and SAVED as type DOS
+
+
+<script src="js/doodle-0.1.1.js"></script>  -->
+  </head>
+  <body>
+    <div id="display"></div>
+    <script>
+
+      doodle.ready(function () {
+        var display = doodle.createDisplay('#display', {width:400, height:400}),
+            text = doodle.createText("Hello, World!").appendTo(display);
+        //center text
+        text.x = display.width / 2;
+        text.y = display.height / 2;
+        //game loop
+        display.on('animationFrame', function () {
+          text.rotation += 4;
+        });
+      });
+
+/*
+
+ var r = 5;
+ var a = 0;
+ var frame = 0;
+
+ dot.loop(function(obj) {
+              obj.modify({x:circle_x(a),
+                          y:circle_y(a),
+                          fill:random_color() });
+
+              frame += 1; //update frame count
+              a += 10; //update angle rotation
+              r += 0.3; //update radius
+
+              if(a % 15 == 0){ dot.fill = '#000000'; }
+              else{ dot.fill = random_color(); }
+
+              //clear canvas every 800th frame, reset radius
+              if(frame % 800==0){oo.canvas().clear(); r = 5;}
+
+          }, 0, '48fps'); //loop indefinitely at 48 frames/sec
+
+*/
+
+    </script>
+  </body>
+</html>

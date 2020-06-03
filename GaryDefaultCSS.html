@@ -1,0 +1,1128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<!--
+
+Content Notes
+
+Ultraedit Editor Word Wrap tab settings - uses spaces instead of tabs
+use 2
+JS and CSS and XUL – reindent selection - tabs to spaces
+HTML – tabs to spaces
+
+
+-->
+
+<!--
+
+Technical Notes
+
+Firefox has had issues with s string of dashes in a comment, so just don't do it.  use the === instead
+added notes about global and media specfic stylesheets
+
+-->
+
+
+<!--
+
+Changelog
+
+removed the ../XXSoftwareTools from /css/Printit.css
+
+-->
+
+<head>
+<style type="text/css">
+
+</style>
+<title>GaryDefaultCSS.html</title>
+
+<link rel="StyleSheet" href="css/GaryDefault.css" type="text/css">
+<!-- global stylesheets first -->
+<style type="text/css">
+
+  /* put a border around html and body for testing
+
+  html
+  {
+  margin: 0;
+  border: 1px solid red;
+  }
+  */
+  .garytest {   border-right: 1px solid red; }
+</style>
+<!-- media specfic over rides after global stylesheets -->
+<link rel="stylesheet" href="css/Printit.css" type="text/css" media="print">
+<style media="print" type="text/css">
+  .gartest {border-right: none; }
+</style>
+
+<link rel="icon" href="GraphicWidgets/champagne.ico" type="image/x-icon">
+<link rel="Copyright" href="Copyright.html">
+<meta name="author" content="Gary Johnson">
+<meta name="description" content="CookBook">
+<meta name="keywords" content="">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="js/gjcore.min.js"></script>
+<script type="text/javascript" src="js/gjutil1.min.js"></script>
+<script type="text/javascript" src="js/gjmove.min.js"></script>
+<script type="text/javascript" src="js/gjmsg.min.js"></script>
+<script type="text/javascript" src="js/gjrecipe.min.js"></script>
+<script type="text/javascript" src="js/gjqt.min.js"></script>
+<!--
+<script type="text/javascript" src="js/gj53runSearchHTML.min.js"></script>
+
+<script type="text/javascript" src="chrome://gj53run/content/utilsxul.min.js"></script>
+<script type="text/javascript" src="chrome://browser/content/utilityOverlay.min.js"></script>
+-->
+</head>
+<body>
+<a class="skiplink" href="#startcontent">Skip over navigation</a>
+<div class="myheader" id="myheader">
+  <p class="hrl"></p>
+  <p class="hrc"></p>
+  <p class="hrr"></p>
+  <p class="hshl"><span class="hshlbt">FastTrack&nbsp;</span> on learning to cook</p>
+  <p class="hshc">and Cooking Reference</p>
+  <p class="hshr">Also Known As FTLtCaCR</p>
+  <p class="HeaderSpacer">&nbsp;</p>
+</div>
+<a name="startcontent"></a>
+
+<div class="myinline">
+  <h1 class="heading"><span class="HC">Main Heading</span></h1>
+
+  <h2><span class="FL">F</span>irst Level SubHeading&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="image" onclick="displayTSS(event);" accesskey="H"
+    SRC="GraphicWidgets/TSS.gif" ALT='The Short Story' title='The Short Story'>
+  &nbsp;With the Short Story Button - Click the icon on this line</h2>
+
+  <h2><span class="FL">F</span>irst Level SubHeading&nbsp;&nbsp;&nbsp;&nbsp; </h2>
+
+  <br>
+
+  <div class="MyButton" style='width:35em;' title="Go to the page showing navigation">
+    <a tabindex="1" href="GaryDefaultNavigation.html">Click to See how to Navigate in this System</a>
+  </div>
+
+  <h3><span class="HCL"><span class="HCLT">Second Level Sub Heading</span></span></h3>
+
+  <h4><span class="SHCL">Third Level Sub heading h4 </span></h4>
+
+  <h5><span class="SHCL">Fourth level Sub Heading h5 </span></h5>
+
+  <br>
+  <p class="SHC">Alternate Sub Heading Color</p>
+  <br>
+
+  <p><span class="SHC">Alternate Third Level Sub Heading</span></p>
+  <br>
+
+      <div>
+        <input class="closeit" type="button" id="close01" value="-" onClick="toggleDisplayButton('CMEB1','close01' );">
+        <h2><span class="FL">T</span>able Section
+        </h2>
+      </div>
+<!-- table section div -->
+<div id="CMEB1">
+
+  <table cellpadding="2" cellspacing="2" class="CTB"
+    summary="This table is an example table showing different colors
+    and row and column colors. ">
+    <tr class="HCCT">
+      <td colspan="2"><p>Table Caption and Sub Heading Color</p></td>
+      <!--    <caption class="CTB">Table Caption and Sub Heading Color</caption> spacing is off -->
+    </tr>
+    <tr class="R2">
+      <td><p class="scenter">Column</p></td>
+      <td><p class="scenter">Headings</p></td>
+    </tr>
+
+    <tr>
+      <td class="a"><p>Table row color a</p> </td>
+      <td class="a"><p>Table row color a</p></td>
+    </tr>
+
+    <tr>
+      <td class="c"><p>Table row color c</p> </td>
+      <td class="c"><p>Table row color c</p></td>
+    </tr>
+
+    <tr>
+      <td class="b"><p>Table row color b</p></td>
+      <td class="b"><p>Table row color b</p></td>
+    </tr>
+
+    <tr>
+      <td class="c"><p>Using a contextual selector</p></td>
+      <td class="c"><p>td p </p></td>
+    </tr>
+
+  </table>
+
+  <br>
+
+  <table cellpadding="2" cellspacing="2" class="CTB"
+    summary="This table is an another example table showing different colors
+    and row and column colors.  This table does not have p on the caption
+    .">
+    <tr class="HCCT">
+      <td><p>Alternate Table</p></td>
+    </tr>
+    <tr class="R1">
+      <td><p class="td1p">Table row color R1</p></td>
+    </tr>
+    <tr class="R2">
+      <td><p class="td1p">Table row color R2</p></td>
+    </tr>
+
+  </table>
+
+  <br>
+  <TABLE summary="Example table with row and colum headings" border="0" cellpadding="5">
+    <TR>
+      <TH></TH>
+      <TH class="HCCT"><p>Col1</p></TH>
+      <TH class="HCCT"><p>Col2</p></TH>
+      <TH class="HCCT"><p>Col3</p></TH>
+    </TR>
+    <TR>
+      <TH class="R2"><p>Row 1</p></TH>
+      <TD class="anp"><p>C1R1</p></TD>
+      <TD class="anp"><p>C2R1</p></TD>
+      <TD class="anp"><p>C3R1</p></TD>
+    </TR>
+    <TR>
+      <TH class="R2"><p>Row 2</p></TH>
+      <TD class="bnp"><p>C1R2</p></TD>
+      <TD class="bnp"><p>C2R2</p></TD>
+      <TD class="bnp"><p>C3R2</p></TD>
+    </TR>
+  </TABLE>
+
+  <!--
+  -->
+
+  <br>
+  <table cellpadding="2" cellspacing="2"
+    summary="This table is an example table showing different colors
+    and row and column colors. ">
+
+    <tr class="HCCT">
+      <td colspan="2"><p>Table Caption and Sub Heading Color</p></td>
+      <tr class="R2">
+        <td><p class="scenter">Column</p></td>
+        <td><p class="scenter">Headings</p></td>
+      </tr>
+
+      <tr class="c">
+        <td><p>Table row color c</p> </td>
+        <td><p>Table row color c</p></td>
+      </tr>
+
+      <tr>
+        <td class="a"><p>Table row color a</p> </td>
+        <td class="a"><p>Table row color a</p></td>
+      </tr>
+
+      <tr>
+        <td class="c"><p>Table row color c</p></td>
+        <td class="c"><p>Table row color c</p></td>
+      </tr>
+
+      <tr>
+        <td class="a"><p>This uses contextual selectors</p></td>
+        <td class="a"><p>td p </p></td>
+      </tr>
+
+    </table>
+
+    <br>
+
+    <table cellpadding="2" cellspacing="2" class="COLborderNoRowborder CTB" summary="test of new css border collapse">
+
+      <COL class="cbcl1"><COL class="cbcl2"><COL class="cbcl3">
+
+      <tr>
+        <td class="a"><p>column 1
+        </p></td>
+      <td class="a"><p>to have tables aligned on the left use -<em> clear all</em>  after table end
+      </p></td>
+      <td class="a"><p>column 3
+      </p></td>
+    </tr>
+
+    <tr>
+      <td class="c"><p>lets see what we get
+      </p></td>
+      <td class="c"><p>I want a table with border lines on the columns
+      </p></td>
+      <td class="c"><p>but not on the rows
+      </p></td>
+    </tr>
+
+  </table>
+</div>
+<!-- end table section div  -->
+
+<br>
+<p><span class="hshl"><span class="hshlbt">Link types and Button</span> conventions</span></p>
+
+<pre>
+
+Buttons perform calculations and do actions like sorting, re arranging things and bringing up
+pop ups.
+
+There are two different color buttons, the colors change with the theme.
+I have no convention for when to use the different colors of buttons yet.
+
+See GaryDefaultNavigation for examples of how buttons are use for bringing up pop ups
+</pre>
+
+<p><input  type="button" id="xzCCz1" title="This does a calculation or makes some kind of change" class="buttonNgrey"
+    value="Calc button"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="doMessage('A message sent to you by a buttonNgrey');"
+    onmouseout="toggleHighLight('o', this.id);">
+<br>
+</p>
+
+<p><input  type="button" id="xzCCz2" title="This does a calculation or makes some kind of change" class="buttonNgold"
+    value="Help button"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="doMessage('A message sent to you by a buttonNgold');"
+    onmouseout="toggleHighLight('o', this.id);">
+</p>
+
+
+<pre>
+Note on XUL
+the button icon='help' is for how to use this application.
+the button icon='properties' is for settings and options.
+
+Nice Idea for HTML
+I should do a CSS help button and an options button with the Linux icons for the widgets
+
+</pre>
+
+<input style="top:1em; position:relative; z-index:3;" class="closeit" type="button" id="close08" value="-" onClick="toggleDisplayButton('CMEB8','close08' );">
+
+<div id="CMEB8" style="position:relative; z-index:2;">
+
+  <h2 style="position:relative; z-index:1;"><span class="FL">C</span>lose type -> closes the header it appears to be on
+  </h2>
+</div>
+
+
+
+  <h3><span class="HCL"><span class="HCLT">buttondiv
+  </span></span></h3>
+
+<pre>
+A block type link, or what most people think of as a button , is used for jumps to other pages.
+
+The buttondiv is used for mini Horizontal Menus, showing closely related items.  Is another way to make navigating easy.
+The main menu has everything.  The on page buttondiv menu has very frequently used items.  Example widgets
+</pre>
+
+  <center>
+
+    <div id="nodisplay" class="buttondiv" style="position:relative; z-index:1;" >
+      <input style="float:right; position:relative; z-index:2;" class="closeit" type="button" id="close02" value="-" onClick="toggleDisplayButton('CMEB2','close02' );">
+
+      <ul id="CMEB2">
+        <li> <a href="Timer.html">Timers</a></li>
+        <li> <a href="../ToolsChartsTables/CookingMeasurementEquivalents.html">Conversion Charts</a></li>
+        <li> <a href="ConversionCalculator.html">Conversion Calculators</a></li>
+        <li class="nohover"> <a href="#">Calculator</a></li>
+        <li> <a href="DateCalculator.html">Date Calculations</a></li>
+      </ul>
+    </div>
+
+    <br>
+  </center>
+
+  <h3><span class="HCL"><span class="HCLT">MyButton
+  </span></span></h3>
+<pre>
+MyButton is used for vertical menus.  Example a Table of contents for a short tutorial
+</pre>
+  <center>
+    <div class="MyButton" style='width:35em;' title=""><a tabindex="1" href="../ToolsChartsTables/cansizes.html">Can Size Equivalents
+    </a></div>
+    <div class="MyButton" style='width:35em;' title=""><a tabindex="1" href="../ToolsChartsTables/CookingMeasurementEquivalents.html">Conversion Charts
+    </a></div>
+    <div class="MyButton" style='width:35em;' title=""><a tabindex="1" href="../XXSoftwareTools/ConversionCalculator.html">Conversion Calculator
+    </a></div>
+    <div class="MyButton" style='width:35em;' title=""><a tabindex="1" href="
+      ../FoodFactsHintsTips/GeneralVegetableFruitGuidelines.html">General Vegetable and Fruit Guidelines
+    </a></div>
+    <div class="MyButton" style='width:35em;' title=""><a tabindex="1" href="../FoodFactsHintsTips/AdditionalResources.html">Additional Resources
+    </a></div>
+  </center>
+
+ <h3><span class="HCL"><span class="HCLT">Small with Dot</span></span></h3>
+<pre>
+Small with Dot is used for further information on this subject.
+Sort of more help on this kind of thing, but not application related
+</pre>
+
+<p><span class="homeDividerDot"> &bull; </span>
+   <a href="../ToolsChartsTables/cansizes.html" class="ATwo">A one line dot link</a></p>
+
+<pre>
+Class AOne links are used for jumps from one part of a page to another.  Its a clue that if they open this link in a new tab,
+they will have 2 tabs of the same page open.
+</pre>
+  <br>
+  <p>Test Multimedia Section</p>
+  <br>
+  <a href="Testreal.html" title="Test Real Player .rm" class="AOne">Test Real Player</a>
+  <br>
+  <a href="Testavi.html" title="Standard Video .avi " class="AOne">Test AVI File</a>
+  <br>
+  <a href="Testmid.html" title="Short Music .mid" class="AOne">Test Midi File</a>
+  <br>
+  <a href="Testwav.html" title="Music .wav " class="AOne">Test Wav File</a>
+  <br>
+
+    <h3><span class="HCL"><span class="HCLT">Original Concept
+    </span></span></h3>
+    <table border="0" cellpadding="4" cellspacing="4" class="CTB">
+      <tbody>
+        <tr align="center">
+          <td class="a"><p class="smaller"><a class="AOne" href="../ToolsChartsTables/cansizes.html">Can Size <br>Equivalents</a></p></td>
+          <td class="c"><p class="smaller"><a class="AOne" href="../ToolsChartsTables/CookingMeasurementEquivalents.html">Conversion <br>Charts</a></p></td>
+          <td class="a"><p class="smaller"><a class="AOne" href="../XXSoftwareTools/ConversionCalculator.html">Conversion <br>Calculators</a></p></td>
+          <td class="c"><p class="smaller"><a class="AOne" href="../FoodFactsHintsTips/GeneralVegetableFruitGuidelines.html">General Vegetable <br>and Fruit <br>Guidelines</a></p></td>
+          <td class="a"><p class="smaller"><a class="AOne" href="../FoodFactsHintsTips/AdditionalResources.html">Other <br>Resources</a></p></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+  <center>
+    <!--    the dot  · does not translate-->
+    <table>
+      <tr>
+        <td valign="top"><p>
+          <span class="homeDividerDot"> &bull; </span>
+          <a href="../ToolsChartsTables/cansizes.html" class="ATwo">Can Size Equivalents</a>
+          <span class="homeDividerDot"> &bull; </span>
+          <a href="../ToolsChartsTables/CookingMeasurementEquivalents.html" class="ATwo" >Conversion Charts</a>
+          <span class="homeDividerDot"> &bull; </span>
+          <a href="../XXSoftwareTools/ConversionCalculator.html" class="ATwo" >Conversion Calculators</a>
+          <span class="homeDividerDot"> &bull; </span>
+          <a href="../FoodFactsHintsTips/GeneralVegetableFruitGuidelines.html" class="ATwo">General Vegetable and Fruit Guidelines</a>
+          <span class="homeDividerDot"> &bull; </span>
+          <a href="../FoodFactsHintsTips/AdditionalResources.html" class="ATwo" >Additional Resources</a>
+        </p></td>
+      </table>
+    </center>
+  </div>
+
+  <br>
+
+
+  <h3><span class="HCL"><span class="HCLT">Std Links
+  </span></span></h3>
+
+  <center>
+    <br>
+    <a class="AOne" href="#startcontent">Back to the Top</a>
+
+    <a class="AOne" href="../ToolsChartsTables/CookingMeasurementEquivalents.html#Whacked">&nbsp;Altering Volume Measurements&nbsp;</a>
+
+    <a class="AOne" href="../XXSoftwareTools/ConversionCalculator.html">&nbsp;Conversion Calculators&nbsp;</a>
+
+    <a class="AOne" href="../FoodFactsHintsTips/GeneralVegetableFruitGuidelines.html" >&nbsp;General Vegetable and Fruit Guidelines&nbsp;</a>
+
+    <a class="AOne" href="../FoodFactsHintsTips/AdditionalResources.html" >&nbsp;Additional Resources&nbsp;</a>
+  </center>
+  <br>
+
+
+  <a href="js/gjcore.js "content-type=text/plain" target="_blank" >Open gjcore.js as text</a>
+  <br />
+
+
+  <div class="MyButton" title="This is a link button">
+    <a tabindex="5" href='Accessibility_Statement.html'>Go to a link</a>
+  </div>
+  <hr>
+
+  <h2><span class="FL">T</span>ext section</h2>
+  <p class='indent'>This my first sentence.&nbsp; I want two spaces between the period and the start of the next sentence.&nbsp; This is also my default font.&nbsp; See the settings directly below.&nbsp;  This is the right way to code it, [full stop (.!?)][non breaking space][regular space].<br><br></p>
+
+<pre>
+    margin:0in;
+    margin-bottom:.0001pt;
+    font-size:12.0pt;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+</pre>
+
+
+<pre>
+  another pre example for print testing.
+  0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678>
+  11 sets of 10 above or arround 110 characters per line on at 100%per; landscape
+  Canon at 12 pt with margins of 2em on the body and .5 on the page.
+  0123456789012345678901234567890123456789012345678901234567890123456789012345678>
+  80 characters at 100% potrait
+
+</pre>
+<p>abcdefghijklmnopqrstuvwxyz 0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ default font</p>
+
+
+<h3><span class="HCL"><span class="HCLT">Emphasized  Text </span></span></h3>
+<p>FastTrack Menu &nbsp;&nbsp; p </p>
+<p><em>FastTrack Menu &nbsp;&nbsp; p em </em></p>
+<em>FastTrack Menu &nbsp;&nbsp;em </em>
+<br><em style='font-weight: bold;'>FastTrack Menu &nbsp;&nbsp;em bold</em>
+<br><b>FastTrack Menu &nbsp;&nbsp;bold</b>
+<p class='GreyPattern'>FastTrack Menu &nbsp;&nbsp;GreyPattern</p>
+<p class='LGreyPattern'>FastTrack Menu &nbsp;&nbsp;LGreyPattern</p>
+<p class='DGreyPattern'>FastTrack Menu &nbsp;&nbsp;DGreyPattern</p>
+
+<p>  p&nbsp;&nbsp;<span class="DGreyPattern">&nbsp;&nbsp;&nbsp;span DGreyPattern&nbsp;&nbsp;&nbsp;</span><span class="LGreyPattern">&nbsp;&nbsp;&nbsp;span LGreyPattern&nbsp;&nbsp;&nbsp;</span><span class="DGreyPattern">&nbsp;&nbsp;&nbsp;span DGreyPattern&nbsp;&nbsp;&nbsp;</span> <span class="LGreyPattern">&nbsp;&nbsp;&nbsp;span LGreyPattern&nbsp;&nbsp;&nbsp;</span></p>
+<p>&nbsp;</p>
+<p class="HCL" style="line-height:18pt;"><span class="HCLT"  style="vertical-align:bottom;"><span class='myborder'>H</span>eading with myborder</span></p>
+<p><br><br></p>
+<p class='td1p'><span class='R2 myReq'>Required</span>&nbsp;<span class='a myOpt'>Optional</span></p>
+
+<br>
+<!--
+<p class="LT">Don't use this - This is another way I can emphasis text</p>
+<p class="LT">Here, I use a large font, instead of color to make the point</p>
+<p class="center LT">This, will usually be centered</p>
+-->
+
+<br>
+<!--
+<acronym title=" ">How is an acronym coded?</acronym>
+-->
+
+<h3><span class="HCL"><span class="HCLT">Structured  Text </span></span></h3>
+<p>
+  <em>EM:     Indicates emphasis.</em><br>
+  <STRONG>STRONG: Indicates stronger emphasis.</STRONG><br>
+  <CITE>CITE:   Contains a citation or a reference to other sources.</CITE><br>
+  <DFN>DFN:    Indicates that this is the defining instance of the enclosed term.</DFN><br>
+  <CODE>CODE:   Designates a fragment of computer code.</CODE><BR>
+  <SAMP>SAMP:   Designates sample output from programs, scripts, etc.</SAMP><BR>
+  <KBD>KBD:     Indicates text to be entered by the user.</KBD><BR>
+  <VAR>VAR:     Indicates an instance of a variable or program argument.<VAR><br>
+  </p>
+
+  <p>ABBR:   Indicates an abbreviated form.  Pass your Mouse Over the item <ABBR title="World Wide Web">WWW</ABBR> </p>
+  <p>ACRONYMs: have a dotted line around the word
+    <br>
+  Pass your Mouse Over the item. A ? will show at the mouse cursor and a tooltip will popup!</p>
+  <acronym title="&lt;acronym title=&quot;How is an acronym coded?&quot;&gt;...&lt;/acronym&gt;">How is an acronym coded?</acronym>
+  <br>
+
+  <p><b>bold </b>, <i>italic </i>, <b><i>bold italic </i></b>, <tt>teletype text </tt> <big>big </big> <small>small </small> <q>quote </q> <br>This following line has the tags without an enclosing p</p>
+  <b>bold </b>, <i>italic </i>, <b><i>bold italic </i></b>, <tt>teletype text </tt> <big>big </big> <small>small </small> <q>quote </q>
+  <br>
+  <blockquote class='fancy'>
+
+    this is the blockquote class='fancy'.
+    <br>
+    See how much fancier it is than the pre tag
+
+  </blockquote>
+
+
+  <br class='clearall'><br>
+
+
+  <p><span class="DropCap">I </span>sometimes use this typographic type effect for the start of somewhat longer narrative.  It usually signifies that you might have to think about this for a second.</p>
+  <br>
+  <p class="indent">Paragraphs start out indented.&nbsp; To format multiple line within a p I have to use a &amp;nbsp; and a space to get the spacing correct,like this and the following line.&nbsp; The last line of this paragraph will not have a &amp;nbsp; and I bet it will only have one space between the period and the next sentence.  I have two spaces before this but no &amp;nbsp;.</p>
+
+  <br>
+  <p class="CBerror"> CBError messages in this color</p>
+  <p class="CBwarn"> CBError warnings and unexpected or different informational messages in this color</p>
+  <hr>
+
+
+  <h2><span class="FL">A</span>lternate formatting options for special cases</h2>
+
+  <table cellpadding="2" cellspacing="2" class="CTB">
+    <tr>
+      <td><p class="HC">Another slightly different Caption</p></td>
+    </tr>
+    <tr>
+      <td class="a"><p class="td1p">Centered Table</p></td>
+    </tr>
+  </table>
+
+  <br class="clearall">
+
+  <table cellpadding="2" cellspacing="2" class="LTB">
+    <tr class="HCCT">
+      <td><p>Left Justified</p></td>
+    </tr>
+    <tr>
+      <td class="a"><p>Table Left Justified</p></td>
+    </tr>
+  </table>
+
+  <table cellpadding="2" cellspacing="2" class="RTB">
+    <tr class="HCCT">
+      <td><p>Right Justified my caption</p></td>
+    </tr>
+    <tr>
+      <td class="a"><p>Table Right Justified</p></td>
+    </tr>
+  </table>
+
+  <br class="clearall">
+
+
+
+  <br>
+  <!-- this is the one that is hosed
+  <p class="smallmargins"><span CLASS="note">p class small margins with class note.  A Combination of this technique with
+  don't put padding on a span?
+  -->
+  <p class="smallmargins note">p class small margins with class note.  A Combination of this technique with
+    other typographic conventions, such as first line indent, would prove <em>too</em> distracting
+  visually, and should be avoided. Besides, the P is hosed in IE as the following DIV is not</p>
+
+  <br class="clearall">
+
+  <!-- this one is okay -->
+
+  <div class="smallmargins"><p class="note">div class smallmargins with p class note.  A Combination of this technique with
+    other typographic conventions, such as first line indent, would prove <em>too</em> distracting
+  visually, and should be avoided.</p></div>
+
+  <br class="clearall">
+
+  <p class="smaller"><span CLASS="pullquote" style="width: 20em;">
+  * The Imperial gallon is divided into 160 fluid ounces (the U.S. gallon is divided into 128).&nbsp;&nbsp;British Pints and Cups are very different from their U.S. counterparts!</span><br><br></p>
+  <br>
+  <!-- these were getting run together until I added the p nbsb p below  -->
+  <p>&nbsp;</p>
+  <br class="clearall">
+  <p class="smaller"><span CLASS="pullquote3">Note </span>
+    the <b>pullquote3</b> and <b>smaller p</b> this is any easy way to highlight a item, like in a list without having to do a table
+  </p>
+  <p>&nbsp;</p>
+  <br class="clearall">
+
+  <br class="clearall">
+  <br>
+  <blockquote class='fancy'>
+
+    blockquote class='fancy'.
+    <br>
+    Since you have to scroll down to get to this button,this tests how ...
+    <br>
+    show the blockquote fancy style
+
+  </blockquote>
+
+
+<blockquote style='width:50em; margin-right:auto; margin-left:auto;' class='fancy smallboldspaced center'>
+
+  blockquote class='fancy smallboldspaced center'
+  <br>
+  style=width:50em; margin-right:auto; margin-left:auto;
+  <br>
+  Since you have to scroll down to get to this button,this tests ...
+  <br>
+  show the blockquote fancy style with the smallboldspaced class
+
+</blockquote>
+
+<div class="Announce">
+  <hr class='announce'>
+  <p class="smallboldspaced" style='text-align:center'>
+  Hold the Presses.</p>
+  <hr class='announce'>
+
+
+  <p>
+
+  </p>
+</div>
+<p>&nbsp;</p> <!-- Announcments to Here -->
+
+<!--
+validator does not like the DT without the DD etc
+-->
+<h3><span class="HCL"><span class="HCLT">Lists and Lists and Lists</span></span></h3>
+
+<ul class='cb'>
+  <li class='anp'><p>This is a ul with a class of cb.&nbsp; I finally have a list that will wrap around to the next and it will indent the line (I am happy) making this really, really good and good</p></li>
+  <li class='bnp'><p>okay with me</p></li>
+  <li class='anp'><p>lets go</p></li>
+</ul>
+
+<ol class='cb'>
+  <li class='anp'><p>This is a ol with a class of cb.&nbsp; I finally have a list that will wrap around to the next and it will indent the line (I am happy) making this really, really good and good</p></li>
+  <li class='bnp'><p>okay with me</p></li>
+  <li class='anp'><p>lets go</p></li>
+</ol>
+
+<table cellpadding="2" cellspacing="2"
+  summary="another sligtly mor complicated list setup">
+  <tr>
+    <td><p class='bnp mydt2'>What to highlight</p></td>
+    <td class="a"><p>its description</p></td>
+  </tr>
+  <tr>
+    <td><p class='bnp mydt2'>Slice</p></td>
+    <td class="a"><p>with a serrated knife, or prick the skin with the tip of a paring knife to get a slice going, then follow through with the blade. Cut lengthwise, from stem to blossom end, rather than widthwise to retain more juice.</p></td>
+  </tr>
+  <tr>
+    <td><p class='bnp mydt2'>Dice</p></td>
+    <td class="a"><p>Slice and put half of the slices on a cutting surface with a flat slice down, and cut them into strips. Cut crosswise into dice, and repeat with the other slices.</p></td>
+  </tr>
+  <tr>
+    <td><p class='bnp mydt2'>Peel</p></td>
+    <td class="a"><p>Make a small x opposite the stem end.  Drop into boiling water for about 15 to 20 seconds. Remove and place in a bowl of ice water for about 5 minutes.  Slip the skin off.</p></td>
+  </tr>
+  <tr>
+    <td><p class='bnp mydt2'>Seed</p></td>
+    <td class="a"><p>Cut in half horizontally, hold each half over a strainer sitting on a bowl and squeeze; the seeds will be trapped in the strainer. Only seed tomatoes if necessary for aesthetic reasons, because you will lose some of their nutritional value if you do.</p></td>
+  </tr>
+</table>
+
+
+<table cellpadding="2" cellspacing="2"
+  summary="my favorite list type">
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>This is another list type.  Watch how it handles really long sections like this.  It wraps them around and fromats them nicely.  are usually best as they usually contains the fewest fillers and other additives.</p> </td>
+  </tr>
+
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>cmvncmvn,xcvn,xcnvc</p> </td>
+  </tr>
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>can be tomato paste mixed with water or tomatoes that have been cooked and strained.</p></td>
+  </tr>
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>are tomatoes that have been cooked, strained and reduced to a concentrate.</p></td>
+  </tr>
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>is a generic term for any number of sauces that are tomato based.&nbsp;&nbsp;Read your ingredients carefully.</p></td>
+  </tr>
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>vmxcvjxlcjvlcxjv</p></td>
+  </tr>
+  <tr>
+    <td><p>&bull;</p></td>
+    <td class="b"><p>cljvlxcjvljvlxcjvlxcjvxclkvj</p></td>
+  </tr>
+</table>
+
+
+<ul>
+  <li><p class="exp"><span class="bpl">Another list that is good for lists without long items.</span></p></li>
+  <li><p class="exp"><span class="bpl">Avoid bruised or cracked tomatoes.</span></p></li>
+  <li><p class="exp"><span class="bpl">Choose well shaped, firm and uniformly colorful tomatoes without blemishes.</span></p></li>
+  <li><p class="exp"><span class="bpl">A ripe tomato yields slightly to gentle pressure.</span></p></li>
+  <li><p class="exp"><span class="bpl">It is okay to purchase unripened fruit.</span></p></li>
+  <li><p class="exp"><span class="bpl">If tomatoes need to ripen, store them at room temperature in a brown paper bag (or in a fruit-ripening bowl).</span></p></li>
+  <li><p class="exp"><span class="bpl">This type is not good for long list items This is another list type.  Watch how it handles really long sections like this.  It wraps them around and fromats them nicely.  are usually best as they usually contains the fewest fillers and other additives.</span></p></li>
+
+</ul>
+
+<ul>
+  <li><p>
+  I don't use this much; but it is available .</p></li>
+  <li><p>
+  Saturated fat should be less than 10 percent of total calories.</p></li>
+  <li><p>
+  Cholesterol should be less than 300 mg per day.</p></li>
+</ul>
+<!--
+
+CTB does not work in IE and it has problem with a caption in Mozilla
+<caption>
+<p class="heading HC">Centered Table Caption</p>
+</caption>
+
+I think its best to avoid this
+
+-->
+<p><span class="HCL"><span class="HCLT">The Bullets and Graphics Section</span></span></p>
+
+<br>
+<p><img SRC="GraphicWidgets/sdi-bl.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-cy.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-gr.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-lb.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-pr.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-rd.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+<p><img SRC="GraphicWidgets/sdi-yl.gif" WIDTH=10 HEIGHT=10 ALT="*"></p>
+
+<p class="center">&ndash;Gary&ndash;</p>
+<p class="center">Johnson</p>
+<!-- printing at 100, no background colors or images still print this and it was pretty hbad looking -->
+<p> a png portable network graphics file with a transparency
+<img alt="" longdesc="" src="GraphicWidgets/Kitchen1.png"> </p>
+<br>
+
+<br>
+<h2><span class="FL">D</span>ividers</h2>
+<pre> The default HR </pre>
+<hr>
+<pre> A few other dividers for special cases, the first is a very thin divider</pre>
+
+<p class="mythinsp">&nbsp;</p>
+
+<p>above me is the thin space</p>
+<!-- these print pretty bad -->
+<p class="hrl"></p>
+<p class="hrc"></p>
+<p class="hrr"></p>
+
+<br>
+<p class="hrc"></p>
+<br>
+<hr>
+
+<!--
+colored is to test in line style sheets
+-->
+
+<hr class="colored">
+
+<hr class='announce'>
+<!--
+to test in line style
+-->
+<hr style=' color:goldenrod;margin-top: 3px; margin-bottom: 3px; border-top: thick outset goldenrod; ' >
+
+<h2><span class="FL">E</span>xamples of a HTML Forms and buttons etc</h2>
+
+
+<br>
+
+<!--
+validator says action is required.  Questionable
+glitch - got to have a name on the form or no properties
+add the label
+-->
+<form name ="ScreenSize" id="ScreenSize">
+  <FIELDSET class="b" style='width:25%'>
+    <LEGEND class="a"><strong>Show Me Screen Sizes:</strong></LEGEND>
+    <input  type="button" tabindex="2" id="xzCC" title="screen sizes" class="buttonNgrey"
+    value="Show Me Screen Sizes"
+    onmouseover="toggleHighLight('m', this.id);"
+    onClick="showScrSize();"
+    onmouseout="toggleHighLight('o', this.id);">
+  </FIELDSET>
+</form>
+
+
+<br>
+
+<!--
+
+the onSubmit solves my handling of the return in the input text field!
+-->
+
+<form name ="ShowHTML" id="ShowHTML" onSubmit="showInnerHTML(ShowHTML.inputid.value); return false;">
+  <fieldset class="b" style='width:25%'>
+    <legend class="a"><strong>Show Me Inner, Outer Text and HTML for an ID:</strong></LEGEND>
+
+    <input type="text" size = 50 id="inputid" value="myheader">
+
+    <input type="button" id="sSS" title="Do a Javascript Function" class="buttonNgrey" value="Show InnerHTML"
+    onClick="showInnerHTML('ShowHTML');"
+    onmouseover="toggleHighLight('m', this.id);"
+     onmouseout="toggleHighLight('o', this.id);">
+  </fieldset>
+</form>
+
+
+
+
+
+<!--
+
+onmousever glitch showing lighter color after rolling over
+not setting it back to normal
+
+
+I don't have a class or onevent handler on the option
+
+-->
+<br class="clearall">
+
+<select class="buttonNgrey" name="select1" id="select1">
+  <option value=" " SELECTED>teaspoon(s)</option>
+  <option value=" ">tablespoon(s)</option>
+  <option value=" ">fluid ounce(s)</option>
+  <option value=" ">&frac14; cup(s)</option>
+  <option value=" ">&frac12; cup(s)</option>
+  <option value=" ">&frac34; cup(s)</option>
+  <option value=" ">cup(s)</option>
+  <option value=" ">liquid pint(s)</option>
+  <option value=" ">quart(s)</option>
+  <option value=" ">gallon(s)</option>
+  <option value=" ">british cup(s)</option>
+  <option value=" ">british pint(s)</option>
+  <option value=" ">imperial gallon(s)</option>
+  <option value=" ">liter(s)</option>
+  <option value=" ">milliliter(s)</option>
+</select>
+
+<form>
+  <table>
+    <tbody>
+      <tr>
+        <td>Checkbox
+        </td>
+        <td>
+          <input type="checkbox"
+          class="buttonNgrey" name="checkbox1" id="checkbox1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+      </tr>
+<!--
+      <tr>
+        <td>
+
+        </td>
+
+        <td>
+          <input type="file" size="15" class="buttonNgrey" name="fileupload1" id="fileupload1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+      </tr>
+-->
+      <tr>
+        <td>Hidden
+        </td>
+        <td><input value="hidden value" type="hidden">
+        </td>
+      </tr>
+<!--
+      <tr>
+        <td>Password
+        </td>
+        <td>
+          <input value="" type="password" class="buttonNgrey" name="password1" id="password1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+      </tr>
+-->
+      <tr>
+        <td>Radio
+        </td>
+        <td>
+          <input type="radio" class="buttonNgrey" name="radio1" id="radio1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+      </tr>
+      <tr>
+        <td>Text
+        </td>
+        <td>
+          <input type="text" class="buttonNgrey" name="text1" id="text1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+      </tr>
+      <tr>
+        <td>Textarea
+        </td>
+        <td>
+          <textarea class="buttonNgrey" name="textarea1" id="textarea1"
+            ROWS="2" COLS="1"
+            onchange="toggleHighLight('m', this.id);"
+            onmouseover="toggleHighLight('m', this.id);"
+            onmouseout="toggleHighLight('o', this.id);">
+          </textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>Reset object
+        </td>
+        <td>
+          <input type="reset" class="buttonNgrey" name="reset1" id="reset1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);">
+        </td>
+
+        <td>Submit object
+        </td>
+        <td>
+          <input type="submit" class="buttonNgrey" name="submit1" id="submit1"
+          onchange="toggleHighLight('m', this.id);"
+          onmouseover="toggleHighLight('m', this.id);"
+          onmouseout="toggleHighLight('o', this.id);"></td>
+      </tr>
+
+    </tbody>
+  </table>
+</form>
+
+          <!--
+
+          white-space: pre nowrap; error
+          white-space: pre causes extra lines
+
+          use &nbsp;
+          -->
+<form name="RadioTheme" id="RadioTheme" >
+  <FIELDSET class="b" >
+    <LEGEND class="a" ><strong>Select a Theme</strong></LEGEND>
+    <p style='font-family:"Courier New",Courier,monospace; '><b>
+      <input type="radio" name="loc" VALUE="WHITE"  onClick="SelectTheme('WHITE');"    > Plain White Background - Black Text  &nbsp;&nbsp;&nbsp;   - Pale Blue Accents<br>
+      <input type="radio" name="loc" VALUE="GREY"     onClick="SelectTheme('GREY');"     > Light Grey&nbsp;  Background - Dark Blue Text - Medium Blue Accents<br>
+      <input type="radio" name="loc" VALUE="GREYPALE" onClick="SelectTheme('GREYPALE');" > Light Grey&nbsp;  Background - Dark Blue Text - Pale Blue Accents<br>
+      <input type="radio" name="loc" VALUE="BLACK"  onClick="SelectTheme('BLACK');"    > Plain Black Background - White Text  &nbsp;&nbsp;&nbsp;   - Blue Accents<br>
+    </b></p>
+  </FIELDSET>
+</form>
+<p> an expandble textarea input box</p>
+<textarea name="message" id="message" rows="5" cols="60" style="width:50%"></textarea>
+
+<br>
+<!--
+<a href="bigfile.zip" onClick="confirmDownload=confirm('Are you sure?'); alert(confirmDownload); return confirmDownload" >Download</a>
+-->
+
+<!-- level 3 heading -->
+<h3><span class="HCL"><span class="HCLT">Other Examples
+</span></span></h3>
+
+<audio src="Sounds/send_check.wav" id="gjaudio2"></audio>
+<script>
+  var gjpro = document.getElementById("gjaudio2");
+</script>
+
+<BUTTON class="buttonNgrey" id="gjaudio3"
+        onmouseover="toggleHighLight('m', this.id);"
+        onclick="gjpro.play();"
+        onmouseout="toggleHighLight('o', this.id);"><IMG SRC="GraphicWidgets/control_play.png" ALT="Play">Pronunciation </BUTTON>
+
+<h2 class='pUP' id='APopUp' onmouseover="showImg(this.id,'theIngredients',9999);" onmouseout="hideImg('theIngredients');"><span class="FL">M</span>ouse Over Pop Up - Used to display additional images and text - Indicated by the border at the right ->
+</h2>
+<img id='theIngredients' src="../Pictures/ShrimpandGarlicIngredients.JPG" alt="Ingredients" style="display:none;">
+
+<h2><span class="FL">D</span>ictionary Entries look like this</h2>
+
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+  <tr class="R2">
+    <td><p class="scenter">Name</p></td>
+    <td><p class="scenter">Synonym</p></td>
+  </tr>
+  <!-- I do not know why I got a page break after the name synonym above, or is it before this  -->
+  <tr>
+    <td colspan="2"><b class="pullquote2">
+    abalone</b>
+    <b class="DEF"> is a shellfish that resembles a large scallop when out of its shell. &nbsp;Abalone is considered a delicacy and has been compared to calamari with a more subtle flavour.&nbsp; Farmed abalone is sold commercially.&nbsp; It is illegal to sell wild abalone in the United States, however, you can dig your own in mid to Northern California.
+
+    <hr></b>
+
+    <hr><b class="pullquote">Shopping</b><b class="SHO">Specialty Fish Markets</b>
+
+    <hr><b class="pullquote">Storing</b><b class="STO">Eat as quickly as possible</b>
+
+    <hr><b class="pullquote">Preparation</b><b class="PRE">Take out of the shell</b>
+
+    <hr><b class="pullquote">Yields</b><b class="YIE">Yields and Equivalents</b>
+
+    <hr><b class="pullquote">Substitutions</b><b class="SUB">No Substitutions</b>
+
+    <hr><b class="pullquote">Also see</b><b class="SEE">See : For additional information you could try researching farm raised seafood</b>
+
+    <hr><b><a href="../TermsDictionaryGlossary/S/Shellfish.html" class="AOne">See Shellfish.html</a></b>
+
+    <hr><b><img alt="" longdesc="" src="../TermsDictionaryGlossary/A/abalone.jpg"></b>
+
+    <hr><b><a href="../TermsDictionaryGlossary/A/abalone.avi" class="AOne">Play Video</a></b>
+
+    <hr><b><a href="javascript:playMozSound('chrome://gj53run/content/CookBook/XXSoftwareTools/Sounds/A/Abalone.wav');" >Pronunciation</a></b>
+
+  </td>
+</tr>
+</table>
+
+
+</div> <!-- end div  myinline-->
+
+<!-- I want inline style for this -->
+<div id="TSSinfo" style="visibility:hidden; position:absolute; width:auto; height:auto; top:100pt; left:250pt; background-color:lightseagreen; border-left: 5px solid #000; padding-right:15pt; z-index:1">
+  <ul class="gbull">
+    <li><p class="ex"><span class="LGreyPattern">The short story items are formatted this way</span></p></li>
+    <li><p class="ex"><span class="LGreyPattern">We use a little different bullet</span></p></li>
+    <li><p class="ex"><span class="LGreyPattern">and a different color </span></p></li>
+    <li><p class="ex"><span class="LGreyPattern">In short snappy little sentences </span></p></li>
+  </ul>
+</div>
+
+<!--
+validator complains about iframe line.  questionable
+-->
+
+<h2><span class="FL">H</span>elp System Entries showing our examples would look like this</h2>
+
+
+<input class="closeit" type="button" id="close03" value="-" onClick="toggleDisplayButton('CMEB3','close03' );">
+<div id="CMEB3" class="abbc">
+ <p>
+
+
+
+  a test of div to highlight a big block of text</p>
+
+  <form name ="ShowHTML2" id="ShowHTML2" onSubmit="showInnerHTML(ShowHTML2.inputid.value); return false;">
+    <fieldset class="b" style='width:25%'>
+      <legend class="a"><em>Show Me Inner, Outer Text and HTML for an ID:</em></LEGEND>
+
+      <input type="text" size = 50 id="inputid2" value="myheader">
+
+      <input type="button" id="sSSz1" title="Do a Javascript Function" class="buttonNgrey" value="Show InnerHTML"
+      onmouseover="toggleHighLight('m', this.id);"
+      onClick="showInnerHTML(ShowHTML2.inputid2.value);"
+      onmouseout="toggleHighLight('o', this.id);">
+    </fieldset>
+  </form>
+
+<blockquote class='fancy'>
+
+  blockquote class='fancy'.
+  <br>
+  Since you have to scroll down to get to this button,this tests how ...
+  <br>
+  show the blockquote fancy style
+  <br>
+  àáâãäåæçèéêëìíîï
+  ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏUpperCase
+  ðñòóôõö÷øùúûüýþÿ
+</blockquote>
+
+
+</div>
+
+
+
+<iframe id="iffooter1" class="myfooter" frameborder="0" scrolling="no" src="GaryDefaultFooter.html"></iframe>
+</body>
+</html>

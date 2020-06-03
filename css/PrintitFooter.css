@@ -1,0 +1,58 @@
+/* PrintitFooter
+html
+{
+
+margin: 0;
+border: 1px solid cyan;
+}
+body
+{
+
+  border: 1px solid olive;
+  regular setings
+  background-color: white;
+  color: black;
+  margin:0;
+}
+*/
+
+
+/* over ride for some backgrounds on spans not being suppressed when selecting no print backgrounds */
+
+*
+{
+  background-color: white !important;
+  background-image: none !important;
+}
+
+small
+{
+  color:black;
+}
+
+
+.myfooter
+{
+  margin:0;
+}
+
+a.AOne:link, a.AOne:visited
+{
+  margin:0;
+  text-decoration: none;
+  color:black;
+}
+
+#LastModified
+{
+  display:none;
+}
+
+
+p
+{
+  margin:0in;
+  margin-bottom:.0001pt;
+  font-size:12.0pt;
+  font-family: "Segoe UI","Helvetica Neue", Verdana ,Helvetica , sans-serif;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Ambigous Key Codes Problem</title>
+    <script language="javascript" type="text/javascript">
+        // JScript File
+
+        document.onload =setEventListener(disableKey);
+        function disableKey(event) {
+        //debugger
+          if (!event) event = window.event;
+          if (!event) return;
+
+          var keyCode = event.keyCode ? event.keyCode : event.charCode;
+
+          //window.status = keyCode;
+          alert(keyCode);
+
+          // keyCode for F% on Opera is 57349 ?!
+          if(keyCode >= 112 && keyCode  <= 123 ){
+          //if (keyCode == 116 ) {
+           window.status = "F5 key detected! Attempting to disabling default response.";
+           window.setTimeout("window.status='';", 2000);
+
+           // Standard DOM (Mozilla):
+
+           //if(event.srcElement.tagName.toUpperCase() != 'INPUT'){
+           if (event.preventDefault) event.preventDefault();
+
+           //}
+
+           //IE (exclude Opera with !event.preventDefault):
+           if (document.all && window.event && !event.preventDefault) {
+             event.cancelBubble = true;
+             event.returnValue = false;
+             event.keyCode = 0;
+           }
+
+           return false;
+          }
+        }
+
+        function setEventListener(eventListener) {
+        //debugger
+          if (document.addEventListener) document.addEventListener('keypress', eventListener, true);
+          else if (document.attachEvent) document.attachEvent('onkeydown', eventListener);
+          else document.onkeydown = eventListener;
+
+          if (!document.getElementById) return;
+          var el = document.getElementById("Msg");
+          if (el) el.innerHTML = "Event handler added.";
+        }
+
+        function unsetEventListener(eventListener) {
+        //debugger
+          if (document.removeEventListener) document.removeEventListener('keypress', eventListener, true);
+          else if (document.detachEvent) document.detachEvent('onkeydown', eventListener);
+          else document.onkeydown = null;
+
+          if (!document.getElementById) return;
+          var el = document.getElementById("Msg");
+          if (el) el.innerHTML = "Event handler removed.";
+        }
+
+
+    </script>
+</head>
+<body>
+<p> <b>Case I :</b> Functional Keys <strong>F1</strong> to <strong>F11</strong> having the keycodes 112 to 122</p>
+<p> <b>Case II :</b>As well as  Keys <strong>p</strong> to <strong>z</strong> having the same keycodes 112 to 122</p>
+<p>In both Case I and Case II keys have the same keycodes which is very much confusing, I can't differentiate among the keycodes of Functional Keys <strong>F1</strong>
+    to <strong>F11</strong> and Alphabet keys <strong>p</strong> to <strong>z</strong></p>
+<p>Press Functional keys <strong>F1</strong> to <strong>F11</strong> one by one</p>
+<p>Press Alphabet keys <strong>p</strong> to <strong>z</strong> one by one</p>
+<table border="1" bordercolor="#000" cellspacing="1">
+<tr>
+    <th>Alphabet Keys</th>
+    <th>Functional Keys</th>
+    <th>Key codes</th>
+</tr>
+<tr>
+    <td>
+        p</td>
+    <td>F1</td>
+    <td>112</td>
+</tr>
+<tr>
+    <td>
+        q</td>
+    <td>F2</td>
+    <td>113</td>
+</tr>
+<tr>
+    <td>
+        r</td>
+    <td>F3</td>
+    <td>114</td>
+</tr>
+<tr>
+    <td>
+        s</td>
+    <td>F4</td>
+    <td>115</td>
+</tr>
+<tr>
+    <td>
+        t</td>
+    <td>F5</td>
+    <td>116</td>
+</tr>
+<tr>
+    <td>
+        u</td>
+    <td>F6</td>
+    <td>117</td>
+</tr>
+
+<tr>
+    <td>
+        v</td>
+    <td>F7</td>
+    <td>118</td>
+</tr>
+<tr>
+    <td>
+        w</td>
+    <td>F8</td>
+    <td>119</td>
+</tr>
+<tr>
+    <td>
+        x</td>
+    <td>F9</td>
+    <td>120</td>
+</tr>
+<tr>
+    <td>
+        y</td>
+    <td>F10</td>
+    <td>121</td>
+</tr>
+<tr>
+    <td>
+        z</td>
+    <td>F11</td>
+    <td>122</td>
+</tr>
+</table>
+</body>
+</html>

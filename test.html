@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Test </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/gjAppcore.js"></script>
+<script type="text/javascript" src="js/gjutil1.js"></script>
+<script type="text/javascript" src="js/gjmove.js"></script>
+<script type="text/javascript" src="js/gjmsg.js"></script>
+<script type="text/javascript" src="js/CCallWrapper.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="../gmgj/gmgj_style.css" rel="stylesheet">
+
+<script type="text/javascript">
+var inobj = {
+'slideTransition' : 'none', // default slide transition
+'slideTransitionSpeed' : 2000, // default slide transition time
+'slideEndAnimation' : true, // if set true, objects will transition out before next slide moves in
+'position' : '0,0', // default position | should never be used
+'transitionIn' : 'left', // default in - transition
+'transitionOut' : 'left', // default out - transition
+'fullWidth' : false, // transition over the full width of the window
+'delay' : 0, // default delay for elements
+'timeout' : 2000, // default timeout before switching slides
+'speedIn' : 2500, // default in - transition speed
+'speedOut' : 1000, // default out - transition speed
+'easeIn' : 'easeOutExpo', // default easing in
+'easeOut' : 'easeOutCubic', // default easing out
+'controls' : false, // controls on/off
+'pager' : false, // pager inside of the slider on/off OR $('someselector') for a pager outside of the slider
+'autoChange' : true, // auto change slides
+'pauseOnHover' : false, // Pauses slider on hover (current step will still be completed)
+'backgroundAnimation' : false, // background animation
+'backgroundElement' : null, // element to animate | default fractionSlider element
+'backgroundX' : 500, // background animation x distance
+'backgroundY' : 500, // background animation y distance
+'backgroundSpeed' : 2500, // default background animation speed
+'backgroundEase' : 'easeOutCubic', // default background animation easing
+'responsive' : false, // responsive slider (see below for some implementation tipps)
+'increase' : false, // if set, slider is allowed to get bigger than basic dimensions
+'dimensions' : '1000, 400',
+'startCallback' : null, // callbacks, see below for more information on callbacks
+'startNextSlideCallback' : null,
+'stopCallback' : null,
+'pauseCallback' : null,
+'resumeCallback' : null,
+'nextSlideCallback' : null,
+'prevSlideCallback' : null,
+'pagerCallback' : null
+}
+
+
+var inStrs =
+[
+"12345-d234",
+"12345-1d34",
+"s2345-d234",
+"s12345-d234",
+"12345",
+"12345-1234",
+"ddddd-dddd",
+"eeeee-eeee",
+"!@#$%^&*()_+<>:''\\|"
+];
+
+function displayIt(str){
+}
+
+function runIT()
+{
+  for (var key in inobj) {
+    if (inobj.hasOwnProperty(key))
+     jQuery("#op").append('td id='+key + ">" +key + '~' + inobj[key]+ 'slash<br>');
+  }
+}
+
+/**
+ * @package gmgj
+ * @version 0.31
+ */
+/*
+Plugin Name: gmgj
+Plugin URI: http://garyjohnsoninfo.info/gmgj
+Description: This is a test plugin.
+Author: Gary GMGJ Johnson
+Version: 0.31
+Author URI: http://garyjohnsoninfo.info/
+*/
+"use strict";
+jQuery.noConflict();
+jQuery(document).ready(function() {
+var gmgj_d = new Date();
+var gmgj_t = gmgj_d.getTime();
+var gmgj_dw =jQuery(document).width();
+var gmgj_wh =jQuery(window).height();
+var gmgj_op = ' dw ' + gmgj_dw + ' wh ' + gmgj_wh  + " time " + gmgj_t;
+console.log(gmgj_op);
+var gmgj_tst = "<p class='gmgjcolor'>" + "<br>"  +  '<br> help : gmgj_popup this is a test popup' + "</p>";
+
+//tst2 = ' this is a test popup at ' + gmgj_t;
+//alert(tst2);
+//.document.getElementById("gmgjexample").innerHTML=gmgj_tst;
+
+//create an element and on subsequent passes, return if that element exists
+
+if (gmgj_dw < 400) return;
+if (gmgj_wh < 400) return;
+
+if(document.getElementById("gmgj_effect") !== null) return;
+// 249 x 177 wordpress\htdocs\wp-content\plugins\gmgj\AFEPipes.JPG
+//$data =  getimagesize('path_to_image');
+//$gmgj_img_width = $data[0];
+//$gmgj_img_height = $data[1];
+
+var gmgj_img_width = 249;
+var gmgj_img_height = 177;
+
+var gmgj_top = (gmgj_wh - gmgj_img_height) / 2;
+var gmgj_left = (gmgj_dw - gmgj_img_width) / 2;
+
+var gmgj_tmp1 = "<div class='gmgj_framewrapper noMobile' style='width:100%;position:absolute;";
+var gmgj_tmp2 = "top:" + gmgj_top + "px;left:" + gmgj_left + "px;" + "'>";
+var gmgj_op_str1 = gmgj_tmp1 + gmgj_tmp2;
+
+var gmgj_op_str2 = "<div class='gmgj_toggler'>";
+var gmgj_op_str3 = "<div id='gmgj_effect'>";
+var gmgj_op_str4 = "<div style='width:" + gmgj_img_width + "px;height:" + gmgj_img_height + "px;'>";
+
+    gmgj_tmp1 = "<img id='gmgj_theimage' title='pipes' style='display:none;' alt='' width='" + gmgj_img_width;
+    gmgj_tmp2 = "' height='" + gmgj_img_height + "' src='" + "../images/AFEPipes.JPG"+ "'>";
+var gmgj_op_str5 = gmgj_tmp1 + gmgj_tmp2;
+
+var gmgj_op_str6 = "<div class='gmgj_frameCaption1'><p>Learn<br>Lead<br>Influence</p></div>";
+var gmgj_op_str7 = "</div>";
+//</div>
+//</div>
+//</div>
+var gmgj_op_str8 = "<div id='gmgj_LLI' style='display:none' class='nav-header'><p>Learn2 Lead2 Influence2</p></div>";
+
+//var gmgj_op_str  = jQuery(gmgj_op_str1, gmgj_op_str2, gmgj_op_str3, gmgj_op_str4, gmgj_op_str5, gmgj_op_str6, gmgj_op_str7, gmgj_op_str7, gmgj_op_str7, gmgj_op_str7);
+var gmgj_op_str  = gmgj_op_str1 + gmgj_op_str2 + gmgj_op_str3 + gmgj_op_str4 + gmgj_op_str5 + gmgj_op_str6 + gmgj_op_str7 + gmgj_op_str7 + gmgj_op_str7 + gmgj_op_str7 + gmgj_op_str8;
+
+var gmgj_el = document.createElement('div');
+gmgj_el.innerHTML =  gmgj_op_str;
+document.body.appendChild(gmgj_el.firstChild);
+
+function runEffect() {
+
+  // most effect types need no options passed by default
+  var options = {};
+
+//"clip", "bounce", "blind", "drop", "explode", "fold", "highlight", "puff",
+//"pulsate", "shake", "slide"
+
+  jQuery( "#gmgj_theimage").show();
+  // run the effect
+  jQuery( "#gmgj_effect").show('explode', options, 1500, gmgj_callback_jq1 );
+
+
+	function gmgj_callback_jq1() {
+	  jQuery("#gmgj_effect" ).delay(2000).fadeOut(3000);
+	//  jQuery("#gmgj_LLI").slideDown();
+	//  jQuery("#gmgj_LLI").show();
+	}
+}
+
+
+jQuery("#gmgj_effect" ).hide();
+//jQuery( "#effect" ).hide().remove();
+
+//runEffect();
+
+});
+
+</script>
+<style>
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  background-color: #dedede;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+}
+
+.scroll-down {
+  position: relative;
+  background-color: red;
+  width: 4rem;
+  height: 4rem;
+  padding: 1.618rem;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 0;
+}
+.scroll-down::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  width: 105%;
+  height: 105%;
+  background-color: white;
+  border-radius: 50%;
+  will-change: transform;
+  -webkit-transition: -webkit-transform 300ms;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+}
+.scroll-down::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border-radius: 50%;
+  will-change: transform;
+  -webkit-transition: -webkit-transform 300ms;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+}
+.scroll-down svg {
+  max-width: 25.888px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  fill: white;
+  -webkit-transition: fill 300ms;
+  transition: fill 300ms;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.scroll-down:hover::before {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+.scroll-down:hover::after {
+  -webkit-transform: translate(-50%, -50%) scale(1.2);
+          transform: translate(-50%, -50%) scale(1.2);
+  -webkit-animation: fade 300ms;
+          animation: fade 300ms;
+}
+.scroll-down:hover svg {
+  fill: red;
+}
+
+@-webkit-keyframes fade {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes fade {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+</style>
+</head>
+<!-- <body id='testbod' onload="runIT();"> -->
+<body id='testbod'>
+<pre id='op'>
+</pre>
+<div class="container">
+
+	<a href="#" class="scroll-down">
+		<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+		 <path d="m0 93.301l49.996-86.602 50.004 86.602z"/>
+		</svg>
+
+	</a>
+
+</div>
+</body>
+</html>
